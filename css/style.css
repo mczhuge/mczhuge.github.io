@@ -33,7 +33,9 @@ a:focus {
 
 .navbar,
 .footer {
-    background-image: linear-gradient(100deg, #b8be0d, #edaa0d, #e97406, #0cafab);
+    /*background-image: linear-gradient(100deg, #b8be0d, #edaa0d, #e97406, #0cafab);
+    */
+    background-image: linear-gradient(100deg, #d8db71, #cdac5f, #e3a76f, #64d4d2);
     background-color: #00A2E2;
     /*color: white;*/
 }
