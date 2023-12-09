@@ -6,7 +6,7 @@ strong {
     font-weight: bold;
     font-family: PT Serif,serif;
     font-size: 16px;
-    color: #383b39;
+    color: #383a3b;
 }
 
 
@@ -16,7 +16,7 @@ body {
     font-family: PT Serif,serif;
     font-size: 16px;
     line-height: 1.8;
-    color: #606c71;
+    color: #107099;
 }
 
 strong {
@@ -33,7 +33,7 @@ a:focus {
 
 .navbar,
 .footer {
-    background-image: linear-gradient(120deg, #e8e8e9, #ffffff);
+    background-image: linear-gradient(100deg, #b8be0d, #edaa0d, #e97406, #0cafab);
     background-color: #00A2E2;
     /*color: white;*/
 }
