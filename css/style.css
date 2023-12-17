@@ -7,7 +7,7 @@ strong {
     font-weight: bold;
     font-family: PT Serif,serif;
     font-size: 16px;
-    color: #383a3b;
+    color: #39383b;
 }
 
 
@@ -17,7 +17,7 @@ body {
     font-family: PT Serif,serif;
     font-size: 16px;
     line-height: 1.8;
-    color: #107099;
+    color: #000000;
 }
 
 strong {
@@ -25,40 +25,38 @@ strong {
 }
 
 
-.navbar,
-.footer {
+.navbar, .footer {
     background-image: linear-gradient(100deg, #d8db71, #cdac5f, #e3a76f, #64d4d2);
-    background-color: #00A2E2;
-    font-size: large;
-    /*color: white;*/
-}
-
-
-
-.navbar .nav>li>a:hover {
-    color: black;
+    background-color: #000000;
     font-size: large;
     font-weight: bold;
+    padding: 11px 15px; /* 新增内边距 */
 }
 
+.navbar .nav>li>a:hover,
 .navbar .nav>li>a:focus {
-    color: black;
-    font-size: large;
+    color: #000000; /* 鼠标悬停时的颜色改变 */
     font-weight: bold;
+    text-decoration: none; /* 移除下划线 */
 }
 
-.navbar .nav>li>a {
-    color: black;
-    font-size: large;
-    font-weight: bold;
-} 
-
-
+/* 调整导航文字样式 */
 .navbar-text {
     font-family: 'Audiowide', sans-serif;
-    font-size: medium;
+    font-size: 22pt;
     font-weight: bold;
-    color: rgba(8, 104, 99, 0.805);
+    color: rgba(0, 0, 0, 0.805);
+}
+
+/* 响应式调整 - 小屏幕时的样式 */
+@media (max-width: 768px) {
+    .navbar, .footer {
+        font-size: medium; /* 调整字体大小 */
+    }
+
+    .navbar .nav>li>a {
+        font-size: medium; /* 调整链接字体大小 */
+    }
 }
 
 
@@ -68,8 +66,8 @@ strong {
 }
 
 .gray-container {
-    /*background-color: #eee;*/
-    border-bottom: solid 3px mistyrose;
+    background-image: linear-gradient(100deg, #d8db71, #cdac5f, #e3a76f, #64d4d2);
+    border-bottom: solid 3px rgb(200, 144, 144);
 }
 
 #about {
