@@ -7,7 +7,7 @@ strong {
     font-weight: bold;
     font-family: PT Serif,serif;
     font-size: 16px;
-    color: #39383b;
+    color: #000000;
 }
 
 
@@ -25,11 +25,18 @@ strong {
 }
 
 
-.navbar, .footer {
+.navbar {
     background-image: linear-gradient(100deg, #d8db71, #cdac5f, #e3a76f, #64d4d2);
     background-color: #000000;
     font-size: large;
     font-weight: bold;
+    padding: 11px 15px; /* 新增内边距 */
+}
+
+.footer {
+    background-image: linear-gradient(100deg, #d8db71, #cdac5f, #e3a76f, #64d4d2);
+    background-color: #000000;
+    font-size: medium;
     padding: 11px 15px; /* 新增内边距 */
 }
 
@@ -68,10 +75,11 @@ strong {
 .gray-container {
     background-image: linear-gradient(100deg, #d8db71, #cdac5f, #e3a76f, #64d4d2);
     border-bottom: solid 3px rgb(200, 144, 144);
+    margin-top: 100px;
 }
 
 #about {
-    margin-top: 30px;
+    margin-top: 70px;
     padding-top: 50px;
     padding-bottom: 30px;
     margin-bottom: 30px;
@@ -100,7 +108,7 @@ strong {
     /*border: 10px solid #FFFFCC;*/
     border: 8px solid #FFFFCC;
     /*transform: rotate(-10deg);*/
-    box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 2px 3px rgba(23, 22, 22, 0.7), 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
 }
 
 #me-img:hover {
