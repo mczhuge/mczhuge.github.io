@@ -1,0 +1,6 @@
+@article{wang2024opendevin,
+  title={Opendevin: An open platform for ai software developers as generalist agents},
+  author={Wang, Xingyao and Li, Boxuan and Song, Yufan and Xu, Frank F and Tang, Xiangru and Zhuge, Mingchen and Pan, Jiayi and Song, Yueqi and Li, Bowen and Singh, Jaskirat and others},
+  journal={arXiv preprint arXiv:2407.16741},
+  year={2024}
+}

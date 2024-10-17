@@ -1,0 +1,10 @@
+@article{zhuge2022salient,
+  title={Salient object detection via integrity learning},
+  author={Zhuge, Mingchen and Fan, Deng-Ping and Liu, Nian and Zhang, Dingwen and Xu, Dong and Shao, Ling},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={45},
+  number={3},
+  pages={3738--3752},
+  year={2022},
+  publisher={IEEE}
+}

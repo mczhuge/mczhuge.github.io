@@ -1,8 +1,5 @@
-@misc{hong2023metagpt,
-      title={MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework}, 
-      author={Sirui Hong and Mingchen Zhuge and Jonathan Chen and Xiawu Zheng and Yuheng Cheng and Ceyao Zhang and Jinlin Wang and Zili Wang and Steven Ka Shing Yau and Zijuan Lin and Liyang Zhou and Chenyu Ran and Lingfeng Xiao and Chenglin Wu and Jürgen Schmidhuber},
-      year={2023},
-      eprint={2308.00352},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI}
+@inproceedings{hongmetagpt,
+  title={MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework},
+  author={Hong, Sirui and Zhuge, Mingchen and Chen, Jonathan and Zheng, Xiawu and Cheng, Yuheng and Wang, Jinlin and Zhang, Ceyao and Wang, Zili and Yau, Steven Ka Shing and Lin, Zijuan and others},
+  booktitle={The Twelfth International Conference on Learning Representations}
 }
