@@ -1,0 +1,6 @@
+@article{zhuge2024agent,
+  title={Agent-as-a-Judge: Evaluate Agents with Agents},
+  author={Zhuge, Mingchen and Zhao, Changsheng and Ashley, Dylan and Wang, Wenyi and Khizbullin, Dmitrii and Xiong, Yunyang and Liu, Zechun and Chang, Ernie and Krishnamoorthi, Raghuraman and Tian, Yuandong and Shi, Yangyang and Chandra, Vikas and Schmidhuber, J{\"u}rgen},
+  journal={arXiv preprint arXiv:2410.10934},
+  year={2024}
+}
