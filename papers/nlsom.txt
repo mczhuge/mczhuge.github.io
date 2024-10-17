@@ -1,10 +1,6 @@
-@article{zhuge2022salient,
-  title={Salient object detection via integrity learning},
-  author={Zhuge, Mingchen and Fan, Deng-Ping and Liu, Nian and Zhang, Dingwen and Xu, Dong and Shao, Ling},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  volume={45},
-  number={3},
-  pages={3738--3752},
-  year={2022},
-  publisher={IEEE}
+@article{zhuge2023mindstorms,
+  title={Mindstorms in natural language-based societies of mind},
+  author={Zhuge, Mingchen and Liu, Haozhe and Faccio, Francesco and Ashley, Dylan R and Csord{\'a}s, R{\'o}bert and Gopalakrishnan, Anand and Hamdi, Abdullah and Hammoud, Hasan Abed Al Kader and Herrmann, Vincent and Irie, Kazuki and others},
+  journal={arXiv preprint arXiv:2305.17066},
+  year={2023}
 }
