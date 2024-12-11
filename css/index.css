@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Audiowide', sans-serif;
+}
+
+@keyframes bgAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* 顶部导航栏 */
+.navbar {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    z-index: 1000;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    
+    /* 科技感背景：黑+深蓝渐变，并带有透明度与模糊 */
+    background: rgba(99, 52, 1, 0.7);
+    backdrop-filter: blur(10px); /* 背景模糊效果类似科幻UI面板 */
+    border-bottom: 0px solid rgba(234, 226, 4, 0.3);
+
+    /* 为导航条底部增加微弱的霓虹光晕线 */
+    box-shadow: 0 0 15px rgba(237, 224, 213, 0.2), 
+                0 5px 15px rgba(241, 214, 6, 0.3);
+}
+
+/* LOGO */
+.navbar-logo {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: url('../images/bee_logo.png') no-repeat center center;
+    background-size: contain;
+    border-radius: 50%;
+
+    /* 发光和3D感 */
+    /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+                inset 0 0 10px rgba(197, 240, 7, 0.829); */
+
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.1) rotateY(15deg);
+    box-shadow: 0 0 15px rgba(217, 255, 0, 0.8),
+                inset 0 0 15px rgba(191, 255, 0, 0.5);
+}
+
+/* 导航文字 */
+.navbar-text {
+    flex-shrink: 1;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Audiowide', sans-serif;
+    color: #e8ca0b; /* 荧光色 */
+    /* text-shadow:
+        0 0 5px rgba(255, 179, 0, 0.7),
+        0 0 10px rgba(245, 241, 4, 0.5),
+        0 0 20px rgba(234, 242, 6, 0.3); */
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* 悬停时文字略微放大并增强发光 */
+.navbar-text:hover {
+    transform: translateX(5px);
+    color: #00ffe6;
+    text-shadow:
+        0 0 10px rgba(0,255,230,0.8),
+        0 0 20px rgba(0,255,230,0.6),
+        0 0 30px rgba(0,255,230,0.4);
+}
+
+@keyframes rotate3D {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    50% { transform: rotateX(180deg) rotateY(180deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.container {
+    width: 100%;
+    height: calc(100vh - 60px); /* 除去导航栏的高度 */
+    display: flex;
+    justify-content: center;    /* 水平居中 */
+    align-items: center;        /* 垂直居中 */
+    text-align: center;
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+.typing-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    color: #ffffff; /* 浅灰文字 */
+    font-size: 3rem;
+    font-family: 'Audiowide', sans-serif; /* 使用更有科技感的字体 */
+    /* 移除不必要的边框和阴影效果，保持干净硬朗的科技风 */
+}
+
+
+
+.typing-text {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    letter-spacing: 1px;
+}
+
+/* 光标闪烁：无荧光，仅浅灰色 */
+@keyframes blinkCursor {
+    0% { border-color: #cccccc; }
+    50% { border-color: transparent; }
+    100% { border-color: #cccccc; }
+}
+
+/* 扫描线背景：更暗淡，不强调荧光 */
+.typing-container::before {
+    content: "";
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(204,204,204,0.02) 0,
+        rgba(204,204,204,0.02) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    opacity: 0.1; /* 非常轻微的扫描线 */
+    animation: scan 5s linear infinite;
+    z-index: 1;
+}
+
+@keyframes scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+/* 小屏幕字体缩小 */
+@media screen and (max-width: 600px) {
+    .typing-container {
+        font-size: 1.2rem;
+    }
+}
+
+/* 脉冲呼吸动画，让容器有微弱的呼吸感 */
+.typing-container {
+    animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+
+/* @keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px rgba(0,255,204,0.1), inset 0 0 10px rgba(0,255,204,0.05);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(0,255,204,0.2), inset 0 0 20px rgba(0,255,204,0.1);
+    }
+} */
+
+/* 如果需要在小屏幕上调整字体大小 */
+@media screen and (max-width: 600px) {
+    .typing-container {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* 光标闪烁动画 */
+@keyframes blinkCursor {
+    0% { border-color: #00ffcc; }
+    50% { border-color: transparent; }
+    100% { border-color: #00ffcc; }
+}
+
+@media screen and (max-width: 600px) {
+    .navbar {
+        flex-wrap: nowrap; /* 禁止导航栏换行 */
+    }
+
+    .navbar-text {
+        font-size: 18px; /* 缩小文字大小 */
+    }
+
+    .typing-text {
+        font-size: calc(3vw + 12px); /* 在小屏幕下调整字体大小 */
+        word-wrap: break-word; /* 小屏幕强制换行 */
+        white-space: normal;
+    }
+}
+
+/* 打字动画 */
+@keyframes typing {
+    0% { width: 0ch; }
+    50% { width: 30ch; } /* 这里30ch是你的文本总字符数或略大于它的值 */
+    100% { width: 0ch; }
+}
+
+/* 光标闪烁 */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* 蜂巢样式 Roadmap */
+.roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.hexagon {
+    position: relative;
+    width: 100px;
+    height: 58px;
+    background-color: #88c4c3;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+}
+
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 29px solid #88c4c3;
+}
+
+.hexagon:after {
+    top: 100%;
+    border-top: 29px solid #88c4c3;
+}
+
+.hexagon:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 5px 15px rgba(249, 229, 229, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ========== */
+
+/* 因为重复出现了.container和.typing-text，所以保留最后一次定义的样式为主，此处重复定义略过 */
+
+/* 将按钮放置在左下角 */
+.hex-button-cluster {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    transform: perspective(800px); /* 添加透视效果，以便子元素3D变换 */
+}
+
+/* 横排六边形按钮（如需要多个一排，仍可保持flex布局） */
+.hex-row {
+    display: flex;
+    gap: 10px;
+}
+
+
+/* 3D科技感蜂巢按钮 */
+.hex-button {
+    position: relative;
+    width: 120px;
+    height: 104px;
+    /* 使用更深色底色营造对比，增加科技感 */
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fefe00; /* 荧光色字体 */
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    /* 内外发光，增强科技氛围 */
+    box-shadow:
+        0 0 10px #3a09ec,
+        inset 0 0 20px rgba(0,255,204,0.5),
+        0 4px 8px rgba(0, 0, 0, 0.7);
+
+    /* 初始3D效果：稍微倾斜 */
+    transform: rotateX(5deg) rotateY(-5deg);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.hex-button span {
+    z-index: 1; /* 确保文字在最前 */
+}
+
+/* 增加按钮的3D悬停动态效果 */
+.hex-button:hover {
+    transform: translateY(-5px) scale(1.1) rotateX(10deg) rotateY(-10deg);
+    box-shadow:
+        0 0 20px #00ffcc,
+        inset 0 0 30px rgba(0,255,204,0.7),
+        0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* 涟漪效果可保持或删除，这里稍作修改为内发光扩散 */
+.hex-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 247, 0, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+    z-index: 0;
+}
+
+.hex-button:hover::before {
+    width: 300%;
+    height: 300%;
+    opacity: 1;
+}
+
+/* 入场动画延时根据需要调整 */
+.hex-button:nth-child(1) { animation-delay: 0.2s; }
+.hex-button:nth-child(2) { animation-delay: 0.4s; }
+.hex-button:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 小屏幕下的响应式调整 */
+@media screen and (max-width: 600px) {
+    .hex-button {
+        width: 80px;
+        height: 70px;
+        font-size: 12px;
+    }
+}
+
+
+/* metauto.ai 标志 */
+.metauto {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 14px;
+    color: #f1efef;
+}
+
+/* 小屏幕响应式 */
+@media screen and (max-width: 600px) {
+    .navbar {
+        flex-wrap: nowrap; /* 保持 LOGO 和文字不换行 */
+        padding: 10px;
+    }
+
+    .navbar-text {
+        font-size: 18px; /* 缩小文字大小，防止拥挤 */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .roadmap {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hexagon {
+        width: 80px;
+        height: 46px;
+        font-size: 12px;
+    }
+
+    .hexagon:before {
+        border-bottom: 23px solid #9e924d;
+    }
+
+    .hexagon:after {
+        border-top: 23px solid #88c4c3;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .button {
+        width: 80%;
+        text-align: center;
+    }
+
+    .metauto {
+        font-size: 14px;
+    }
+}

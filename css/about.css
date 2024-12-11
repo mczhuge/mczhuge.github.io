@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0F1A2B; /* 深色背景 */
+    color: #B0BEC5; /* 浅灰文字 */
+    margin: 20px;
+    line-height: 1.6;
+}
+
+h2, h3 {
+    color: #7C6AFF; /* 高亮色标题 */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.description {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #eef3e2;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.section {
+    margin-bottom: 60px;
+}
+
+.section h3 {
+    margin-bottom: 40px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px; 
+    justify-items: center;
+    padding: 0 10px;
+}
+
+.card {
+    background-color: #1A273A; /* 深背景卡片 */
+    border: 1px solid #2C3B52; /* 浅色边框 */
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+    width: 200px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #7C6AFF; /* 悬停时边框颜色变化 */
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.card h4 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF; /* 白色名称 */
+    margin-bottom: 10px;
+}
+
+.identity {
+    font-size: 14px;
+    color: #B0BEC5;
+    margin-bottom: 5px;
+}
+
+.skills {
+    font-size: 14px;
+    color: #7C6AFF; /* 高亮色强调技能 */
+    margin-bottom: 10px;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #7C6AFF; /* 链接颜色 */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.card a:hover {
+    color: #9C8AFF; /* 悬停时更浅高亮 */
+}
+
+.industry-logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 每行放置 3 个 Logo */
+    gap: 20px; /* Logo 之间的间距 */
+    justify-items: center; /* Logo 水平居中 */
+    padding: 20px;
+}
+
+.industry-logos img {
+    height: 80px; /* 调整 Logo 高度为更小的尺寸 */
+    width: auto; /* 按比例缩放宽度 */
+    object-fit: contain; /* 确保 Logo 不被裁剪 */
+    transition: transform 0.3s ease; /* 鼠标悬停效果 */
+}
+
+.industry-logos img:hover {
+    transform: scale(1.1); /* 鼠标悬停时略微放大 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .industry-logos {
+        grid-template-columns: repeat(2, 1fr); /* 中屏幕每行 2 个 Logo */
+    }
+}
+
+@media (max-width: 480px) {
+    .industry-logos {
+        grid-template-columns: 1fr; /* 小屏幕每行 1 个 Logo */
+    }
+}

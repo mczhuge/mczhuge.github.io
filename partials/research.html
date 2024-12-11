@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0F1A2B; 
+        color: #B0BEC5;
+        margin: 20px;
+        line-height: 1.6;
+    }
+
+    h2 {
+        color: #7C6AFF;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .description {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 16px;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+    }
+
+    .section {
+        margin-bottom: 60px;
+        position: relative;
+    }
+
+    /* 科技感分类标题样式 */
+    .section h3 {
+        color: #FFFFFF;
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    /* 在标题下面加一条渐变分割线增强科技感 */
+    .section h3::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, #7C6AFF, #00FFC8);
+        margin: 10px auto 0 auto;
+        border-radius: 2px;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px; 
+        justify-items: center;
+        padding: 0 10px;
+    }
+
+    .card {
+        background-color: #1A273A;
+        border: 1px solid #2C3B52;
+        border-radius: 10px;
+        text-align: left;
+        padding: 20px;
+        transition: all 0.3s ease;
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: #7C6AFF;
+    }
+
+    .paper-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-bottom: 10px;
+    }
+
+    /* 论文序号样式，比如[1], [2] */
+    .paper-num {
+        color: #7C6AFF;
+        margin-left: 10px;
+        font-weight: normal;
+    }
+
+    .pdf-link {
+        display: inline-block;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+
+    .pdf-link img {
+        width: 35px;
+        height: 35px;
+        vertical-align: middle;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+        .card-container {
+            grid-template-columns: 1fr 1fr; 
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card-container {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h2>Research</h2>
+<p class="description">
+    Our research efforts span various domains, including Video Generation (VideoGen), Multimodal AI, and advanced 3D/4D modeling. 
+    Below are selected publications.
+</p>
+
+<!-- Multimodal Section -->
+<div class="section">
+    <h3>Agentic Systems</h3>
+    <div class="card-container">
+        <!-- Paper 1 -->
+        <div class="card">
+            <h4 class="paper-title">MetaGPT: Meta Programming for A Multi-agent Collaborative Framework<span class="paper-num">[1]</span></h4>
+            <a class="pdf-link" href="https://arxiv.org/pdf/2308.00352" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+        <!-- Paper 2 -->
+        <div class="card">
+            <h4 class="paper-title">GPTSwarm: Language Agents as Optimizable Graphs<span class="paper-num">[2]</span></h4>
+            <a class="pdf-link" href="https://arxiv.org/pdf/2402.16823" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+
+        <!-- Paper 3 -->
+        <div class="card">
+            <h4 class="paper-title">Mindstorms in Natural Language-Based Societies of Mind<span class="paper-num">[3]</span></h4>
+            <a class="pdf-link" href="https://arxiv.org/pdf/2305.17066" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+
+        <!-- Paper 4 -->
+        <div class="card">
+            <h4 class="paper-title">Agent-as-a-Judge: Evaluate Agents with Agents<span class="paper-num">[4]</span></h4>
+            <a class="pdf-link" href="https://arxiv.org/pdf/2410.10934?" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+</div>
+</div>
+
+<!-- VideoGen Section -->
+<div class="section">
+    <h3>Image/Video Generation</h3>
+    <div class="card-container">
+        <!-- Paper 1 -->
+        <div class="card">
+            <h4 class="paper-title">MarDini: Masked Autoregressive Diffusion for Video Generation at Scale<span class="paper-num">[5]</span></h4>
+            <a class="pdf-link" href="https://arxiv.org/pdf/2410.20280" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+        <!-- Paper 2 -->
+        <div class="card">
+            <h4 class="paper-title">AdaptiveMix: Improving GAN Training via Feature Space Shrinkage<span class="paper-num">[6]</span></h4>
+            <a class="pdf-link" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Liu_AdaptiveMix_Improving_GAN_Training_via_Feature_Space_Shrinkage_CVPR_2023_paper.pdf" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+        <!-- Paper 2 -->
+        <div class="card">
+            <h4 class="paper-title">Lazy Layers to Make Fine-Tuned Diffusion Models More Traceable<span class="paper-num">[7]</span></h4>
+            <a class="pdf-link" href="https://arxiv.org/pdf/2405.00466" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+    
+
+    </div>
+</div>
+
+
+
+
+<!-- 3D/4D Section -->
+<div class="section">
+    <h3>3D/4D</h3>
+    <div class="card-container">
+        <!-- Paper 1 -->
+        <div class="card">
+            <h4 class="paper-title">TrackNeRF: Bundle Adjusting NeRF from Sparse and Noisy Views via Feature Tracks<span class="paper-num">[8]</span></h4>
+            <a class="pdf-link" href="https://arxiv.org/pdf/2408.10739" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+        <!-- Paper 2 -->
+        <div class="card">
+            <h4 class="paper-title">Hybrid Structure-from-Motion and Camera Relocalization for Enhanced Egocentric Localization<span class="paper-num">[9]</span></h4>
+            <a class="pdf-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ksCEO0IAAAAJ&sortby=pubdate&citation_for_view=ksCEO0IAAAAJ:UeHWp8X0CEIC" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Multimodal Section -->
+<div class="section">
+    <h3>Multimodal</h3>
+    <div class="card-container">
+        <!-- Paper 1 -->
+        <div class="card">
+            <h4 class="paper-title">Kaleido-bert: Vision-language pre-training on fashion domain<span class="paper-num">[10]</span></h4>
+            <a class="pdf-link" href="https://openaccess.thecvf.com/content/CVPR2021/papers/Zhuge_Kaleido-BERT_Vision-Language_Pre-Training_on_Fashion_Domain_CVPR_2021_paper.pdf" target="_blank">
+                <img src="images/icon/pdf.png" alt="PDF">
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
