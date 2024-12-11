@@ -97,6 +97,22 @@ html, body {
     100% { transform: rotateX(360deg) rotateY(360deg); }
 }
 
+
+.github-icon {
+    position: absolute; /* 绝对定位，定位在导航栏右上角 */
+    top: 55%;           /* 垂直居中对齐 */
+    right: 80px;        /* 距离导航栏右侧 20px */
+    transform: translateY(-50%); /* 确保图标垂直居中 */
+    font-size: 3rem;  /* 设置图标大小 */
+    color: #000;        /* 默认颜色为黑色 */
+    text-decoration: none; /* 移除链接下划线 */
+}
+
+.github-icon:hover {
+    color: #ff0044; /* 鼠标悬停时的颜色 */
+}
+
+
 .container {
     width: 100%;
     height: calc(100vh - 60px); /* 除去导航栏的高度 */
@@ -454,3 +470,5 @@ html, body {
         font-size: 14px;
     }
 }
+
+
