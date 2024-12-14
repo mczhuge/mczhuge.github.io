@@ -53,6 +53,19 @@ h2, h3 {
     border-color: #7C6AFF; /* 悬停时边框颜色变化 */
 }
 
+
+.homepage-link {
+    color: #ff9500; /* 设置颜色 */
+    text-decoration: none; /* 去掉下划线（可选） */
+    font-weight: bold; /* 加粗文字（可选） */
+    transition: color 0.3s ease; /* 悬停时的平滑过渡 */
+}
+
+.homepage-link:hover {
+    color: #FFC300; /* 鼠标悬停时的颜色 */
+}
+
+
 .card img {
     width: 100%;
     aspect-ratio: 1 / 1;
