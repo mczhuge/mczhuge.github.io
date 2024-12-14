@@ -1,707 +1,200 @@
 <!DOCTYPE html>
-<!-- Global site tag (gtag.js) - Google Analytics -->
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy"
-          content="block-all-mixed-content">
-
-    <title> METAUTO.ai | Mingchen Zhuge</title>
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-
-<div class="navbar navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <span class="navbar-text" style="color: rgb(255, 255, 255);">
-                METAUTO.ai
-            </span>
-        </div>
-       
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about" style="color: rgb(255, 255, 255);">About</a></li>
-                <li><a href="#publication" style="color: white;">Publication</a></li>
-                <li><a href="#experience" style="color: white;">Experience</a></li>
-                <li><a href="#talk" style="color: white;">Talk</a></li>
-                <li><a href="#award" style="color: white;">Award</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>METAUTO.ai | World and Intelligence</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 
 
-<html>
-<head>
     <style>
-        .black-text {
-            color: rgb(9, 190, 54);
+      
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            object-fit: cover;
         }
+
+     
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background: rgba(10,10,30,0.9);
+            border: 2px solid #00ffcc;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            color: #ffffff;
+            font-family: 'Audiowide', sans-serif;
+            text-align: center;
+            box-shadow: 0 0 20px #00ffcc, 
+                        inset 0 0 20px rgba(0,255,204,0.3);
+            transform: perspective(600px) rotateX(5deg);
+            animation: modalFadeIn 0.3s ease forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity:0; transform:translateY(-10px) rotateX(10deg);}
+            to {opacity:1; transform:translateY(0) rotateX(0deg);}
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #00ffcc;
+            border: none;
+            background: transparent;
+        }
+
+        .modal-close-btn:hover {
+            color: #ff0044;
+        }
+
     </style>
 </head>
 <body>
+  
+    <video class="video-background" autoplay muted loop>
+        <source src="files/8475065-hd_1080_1920_30fps.mp4" type="video/mp4">
+    </video>
 
-<div class="gray-container" id="about">
+
+    <div class="navbar">
+        <div class="navbar-logo"></div>
+        <span class="navbar-text">METAUTO.ai</span>
+        <!-- 在右上角添加 GitHub 图标 -->
+        <a href="https://github.com/orgs/metauto-ai/repositories" target="_blank" class="github-icon">
+            <img src="images/GitHub-512.webp" alt="GitHub" style="height: 40px;">
+        </a>
+    </div>
+
+
     <div class="container">
-        <div class="row">
-
-            <div class="col-xs-4" style="text-align: center;">
-                <img style="margin-top: 10%; width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" id="me-img" src="images/mingchen.jpeg">
-                <br>
-                <div style="margin-top: 10px; font-size: small; color: #6a1df0; font-family: 'Arial', sans-serif;">
-                    *Taken in the KAUST AI Initiative.
-                </div>
+        <div class="typing-text"></div>
+        <div class="hex-button-cluster">
+            <!-- 保持原有onclick alert -->
+            <div class="hex-button">
+                <span>ABOUT</span>
             </div>
-            
-
-            <div class="col-xs-8">
-                <h2> <span class="black-text">Mingchen Zhuge</span></span>
-                   <a href="https://twitter.com/MingchenZhuge"
-                       class="twitter-follow-button" data-show-count="true"
-                       data-size="medium">
-                        @MingchenZhuge</a>
-                    <script async src="https://platform.twitter.com/widgets.js"
-                            charset="utf-8"></script>
-                    <a href="https://github.com/mczhuge">
-                        <img src="images/icon/github_square.png" title="github"
-                             width="27">
-                    </a>
-                    <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">
-                        <img src="images/icon/scholar.png" title="scholar"
-                             width="35">
-                    </a>
-                    <a href="mingchen.zhuge@kaust.edu.sa">
-                        <img src="images/icon/email.png" title="email"
-                             width="32">
-                    </a>
-                </h2>
-
-
-                <p>
-                    I am a PhD Candidate and recently start my third year at the
-                    <strong>KAUST AI Initiative</strong>. I am fortunate to have 
-                        <a
-                        href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en"
-                        style="color:#fc5800;">Jürgen Schmidhuber</a> as my advisor.
-                        </a>
-                    <br/>
-                </p>
-                <p>
-                    My current research interests and skills include:
-                    <ul>
-                        <li><strong>Multimodal</strong>: Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
-                        <li><strong>LLMs</strong>: Post-Training.</li>
-                        <li><strong>Meta Learning</strong>: Recursive Self-Improvement.</li>
-                        <li><strong>Agents</strong>: LLM-based Multi-Agent Systems, Code Generation.</li>
-                        <li><strong>AI Judges</strong>: Agent-as-a-Judge, LLM-as-a-Judge.</li>
-                    </ul>
-                </p>                
-                <p>
-             </strong> <strong>😀 Join Meta as Research Scientist Intern in Summer 2024</strong>
-                </p>
-                <p>
-             <a
-             href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en"
-             style="color:#3f00fc;">😀 Feel free to contact me for future collaboration, whether it's for providing a 2025 summer internship, co-founding a venture, or a full-time job opportunity (industry or faculty). Appreciate your guidances.
-            </a>
-           
-            </p>
-                <p>
-                    <strong>⭐ Open-source enthusiasts.</strong> I am active in open-sourced communities like <a href="https://github.com/geekan/MetaGPT" style="color:#fc5800;">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm"  style="color:#fc5800;">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin"  style="color:#fc5800;">OpenDevin</a>.
-                </p>    
-                <p>
-                     <strong>Before joining KAUST</strong>, I've worked as an engineer, researcher (or intern) at 
-                     <a
-                     href="https://nsfocusglobal.com"
-                     style="color:#fc5800;">NSFocus,
-                     </a>
-                     <a
-                     href="https://www.alibabagroup.com/en/global/home"
-                     style="color:#fc5800;">Alibaba Group,</a>
-                     </a>
-                     <a
-                     href="https://www.inceptioniai.org/"
-                     style="color:#fc5800;">IIAI (G42),
-                     </a> 
-                     <a
-                     href="https://zhengfenglab.com"
-                     style="color:#fc5800;">SUSTech VIP Lab,</a> and
-                     <a
-                     href="https://github.com/nlpxucan/WizardLM"
-                     style="color:#fc5800;">Microsoft.
-                     </a>
-                </p>
-                </p>
-
-
-                <div style="text-align: left; border: 3px solid #cdac5f; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #FFFFFF;">
-                    <img style="width: 55%; height: auto; display: block; margin: auto;" src="images/logo.png" alt="Description of the image">
+            <div class="hex-row">
+                <div class="hex-button">
+                    <span>RESEARCH</span>
                 </div>
-                
-
-
-                </div>
+                <div class="hex-button">
+                    <span>HIRING</span>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="metauto">Powered by metauto.ai</div>
 
-<div id="publication">
-    <div class="container">
-        <h2 class="title">Selected Publications       
-            <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">
-                (<img src="images/icon/scholar.png" title="scholar"
-                     width="42"> Full list)
-            </a>
-        </h2>
-        <br>
+    <script src="js/main.js"></script>
 
-        <h3 class="subsection_title">2024</h3>
+    <!-- Calendly badge widget begin -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script type="text/javascript">
+        window.onload = function() { 
+            Calendly.initBadgeWidget({ 
+                url: 'https://calendly.com/mingchen-zhuge-kaust/meeting-with-metauto-ai', 
+                text: 'Meeting with Metauto.ai', 
+                color: '#eee4c8', 
+                textColor: '#1a1a1a' 
+            }); 
+        }
+    </script>
+    <!-- Calendly badge widget end -->
 
-        <div class="row work-block">
-            <div class="project col-xs-3" style="text-align: center;">
-                <img src="images/aaaj.png" alt="Agent-as-a-Judge Image" style="width: 100%; height: auto;">
-            </div>
-            <div class="col-xs-9">
-                <div class="project-title">
-                    <span class="project-name"><strong>Agent-as-a-Judge: Evaluate Agents with Agents</strong></span>
-                    <br>
-                    <span class="authors"><strong>Mingchen Zhuge</strong>, Changsheng Zhao, Dylan Ashley, Wenyi Wang, Dmitrii Khizbullin, Yunyang Xiong, Zechun Liu, Ernie Chang, Raghuraman Krishnamoorthi, Yuandong Tian, Yangyang Shi, Vikas Chandra, Jürgen Schmidhuber</span>
-                    <br>
-                    <span class="publisher"><strong>Preprint</strong></span>
-                    <br>
-                    <div style="color: #55c71c; font-weight: bold;">
-                        Innovative evaluation framework using agent-based systems.
-                    </div>
-                    <span class="links">
-                        <a href="https://arxiv.org/pdf/2410.10934">[Paper]</a>
-                        <a href="https://github.com/metauto-ai/agent-as-a-judge">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/metauto-ai/agent-as-a-judge?style=social" />
-                        <a href="papers/aaaj.txt">[BibTex]</a>
-                        <a href="https://x.com/MingchenZhuge/status/1846410651218161781">[Tweet1]</a>
-                        <a href="https://x.com/tydsh/status/1846538154129375412">[Tweet2]</a>
-                        <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ">[机器之心]</a>
-                        <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw">[新智元]</a>
-                    </span>
-                </div>
-            </div>
-        </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const text = "Building World Models and Swarm Intelligence.";
+            const typingElement = document.querySelector('.typing-text');
         
-
-        <div class="row work-block">
-            <div class="project col-xs-3" style="text-align: center;">
-                <img src="images/opendevin.jpeg" alt="Image Description" style="width: 100%; height: auto;">
-            </div>
-            <div class="col-xs-9">
-                <div class="project-title">
-                    <span class="project-name"><strong>OpenHands: An Open Platform for AI Software Developers as Generalist Agents</Frame></strong></span>
-                    <br>
-                    <span class="authors">OpenHands Open-sourced Community</span>
-                    <br>
-                    <span class="publisher"><strong>Preprint</strong></span>
-                    <br>
-                     <div style="color: #55c71c; font-weight: bold;">
-                        Get 30k+ stars on GitHub.
-                    </div>
-                    <span class="links">
-                        <a href="https://arxiv.org/abs/2407.16741">[Paper]</a>
-                        <a href="https://github.com/OpenDevin/OpenDevin">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" />
-                        <a href="papers/openhands.txt">[BibTex]</a>
-                        <a href="https://www.jiqizhixin.com/articles/2024-08-02-2">[机器之心]</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-
+            let index = 0; 
+            let isDeleting = false;
+            let glitchChance = 0.1;
+            let typingSpeed = 100; 
+            let deletingSpeed = 50; 
+            let pauseTime = 1000; 
         
-        <div class="row work-block">
-            <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/gptswarm.png" alt="Image Description" style="width: 100%; height: auto;">
-            </div>
-            <div class="col-xs-9">
-                <div class="project-title">
-                    <span class="project-name"><strong>GPTSwarm: Language Agents as Optimizable Graphs</Frame></strong></span>
-                    <br>
-                    <span class="authors"><strong>Mingchen Zhuge</strong>, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin and Jürgen Schmidhuber</span>
-                    <br>
-                    <span class="publisher"><strong>ICML 2024 <span style="color:red;">(Oral)</span></strong></span>
-                    <br>
-                     <div style="color: #55c71c; font-weight: bold;">
-                        Oral Presentation (top 1.5% in 9,473); The first framework emphasizes the importance of graphs in LLM-based agents.
-                    </div>
-                    <span class="links">
-                        <a href="https://arxiv.org/abs/2402.16823">[Paper]</a>
-                        <a href="https://github.com/metauto-ai/GPTSwarm">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" />
-                        <a href="papers/gptswarm.txt">[BibTex]</a>
-                        <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ">[麻省理工科技评论专访]</a>
-                        <a href="https://mp.weixin.qq.com/s/jb6vPi9WL9CjybhiKCFOgg">[将门创投]</a>
-                    </span>
-                </div>
-            </div>
-        </div>
+            function getRandomGlitchChar() {
+                const chars = "@#$%&*=?";
+                return chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+        
+            function typeEffect() {
+                let currentText = typingElement.textContent;
+                if (!isDeleting) {
+                    if (index < text.length) {
+                        let nextChar = text.charAt(index);
+                        if (Math.random() < glitchChance) {
+                            typingElement.textContent = currentText + getRandomGlitchChar();
+                            setTimeout(() => {
+                                typingElement.textContent = currentText + nextChar;
+                                index++;
+                                setTimeout(typeEffect, typingSpeed);
+                            }, typingSpeed / 2);
+                        } else {
+                            typingElement.textContent = currentText + nextChar;
+                            index++;
+                            setTimeout(typeEffect, typingSpeed);
+                        }
+                    } else {
+                        setTimeout(() => {
+                            isDeleting = true;
+                            setTimeout(typeEffect, deletingSpeed);
+                        }, pauseTime);
+                    }
+                } else {
+                    if (currentText.length > 0) {
+                        typingElement.textContent = currentText.substring(0, currentText.length - 1);
+                        setTimeout(typeEffect, deletingSpeed);
+                    } else {
+                        isDeleting = false;
+                        index = 0;
+                        setTimeout(typeEffect, typingSpeed);
+                    }
+                }
+            }
+        
+            typeEffect();
+        });
+    </script>
 
-
-        <h3 class="subsection_title">2023</h3>
-
-        <div class="row work-block">
-            <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/metagpt.jpeg" alt="Image Description" style="width: 100%; height: auto;">
-            </div>
-            <div class="col-xs-9">
-                <div class="project-title">
-                    <span class="project-name"><strong>MetaGPT: Meta Programming For A Multi-Agent Collaborative Framework</Frame></strong></span>
-                    <br>
-                    <span class="authors">Sirui Hong∗, <strong>Mingchen Zhuge∗</strong>, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka Shing Yau, Zijuan Lin,
-                        Liyang Zhou, Chenyu Ran, Lingfeng Xiao, Chenglin Wu†, Jürgen Schmidhuber</span>
-                    <br>
-                    <span class="publisher"><strong>ICLR 2024  <span style="color:red;">(Oral)</span></strong></span>
-                    <br>
-                     <div style="color: #55c71c; font-weight: bold;">
-                        Oral Presentation (top 1.2% in 7,262); Get 40k+ stars on GitHub.
-                    </div>
-                    <span class="links">
-                        <a href="https://arxiv.org/abs/2308.00352">[Paper]</a>
-                        <a href="https://github.com/geekan/MetaGPT">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" />
-                        <a href="papers/metagpt.txt">[BibTex]</a>
-                        <a href="https://mp.weixin.qq.com/s/s5teEWlbcfHCVFjy6Nb3AQ">[量子位报道]</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="row work-block">
-            <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/nlsom.png" alt="Image Description" style="width: 100%; height: auto;">
-            </div>
-            <div class="col-xs-9">
-                <div class="project-title">
-                    <span class="project-name"><strong>Mindstorms in Natural Language-Based Societies of Mind</Frame></strong></span>
-                    <br>
-                    <span class="authors"><strong>Mingchen Zhuge*</strong>, Haozhe Liu*, Francesco Faccio*, Dylan R. Ashley*, Róbert Csordás, Anand Gopalakrishnan, Abdullah Hamdi, Hasan Abed Al Kader Hammoud, Vincent Herrmann, Kazuki Irie, Louis Kirsch, Bing Li, Guohao Li, Shuming Liu, Jinjie Mai, Piotr Piękos, Aditya Ramesh, Imanol Schlag, Weimin Shi, Aleksandar Stanić, Wenyi Wang, Yuhui Wang, Mengmeng Xu, Deng-Ping Fan, Bernard Ghanem, Jü̈rgen Schmidhuber</span>
-                    <br>
-                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:red;">(Oral, Best Paper Award)</span></strong></span>
-                    <br> 
-                    <div style="color: #55c71c; font-weight: bold;">
-                        Best Paper Award in NeurIPS Ro-FoMo Workshop; Position Paper; 
-                     </div>
-                    <span class="links">
-                        <a href="https://arxiv.org/abs/2305.17066">[Paper]</a>
-                        <a href="https://github.com/mczhuge/NLSOM">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/mczhuge/NLSOM?style=social" />
-                        <a href="papers/nlsom.txt">[BibTex]</a>
-                        <a href="images/nlsom-v9.pdf">[Poster]</a>
-                        <a href="files/nlsom_award.pdf">[Award]</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="subsection_title">2022</h3>
-
-        <div class="row work-block">
-            <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/icon.jpeg" alt="Image Description" style="width: 100%; height: auto;">
-            </div>
-            <div class="col-xs-9">
-                <div class="project-title">
-                    <span class="project-name"><strong>Salient Object Detection via Integrity Learning</Frame></strong></span>
-                    <br>
-                    <span class="authors"><strong>Mingchen Zhuge*</strong>, Deng-Ping Fan*, Nian Liu, Dingwen Zhang, Dong Xu, Ling Shao</span>
-                    <br>
-                    <span class="publisher"><strong>TPAMI 2022</strong></span>
-                    <br>
-                    <div style="color: #55c71c; font-weight: bold;">
-                        ESI Highly Cited Paper
-                     </div>
-                    <span class="links">
-                        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9789317">[Paper]</a>
-                        <a href="https://github.com/mczhuge/ICON">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/mczhuge/ICON?style=social" />
-                        <a href="papers/icon.txt">[BibTex]</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="subsection_title">2021</h3>
-
-        <div class="row work-block">
-            <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/kaleido-bert.jpeg" alt="Image Description" style="width: 100%; height: auto;">
-            </div>
-            <div class="col-xs-9">
-                <div class="project-title">
-                    <span class="project-name"><strong>Kaleido-BERT: Vision-Language Pre-training on Fashion Domain</Frame></strong></span>
-                    <br>
-                    <span class="authors"><strong>Mingchen Zhuge*</strong>, Dehong Gao*, Deng-Ping Fan†, Linbo Jin, Ben Chen, Haoming Zhou, Minghui Qiu, Ling Shao</span>
-                    <br>
-                    <span class="publisher"><strong>CVPR 2021</strong></span>
-                    <br>
-                    <div style="color: #55c71c; font-weight: bold;">
-                        Industry Application in alibaba.com
-                     </div>
-                    <span class="links">
-                        <a href="https://arxiv.org/abs/2103.16110">[Paper]</a>
-                        <a href="https://github.com/mczhuge/Kaleido-BERT">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/mczhuge/Kaleido-BERT?style=social" />
-                        <a href="papers/kaleido-bert.txt">[BibTex]</a>
-                        <a href="https://app6ca5octe2206.pc.xiaoe-tech.com/p/t_pc/course_pc_detail/video/v_609cd21de4b0fe322012dd28?product_id=p_609a4610e4b01e969a60071c&type=6">[Talk]</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional projects would go here, with similar structure -->
-
-    </div>
-</div>
-
-
-<div id="recent-works">
-
-    <div id="experience">
-        <div class="container">
-            <h2 class="experience">Experience</h2>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">June 2024 - Present</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Research Scientist Intern, <strong>Meta</strong>
-                    </br>
-                    Advisor: <a href="https://scholar.google.com/citations?user=bXnrlyAAAAAJ&hl=en">Changsheng Zhao</a>,
-                    <a href="https://scholar.google.com/citations?user=b-zD42MAAAAJ&hl=en">Yangyang Shi</a>
-                    <br>
-                    Topic: Multimodal LLMs, Agents
-                    <br>
-                    Location: Burlingame, United States
-                    <br>
-
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">Aug 2022 - Present</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    PhD Student, <strong>KAUST AI Initiative</strong>
-                    </br>
-                    Advisor: <a href="https://people.idsia.ch/~juergen/">Jürgen Schmidhuber </a>
-                    <br>
-                    Topic: Multimodal, LLMs, Agent Society, Meta Learning
-                    <br>
-                    Location: Thuwal, KSA
-                    <br>
-
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">May 2022 - Aug 2022</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Research Scientist Intern, <strong>Microsoft (WizardLM)</strong>
-                    </br>
-                    Host: <a href="https://scholar.google.com/citations?user=x_cOKuwAAAAJ&hl=zh-CN">Chongyang Tao</a>
-                    <br>
-                    Topic: NLP, Multimodal LLM
-                    <br>
-                    Location: Beijing, China
-                    <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">Jul 2021 - Jan 2022</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Visiting Scholar, <strong>SUSTech</strong>
-                    </br>
-                    Host: <a href="https://scholar.google.com/citations?user=PcmyXHMAAAAJ&hl=zh-CN&oi=ao">Feng Zheng</a>
-                    <br>
-                    Topic:  Multimodal (Audio-Visual)
-                    <br>
-                    Location: Shenzhen, China
-                    <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">Mar 2021 - Jun 2021</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Research Intern, <strong>IIAI</strong>
-                    </br>
-                    Host:  <a href="https://scholar.google.com/citations?user=kakwJ5QAAAAJ&hl=en&oi=ao">
-                        Deng-Ping Fan</a>, <a
-                        href="https://scholar.google.com/citations?user=z84rLjoAAAAJ&hl=en">Ling Shao</a>
-                  <br>
-                  Topic: Computer Vision
-                  <br>
-                  Location: Abu Dhabi, UAE
-                  <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">May 2020 - Feb 2021</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Algorithm Intern, <strong>Alibaba Group</strong>
-                    </br>
-                    Host: <a
-                        href="https://scholar.google.com/citations?user=0uPb8MMAAAAJ&hl=en&oi=ao">Dehong Gao</a>
-                    <br>
-                    Topic: Multimodal (Vision-Language Pre-training)
-                    <br>
-                    Location: Hangzhou, China
-                    <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">March 2018 - Jun 2018</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                     Research Intern, <strong>NSFocus</strong>
-                    </br>
-                    Host: <a
-                        href="https://www.linkedin.com/in/liuwenmao/?originalSubdomain=cn">Wenmao Liu</a>
-                    <br>
-                    Topic: Blockchain, Network Security
-                    <br>
-                    Location: Beijing, China
-                    <br>
-                </div>
-            </div>
-
-
+    <!-- 科技感弹窗结构 -->
+    <div class="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn">X</button>
+            <!-- 动态内容将由JS填入此处 -->
+            <div class="modal-body"></div>
         </div>
     </div>
 
-    <head>
-
-    </head>
-
-    <div id="includedPubs"></div>
-
-    <br>
-
-
-    <div id="talk">
-        <div class="container">
-            <h2 class="section_title">Invited Talks</h2>
-            <br>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    智能体蜂群
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">上海人工智能实验室</a> </a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="24">
-                </a>
-                </div>
-            </div>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    Exploring Multimodal Agents
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">WAIC AI Lite Think Talk </a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="24">
-                </a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    浅述AI智能体
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">中科院自动化所</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="24">
-                </a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    NLSOM、MetaGPT、GPTSwarm: 以不一样的视角探索AI智能体
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">ByteDance</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="24">
-                </a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    多模态AI智能体（社会）
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">华为藤蔓技术论坛2024</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="24">
-                </a>
-                </div>
-            </div>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2021</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    机器之心: "走进全球顶尖实验室第一期-IIAI"
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">机器之心 (Synced)</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="24">
-                </a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="award">
-        <div class="container">
-            <h2 class="section_title">Representative Awards</h2>
-            <br>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2023</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://sites.google.com/view/r0-fomo/accepted-papers?authuser=0">Best Paper Award in NeurIPS Ro-FoMo Workshop</a>
-                </div>
-            </div>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2023</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2021</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2021中兴蓝剑计划（武汉高校仅三人）</a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2019</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://www.cug.edu.cn/info/10506/92425.htm">第十六届中国研究生数学建模竞赛 国家级二等奖</a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2019</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2019 ZTE Algorithm Competition Champion (Top 7/11000+)</a>
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
-   
-    <div class="container">
-        <div style="display:inline-block;width:500px;">
-    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=55nlylx8wym&amp;m=7&amp;c=e63100&amp;cr1=ffffff&amp;f=arial&amp;l=0&amp;bv=90&amp;lx=-420&amp;ly=420&amp;hi=20&amp;he=7&amp;hc=a8ddff&amp;rs=80" async="async"></script>
-    </div>
- </div>
-
-    <footer class="container footer">
-        <div class="row">
-
-            <div class="text-center" style="color: rgb(255, 255, 255);">
-                © Mingchen Zhuge &nbsp;&nbsp;&nbsp;&nbsp;
-                Visitor Number
-                <a href='https://www.counter12.com'><img
-                        src='https://www.counter12.com/img-2y15x83ZD5292yC3-77.gif'
-                        border='0' alt='counter'></a>
-            </div>
-        </div>
-    </footer>
-
-
+</body>
 </html>
