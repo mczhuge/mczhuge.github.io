@@ -253,10 +253,15 @@
              color: #c62828 !important;
              font-weight: 500;
          }
-         .project-title div[style*="color"] { /* Target all styled divs (highlights) */
+         .project-title .highlight-desc { /* Target the highlight description class */
             color: var(--light-text) !important; /* Use standard light text color */
             font-weight: 400;
             font-style: italic;
+         }
+         .project-title .highlight-prominent { /* Override for specific highlights */
+            color: var(--tech-cyan) !important; /* Use a bright tech color */
+            font-weight: 600 !important; /* Make it bolder */
+            font-style: normal !important; /* Remove italics */
          }
          .project-title .links a {
              margin-right: 8px;
@@ -573,7 +578,7 @@
                     <br>
                     <span class="publisher"><strong>Preprint</strong></span>
                     <br>
-                    <div>
+                    <div class="highlight-desc highlight-prominent">
                         Innovative evaluation framework using agent-based systems.
                     </div>
                     <span class="links">
@@ -603,8 +608,8 @@
                     <br>
                     <span class="publisher"><strong>ICLR 2025</strong></span>
                     <br>
-                     <div style="color: #55c71c; font-weight: bold;">
-                        Get 50k+ stars on GitHub.
+                    <div class="highlight-desc highlight-prominent">
+                        Achieved 50k+ stars on GitHub.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2407.16741">[Paper]</a>
@@ -630,8 +635,8 @@
                     <br>
                     <span class="publisher"><strong>ICML 2024 <span style="color:#d32f2f;">(Oral)</span></strong></span>
                     <br>
-                     <div>
-                        Oral Presentation (top 1.5% in 9,473); The first framework emphasizes the importance of graphs in LLM-based agents.
+                    <div class="highlight-desc highlight-prominent">
+                        Oral Presentation (top 1.5% in 9,473); First framework emphasizing graph importance in LLM agents.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2402.16823">[Paper]</a>
@@ -661,8 +666,8 @@
                     <br>
                     <span class="publisher"><strong>ICLR 2024  <span style="color:#d32f2f;">(Oral)</span></strong></span>
                     <br>
-                     <div>
-                        Oral Presentation (top 1.2% in 7,262); Get 50k+ stars on GitHub.
+                    <div class="highlight-desc highlight-prominent">
+                        Oral Presentation (top 1.2% in 7,262); Achieved 50k+ stars on GitHub.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2308.00352">[Paper]</a>
@@ -687,9 +692,11 @@
                     <br>
                     <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:red;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
                     <br> 
-                    <div>
-                        Best Paper Award in NeurIPS Ro-FoMo Workshop; Position Paper; 
+                    <div class="highlight-desc highlight-prominent">
+                        Best Paper Award (NeurIPS Ro-FoMo Workshop); Position Paper.
                      </div>
+
+                     
                     <span class="links">
                         <a href="https://arxiv.org/abs/2305.17066">[Paper]</a>
                         <a href="https://github.com/mczhuge/NLSOM">[Code]</a>
@@ -716,9 +723,10 @@
                     <br>
                     <span class="publisher"><strong>TPAMI 2022</strong></span>
                     <br>
-                    <div>
-                        ESI Highly Cited Paper
+        <div class="highlight-desc highlight-prominent">
+                            ESI Highly Cited Paper.
                      </div>
+
                     <span class="links">
                         <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9789317">[Paper]</a>
                         <a href="https://github.com/mczhuge/ICON">[Code]</a>
@@ -743,8 +751,8 @@
                     <br>
                     <span class="publisher"><strong>CVPR 2021</strong></span>
                     <br>
-                    <div>
-                        Industry Application in alibaba.com
+                    <div class="highlight-desc highlight-prominent">
+                        Industry Application in Alibaba.com.
                      </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2103.16110">[Paper]</a>
