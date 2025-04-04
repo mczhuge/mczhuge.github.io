@@ -181,20 +181,20 @@
 
          /* Logo box */
          #about .col-xs-8 div[style*="border"] { /* Select the logo container */
-            border: 1px solid #34495e !important; /* Darker border */
-            background-color: rgba(255, 255, 255, 0.03) !important; /* Even more subtle background */
+            border: 1px solid var(--border-color) !important; /* Use standard light border color */
+            background-color: var(--bg-white) !important; /* Set background to white */
             padding: 20px !important;
             border-radius: 6px !important;
-            box-shadow: none !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important; /* Add subtle shadow */
             margin-top: 30px; /* More margin */
          }
          #about .col-xs-8 div[style*="border"] img {
-              /* filter: brightness(0) invert(1); */ /* Uncomment this line if logos are dark and need inversion */
-              opacity: 0.8; /* Slightly fade logos */
-              transition: opacity 0.3s ease;
+              filter: none !important; /* Ensure logos are not inverted */
+              opacity: 1.0 !important; /* Ensure full opacity */
+              transition: none !important; /* Remove transition */
          }
          #about .col-xs-8 div[style*="border"] img:hover {
-             opacity: 1.0;
+             opacity: 1.0 !important; /* Keep full opacity on hover */
          }
 
 
@@ -385,8 +385,8 @@
                 </p>
 
 
-                <div style="text-align: left; border: 2px solid #e0f2f7; padding: 10px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); background-color: #FFFFFF;">
-                    <img style="width: 55%; height: auto; display: block; margin: auto;" src="images/logo.png" alt="Description of the image">
+                <div style=""> <!-- Style applied via CSS -->
+                    <img style="width: 55%; height: auto; display: block; margin: auto;" src="images/logo.png" alt="Sponsor Logos"> <!-- Style applied via CSS -->
                 </div>
                 
 
@@ -423,7 +423,7 @@
                     <br>
                     <span class="publisher"><strong>Preprint</strong></span>
                     <br>
-                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
+                    <div>
                         Innovative evaluation framework using agent-based systems.
                     </div>
                     <span class="links">
@@ -480,7 +480,7 @@
                     <br>
                     <span class="publisher"><strong>ICML 2024 <span style="color:#d32f2f;">(Oral)</span></strong></span>
                     <br>
-                     <div style="color: #673ab7; font-weight: normal; font-style: italic;">
+                     <div>
                         Oral Presentation (top 1.5% in 9,473); The first framework emphasizes the importance of graphs in LLM-based agents.
                     </div>
                     <span class="links">
@@ -511,7 +511,7 @@
                     <br>
                     <span class="publisher"><strong>ICLR 2024  <span style="color:#d32f2f;">(Oral)</span></strong></span>
                     <br>
-                     <div style="color: #673ab7; font-weight: normal; font-style: italic;">
+                     <div>
                         Oral Presentation (top 1.2% in 7,262); Get 50k+ stars on GitHub.
                     </div>
                     <span class="links">
@@ -537,7 +537,7 @@
                     <br>
                     <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:red;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
                     <br> 
-                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
+                    <div>
                         Best Paper Award in NeurIPS Ro-FoMo Workshop; Position Paper; 
                      </div>
                     <span class="links">
@@ -566,7 +566,7 @@
                     <br>
                     <span class="publisher"><strong>TPAMI 2022</strong></span>
                     <br>
-                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
+                    <div>
                         ESI Highly Cited Paper
                      </div>
                     <span class="links">
@@ -593,7 +593,7 @@
                     <br>
                     <span class="publisher"><strong>CVPR 2021</strong></span>
                     <br>
-                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
+                    <div>
                         Industry Application in alibaba.com
                      </div>
                     <span class="links">
