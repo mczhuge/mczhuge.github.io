@@ -12,40 +12,286 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #01579b; /* Deeper Blue */
+            --secondary-color: #0288d1; /* Medium Blue */
+            --accent-color: #4fc3f7; /* Light Blue */
+            --subtle-accent: #b3e5fc; /* Very Light Blue / Subtle Teal */
+            --tech-blue: #3498db; /* Brighter Blue for tech feel */
+            --tech-cyan: #1abc9c; /* Cyan for accents */
+            --dark-bg-start: #2c3e50; /* Dark gradient start */
+            --dark-bg-end: #1a252f;   /* Dark gradient end */
+            --light-text-on-dark: #ecf0f1; /* Light grey text */
+            --medium-text-on-dark: #bdc3c7; /* Medium grey text */
+            --subtle-text-on-dark: #95a5a6; /* Subtle grey text */
+
+            --text-color: #37474f; /* Dark Grey-Blue */
+            --light-text: #78909c; /* Lighter Grey-Blue */
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            padding-top: 40px; /* Added padding for removed navbar */
+        }
+
+        /* Navbar Styling */
+        .navbar-fixed-top {
+            background: var(--bg-white); /* Solid white background */
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-fixed-top .navbar-nav > li > a {
+            color: var(--primary-color); /* Dark blue links */
+            font-weight: 500; /* Medium weight */
+            padding-top: 18px;
+            padding-bottom: 18px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .navbar-fixed-top .navbar-nav > li > a:hover,
+        .navbar-fixed-top .navbar-nav > li > a:focus {
+            color: var(--accent-color); /* Lighter blue on hover */
+            background-color: transparent; /* No background color change */
+        }
+        .navbar-fixed-top .navbar-text {
+             color: var(--primary-color) !important; /* Dark Blue for METAUTO.ai */
+             font-weight: 700; /* Bold */
+             font-size: 18px; /* Slightly larger */
+             padding-top: 18px; /* Align vertically */
+             padding-bottom: 18px;
+        }
+
+        /* Section Container */
+        .gray-container { /* Renaming might be good later, but keep for now */
+            background-color: var(--bg-white);
+            padding: 40px; /* More padding */
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+            margin-top: 30px;
+            border: 1px solid var(--border-color); /* Subtle border */
+        }
+
+        /* About section - Techy Style Override */
+         #about.gray-container {
+             background: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end)); /* Dark gradient */
+             color: var(--medium-text-on-dark); /* Default text color on dark */
+             border: 1px solid var(--dark-bg-start); /* Border matching gradient */
+             margin-top: 0; /* Remove top margin if it's the first element */
+         }
+
+         #about h2 { /* Main name heading in About */
+             color: var(--bg-white); /* White heading */
+             border-bottom: 2px solid var(--tech-blue); /* Bright blue underline */
+             padding-bottom: 15px;
+             margin-bottom: 30px;
+         }
+         #about .black-text { /* The name itself */
+             color: var(--bg-white) !important;
+             font-weight: 700;
+         }
+         /* Social/Contact Icons in About H2 */
+         #about h2 a img {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+            border-radius: 4px;
+            padding: 3px;
+            margin-left: 6px;
+            vertical-align: middle; /* Align icons better */
+            transition: background-color 0.3s ease;
+         }
+          #about h2 a:hover img {
+            background-color: rgba(255, 255, 255, 1);
+         }
+
+
+         #about p {
+             color: var(--light-text-on-dark); /* Brighter grey paragraphs */
+         }
+
+         #about strong { /* KAUST AI, Open-source enthusiasts etc. */
+             color: var(--bg-white); /* White strong text */
+             font-weight: 500;
+         }
+
+         #about a { /* Default links in About */
+             color: var(--tech-blue);
+             font-weight: 500;
+             transition: color 0.3s ease, text-shadow 0.3s ease;
+         }
+         #about a:hover {
+             color: var(--accent-color);
+             text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); /* Subtle glow on hover */
+         }
+         /* Override inline styles for specific links */
+         #about p a[style*="color:#fc5800"],
+         #about p a[style*="color:#3f00fc"] {
+            color: var(--tech-blue) !important;
+         }
+         #about p a[style*="color:#fc5800"]:hover,
+         #about p a[style*="color:#3f00fc"]:hover {
+            color: var(--accent-color) !important;
+         }
+
+
+         #about ul { /* Skills list */
+             padding-left: 0; /* Remove default indent */
+             list-style: none;
+             margin-top: 15px;
+         }
+         #about ul li {
+             margin-bottom: 12px; /* More space */
+             position: relative;
+             padding-left: 30px;
+             font-size: 1.05em; /* Slightly larger skills text */
+         }
+         #about ul li::before { /* Custom bullet */
+            content: '»'; /* Techy double arrow */
+            position: absolute;
+            left: 5px;
+            top: 0px;
+            color: var(--tech-blue); /* Blue bullet */
+            font-weight: bold;
+            font-size: 1.5em;
+            line-height: 1;
+         }
+         #about ul li strong { /* Skill keywords */
+             color: var(--tech-cyan); /* Use cyan accent for keywords */
+             font-weight: 500;
+         }
+
+         /* Image and Caption */
+        #me-img {
+            border: 3px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* More pronounced shadow on dark */
+        }
+         #about .col-xs-4 div[style*="margin-top: 15px"] { /* Target image caption */
+             color: var(--subtle-text-on-dark) !important; /* Use variable */
+             font-family: 'Roboto', sans-serif !important;
+             margin-top: 20px !important; /* More space below image */
+         }
+
+         /* Logo box */
+         #about .col-xs-8 div[style*="border"] { /* Select the logo container */
+            border: 1px solid #34495e !important; /* Darker border */
+            background-color: rgba(255, 255, 255, 0.03) !important; /* Even more subtle background */
+            padding: 20px !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
+            margin-top: 30px; /* More margin */
+         }
+         #about .col-xs-8 div[style*="border"] img {
+              /* filter: brightness(0) invert(1); */ /* Uncomment this line if logos are dark and need inversion */
+              opacity: 0.8; /* Slightly fade logos */
+              transition: opacity 0.3s ease;
+         }
+         #about .col-xs-8 div[style*="border"] img:hover {
+             opacity: 1.0;
+         }
+
+
+        /* General Headings (outside #about) */
+        h2.title, h2.experience, h2.section_title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--subtle-accent);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+         h3.subsection_title {
+            color: var(--secondary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            border-bottom: none;
+         }
+
+        /* General Links (outside #about) */
+        a {
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+        a:hover, a:focus {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+         /* Publication Highlights & Links (remain light themed) */
+         .project-title .publisher strong {
+             color: var(--primary-color);
+         }
+         .project-title span[style*="color:red"],
+         .project-title span[style*="color:#d32f2f"] {
+             color: #c62828 !important;
+             font-weight: 500;
+         }
+         .project-title div[style*="color"] { /* Target all styled divs (highlights) */
+            color: var(--light-text) !important; /* Use standard light text color */
+            font-weight: 400;
+            font-style: italic;
+         }
+         .project-title .links a {
+             margin-right: 8px;
+             color: var(--secondary-color);
+             font-size: 0.9em;
+         }
+          .project-title .links a:hover {
+             color: var(--accent-color);
+          }
+
+        /* Badges (remain light themed) */
+        .badge {
+             font-size: 12px !important;
+             padding: 6px 12px;
+             border-radius: 12px;
+             font-weight: 500;
+             border: none;
+             color: var(--primary-color) !important;
+             background-color: var(--subtle-accent) !important;
+         }
+
+
+         /* Footer */
+         .footer {
+             background-color: var(--text-color);
+             color: var(--bg-light);
+             padding: 25px 0;
+             margin-top: 50px;
+             text-align: center;
+         }
+         .footer a {
+             color: var(--accent-color);
+         }
+         .footer a:hover {
+             color: var(--bg-white);
+         }
+
+         /* General Adjustments (work blocks in light sections) */
+         .work-block {
+             margin-bottom: 25px;
+             padding-bottom: 25px;
+             border-bottom: 1px dashed var(--border-color);
+         }
+         .work-block:last-child {
+             border-bottom: none;
+             margin-bottom: 0;
+             padding-bottom: 0;
+         }
+
+
+    </style>
 
 </head>
-
-
-<div class="navbar navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <span class="navbar-text" style="color: rgb(255, 255, 255);">
-                METAUTO.ai
-            </span>
-        </div>
-       
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about" style="color: rgb(255, 255, 255);">About</a></li>
-                <li><a href="#publication" style="color: white;">Publication</a></li>
-                <li><a href="#experience" style="color: white;">Experience</a></li>
-                <li><a href="#talk" style="color: white;">Talk</a></li>
-                <li><a href="#award" style="color: white;">Award</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
 
 <html>
-<head>
-    <style>
-        .black-text {
-            color: rgb(9, 190, 54);
-        }
-    </style>
-</head>
 <body>
 
 <div class="gray-container" id="about">
@@ -53,9 +299,9 @@
         <div class="row">
 
             <div class="col-xs-4" style="text-align: center;">
-                <img style="margin-top: 10%; width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" id="me-img" src="images/mingchen.jpeg">
+                <img style="margin-top: 10%; width: 80%; border-radius: 10px;" id="me-img" src="images/mingchen.jpeg">
                 <br>
-                <div style="margin-top: 10px; font-size: small; color: #6a1df0; font-family: 'Arial', sans-serif;">
+                <div style="margin-top: 15px; font-size: small;">
                     *Taken in the KAUST AI Initiative.
                 </div>
             </div>
@@ -88,8 +334,7 @@
                     I am a PhD Candidate and recently start my third year at the
                     <strong>KAUST AI Initiative</strong>. I am fortunate to have 
                         <a
-                        href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en"
-                        style="color:#fc5800;">Jürgen Schmidhuber</a> as my advisor.
+                        href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Jürgen Schmidhuber</a> as my advisor.
                         </a>
                     <br/>
                 </p>
@@ -104,12 +349,12 @@
                     </ul>
                 </p>                
                 <p>
-             </strong> <strong>😀 Join Meta as Research Scientist Intern in Summer 2024</strong>
+                 <strong>😀 Join Meta as Research Scientist Intern in Summer 2024</strong>
                 </p>
                 <p>
              <a
-             href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en"
-             style="color:#3f00fc;">😀 Feel free to contact me for future collaboration, whether it's for providing a 2025 summer internship, co-founding a venture, or a full-time job opportunity (industry or faculty). Appreciate your guidances.
+             href="mailto:mingchen.zhuge@kaust.edu.sa">
+             😀 Feel free to contact me for future collaboration, whether it's for providing a 2025 summer internship, co-founding a venture, or a full-time job opportunity (industry or faculty). Appreciate your guidances.
             </a>
            
             </p>
@@ -138,10 +383,9 @@
                      style="color:#fc5800;">Microsoft.
                      </a>
                 </p>
-                </p>
 
 
-                <div style="text-align: left; border: 3px solid #cdac5f; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #FFFFFF;">
+                <div style="text-align: left; border: 2px solid #e0f2f7; padding: 10px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); background-color: #FFFFFF;">
                     <img style="width: 55%; height: auto; display: block; margin: auto;" src="images/logo.png" alt="Description of the image">
                 </div>
                 
@@ -160,7 +404,7 @@
         <h2 class="title">Selected Publications       
             <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">
                 (<img src="images/icon/scholar.png" title="scholar"
-                     width="42"> Full list)
+                     width="28" style="vertical-align: middle;"> Full list)
             </a>
         </h2>
         <br>
@@ -179,13 +423,13 @@
                     <br>
                     <span class="publisher"><strong>Preprint</strong></span>
                     <br>
-                    <div style="color: #55c71c; font-weight: bold;">
+                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
                         Innovative evaluation framework using agent-based systems.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/pdf/2410.10934">[Paper]</a>
                         <a href="https://github.com/metauto-ai/agent-as-a-judge">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/metauto-ai/agent-as-a-judge?style=social" />
+                        <img src="https://img.shields.io/github/stars/metauto-ai/agent-as-a-judge?style=social" alt="GitHub Stars"/>
                         <a href="papers/aaaj.txt">[BibTex]</a>
                         <a href="https://x.com/MingchenZhuge/status/1846410651218161781">[Tweet1]</a>
                         <a href="https://x.com/tydsh/status/1846538154129375412">[Tweet2]</a>
@@ -203,19 +447,19 @@
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
-                    <span class="project-name"><strong>OpenHands: An Open Platform for AI Software Developers as Generalist Agents</Frame></strong></span>
+                    <span class="project-name"><strong>OpenHands: An Open Platform for AI Software Developers as Generalist Agents</strong></span>
                     <br>
                     <span class="authors">OpenHands Open-sourced Community</span>
                     <br>
                     <span class="publisher"><strong>Preprint</strong></span>
                     <br>
-                     <div style="color: #55c71c; font-weight: bold;">
+                     <div style="color: #673ab7; font-weight: normal; font-style: italic;">
                         Get 30k+ stars on GitHub.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2407.16741">[Paper]</a>
                         <a href="https://github.com/OpenDevin/OpenDevin">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" />
+                        <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars"/>
                         <a href="papers/openhands.txt">[BibTex]</a>
                         <a href="https://www.jiqizhixin.com/articles/2024-08-02-2">[机器之心]</a>
                     </span>
@@ -230,19 +474,19 @@
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
-                    <span class="project-name"><strong>GPTSwarm: Language Agents as Optimizable Graphs</Frame></strong></span>
+                    <span class="project-name"><strong>GPTSwarm: Language Agents as Optimizable Graphs</strong></span>
                     <br>
                     <span class="authors"><strong>Mingchen Zhuge</strong>, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin and Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICML 2024 <span style="color:red;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICML 2024 <span style="color:#d32f2f;">(Oral)</span></strong></span>
                     <br>
-                     <div style="color: #55c71c; font-weight: bold;">
+                     <div style="color: #673ab7; font-weight: normal; font-style: italic;">
                         Oral Presentation (top 1.5% in 9,473); The first framework emphasizes the importance of graphs in LLM-based agents.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2402.16823">[Paper]</a>
                         <a href="https://github.com/metauto-ai/GPTSwarm">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" />
+                        <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars"/>
                         <a href="papers/gptswarm.txt">[BibTex]</a>
                         <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ">[麻省理工科技评论专访]</a>
                         <a href="https://mp.weixin.qq.com/s/jb6vPi9WL9CjybhiKCFOgg">[将门创投]</a>
@@ -260,20 +504,20 @@
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
-                    <span class="project-name"><strong>MetaGPT: Meta Programming For A Multi-Agent Collaborative Framework</Frame></strong></span>
+                    <span class="project-name"><strong>MetaGPT: Meta Programming For A Multi-Agent Collaborative Framework</strong></span>
                     <br>
                     <span class="authors">Sirui Hong∗, <strong>Mingchen Zhuge∗</strong>, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka Shing Yau, Zijuan Lin,
                         Liyang Zhou, Chenyu Ran, Lingfeng Xiao, Chenglin Wu†, Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICLR 2024  <span style="color:red;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICLR 2024  <span style="color:#d32f2f;">(Oral)</span></strong></span>
                     <br>
-                     <div style="color: #55c71c; font-weight: bold;">
+                     <div style="color: #673ab7; font-weight: normal; font-style: italic;">
                         Oral Presentation (top 1.2% in 7,262); Get 40k+ stars on GitHub.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2308.00352">[Paper]</a>
                         <a href="https://github.com/geekan/MetaGPT">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" />
+                        <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars"/>
                         <a href="papers/metagpt.txt">[BibTex]</a>
                         <a href="https://mp.weixin.qq.com/s/s5teEWlbcfHCVFjy6Nb3AQ">[量子位报道]</a>
                     </span>
@@ -287,19 +531,19 @@
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
-                    <span class="project-name"><strong>Mindstorms in Natural Language-Based Societies of Mind</Frame></strong></span>
+                    <span class="project-name"><strong>Mindstorms in Natural Language-Based Societies of Mind</strong></span>
                     <br>
                     <span class="authors"><strong>Mingchen Zhuge*</strong>, Haozhe Liu*, Francesco Faccio*, Dylan R. Ashley*, Róbert Csordás, Anand Gopalakrishnan, Abdullah Hamdi, Hasan Abed Al Kader Hammoud, Vincent Herrmann, Kazuki Irie, Louis Kirsch, Bing Li, Guohao Li, Shuming Liu, Jinjie Mai, Piotr Piękos, Aditya Ramesh, Imanol Schlag, Weimin Shi, Aleksandar Stanić, Wenyi Wang, Yuhui Wang, Mengmeng Xu, Deng-Ping Fan, Bernard Ghanem, Jü̈rgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:red;">(Oral, Best Paper Award)</span></strong></span>
+                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:#d32f2f;">(Oral, Best Paper Award)</span></strong></span>
                     <br> 
-                    <div style="color: #55c71c; font-weight: bold;">
+                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
                         Best Paper Award in NeurIPS Ro-FoMo Workshop; Position Paper; 
                      </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2305.17066">[Paper]</a>
                         <a href="https://github.com/mczhuge/NLSOM">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/mczhuge/NLSOM?style=social" />
+                        <img src="https://img.shields.io/github/stars/mczhuge/NLSOM?style=social" alt="GitHub Stars"/>
                         <a href="papers/nlsom.txt">[BibTex]</a>
                         <a href="images/nlsom-v9.pdf">[Poster]</a>
                         <a href="files/nlsom_award.pdf">[Award]</a>
@@ -316,19 +560,19 @@
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
-                    <span class="project-name"><strong>Salient Object Detection via Integrity Learning</Frame></strong></span>
+                    <span class="project-name"><strong>Salient Object Detection via Integrity Learning</strong></span>
                     <br>
                     <span class="authors"><strong>Mingchen Zhuge*</strong>, Deng-Ping Fan*, Nian Liu, Dingwen Zhang, Dong Xu, Ling Shao</span>
                     <br>
                     <span class="publisher"><strong>TPAMI 2022</strong></span>
                     <br>
-                    <div style="color: #55c71c; font-weight: bold;">
+                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
                         ESI Highly Cited Paper
                      </div>
                     <span class="links">
                         <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9789317">[Paper]</a>
                         <a href="https://github.com/mczhuge/ICON">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/mczhuge/ICON?style=social" />
+                        <img src="https://img.shields.io/github/stars/mczhuge/ICON?style=social" alt="GitHub Stars"/>
                         <a href="papers/icon.txt">[BibTex]</a>
                     </span>
                 </div>
@@ -343,19 +587,19 @@
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
-                    <span class="project-name"><strong>Kaleido-BERT: Vision-Language Pre-training on Fashion Domain</Frame></strong></span>
+                    <span class="project-name"><strong>Kaleido-BERT: Vision-Language Pre-training on Fashion Domain</strong></span>
                     <br>
                     <span class="authors"><strong>Mingchen Zhuge*</strong>, Dehong Gao*, Deng-Ping Fan†, Linbo Jin, Ben Chen, Haoming Zhou, Minghui Qiu, Ling Shao</span>
                     <br>
                     <span class="publisher"><strong>CVPR 2021</strong></span>
                     <br>
-                    <div style="color: #55c71c; font-weight: bold;">
+                    <div style="color: #673ab7; font-weight: normal; font-style: italic;">
                         Industry Application in alibaba.com
                      </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2103.16110">[Paper]</a>
                         <a href="https://github.com/mczhuge/Kaleido-BERT">[Code]</a>
-                        <img src="https://img.shields.io/github/stars/mczhuge/Kaleido-BERT?style=social" />
+                        <img src="https://img.shields.io/github/stars/mczhuge/Kaleido-BERT?style=social" alt="GitHub Stars"/>
                         <a href="papers/kaleido-bert.txt">[BibTex]</a>
                         <a href="https://app6ca5octe2206.pc.xiaoe-tech.com/p/t_pc/course_pc_detail/video/v_609cd21de4b0fe322012dd28?product_id=p_609a4610e4b01e969a60071c&type=6">[Talk]</a>
                     </span>
@@ -378,8 +622,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">June 2024 - Present</span>
+                    <h4><span class="badge badge-secondary">June 2024 - Present</span>
                     </h4>
                 </div>
                 <div class="col-xs-9">
@@ -398,8 +641,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">Aug 2022 - Present</span>
+                    <h4><span class="badge badge-secondary">Aug 2022 - Present</span>
                     </h4>
                 </div>
                 <div class="col-xs-9">
@@ -417,8 +659,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">May 2022 - Aug 2022</span>
+                    <h4><span class="badge badge-secondary">May 2022 - Aug 2022</span>
                     </h4>
                 </div>
                 <div class="col-xs-9">
@@ -435,8 +676,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">Jul 2021 - Jan 2022</span>
+                    <h4><span class="badge badge-secondary">Jul 2021 - Jan 2022</span>
                     </h4>
                 </div>
                 <div class="col-xs-9">
@@ -453,8 +693,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">Mar 2021 - Jun 2021</span>
+                    <h4><span class="badge badge-secondary">Mar 2021 - Jun 2021</span>
                     </h4>
                 </div>
                 <div class="col-xs-9">
@@ -473,8 +712,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">May 2020 - Feb 2021</span>
+                    <h4><span class="badge badge-secondary">May 2020 - Feb 2021</span>
                     </h4>
                 </div>
                 <div class="col-xs-9">
@@ -492,8 +730,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #d168b2; font-size: 14px">March 2018 - Jun 2018</span>
+                    <h4><span class="badge badge-secondary">March 2018 - Jun 2018</span>
                     </h4>
                 </div>
                 <div class="col-xs-9">
@@ -529,15 +766,14 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
+                    <h4><span class="badge badge-secondary">2024</span></h4>
                 </div>
                 <div class="col-xs-9">
                     智能体蜂群
                     <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">上海人工智能实验室</a> </a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
+                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">上海人工智能实验室</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
                     <img src="images/icon/video_new.png" title="recording"
-                         width="24">
+                         width="20" style="vertical-align: middle;">
                 </a>
                 </div>
             </div>
@@ -545,60 +781,56 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
+                    <h4><span class="badge badge-secondary">2024</span></h4>
                 </div>
                 <div class="col-xs-9">
                     Exploring Multimodal Agents
                     <br>
                     Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">WAIC AI Lite Think Talk </a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
                     <img src="images/icon/video_new.png" title="recording"
-                         width="24">
+                         width="20" style="vertical-align: middle;">
                 </a>
                 </div>
             </div>
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
+                    <h4><span class="badge badge-secondary">2024</span></h4>
                 </div>
                 <div class="col-xs-9">
                     浅述AI智能体
                     <br>
                     Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">中科院自动化所</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
                     <img src="images/icon/video_new.png" title="recording"
-                         width="24">
+                         width="20" style="vertical-align: middle;">
                 </a>
                 </div>
             </div>
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
+                    <h4><span class="badge badge-secondary">2024</span></h4>
                 </div>
                 <div class="col-xs-9">
                     NLSOM、MetaGPT、GPTSwarm: 以不一样的视角探索AI智能体
                     <br>
                     Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">ByteDance</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
                     <img src="images/icon/video_new.png" title="recording"
-                         width="24">
+                         width="20" style="vertical-align: middle;">
                 </a>
                 </div>
             </div>
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2024</span></h4>
+                    <h4><span class="badge badge-secondary">2024</span></h4>
                 </div>
                 <div class="col-xs-9">
                     多模态AI智能体（社会）
                     <br>
                     Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">华为藤蔓技术论坛2024</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
                     <img src="images/icon/video_new.png" title="recording"
-                         width="24">
+                         width="20" style="vertical-align: middle;">
                 </a>
                 </div>
             </div>
@@ -606,15 +838,14 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #e3a76f; font-size: 14px">2021</span></h4>
+                    <h4><span class="badge badge-secondary">2021</span></h4>
                 </div>
                 <div class="col-xs-9">
                     机器之心: "走进全球顶尖实验室第一期-IIAI"
                     <br>
                     Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">机器之心 (Synced)</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
                     <img src="images/icon/video_new.png" title="recording"
-                         width="24">
+                         width="20" style="vertical-align: middle;">
                 </a>
                 </div>
             </div>
@@ -630,8 +861,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2023</span></h4>
+                    <h4><span class="badge badge-secondary">2023</span></h4>
                 </div>
                 <div class="col-xs-9">
                     <a href="https://sites.google.com/view/r0-fomo/accepted-papers?authuser=0">Best Paper Award in NeurIPS Ro-FoMo Workshop</a>
@@ -641,8 +871,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2023</span></h4>
+                    <h4><span class="badge badge-secondary">2023</span></h4>
                 </div>
                 <div class="col-xs-9">
                     <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</a>
@@ -651,8 +880,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2021</span></h4>
+                    <h4><span class="badge badge-secondary">2021</span></h4>
                 </div>
                 <div class="col-xs-9">
                     <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2021中兴蓝剑计划（武汉高校仅三人）</a>
@@ -661,8 +889,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2019</span></h4>
+                    <h4><span class="badge badge-secondary">2019</span></h4>
                 </div>
                 <div class="col-xs-9">
                     <a href="https://www.cug.edu.cn/info/10506/92425.htm">第十六届中国研究生数学建模竞赛 国家级二等奖</a>
@@ -671,8 +898,7 @@
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary" style="background-color:
-                            #64d4d2; font-size: 14px">2019</span></h4>
+                    <h4><span class="badge badge-secondary">2019</span></h4>
                 </div>
                 <div class="col-xs-9">
                     <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2019 ZTE Algorithm Competition Champion (Top 7/11000+)</a>
@@ -693,15 +919,16 @@
     <footer class="container footer">
         <div class="row">
 
-            <div class="text-center" style="color: rgb(255, 255, 255);">
+            <div class="col-xs-12">
                 © Mingchen Zhuge &nbsp;&nbsp;&nbsp;&nbsp;
                 Visitor Number
                 <a href='https://www.counter12.com'><img
                         src='https://www.counter12.com/img-2y15x83ZD5292yC3-77.gif'
-                        border='0' alt='counter'></a>
+                        border='0' alt='counter' style="vertical-align: middle;"></a>
             </div>
         </div>
     </footer>
 
 
+</body>
 </html>
