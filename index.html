@@ -286,6 +286,30 @@
              padding-bottom: 0;
          }
 
+         /* Social Icons under Profile Picture */
+         .social-icons {
+             text-align: center; /* Center the icons */
+             margin-top: 20px; /* Space above the icons */
+         }
+         .social-icons a {
+             display: inline-block; /* Allow margin/padding */
+             margin: 0 8px; /* Space between icons */
+             text-decoration: none;
+         }
+         .social-icons img {
+             height: 30px; /* Consistent icon height */
+             width: auto; /* Maintain aspect ratio */
+             vertical-align: middle;
+             border-radius: 5px; /* Slightly rounded corners */
+             background-color: rgba(255, 255, 255, 0.9); /* Match original style */
+             padding: 4px; /* Padding around icon */
+             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+         }
+         .social-icons img:hover {
+             transform: scale(1.1); /* Slight zoom effect */
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+             background-color: rgba(255, 255, 255, 1);
+         }
 
     </style>
 
@@ -304,29 +328,27 @@
                 <div style="margin-top: 15px; font-size: small;">
                     *Taken in the KAUST AI Initiative.
                 </div>
+                <!-- Add social icons div here -->
+                <div class="social-icons">
+                   <a href="https://twitter.com/MingchenZhuge"
+                       style="text-decoration: none;">
+                       <img src="images/icon/twitter.png" alt="Twitter">
+                   </a>
+                   <a href="https://github.com/mczhuge" style="text-decoration: none;">
+                       <img src="images/GitHub-512.webp" alt="GitHub">
+                   </a>
+                   <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" style="text-decoration: none;">
+                       <img src="images/icon/scholar.png" alt="Google Scholar">
+                   </a>
+                   <a href="mailto:mingchen.zhuge@kaust.edu.sa" style="text-decoration: none;">
+                       <img src="images/icon/email.png" alt="Email">
+                   </a>
+                </div>
             </div>
             
 
             <div class="col-xs-8">
                 <h2> <span class="black-text">Mingchen Zhuge</span></span>
-                   <a href="https://twitter.com/MingchenZhuge"
-                       class="twitter-follow-button" data-show-count="true"
-                       data-size="medium">
-                        @MingchenZhuge</a>
-                    <script async src="https://platform.twitter.com/widgets.js"
-                            charset="utf-8"></script>
-                    <a href="https://github.com/mczhuge">
-                        <img src="images/icon/github_square.png" title="github"
-                             width="27">
-                    </a>
-                    <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">
-                        <img src="images/icon/scholar.png" title="scholar"
-                             width="35">
-                    </a>
-                    <a href="mingchen.zhuge@kaust.edu.sa">
-                        <img src="images/icon/email.png" title="email"
-                             width="32">
-                    </a>
                 </h2>
 
 
@@ -348,9 +370,6 @@
                         <li><strong>AI Judges</strong>: Agent-as-a-Judge, LLM-as-a-Judge.</li>
                     </ul>
                 </p>                
-                <p>
-                 <strong>😀 Join Meta as Research Scientist Intern in Summer 2024</strong>
-                </p>
                 <p>
              <a
              href="mailto:mingchen.zhuge@kaust.edu.sa">
@@ -385,7 +404,7 @@
                 </p>
 
 
-                <div style=""> <!-- Style applied via CSS -->
+                <div style="background-color: white;"> <!-- Style applied via CSS -->
                     <img style="width: 55%; height: auto; display: block; margin: auto;" src="images/logo.png" alt="Sponsor Logos"> <!-- Style applied via CSS -->
                 </div>
                 
@@ -763,6 +782,21 @@
         <div class="container">
             <h2 class="section_title">Invited Talks</h2>
             <br>
+
+            <div class="row work-block">
+                <div class="project col-xs-3" style="position: center">
+                    <h4><span class="badge badge-secondary">2025</span></h4>
+                </div>
+                <div class="col-xs-9">
+                    奇点降临，Manus 诞生背后丨青源Workshop
+                    <br>
+                    Host: <a href="https://mp.weixin.qq.com/s/e-NOQ0UXORatc3s8P2NWEw">智源社区</a> &nbsp; <a href="https://mp.weixin.qq.com/s/e-NOQ0UXORatc3s8P2NWEw">
+                    <img src="images/icon/video_new.png" title="recording"
+                         width="20" style="vertical-align: middle;">
+                </a>
+                </div>
+            </div>
+
 
             <div class="row work-block">
                 <div class="project col-xs-3" style="position: center">
