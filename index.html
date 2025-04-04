@@ -342,110 +342,325 @@
              to { background-position: -10000px 5000px, -5000px 2500px, 0 0; } /* End positions (large values for slow continuous move) */
          }
 
-         /* Experience Roadmap Styling */
-         #experience .container {
-             /* No special styling needed here for now */
-         }
-         .roadmap-container {
+         /* Experience Carousel Styling */
+         .experience-carousel {
+             display: flex;
+             overflow-x: hidden;
+             scroll-behavior: smooth;
              position: relative;
-             margin-top: 40px; /* Space below heading */
+             margin: 30px 0;
+             padding: 20px 0;
+             gap: 20px;
+             -ms-overflow-style: none;  /* IE and Edge */
+             scrollbar-width: none;  /* Firefox */
          }
-         /* The central vertical line */
-         .roadmap-container::before {
+         
+         .experience-carousel::-webkit-scrollbar {
+             display: none; /* Chrome, Safari, Opera */
+         }
+         
+         .experience-card {
+             min-width: 300px;
+             width: 300px;
+             background-color: var(--bg-white);
+             border-radius: 12px; /* 增加圆角 */
+             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* 增强阴影效果 */
+             overflow: hidden;
+             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 使用更平滑的动画曲线 */
+             margin: 10px 5px;
+             border: 1px solid var(--border-color);
+             flex-shrink: 0;
+             position: relative; /* 添加相对定位用于伪元素 */
+             z-index: 1; /* 确保内容在伪元素之上 */
+             transform-style: preserve-3d; /* 开启3D效果 */
+             perspective: 1000px; /* 3D透视效果 */
+         }
+         
+         /* 卡片背景纹理 */
+         .experience-card::after {
              content: '';
              position: absolute;
              top: 0;
-             left: 50%;
-             bottom: 0;
-             width: 4px;
-             background-color: var(--primary-color); /* Use stronger primary blue */
-             transform: translateX(-50%) scaleY(0); /* Start scaled down */
-             z-index: 1;
-             border-radius: 2px; /* Slightly rounded line ends */
-             transform-origin: top; /* Animate from the top */
-             animation: grow-line 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards; /* Add grow animation with delay */
-         }
-         .roadmap-item {
-             padding: 20px 40px;
-             position: relative;
-             margin-bottom: 40px; /* Space between items */
-             width: 50%;
-             box-sizing: border-box;
-             background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
-             border-radius: 6px;
-             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Slightly enhanced shadow */
-             z-index: 2;
-             border: 1px solid var(--border-color);
-             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-             animation: fade-in 0.6s ease-out forwards;
-             opacity: 0; /* Start hidden for fade-in */
-         }
-         /* Add delays for staggered fade-in */
-         .roadmap-item:nth-child(1) { animation-delay: 0.1s; }
-         .roadmap-item:nth-child(2) { animation-delay: 0.2s; }
-         .roadmap-item:nth-child(3) { animation-delay: 0.3s; }
-         .roadmap-item:nth-child(4) { animation-delay: 0.4s; }
-         .roadmap-item:nth-child(5) { animation-delay: 0.5s; }
-         .roadmap-item:nth-child(6) { animation-delay: 0.6s; }
-         .roadmap-item:nth-child(7) { animation-delay: 0.7s; }
-
-         .roadmap-item:hover {
-             border-color: var(--tech-blue);
-             transform: translateY(-3px);
-             box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
-         }
-         /* Position items left and right */
-         .roadmap-item:nth-child(odd) { /* Left side items */
              left: 0;
-             padding-right: 60px; /* Space for point */
-             text-align: right;
+             width: 100%;
+             height: 100%;
+             background-image: 
+                 radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.02) 0%, transparent 10%),
+                 radial-gradient(circle at 80% 30%, rgba(26, 188, 156, 0.02) 0%, transparent 15%),
+                 radial-gradient(circle at 40% 70%, rgba(241, 196, 15, 0.02) 0%, transparent 12%),
+                 radial-gradient(circle at 70% 90%, rgba(231, 76, 60, 0.02) 0%, transparent 10%);
+             opacity: 0;
+             transition: opacity 0.6s ease;
+             z-index: -1;
+             pointer-events: none;
          }
-         .roadmap-item:nth-child(even) { /* Right side items */
-             left: 50%;
-             padding-left: 60px; /* Space for point */
-             text-align: left;
-         }
-         /* The circle/point on the timeline */
-         .roadmap-point {
+         
+         .experience-card::before {
+             content: '';
              position: absolute;
-             top: 25px; /* Align vertically with content */
-             width: 16px;
-             height: 16px;
-             border-radius: 50%;
-             background-color: var(--tech-blue); /* Tech blue point */
-             border: 3px solid var(--accent-color); /* Lighter blue border */
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 5px;
+             background: linear-gradient(90deg, var(--tech-blue), var(--tech-cyan), var(--tech-blue)); /* 顶部彩色条纹 */
+             background-size: 200% 100%;
+             z-index: 2;
+             transform: scaleX(0);
+             transform-origin: left;
+             transition: transform 0.4s ease;
+             animation: gradient-shift 3s linear infinite;
+         }
+         
+         /* 闪光效果 */
+         .experience-card .shine-effect {
+             position: absolute;
+             top: -50%;
+             left: -50%;
+             width: 200%;
+             height: 200%;
+             background: linear-gradient(
+                 to right,
+                 rgba(255, 255, 255, 0) 0%,
+                 rgba(255, 255, 255, 0.1) 50%,
+                 rgba(255, 255, 255, 0) 100%
+             );
+             transform: rotate(30deg);
+             opacity: 0;
              z-index: 3;
-             animation: pulse-dot 2s infinite ease-in-out;
+             pointer-events: none;
+             transition: opacity 0.15s ease;
          }
-         .roadmap-item:nth-child(odd) .roadmap-point { /* Point for left items */
-             right: -8px; /* Position on the line */
-             transform: translateX(50%);
+         
+         .experience-card:hover {
+             transform: translateY(-15px) scale(1.02) rotateY(2deg); /* 添加Y轴旋转 */
+             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(52, 152, 219, 0.1), 0 0 20px rgba(26, 188, 156, 0.05); /* 多层阴影效果 */
          }
-         .roadmap-item:nth-child(even) .roadmap-point { /* Point for right items */
-             left: -8px; /* Position on the line */
-             transform: translateX(-50%);
+         
+         .experience-card:hover::before {
+             transform: scaleX(1); /* 悬停时显示顶部彩色条纹 */
          }
-         /* Content within the roadmap item */
-         .roadmap-content h4 {
-             margin-top: 0; /* Remove default margin */
-             margin-bottom: 10px;
+         
+         .experience-card:hover::after {
+             opacity: 1; /* 显示背景纹理 */
          }
-         .roadmap-content .badge {
-             /* Keep existing badge style */
+         
+         .experience-card:hover .shine-effect {
+             opacity: 1;
+             animation: shine 1.5s ease-in-out; /* 应用闪光动画 */
          }
-          /* Optional: Add arrows pointing to the timeline (can be complex) */
-         /* For simplicity, skipping arrows for now */
-
-         /* Keyframes for animations */
-         @keyframes pulse-dot {
-             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 195, 247, 0.4); }
-             50% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(79, 195, 247, 0); }
+         
+         @keyframes shine {
+             0% { transform: rotate(30deg) translateX(-100%); }
+             100% { transform: rotate(30deg) translateX(100%); }
          }
-
-         @keyframes fade-in {
-             from { opacity: 0; transform: translateY(15px); }
+         
+         @keyframes gradient-shift {
+             0% { background-position: 0% 50%; }
+             50% { background-position: 100% 50%; }
+             100% { background-position: 0% 50%; }
+         }
+         
+         .card-logo {
+             height: 120px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             background-color: #ffffff; /* 修改为纯白色 */
+             border-bottom: 1px solid var(--border-color);
+             padding: 15px;
+             position: relative;
+             overflow: hidden;
+             transition: all 0.3s ease;
+         }
+         
+         .card-logo::after {
+             content: '';
+             position: absolute;
+             width: 200%;
+             height: 200%;
+             background: radial-gradient(circle, rgba(52, 152, 219, 0.07) 0%, rgba(255, 255, 255, 0) 70%);
+             top: -50%;
+             left: -50%;
+             opacity: 0;
+             transition: opacity 0.5s ease, transform 1s ease;
+         }
+         
+         .experience-card:hover .card-logo::after {
+             opacity: 1;
+             transform: scale(1.1) rotate(5deg);
+         }
+         
+         .card-logo img {
+             max-width: 80%;
+             max-height: 80px;
+             object-fit: contain;
+             width: auto;
+             height: auto;
+             margin: 0 auto;
+             display: block;
+             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+             transform-origin: center center;
+         }
+         
+         .card-logo:hover img {
+             transform: scale(1.08) rotate(2deg); /* 添加轻微旋转效果 */
+             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15)) brightness(1.03); /* 增强阴影和亮度 */
+         }
+         
+         .card-content {
+             padding: 25px 20px; /* 增加内边距 */
+             background: linear-gradient(180deg, #ffffff, #f9f9f9); /* 添加微妙渐变 */
+             position: relative;
+             z-index: 1;
+             transition: transform 0.3s ease;
+         }
+         
+         .experience-card:hover .card-content {
+             transform: translateZ(10px); /* 3D效果 */
+         }
+         
+         .card-content h3 {
+             margin-top: 5px;
+             font-size: 18px;
+             color: var(--primary-color);
+             margin-bottom: 15px;
+             position: relative;
+             padding-bottom: 10px;
+             transition: all 0.3s ease;
+         }
+         
+         .card-content h3::after {
+             content: "";
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             width: 40px;
+             height: 2px;
+             background: linear-gradient(90deg, var(--tech-blue), var(--tech-cyan));
+             transition: width 0.4s ease, opacity 0.4s ease;
+             opacity: 0.8;
+         }
+         
+         .experience-card:hover .card-content h3 {
+             color: var(--tech-blue);
+             transform: translateX(3px); /* 文字轻微移动 */
+         }
+         
+         .experience-card:hover .card-content h3::after {
+             width: 100px; /* 悬停时扩展下划线 */
+             opacity: 1;
+         }
+         
+         .card-content p {
+             margin-bottom: 8px;
+             font-size: 14px;
+             color: var(--text-color);
+             transform: translateY(0);
+             transition: transform 0.3s ease, opacity 0.3s ease;
+             opacity: 0.9;
+             position: relative;
+         }
+         
+         .card-content p strong {
+             position: relative;
+             z-index: 1;
+             transition: color 0.3s ease;
+         }
+         
+         .card-content p strong::before {
+             content: "";
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             width: 0;
+             height: 30%;
+             background-color: rgba(26, 188, 156, 0.1);
+             z-index: -1;
+             transition: width 0.3s ease;
+         }
+         
+         .experience-card:hover .card-content p strong::before {
+             width: 100%;
+         }
+         
+         .experience-card:hover .card-content p {
+             transform: translateY(-2px);
+             opacity: 1;
+         }
+         
+         .experience-card:hover .card-content p:nth-child(1) { transition-delay: 0.05s; }
+         .experience-card:hover .card-content p:nth-child(2) { transition-delay: 0.1s; }
+         .experience-card:hover .card-content p:nth-child(3) { transition-delay: 0.15s; }
+         .experience-card:hover .card-content p:nth-child(4) { transition-delay: 0.2s; }
+         
+         /* Carousel Controls */
+         .carousel-controls {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             margin-top: 20px;
+         }
+         
+         .prev-btn, .next-btn {
+             display: inline-block;
+             width: 40px;
+             height: 40px;
+             background-color: var(--primary-color);
+             color: white;
+             border-radius: 50%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             cursor: pointer;
+             font-size: 20px;
+             margin: 0 10px;
+             transition: background-color 0.3s ease, transform 0.3s ease;
+         }
+         
+         .prev-btn:hover, .next-btn:hover {
+             background-color: var(--secondary-color);
+             transform: scale(1.1);
+         }
+         
+         .indicator-dots {
+             display: flex;
+             gap: 8px;
+             margin: 0 15px;
+         }
+         
+         .dot {
+             width: 10px;
+             height: 10px;
+             border-radius: 50%;
+             background-color: var(--border-color);
+             cursor: pointer;
+             transition: background-color 0.3s ease, transform 0.3s ease;
+         }
+         
+         .dot.active {
+             background-color: var(--primary-color);
+             transform: scale(1.2);
+         }
+         
+         /* Animation for cards */
+         @keyframes fadeIn {
+             from { opacity: 0; transform: translateY(20px); }
              to { opacity: 1; transform: translateY(0); }
          }
+         
+         .experience-card {
+             animation: fadeIn 0.5s ease forwards;
+             opacity: 0;
+         }
+
+         .experience-card:nth-child(1) { animation-delay: 0.1s; }
+         .experience-card:nth-child(2) { animation-delay: 0.2s; }
+         .experience-card:nth-child(3) { animation-delay: 0.3s; }
+         .experience-card:nth-child(4) { animation-delay: 0.4s; }
+         .experience-card:nth-child(5) { animation-delay: 0.5s; }
+         .experience-card:nth-child(6) { animation-delay: 0.6s; }
+         .experience-card:nth-child(7) { animation-delay: 0.7s; }
 
     </style>
 
@@ -776,100 +991,123 @@
     <div id="experience">
         <div class="container">
             <h2 class="experience">Experience</h2>
-
-            <div class="roadmap-container">
-
-                <!-- Item 1: Meta -->
-                <div class="roadmap-item">
-                    <div class="roadmap-point"></div>
-                    <div class="roadmap-content">
+            
+            <div class="experience-carousel">
+                <!-- Meta Card -->
+                <div class="experience-card">
+                    <div class="shine-effect"></div>
+                    <div class="card-logo">
+                        <img src="images/Meta-Logo.png" alt="Meta Logo" class="company-logo meta-logo" style="max-height: 70px;">
+                    </div>
+                    <div class="card-content">
                         <h4><span class="badge badge-secondary">June 2024 - Present</span></h4>
-                        Research Scientist Intern, <strong>Meta</strong><br>
-                        Advisor: <a href="https://scholar.google.com/citations?user=bXnrlyAAAAAJ&hl=en">Changsheng Zhao</a>,
-                        <a href="https://scholar.google.com/citations?user=b-zD42MAAAAJ&hl=en">Yangyang Shi</a><br>
-                        Topic: Multimodal LLMs, Agents<br>
-                        Location: Burlingame, United States
+                        <h3>Research Scientist Intern, <strong>Meta</strong></h3>
+                        <p><strong>Advisor:</strong> <a href="https://scholar.google.com/citations?user=bXnrlyAAAAAJ&hl=en">Changsheng Zhao</a>,
+                        <a href="https://scholar.google.com/citations?user=b-zD42MAAAAJ&hl=en">Yangyang Shi</a></p>
+                        <p><strong>Topic:</strong> Multimodal LLMs, Agents</p>
+                        <p><strong>Location:</strong> Burlingame, United States</p>
                     </div>
                 </div>
-
-                <!-- Item 2: KAUST -->
-                <div class="roadmap-item">
-                    <div class="roadmap-point"></div>
-                    <div class="roadmap-content">
-                         <h4><span class="badge badge-secondary">Aug 2022 - Present</span></h4>
-                        PhD Student, <strong>KAUST AI Initiative</strong><br>
-                        Advisor: <a href="https://people.idsia.ch/~juergen/">Jürgen Schmidhuber </a><br>
-                        Topic: Multimodal, LLMs, Agent Society, Meta Learning<br>
-                        Location: Thuwal, KSA
+                
+                <!-- KAUST Card -->
+                <div class="experience-card">
+                    <div class="shine-effect"></div>
+                    <div class="card-logo">
+                        <img src="images/kaust.png" alt="KAUST Logo" class="company-logo kaust-logo" style="max-height: 65px;">
+                    </div>
+                    <div class="card-content">
+                        <h4><span class="badge badge-secondary">Aug 2022 - Present</span></h4>
+                        <h3>PhD Student, <strong>KAUST AI Initiative</strong></h3>
+                        <p><strong>Advisor:</strong> <a href="https://people.idsia.ch/~juergen/">Jürgen Schmidhuber</a></p>
+                        <p><strong>Topic:</strong> Multimodal, LLMs, Agent Society, Meta Learning</p>
+                        <p><strong>Location:</strong> Thuwal, KSA</p>
                     </div>
                 </div>
-
-                <!-- Item 3: Microsoft -->
-                <div class="roadmap-item">
-                    <div class="roadmap-point"></div>
-                    <div class="roadmap-content">
-                         <h4><span class="badge badge-secondary">May 2022 - Aug 2022</span></h4>
-                        Research Scientist Intern, <strong>Microsoft (WizardLM)</strong><br>
-                        Host: <a href="https://scholar.google.com/citations?user=x_cOKuwAAAAJ&hl=zh-CN">Chongyang Tao</a><br>
-                        Topic: NLP, Multimodal LLM<br>
-                        Location: Beijing, China
+                
+                <!-- Microsoft Card -->
+                <div class="experience-card">
+                    <div class="shine-effect"></div>
+                    <div class="card-logo">
+                        <img src="images/microsoft_logo.png" alt="Microsoft Logo" class="company-logo microsoft-logo" style="max-height: 155px;">
+                    </div>
+                    <div class="card-content">
+                        <h4><span class="badge badge-secondary">May 2022 - Aug 2022</span></h4>
+                        <h3>Research Scientist Intern, <strong>Microsoft (WizardLM)</strong></h3>
+                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=x_cOKuwAAAAJ&hl=zh-CN">Chongyang Tao</a></p>
+                        <p><strong>Topic:</strong> NLP, Multimodal LLM</p>
+                        <p><strong>Location:</strong> Beijing, China</p>
                     </div>
                 </div>
-
-                <!-- Item 4: SUSTech -->
-                <div class="roadmap-item">
-                    <div class="roadmap-point"></div>
-                    <div class="roadmap-content">
-                         <h4><span class="badge badge-secondary">Jul 2021 - Jan 2022</span></h4>
-                        Visiting Scholar, <strong>SUSTech</strong><br>
-                        Host: <a href="https://scholar.google.com/citations?user=PcmyXHMAAAAJ&hl=zh-CN&oi=ao">Feng Zheng</a><br>
-                        Topic:  Multimodal (Audio-Visual)<br>
-                        Location: Shenzhen, China
+                
+                <!-- SUSTech Card -->
+                <div class="experience-card">
+                    <div class="shine-effect"></div>
+                    <div class="card-logo">
+                        <img src="images/sustech_logo.png" alt="SUSTech Logo" class="company-logo sustech-logo" style="max-height: 70px;">
+                    </div>
+                    <div class="card-content">
+                        <h4><span class="badge badge-secondary">Jul 2021 - Jan 2022</span></h4>
+                        <h3>Visiting Scholar, <strong>SUSTech</strong></h3>
+                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=PcmyXHMAAAAJ&hl=zh-CN&oi=ao">Feng Zheng</a></p>
+                        <p><strong>Topic:</strong> Multimodal (Audio-Visual)</p>
+                        <p><strong>Location:</strong> Shenzhen, China</p>
                     </div>
                 </div>
-
-                 <!-- Item 5: IIAI -->
-                <div class="roadmap-item">
-                    <div class="roadmap-point"></div>
-                    <div class="roadmap-content">
-                         <h4><span class="badge badge-secondary">Mar 2021 - Jun 2021</span></h4>
-                         Research Intern, <strong>IIAI</strong><br>
-                         Host:  <a href="https://scholar.google.com/citations?user=kakwJ5QAAAAJ&hl=en&oi=ao">
-                            Deng-Ping Fan</a>, <a
-                            href="https://scholar.google.com/citations?user=z84rLjoAAAAJ&hl=en">Ling Shao</a><br>
-                         Topic: Computer Vision<br>
-                         Location: Abu Dhabi, UAE
+                
+                <!-- IIAI Card -->
+                <div class="experience-card">
+                    <div class="shine-effect"></div>
+                    <div class="card-logo">
+                        <img src="images/iiai_logo.png" alt="IIAI Logo" class="company-logo iiai-logo" style="max-height: 65px;">
+                    </div>
+                    <div class="card-content">
+                        <h4><span class="badge badge-secondary">Mar 2021 - Jun 2021</span></h4>
+                        <h3>Research Intern, <strong>IIAI</strong></h3>
+                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=kakwJ5QAAAAJ&hl=en&oi=ao">Deng-Ping Fan</a>, 
+                        <a href="https://scholar.google.com/citations?user=z84rLjoAAAAJ&hl=en">Ling Shao</a></p>
+                        <p><strong>Topic:</strong> Computer Vision</p>
+                        <p><strong>Location:</strong> Abu Dhabi, UAE</p>
                     </div>
                 </div>
-
-                 <!-- Item 6: Alibaba -->
-                <div class="roadmap-item">
-                    <div class="roadmap-point"></div>
-                    <div class="roadmap-content">
-                         <h4><span class="badge badge-secondary">May 2020 - Feb 2021</span></h4>
-                         Algorithm Intern, <strong>Alibaba Group</strong><br>
-                         Host: <a
-                            href="https://scholar.google.com/citations?user=0uPb8MMAAAAJ&hl=en&oi=ao">Dehong Gao</a><br>
-                         Topic: Multimodal (Vision-Language Pre-training)<br>
-                         Location: Hangzhou, China
+                
+                <!-- Alibaba Card -->
+                <div class="experience-card">
+                    <div class="shine-effect"></div>
+                    <div class="card-logo">
+                        <img src="images/alibaba_logo.png" alt="Alibaba Logo" class="company-logo alibaba-logo" style="max-height: 120px;">
+                    </div>
+                    <div class="card-content">
+                        <h4><span class="badge badge-secondary">May 2020 - Feb 2021</span></h4>
+                        <h3>Algorithm Intern, <strong>Alibaba Group</strong></h3>
+                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=0uPb8MMAAAAJ&hl=en&oi=ao">Dehong Gao</a></p>
+                        <p><strong>Topic:</strong> Multimodal (Vision-Language Pre-training)</p>
+                        <p><strong>Location:</strong> Hangzhou, China</p>
                     </div>
                 </div>
-
-                 <!-- Item 7: NSFocus -->
-                 <div class="roadmap-item">
-                    <div class="roadmap-point"></div>
-                    <div class="roadmap-content">
-                         <h4><span class="badge badge-secondary">March 2018 - Jun 2018</span></h4>
-                         Research Intern, <strong>NSFocus</strong><br>
-                         Host: <a
-                            href="https://www.linkedin.com/in/liuwenmao/?originalSubdomain=cn">Wenmao Liu</a><br>
-                         Topic: Blockchain, Network Security<br>
-                         Location: Beijing, China
+                
+                <!-- NSFocus Card -->
+                <div class="experience-card">
+                    <div class="shine-effect"></div>
+                    <div class="card-logo">
+                        <img src="images/nsfocus_logo.png" alt="NSFocus Logo" class="company-logo nsfocus-logo" style="max-height: 65px;">
+                    </div>
+                    <div class="card-content">
+                        <h4><span class="badge badge-secondary">March 2018 - Jun 2018</span></h4>
+                        <h3>Research Intern, <strong>NSFocus</strong></h3>
+                        <p><strong>Host:</strong> <a href="https://www.linkedin.com/in/liuwenmao/?originalSubdomain=cn">Wenmao Liu</a></p>
+                        <p><strong>Topic:</strong> Blockchain, Network Security</p>
+                        <p><strong>Location:</strong> Beijing, China</p>
                     </div>
                 </div>
-
             </div>
-
+            
+            <div class="carousel-controls">
+                <span class="prev-btn">❮</span>
+                <div class="indicator-dots">
+                    <!-- Dots will be added by JavaScript -->
+                </div>
+                <span class="next-btn">❯</span>
+            </div>
         </div>
     </div>
 
@@ -1067,6 +1305,127 @@
         </div>
     </footer>
 
+    <!-- Experience Carousel JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.experience-carousel');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const dotsContainer = document.querySelector('.indicator-dots');
+            const cards = document.querySelectorAll('.experience-card');
+            
+            // Calculate visible cards based on container width
+            const getVisibleCount = () => {
+                const containerWidth = carousel.offsetWidth;
+                const cardWidth = 310; // Card width + margin
+                return Math.floor(containerWidth / cardWidth);
+            };
+            
+            // Create indicator dots
+            const createDots = () => {
+                dotsContainer.innerHTML = '';
+                const totalDots = cards.length - getVisibleCount() + 1;
+                
+                for (let i = 0; i < totalDots; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => scrollToCard(i));
+                    dotsContainer.appendChild(dot);
+                }
+            };
+            
+            // Update active dot
+            const updateDots = (index) => {
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            };
+            
+            // Scroll to specific card
+            const scrollToCard = (index) => {
+                const cardWidth = cards[0].offsetWidth + 20; // Including margin
+                carousel.scrollTo({
+                    left: index * cardWidth,
+                    behavior: 'smooth'
+                });
+                updateDots(index);
+                currentIndex = index;
+            };
+            
+            // Handle next and previous buttons
+            let currentIndex = 0;
+            const maxIndex = cards.length - getVisibleCount();
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    scrollToCard(currentIndex);
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    scrollToCard(currentIndex);
+                }
+            });
+            
+            // Auto-scroll functionality
+            let autoScrollInterval;
+            
+            const startAutoScroll = () => {
+                autoScrollInterval = setInterval(() => {
+                    if (currentIndex < maxIndex) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0;
+                    }
+                    scrollToCard(currentIndex);
+                }, 4000); // Change card every 4 seconds
+            };
+            
+            const stopAutoScroll = () => {
+                clearInterval(autoScrollInterval);
+            };
+            
+            // Stop auto-scroll on hover or touch
+            carousel.addEventListener('mouseenter', stopAutoScroll);
+            carousel.addEventListener('touchstart', stopAutoScroll);
+            
+            // Resume auto-scroll when mouse leaves
+            carousel.addEventListener('mouseleave', startAutoScroll);
+            carousel.addEventListener('touchend', startAutoScroll);
+            
+            // Detect scroll to update active dot
+            carousel.addEventListener('scroll', () => {
+                const cardWidth = cards[0].offsetWidth + 20;
+                const scrollPos = carousel.scrollLeft;
+                const newIndex = Math.round(scrollPos / cardWidth);
+                
+                if (newIndex !== currentIndex) {
+                    currentIndex = newIndex;
+                    updateDots(currentIndex);
+                }
+            });
+            
+            // Initialize dots
+            createDots();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                // Recalculate visible count and update dots
+                createDots();
+                // Reset to first card on resize
+                currentIndex = 0;
+                scrollToCard(0);
+            });
+            
+            // Start auto-scroll on page load
+            startAutoScroll();
+        });
+    </script>
 
 </body>
 </html>
