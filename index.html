@@ -83,10 +83,30 @@
 
         /* About section - Techy Style Override */
          #about.gray-container {
-             background: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end)); /* Dark gradient */
+             /* Star Layer 1 (Small, Dense) */
+             background-image: radial-gradient(1px 1px at 20px 30px, white, rgba(255,255,255,0)),
+                               radial-gradient(1px 1px at 40px 70px, white, rgba(255,255,255,0)),
+                               radial-gradient(1px 1px at 50px 160px, white, rgba(255,255,255,0)),
+                               radial-gradient(1.5px 1.5px at 90px 40px, white, rgba(255,255,255,0)),
+                               radial-gradient(1px 1px at 130px 80px, white, rgba(255,255,255,0)),
+                               radial-gradient(1.5px 1.5px at 160px 120px, white, rgba(255,255,255,0)),
+             /* Star Layer 2 (Medium, Sparse) */
+                               radial-gradient(2px 2px at 25% 20%, white, rgba(255,255,255,0)),
+                               radial-gradient(2.5px 2.5px at 55% 35%, white, rgba(255,255,255,0)),
+                               radial-gradient(2px 2px at 70% 80%, white, rgba(255,255,255,0)),
+                               radial-gradient(2.5px 2.5px at 90% 60%, white, rgba(255,255,255,0)),
+             /* Base Dark Gradient */
+                               linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
+             background-repeat: repeat;
+             background-size: 200px 200px, /* Layer 1 tile size */
+                            350px 350px, /* Layer 2 tile size */
+                            auto; /* Gradient size */
              color: var(--medium-text-on-dark); /* Default text color on dark */
              border: 1px solid var(--dark-bg-start); /* Border matching gradient */
              margin-top: 0; /* Remove top margin if it's the first element */
+             position: relative; /* Needed for potential future pseudo-elements */
+             overflow: hidden; /* Hide anything straying outside */
+             animation: move-stars 150s linear infinite; /* Slow star movement */
          }
 
          #about h2 { /* Main name heading in About */
@@ -309,6 +329,117 @@
              transform: scale(1.1); /* Slight zoom effect */
              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
              background-color: rgba(255, 255, 255, 1);
+         }
+
+         /* Keyframes for star movement */
+         @keyframes move-stars {
+             from { background-position: 0 0, 0 0, 0 0; } /* Start positions */
+             to { background-position: -10000px 5000px, -5000px 2500px, 0 0; } /* End positions (large values for slow continuous move) */
+         }
+
+         /* Experience Roadmap Styling */
+         #experience .container {
+             /* No special styling needed here for now */
+         }
+         .roadmap-container {
+             position: relative;
+             margin-top: 40px; /* Space below heading */
+         }
+         /* The central vertical line */
+         .roadmap-container::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 50%;
+             bottom: 0;
+             width: 4px;
+             background-color: var(--primary-color); /* Use stronger primary blue */
+             transform: translateX(-50%) scaleY(0); /* Start scaled down */
+             z-index: 1;
+             border-radius: 2px; /* Slightly rounded line ends */
+             transform-origin: top; /* Animate from the top */
+             animation: grow-line 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards; /* Add grow animation with delay */
+         }
+         .roadmap-item {
+             padding: 20px 40px;
+             position: relative;
+             margin-bottom: 40px; /* Space between items */
+             width: 50%;
+             box-sizing: border-box;
+             background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
+             border-radius: 6px;
+             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Slightly enhanced shadow */
+             z-index: 2;
+             border: 1px solid var(--border-color);
+             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+             animation: fade-in 0.6s ease-out forwards;
+             opacity: 0; /* Start hidden for fade-in */
+         }
+         /* Add delays for staggered fade-in */
+         .roadmap-item:nth-child(1) { animation-delay: 0.1s; }
+         .roadmap-item:nth-child(2) { animation-delay: 0.2s; }
+         .roadmap-item:nth-child(3) { animation-delay: 0.3s; }
+         .roadmap-item:nth-child(4) { animation-delay: 0.4s; }
+         .roadmap-item:nth-child(5) { animation-delay: 0.5s; }
+         .roadmap-item:nth-child(6) { animation-delay: 0.6s; }
+         .roadmap-item:nth-child(7) { animation-delay: 0.7s; }
+
+         .roadmap-item:hover {
+             border-color: var(--tech-blue);
+             transform: translateY(-3px);
+             box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
+         }
+         /* Position items left and right */
+         .roadmap-item:nth-child(odd) { /* Left side items */
+             left: 0;
+             padding-right: 60px; /* Space for point */
+             text-align: right;
+         }
+         .roadmap-item:nth-child(even) { /* Right side items */
+             left: 50%;
+             padding-left: 60px; /* Space for point */
+             text-align: left;
+         }
+         /* The circle/point on the timeline */
+         .roadmap-point {
+             position: absolute;
+             top: 25px; /* Align vertically with content */
+             width: 16px;
+             height: 16px;
+             border-radius: 50%;
+             background-color: var(--tech-blue); /* Tech blue point */
+             border: 3px solid var(--accent-color); /* Lighter blue border */
+             z-index: 3;
+             animation: pulse-dot 2s infinite ease-in-out;
+         }
+         .roadmap-item:nth-child(odd) .roadmap-point { /* Point for left items */
+             right: -8px; /* Position on the line */
+             transform: translateX(50%);
+         }
+         .roadmap-item:nth-child(even) .roadmap-point { /* Point for right items */
+             left: -8px; /* Position on the line */
+             transform: translateX(-50%);
+         }
+         /* Content within the roadmap item */
+         .roadmap-content h4 {
+             margin-top: 0; /* Remove default margin */
+             margin-bottom: 10px;
+         }
+         .roadmap-content .badge {
+             /* Keep existing badge style */
+         }
+          /* Optional: Add arrows pointing to the timeline (can be complex) */
+         /* For simplicity, skipping arrows for now */
+
+         /* Keyframes for animations */
+         @keyframes pulse-dot {
+             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 195, 247, 0.4); }
+             50% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(79, 195, 247, 0); }
+         }
+
+         @keyframes fade-in {
+             from { opacity: 0; transform: translateY(15px); }
+             to { opacity: 1; transform: translateY(0); }
          }
 
     </style>
@@ -638,133 +769,98 @@
         <div class="container">
             <h2 class="experience">Experience</h2>
 
+            <div class="roadmap-container">
 
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">June 2024 - Present</span>
-                    </h4>
+                <!-- Item 1: Meta -->
+                <div class="roadmap-item">
+                    <div class="roadmap-point"></div>
+                    <div class="roadmap-content">
+                        <h4><span class="badge badge-secondary">June 2024 - Present</span></h4>
+                        Research Scientist Intern, <strong>Meta</strong><br>
+                        Advisor: <a href="https://scholar.google.com/citations?user=bXnrlyAAAAAJ&hl=en">Changsheng Zhao</a>,
+                        <a href="https://scholar.google.com/citations?user=b-zD42MAAAAJ&hl=en">Yangyang Shi</a><br>
+                        Topic: Multimodal LLMs, Agents<br>
+                        Location: Burlingame, United States
+                    </div>
                 </div>
-                <div class="col-xs-9">
-                    Research Scientist Intern, <strong>Meta</strong>
-                    </br>
-                    Advisor: <a href="https://scholar.google.com/citations?user=bXnrlyAAAAAJ&hl=en">Changsheng Zhao</a>,
-                    <a href="https://scholar.google.com/citations?user=b-zD42MAAAAJ&hl=en">Yangyang Shi</a>
-                    <br>
-                    Topic: Multimodal LLMs, Agents
-                    <br>
-                    Location: Burlingame, United States
-                    <br>
 
+                <!-- Item 2: KAUST -->
+                <div class="roadmap-item">
+                    <div class="roadmap-point"></div>
+                    <div class="roadmap-content">
+                         <h4><span class="badge badge-secondary">Aug 2022 - Present</span></h4>
+                        PhD Student, <strong>KAUST AI Initiative</strong><br>
+                        Advisor: <a href="https://people.idsia.ch/~juergen/">Jürgen Schmidhuber </a><br>
+                        Topic: Multimodal, LLMs, Agent Society, Meta Learning<br>
+                        Location: Thuwal, KSA
+                    </div>
                 </div>
+
+                <!-- Item 3: Microsoft -->
+                <div class="roadmap-item">
+                    <div class="roadmap-point"></div>
+                    <div class="roadmap-content">
+                         <h4><span class="badge badge-secondary">May 2022 - Aug 2022</span></h4>
+                        Research Scientist Intern, <strong>Microsoft (WizardLM)</strong><br>
+                        Host: <a href="https://scholar.google.com/citations?user=x_cOKuwAAAAJ&hl=zh-CN">Chongyang Tao</a><br>
+                        Topic: NLP, Multimodal LLM<br>
+                        Location: Beijing, China
+                    </div>
+                </div>
+
+                <!-- Item 4: SUSTech -->
+                <div class="roadmap-item">
+                    <div class="roadmap-point"></div>
+                    <div class="roadmap-content">
+                         <h4><span class="badge badge-secondary">Jul 2021 - Jan 2022</span></h4>
+                        Visiting Scholar, <strong>SUSTech</strong><br>
+                        Host: <a href="https://scholar.google.com/citations?user=PcmyXHMAAAAJ&hl=zh-CN&oi=ao">Feng Zheng</a><br>
+                        Topic:  Multimodal (Audio-Visual)<br>
+                        Location: Shenzhen, China
+                    </div>
+                </div>
+
+                 <!-- Item 5: IIAI -->
+                <div class="roadmap-item">
+                    <div class="roadmap-point"></div>
+                    <div class="roadmap-content">
+                         <h4><span class="badge badge-secondary">Mar 2021 - Jun 2021</span></h4>
+                         Research Intern, <strong>IIAI</strong><br>
+                         Host:  <a href="https://scholar.google.com/citations?user=kakwJ5QAAAAJ&hl=en&oi=ao">
+                            Deng-Ping Fan</a>, <a
+                            href="https://scholar.google.com/citations?user=z84rLjoAAAAJ&hl=en">Ling Shao</a><br>
+                         Topic: Computer Vision<br>
+                         Location: Abu Dhabi, UAE
+                    </div>
+                </div>
+
+                 <!-- Item 6: Alibaba -->
+                <div class="roadmap-item">
+                    <div class="roadmap-point"></div>
+                    <div class="roadmap-content">
+                         <h4><span class="badge badge-secondary">May 2020 - Feb 2021</span></h4>
+                         Algorithm Intern, <strong>Alibaba Group</strong><br>
+                         Host: <a
+                            href="https://scholar.google.com/citations?user=0uPb8MMAAAAJ&hl=en&oi=ao">Dehong Gao</a><br>
+                         Topic: Multimodal (Vision-Language Pre-training)<br>
+                         Location: Hangzhou, China
+                    </div>
+                </div>
+
+                 <!-- Item 7: NSFocus -->
+                 <div class="roadmap-item">
+                    <div class="roadmap-point"></div>
+                    <div class="roadmap-content">
+                         <h4><span class="badge badge-secondary">March 2018 - Jun 2018</span></h4>
+                         Research Intern, <strong>NSFocus</strong><br>
+                         Host: <a
+                            href="https://www.linkedin.com/in/liuwenmao/?originalSubdomain=cn">Wenmao Liu</a><br>
+                         Topic: Blockchain, Network Security<br>
+                         Location: Beijing, China
+                    </div>
+                </div>
+
             </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">Aug 2022 - Present</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    PhD Student, <strong>KAUST AI Initiative</strong>
-                    </br>
-                    Advisor: <a href="https://people.idsia.ch/~juergen/">Jürgen Schmidhuber </a>
-                    <br>
-                    Topic: Multimodal, LLMs, Agent Society, Meta Learning
-                    <br>
-                    Location: Thuwal, KSA
-                    <br>
-
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">May 2022 - Aug 2022</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Research Scientist Intern, <strong>Microsoft (WizardLM)</strong>
-                    </br>
-                    Host: <a href="https://scholar.google.com/citations?user=x_cOKuwAAAAJ&hl=zh-CN">Chongyang Tao</a>
-                    <br>
-                    Topic: NLP, Multimodal LLM
-                    <br>
-                    Location: Beijing, China
-                    <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">Jul 2021 - Jan 2022</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Visiting Scholar, <strong>SUSTech</strong>
-                    </br>
-                    Host: <a href="https://scholar.google.com/citations?user=PcmyXHMAAAAJ&hl=zh-CN&oi=ao">Feng Zheng</a>
-                    <br>
-                    Topic:  Multimodal (Audio-Visual)
-                    <br>
-                    Location: Shenzhen, China
-                    <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">Mar 2021 - Jun 2021</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Research Intern, <strong>IIAI</strong>
-                    </br>
-                    Host:  <a href="https://scholar.google.com/citations?user=kakwJ5QAAAAJ&hl=en&oi=ao">
-                        Deng-Ping Fan</a>, <a
-                        href="https://scholar.google.com/citations?user=z84rLjoAAAAJ&hl=en">Ling Shao</a>
-                  <br>
-                  Topic: Computer Vision
-                  <br>
-                  Location: Abu Dhabi, UAE
-                  <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">May 2020 - Feb 2021</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                    Algorithm Intern, <strong>Alibaba Group</strong>
-                    </br>
-                    Host: <a
-                        href="https://scholar.google.com/citations?user=0uPb8MMAAAAJ&hl=en&oi=ao">Dehong Gao</a>
-                    <br>
-                    Topic: Multimodal (Vision-Language Pre-training)
-                    <br>
-                    Location: Hangzhou, China
-                    <br>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">March 2018 - Jun 2018</span>
-                    </h4>
-                </div>
-                <div class="col-xs-9">
-                     Research Intern, <strong>NSFocus</strong>
-                    </br>
-                    Host: <a
-                        href="https://www.linkedin.com/in/liuwenmao/?originalSubdomain=cn">Wenmao Liu</a>
-                    <br>
-                    Topic: Blockchain, Network Security
-                    <br>
-                    Location: Beijing, China
-                    <br>
-                </div>
-            </div>
-
 
         </div>
     </div>
