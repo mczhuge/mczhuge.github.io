@@ -1369,673 +1369,114 @@
         .about-wrapper::after {
             content: '';
             position: absolute;
-            inset: 0; /* 上右下左都设为0，覆盖整个区域 */
-            padding: 3px; /* 渐变边框厚度 */
-            border-radius: 16px; /* 与父元素相同 */
-            background: linear-gradient(45deg, var(--accent-color), var(--primary-color), var(--secondary-color));
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            z-index: 1; /* 确保在上层 */
-            pointer-events: none; /* 不拦截鼠标事件 */
+            inset: -3px; /* Extend slightly beyond the card border */
+            border-radius: 20px; /* Match card radius but slightly larger */
+            background: linear-gradient(45deg, 
+                rgba(30, 64, 175, 0.5),
+                rgba(59, 130, 246, 0.6), 
+                rgba(96, 165, 250, 0.5),
+                rgba(59, 130, 246, 0.6),
+                rgba(30, 64, 175, 0.5));
+            background-size: 400% 400%;
+            z-index: 0; /* Behind the content */
+            filter: blur(15px); /* Create soft glow */
+            opacity: 0.7;
+            animation: gradient 15s ease infinite, auraPulse 8s infinite alternate;
         }
         
         /* 添加装饰性背景 */
         .about-wrapper::before {
             content: '';
             position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 150px;
-            height: 150px;
-            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0) 70%);
-            border-radius: 50%;
+            inset: -15px; /* Extend beyond the card */
+            border-radius: 30px;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%),
+                radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0) 50%),
+                radial-gradient(circle at 50% 10%, rgba(30, 64, 175, 0.2) 0%, rgba(30, 64, 175, 0) 60%),
+                radial-gradient(circle at 10% 40%, rgba(147, 197, 253, 0.2) 0%, rgba(147, 197, 253, 0) 50%),
+                radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%);
+            opacity: 0.8;
+            filter: blur(15px);
             z-index: 0;
             pointer-events: none;
+            animation: mistFlow 20s infinite alternate, breathe 8s infinite ease-in-out;
         }
         
-        /* 添加左侧装饰 */
-        .about-wrapper::before {
-            content: '';
+        @keyframes auraPulse {
+            0% { opacity: 0.6; filter: blur(15px); }
+            50% { opacity: 0.9; filter: blur(12px); }
+            100% { opacity: 0.7; filter: blur(15px); }
+        }
+        
+        @keyframes mistFlow {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 10% 20%; }
+            50% { background-position: 20% 0%; }
+            75% { background-position: 10% -20%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Add floating particles around the card */
+        .particle {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 180px;
-            height: 180px;
-            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0) 70%);
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            z-index: 0;
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 10px 2px rgba(160, 220, 255, 0.5);
             pointer-events: none;
+            z-index: 1;
         }
         
-        /* 确保内容在装饰上方 */
-        .about-wrapper .row {
-            position: relative;
-            z-index: 2;
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation: particleFloat 15s infinite linear;
         }
         
-        /* 响应式调整 */
-        @media (max-width: 768px) {
-            .about-wrapper {
-                padding: 40px 25px;
-                margin: 30px 0;
-            }
-            
-            .about-wrapper::before {
-                width: 120px;
-                height: 120px;
-            }
-        }
-
-        /* 修改 Selected Awards 标题颜色 */
-        #award h2 {
-            color: var(--text-color); /* 黑色而不是红色 */
-            font-weight: 700;
-        }
-
-        /* Meta特殊样式 */
-        .brand-item.meta-logo {
-            height: 90px; /* 保持尺寸 */
-            max-width: 20%;
+        .particle:nth-child(2) {
+            top: 70%;
+            left: 5%;
+            animation: particleFloat 20s infinite linear;
         }
         
-        /* KAUST和IIAI特殊样式 */
-        .brand-item.kaust-logo {
-            height: 80px; /* 增大尺寸 */
-        }
-
-        .brand-item.iiai-logo {
-            height: 80px; /* 增大尺寸 */
-        }
-
-        /* Media queries for different screen sizes */
-        /* Extra small devices (phones, less than 576px) */
-        @media (max-width: 575.98px) {
-            #about h2 {
-                font-size: 28px;
-                line-height: 1.3;
-            }
-            
-            #about p, #about ul li {
-                font-size: 15px;
-                line-height: 1.5;
-            }
-            
-            .social-icons {
-                max-width: 240px;
-            }
-            
-            .social-icons img {
-                height: 26px;
-                width: 26px;
-            }
-            
-            .experience-card {
-                min-width: 260px;
-                width: 260px;
-            }
-            
-            .card-logo {
-                height: 90px;
-            }
-            
-            .card-content h3 {
-                font-size: 16px;
-            }
-            
-            .brand-item {
-                max-width: 40%;
-                height: 35px !important;
-            }
-            
-            .project-title .project-name strong {
-                font-size: 15px;
-            }
-            
-            .project-title .authors {
-                font-size: 12px;
-            }
-            
-            .project-title .publisher {
-                font-size: 13px;
-            }
-            
-            .project-title .links a {
-                font-size: 12px;
-            }
-            
-            .highlight-desc {
-                font-size: 13px;
-            }
-            
-            /* Table cells for GitHub stars might break layout */
-            .project-title .links img[src*="shields.io"] {
-                display: none;
-            }
+        .particle:nth-child(3) {
+            top: 40%;
+            right: 10%;
+            animation: particleFloat 18s infinite linear;
         }
         
-        /* Small devices (landscape phones, 576px and up) */
-        @media (min-width: 576px) and (max-width: 767.98px) {
-            #about h2 {
-                font-size: 32px;
-            }
-            
-            .brand-item {
-                max-width: 30%;
-            }
-            
-            .social-icons {
-                max-width: 280px;
-            }
+        .particle:nth-child(4) {
+            bottom: 20%;
+            right: 5%;
+            animation: particleFloat 12s infinite linear;
         }
         
-        /* Medium devices (tablets, 768px and up) */
-        @media (min-width: 768px) and (max-width: 991.98px) {
-            .brands-container {
-                flex-wrap: nowrap;
-                gap: 15px;
-            }
-            
-            .brand-item {
-                height: 40px !important;
-            }
-            
-            .about-wrapper {
-                padding: 35px 30px;
-            }
-            
-            #about .col-xs-4 {
-                width: 35%;
-            }
-            
-            #about .col-xs-8 {
-                width: 65%;
-            }
+        .particle:nth-child(5) {
+            top: 10%;
+            right: 20%;
+            animation: particleFloat 16s infinite linear;
         }
         
-        /* Fix for specific iPhone SE and other very small screens */
-        @media (max-width: 374.98px) {
-            .about-wrapper {
-                padding: 25px 15px !important;
-                margin: 15px 0 !important;
-            }
-            
-            #about h2 {
-                font-size: 24px;
-                line-height: 1.2;
-                margin-bottom: 15px;
-            }
-            
-            #about p, #about ul li {
-                font-size: 14px;
-                line-height: 1.4;
-            }
-            
-            .social-icons {
-                max-width: 200px;
-                gap: 10px;
-            }
-            
-            .social-icons img {
-                height: 24px;
-                width: 24px;
-            }
-            
-            .project-title .links {
-                gap: 6px;
-            }
-            
-            .project-title .links a {
-                font-size: 11px;
-            }
-            
-            .footer-links {
-                gap: 12px;
-            }
-            
-            .footer-links a {
-                font-size: 12px;
-            }
-        }
-
-        /* Remove all remaining media queries */
-
-        /* Brands display settings */
-        .brand-item {
-            height: 50px; /* 统一高度 */
-            width: auto;
-            object-fit: contain;
-            filter: grayscale(100%) opacity(65%);
-            transition: filter 0.3s ease;
-            max-width: 18%;
-        }
-
-        /* Ensure fixed layout for publication images */
-        .project.col-xs-3 {
-            width: 25%;
-            padding: 0 15px;
-        }
-
-        .col-xs-9 {
-            width: 75%;
-            padding: 0 15px;
-        }
-
-        .project.col-xs-3 img {
-            width: 100%;
-            max-width: 180px;
-            height: auto;
-        }
-
-        /* Fixed layout for about section */
-        #about .col-xs-4 {
-            width: 33.33%;
-            padding: 0 15px;
-        }
-
-        #about .col-xs-8 {
-            width: 66.67%;
-            padding: 0 15px;
-        }
-
-        /* Fixed footer */
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Fixed experience cards */
-        .experience-card {
-            min-width: 300px;
-            width: 300px;
-        }
-
-        /* Full width sections */
-        #publication, #experience, #talk, #award, #recent-works {
-            width: 100%;
-            padding: 0;
-            margin: 20px 0;
-        }
-
-        /* Experience carousel fixes */
-        .experience-carousel {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 20px 0;
-            margin: 0;
-            scrollbar-width: none; /* Firefox */
-        }
-        
-        .experience-carousel::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Edge */
-        }
-
-        /* Footer fixes */
-        .footer {
-            width: 100%;
-            padding: 20px 0;
-            margin: 0;
-            background-color: var(--bg-light);
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-
-        /* Fixed layout for about section */
-        #about .col-xs-4 {
-            width: 33.33%;
-            padding: 0 15px;
-        }
-
-        #about .col-xs-8 {
-            width: 66.67%;
-            padding: 0 15px;
-        }
-
-        /* Consistent image size */
-        #me-img {
-            width: 90%;
-            max-width: 300px;
-            border-radius: 12px;
-            margin: 0 auto;
-            display: block;
-        }
-
-        /* 技能列表修复 - 移除多余的黑点 */
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        /* 个人介绍部分的技能列表 */
-        #about ul li {
-            position: relative;
-            padding-left: 15px;
-            margin-bottom: 10px;
-            list-style-type: none; /* 强制移除所有列表样式 */
-        }
-        
-        /* 注意：不要在前面添加额外的黑点 */
-        #about ul li::before {
-            display: none; /* 禁用前面的黑点 */
-        }
-
-        /* 作者名字设置为灰色 */
-        .authors {
-            color: #666666; /* 灰色 */
-            font-weight: normal;
-        }
-
-        /* Remove responsive adjustments that change layout */
-        @media (max-width: 767px) {
-            /* Remove layout-changing styles */
-            .col-xs-4, .col-xs-8, .col-xs-3, .col-xs-9 {
-                width: initial; /* Remove width override */
-            }
-            
-            /* Remove column direction changes */
-            .media-columns {
-                flex-direction: initial !important;
-            }
-            
-            .awards-columns {
-                flex-direction: initial !important;
-            }
-            
-            /* Remove wrapping for social icons */
-            .social-icons {
-                flex-wrap: nowrap;
-                max-width: initial;
-            }
-            
-            /* Maintain footer layout */
-            .footer-content {
-                flex-direction: initial;
-            }
-        }
-
-        /* Fix column widths to be consistent across all device sizes */
-        #about .col-xs-4 {
-            width: 33.33% !important;
-            padding: 0 15px;
-            float: left;
-        }
-
-        #about .col-xs-8 {
-            width: 66.67% !important;
-            padding: 0 15px;
-            float: left;
-        }
-
-        .project.col-xs-3 {
-            width: 25% !important;
-            float: left;
-            padding: 0 15px;
-        }
-
-        .col-xs-9 {
-            width: 75% !important;
-            float: left;
-            padding: 0 15px;
-        }
-
-        /* Override any additional responsive layout changes */
-        @media (max-width: 575.98px), 
-               (min-width: 576px) and (max-width: 767.98px),
-               (min-width: 768px) and (max-width: 991.98px),
-               (max-width: 374.98px) {
-            
-            /* Reset layout-changing styles */
-            #about .col-xs-4 {
-                width: 33.33% !important;
-            }
-            
-            #about .col-xs-8 {
-                width: 66.67% !important;
-            }
-            
-            .brands-container {
-                flex-wrap: nowrap !important;
-            }
-            
-            .project-title .links {
-                display: initial;
-                flex-wrap: initial;
-            }
-            
-            /* Maintain horizontal scrolling for experience carousel */
-            .experience-carousel {
-                overflow-x: auto !important;
-                flex-wrap: nowrap !important;
-            }
-            
-            /* Force same size for images */
-            .brand-item {
-                max-width: 18% !important;
-                height: 50px !important;
-            }
-            
-            /* Special logo sizes */
-            .brand-item.microsoft-logo {
-                height: 130px !important;
-            }
-
-            .brand-item.alibaba-logo {
-                height: 140px !important;
-            }
-            
-            .brand-item.meta-logo {
-                height: 55px !important;
-            }
-            
-            .brand-item.kaust-logo {
-                height: 45px !important;
-            }
-
-            .brand-item.iiai-logo {
-                height: 45px !important;
-            }
-            
-            /* Force multi-columns to stay in row format */
-            .media-columns, .awards-columns {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-            }
-        }
-
-        /* Prevent text size changes on mobile */
-        @media (max-width: 767px) {
-            #about h2, h2.title, h2.experience, h2.section_title {
-                font-size: initial !important;
-            }
-            
-            #about p, #about ul li, .project-title .project-name strong,
-            .project-title .authors, .project-title .publisher,
-            .project-title .links a, .highlight-desc {
-                font-size: initial !important;
-            }
-        }
-
-        /* Remove all responsive media queries that change layout */
-        @media (max-width: 767px) {
-            /* Disable all mobile-specific styles */
-            .col-xs-4, .col-xs-8, .col-xs-3, .col-xs-9 {
-                width: initial; /* Remove width override */
-            }
-            
-            .media-columns, .awards-columns, .footer-content {
-                flex-direction: initial !important;
-            }
-            
-            .social-icons {
-                flex-wrap: initial;
-                max-width: initial;
-            }
-            
-            .brands-container {
-                flex-wrap: initial !important;
-            }
-            
-            .project-title .links {
-                display: initial;
-                flex-wrap: initial;
-            }
-            
-            .brand-item {
-                max-width: initial !important;
-                height: initial !important;
-            }
-            
-            #about h2, h2.title, h2.experience, h2.section_title,
-            #about p, #about ul li, .project-title .project-name strong,
-            .project-title .authors, .project-title .publisher,
-            .project-title .links a, .highlight-desc {
-                font-size: initial !important;
-            }
-        }
-        
-        /* Force all columns to maintain desktop widths */
-        .col-xs-4 {
-            width: 33.33% !important;
-        }
-
-        .col-xs-8 {
-            width: 66.67% !important;
-        }
-
-        .col-xs-3 {
-            width: 25% !important;
-        }
-
-        .col-xs-9 {
-            width: 75% !important;
-        }
-
-        /* Keep multi-column layouts in row format */
-        .media-columns,
-        .awards-columns {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-        }
-
-        /* Set fixed width for all major containers */
-        .gray-container, #about, #publication, #experience, #talk, #award, #recent-works, .footer {
-            width: 1200px !important;
-            min-width: 1200px !important;
-            max-width: 1200px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-        
-        /* Override any viewport-based measurements */
-        .about-wrapper {
-            width: calc(100% - 30px) !important;
-            max-width: 1140px !important;
-        }
-        
-        /* Ensure brand items have fixed sizes */
-        .brand-item.microsoft-logo {
-            height: 130px !important;
-        }
-
-        .brand-item.alibaba-logo {
-            height: 140px !important;
-        }
-        
-        .brand-item.meta-logo {
-            height: 55px !important;
-        }
-        
-        .brand-item.kaust-logo {
-            height: 45px !important;
-        }
-
-        .brand-item.iiai-logo {
-            height: 45px !important;
-        }
-
-        /* Override and disable ALL media queries */
-        @media only screen and (max-width: 1200px),
-               only screen and (max-width: 992px),
-               only screen and (max-width: 768px),
-               only screen and (max-width: 576px),
-               only screen and (max-width: 375px) {
-            
-            /* Force body to fixed desktop width */
-            html, body {
-                min-width: 1200px;
-                width: 1200px !important;
-                overflow-x: auto !important;
-                margin: 0 auto !important;
-            }
-            
-            /* Force containers to fixed width */
-            .container, .row, .col, [class*="col-"] {
-                max-width: none !important;
-            }
-            
-            /* Prevent any transformations of layout */
-            .row {
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-            }
-            
-            /* Ensure footer stays in row format */
-            .footer-content {
-                display: flex !important;
-                flex-direction: row !important;
-                justify-content: space-between !important;
-            }
-            
-            /* Force minimum height for cards */
-            .experience-card {
-                min-height: 450px !important;
-            }
-            
-            /* Ensure all font sizes remain at desktop sizes */
-            body, p, h1, h2, h3, h4, h5, h6, span, a, li {
-                font-size: initial !important;
-            }
-        }
-        
-        /* Completely disable the mobile menu behavior */
-        .navbar-toggle {
-            display: none !important;
-        }
-        
-        .navbar-collapse {
-            display: block !important;
-            height: auto !important;
-            padding-bottom: 0;
-            overflow: visible !important;
-            width: auto;
-            border-top: 0;
-            box-shadow: none;
-        }
-        
-        .navbar-collapse.collapse {
-            display: block !important;
-            height: auto !important;
-            padding-bottom: 0;
-            overflow: visible !important;
-        }
-        
-        .navbar-nav {
-            float: left;
-            margin: 0;
-        }
-        
-        .navbar-nav > li {
-            float: left;
-        }
-        
-        .navbar-nav > li > a {
-            padding-top: 15px;
-            padding-bottom: 15px;
+        @keyframes particleFloat {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
+            25% { opacity: 0.9; }
+            50% { transform: translate(-20px, 20px) rotate(180deg); opacity: 0.5; }
+            75% { opacity: 0.9; }
+            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.2; }
         }
     </style>
 
@@ -2043,19 +1484,9 @@
 <html>
 <body style="background-color: #FEFBF3; color: #1D1B22; width: 100%; margin: 0; padding: 0;">
 <div class="gray-container" id="about" style="background: radial-gradient(circle at center, #FEFBF8 0%, #FEFBF7 85%, #FEFBF6 100%); position: relative; overflow: hidden; width: 100%; margin: 0; padding: 0;">
-    <!-- Honeycomb background pattern -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.08; background-color: #000; clip-path: url(#honeycomb-mask);"></div>
-    <svg width="0" height="0">
-        <defs>
-            <pattern id="honeycomb" x="0" y="0" width="50" height="86.6" patternUnits="userSpaceOnUse">
-                <path d="M25 0 L50 14.43 L50 43.3 L25 57.73 L0 43.3 L0 14.43 Z" stroke="#000" fill="none"/>
-            </pattern>
-            <mask id="honeycomb-mask">
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#honeycomb)"/>
-            </mask>
-        </defs>
-    </svg>
-
+    <!-- Removed honeycomb dark background pattern -->
+    
+    <!-- Floating elements for magical aura effect -->
     <div class="floating-agent" style="position: absolute; width: 40px; height: 40px; opacity: 0.15; background-image: url('images/icon/robot.png'); background-size: contain; animation: float1 12s infinite linear;"></div>
     <div class="floating-agent" style="position: absolute; width: 35px; height: 35px; opacity: 0.12; background-image: url('images/icon/robot.png'); background-size: contain; animation: float2 15s infinite linear;"></div>
     <div class="floating-agent" style="position: absolute; width: 45px; height: 45px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float3 18s infinite linear;"></div>
@@ -2087,13 +1518,137 @@
             50% { transform: translate(50%, 50%) rotate(180deg) scale(1.2); }
             100% { transform: translate(50%, 50%) rotate(360deg) scale(1); }
         }
+        
+        /* Add mystical aura effect around the card */
+        .about-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -3px; /* Extend slightly beyond the card border */
+            border-radius: 20px; /* Match card radius but slightly larger */
+            background: linear-gradient(45deg, 
+                rgba(30, 64, 175, 0.5),
+                rgba(59, 130, 246, 0.6), 
+                rgba(96, 165, 250, 0.5),
+                rgba(59, 130, 246, 0.6),
+                rgba(30, 64, 175, 0.5));
+            background-size: 400% 400%;
+            z-index: 0; /* Behind the content */
+            filter: blur(15px); /* Create soft glow */
+            opacity: 0.7;
+            animation: gradient 15s ease infinite, auraPulse 8s infinite alternate;
+        }
+        
+        /* Misty particles around the card border */
+        .about-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -15px; /* Extend beyond the card */
+            border-radius: 30px;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%),
+                radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0) 50%),
+                radial-gradient(circle at 50% 10%, rgba(30, 64, 175, 0.2) 0%, rgba(30, 64, 175, 0) 60%),
+                radial-gradient(circle at 10% 40%, rgba(147, 197, 253, 0.2) 0%, rgba(147, 197, 253, 0) 50%),
+                radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%);
+            opacity: 0.8;
+            filter: blur(15px);
+            z-index: 0;
+            pointer-events: none;
+            animation: mistFlow 20s infinite alternate, breathe 8s infinite ease-in-out;
+        }
+        
+        @keyframes auraPulse {
+            0% { opacity: 0.6; filter: blur(15px); }
+            50% { opacity: 0.9; filter: blur(12px); }
+            100% { opacity: 0.7; filter: blur(15px); }
+        }
+        
+        @keyframes mistFlow {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 10% 20%; }
+            50% { background-position: 20% 0%; }
+            75% { background-position: 10% -20%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Add floating particles around the card */
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 10px 2px rgba(160, 220, 255, 0.5);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation: particleFloat 15s infinite linear;
+        }
+        
+        .particle:nth-child(2) {
+            top: 70%;
+            left: 5%;
+            animation: particleFloat 20s infinite linear;
+        }
+        
+        .particle:nth-child(3) {
+            top: 40%;
+            right: 10%;
+            animation: particleFloat 18s infinite linear;
+        }
+        
+        .particle:nth-child(4) {
+            bottom: 20%;
+            right: 5%;
+            animation: particleFloat 12s infinite linear;
+        }
+        
+        .particle:nth-child(5) {
+            top: 10%;
+            right: 20%;
+            animation: particleFloat 16s infinite linear;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
+            25% { opacity: 0.9; }
+            50% { transform: translate(-20px, 20px) rotate(180deg); opacity: 0.5; }
+            75% { opacity: 0.9; }
+            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.2; }
+        }
     </style>
     <div class="container">
-        <div class="about-wrapper" style="width: calc(100% - 30px); margin: 15px auto; border-radius: 16px;">
-            <div class="row" style="margin: 0;">
+        <div class="about-wrapper" style="width: calc(100% - 30px); margin: 15px auto; border-radius: 16px; position: relative; z-index: 1; background-color: rgba(255, 255, 255, 0.9);">
+            <!-- Add floating particles -->
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            
+            <div class="row" style="margin: 0; position: relative; z-index: 2;">
 
                 <div class="col-xs-4" style="text-align: center; padding: 0 10px;">
-                    <img style="margin: 0 auto; width: 85%; border-radius: 10px; max-width: 280px;" id="me-img" src="images/mingchen.jpeg">
+                    <div class="image-container" style="position: relative; margin: 0 auto; width: 85%; max-width: 280px;">
+                        <img style="width: 100%; border-radius: 10px; position: relative; z-index: 2;" id="me-img" src="images/mingchen.jpeg">
+                        <div class="image-glow" style="position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 15px; background: linear-gradient(45deg, #3b82f6, #93c5fd, #60a5fa, #3b82f6); background-size: 400% 400%; filter: blur(10px); z-index: 1; opacity: 0.6; animation: gradient 10s ease infinite;"></div>
+                    </div>
                     <br>
                     <div style="margin-top: 15px; font-size: small;">
                         *Taken in the KAUST AI Initiative.
@@ -2539,21 +2094,21 @@
                     <div class="article-card">
                         <div class="article-source">MIT Technology Review</div>
                         <div class="article-title">"现代AI之父"Jürgen Schmidhuber团队迎新成果：用图结构构建智能体，助力研发AI智能体</div>
-                        <div class="article-date">March 15, 2024</div>
+                        <div class="article-date">March 13, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ" class="article-link">Read Article</a>
                     </div>
                     
                     <div class="article-card">
                         <div class="article-source">机器之心 (Synced)</div>
                         <div class="article-title">卷起来！让智能体评估智能体，Meta发布Agent-as-a-Judge</div>
-                        <div class="article-date">April 25, 2024</div>
+                        <div class="article-date">October 18, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ" class="article-link">Read Article</a>
                     </div>
                     
                     <div class="article-card">
                         <div class="article-source">新智元 (AI Era)</div>
                         <div class="article-title">田渊栋团队新作祭出Agent-as-a-Judge！AI智能体自我审判，成本暴跌97%</div>
-                        <div class="article-date">April 22, 2024</div>
+                        <div class="article-date">October 27, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw" class="article-link">Read Article</a>
                     </div>
                 </div>
