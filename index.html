@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
           content="block-all-mixed-content">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title> METAUTO.ai | Mingchen Zhuge</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -32,8 +33,8 @@
 
             --text-color: #1D1B22; /* 近黑文本 */
             --light-text: #64748B; /* 浅灰文本 */
-            --bg-light: #F8FAFC; /* 浅背景色 */
-            --bg-white: #FFFFFF;
+            --bg-light: #FEFBF3; /* Claude风格的浅淡黄色背景 */
+            --bg-white: #FFFDF7; /* 与Claude背景色协调的白色 */
             --border-color: #E2E8F0; /* 浅边框色 */
             --button-bg: #3B82F6; /* 蓝色按钮背景 */
             --button-text: #FFFFFF; /* 白色按钮文本 */
@@ -330,7 +331,7 @@
 
         /* Footer */
         .footer {
-            background-color: var(--bg-light);
+            background-color: var(--bg-white);
             color: var(--text-color);
             padding: 40px 0;
             margin-top: 80px;
@@ -348,11 +349,15 @@
         .footer-copyright {
             font-size: 14px;
             color: var(--light-text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .footer-links {
             display: flex;
             gap: 24px;
+            align-items: center;
         }
         
         .footer-links a {
@@ -362,9 +367,22 @@
             text-decoration: none;
             transition: color 0.2s ease, opacity 0.2s ease;
         }
+
+        .footer-links .social-icon {
+            height: 20px;
+            width: auto;
+            margin-right: 5px;
+            vertical-align: middle;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
         
         .footer-links a:hover {
             opacity: 0.8;
+        }
+        
+        .footer-links a:hover .social-icon {
+            opacity: 1;
         }
 
         @media (min-width: 768px) {
@@ -389,14 +407,22 @@
 
         /* Social Icons under Profile Picture */
         .social-icons {
-            text-align: center;
-            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* 允许图标换行 */
+            gap: 15px;
+            margin-top: 15px;
+            padding: 0 10px;
         }
+        
         .social-icons a {
-            display: inline-block;
-            margin: 0 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px 10px; /* 底部外边距使换行后的图标有间隔 */
             text-decoration: none;
         }
+        
         .social-icons img {
             height: 30px;
             width: auto;
@@ -408,12 +434,47 @@
             opacity: 0.8;
             filter: grayscale(100%);
         }
+        
         .social-icons img:hover {
             transform: scale(1.1);
             box-shadow: none;
             background-color: transparent;
             opacity: 1;
             filter: grayscale(0%);
+        }
+        
+        @media (max-width: 768px) {
+            .social-icons {
+                gap: 12px;
+                margin-top: 10px;
+                flex-wrap: wrap;
+                max-width: 250px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .social-icons a {
+                margin: 0 3px 8px;
+            }
+            
+            .social-icons img {
+                height: 28px;
+                width: auto;
+                /* 保留其他属性，只修改尺寸 */
+            }
+        }
+        
+        /* 为特小屏幕提供更紧凑的样式 */
+        @media (max-width: 360px) {
+            .social-icons {
+                gap: 8px;
+                max-width: 200px;
+            }
+            
+            .social-icons img {
+                height: 25px;
+                /* 保留其他属性，只修改尺寸 */
+            }
         }
 
         /* Experience Carousel Styling */
@@ -912,26 +973,160 @@
             display: flex;
             justify-content: center;
         }
+        
+        .brands-container {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background-color: transparent;
+            width: 100%;
+            max-width: 1100px; /* 增加容器宽度 */
+        }
+        
+        .brand-item {
+            height: auto; /* 移除统一高度 */
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(65%);
+            transition: filter 0.3s ease;
+            max-width: 18%;
+        }
+        
+        .brand-item:hover {
+            filter: grayscale(0%) opacity(90%);
+        }
 
-        /* Microsoft和Alibaba特殊样式 */
+        /* 各品牌自定义尺寸 */
         .brand-item.microsoft-logo {
-            height: 130px; /* 增大尺寸 */
-            max-width: 22%;
-            padding: 0 10px;
+            height: 80px;
         }
 
         .brand-item.alibaba-logo {
-            height: 110px; /* 增大尺寸 */
-            max-width: 20%;
+            height: 40px;
         }
-
-        /* KAUST和IIAI特殊样式 */
+        
+        .brand-item.meta-logo {
+            height: 65px;
+        }
+        
         .brand-item.kaust-logo {
-            height: 80px; /* 增大尺寸 */
+            height: 50px;
         }
 
         .brand-item.iiai-logo {
-            height: 80px; /* 增大尺寸 */
+            height: 45px;
+        }
+        
+        /* 手机端响应式样式 */
+        @media (max-width: 768px) {
+            .brands-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 25px;
+            }
+            
+            .brand-item {
+                max-width: 40%;
+            }
+            
+            .brand-item.microsoft-logo {
+                height: 55px;
+            }
+            
+            .brand-item.alibaba-logo {
+                height: 30px;
+            }
+            
+            .brand-item.meta-logo {
+                height: 32px;
+            }
+            
+            .brand-item.kaust-logo {
+                height: 40px;
+            }
+            
+            .brand-item.iiai-logo {
+                height: 38px;
+            }
+            
+            /* 调整文章链接在手机端的显示 */
+            .project-title .links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            
+            .project-title .links a {
+                margin-right: 0;
+            }
+            
+            /* 调整About部分在手机端的留白 */
+            .about-wrapper {
+                padding: 30px 20px;
+                margin: 20px 0;
+            }
+            
+            /* 技能列表在手机端更紧凑 */
+            #about ul.skills-list li {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            
+            /* 解决两列布局在手机端的问题 */
+            .media-columns {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            /* 工作卡片在手机端的布局优化 */
+            .row.work-block {
+                margin-bottom: 30px;
+            }
+            
+            .row.work-block .col-xs-3,
+            .row.work-block .col-xs-9 {
+                padding: 0 10px;
+            }
+            
+            /* 文章标题在手机上更紧凑 */
+            .project-title .project-name {
+                font-size: 16px;
+                line-height: 1.4;
+            }
+            
+            .project-title .authors {
+                font-size: 13px;
+                line-height: 1.4;
+            }
+            
+            .project-title .publisher {
+                font-size: 14px;
+            }
+            
+            /* 图片在手机上占满宽度 */
+            .project.col-xs-3 {
+                margin-bottom: 15px;
+            }
+            
+            .project.col-xs-3 img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* 渐变边框在手机端适配 */
+            .about-wrapper::after {
+                padding: 3px; /* 减少边框厚度 */
+            }
+            
+            /* 修复About部分的两列布局 */
+            #about .col-xs-4 {
+                padding-bottom: 20px;
+            }
         }
 
         /* Media 部分样式 - 更加简洁现代 */
@@ -1164,9 +1359,9 @@
 </head>
 
 <html>
-<body>
+<body style="background-color: #FEFBF3; color: #1D1B22;">
 
-<div class="gray-container" id="about">
+<div class="gray-container" id="about" style="background-color: #FEFBF3;">
     <div class="container">
         <div class="about-wrapper">
             <div class="row">
@@ -1247,17 +1442,17 @@
 </div>
 
 <!-- 品牌展示部分 - 单独的部分 -->
-<div class="brands-section">
+<div class="brands-section" style="background-color: #FEFBF3;">
     <div class="brands-container">
-        <img src="images/kaust.png" alt="KAUST" class="brand-item kaust-logo">
-        <img src="images/Meta-Logo.png" alt="Meta" class="brand-item meta-logo">
-        <img src="images/microsoft_logo.png" alt="Microsoft" class="brand-item microsoft-logo">
-        <img src="images/alibaba_logo.png" alt="Alibaba" class="brand-item alibaba-logo">
-        <img src="images/iiai_logo.png" alt="IIAI" class="brand-item iiai-logo">
+        <img src="images/kaust.png" alt="KAUST" class="brand-item" style="height: 45px;">
+        <img src="images/Meta-Logo.png" alt="Meta" class="brand-item" style="height: 55px;">
+        <img src="images/microsoft_logo.png" alt="Microsoft" class="brand-item" style="height: 125px;">
+        <img src="images/alibaba_logo.png" alt="Alibaba" class="brand-item" style="height: 85px;">
+        <img src="images/iiai_logo.png" alt="IIAI" class="brand-item" style="height: 42px;">
     </div>
 </div>
 
-<div id="publication">
+<div id="publication" style="background-color: #FEFBF3;">
     <div class="container">
         <h2 class="title">Selected Publications       
             <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">
@@ -1727,12 +1922,26 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-copyright">© 2024 Mingchen Zhuge</div>
+                <div class="footer-copyright">
+                    © 2024 Mingchen Zhuge
+                    <a href='https://www.counter12.com'>
+                        <img src='https://www.counter12.com/img-2y15x83ZD5292yC3-77.gif' 
+                             border='0' alt='counter' style="vertical-align: middle; margin-left: 10px;">
+                    </a>
+                </div>
                 <div class="footer-links">
-                    <a href="https://github.com/mczhuge" target="_blank">GitHub</a>
-                    <a href="https://twitter.com/MingchenZhuge" target="_blank">Twitter</a>
-                    <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
-                    <a href="mailto:mingchen.zhuge@kaust.edu.sa">Contact</a>
+                    <a href="https://github.com/mczhuge" target="_blank">
+                        <img src="images/GitHub-512.webp" alt="GitHub" class="social-icon">GitHub
+                    </a>
+                    <a href="https://twitter.com/MingchenZhuge" target="_blank">
+                        <img src="images/icon/twitter.png" alt="Twitter" class="social-icon">Twitter
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" target="_blank">
+                        <img src="images/icon/scholar.png" alt="Google Scholar" class="social-icon">Google Scholar
+                    </a>
+                    <a href="mailto:mingchen.zhuge@kaust.edu.sa">
+                        <img src="images/icon/email.png" alt="Email" class="social-icon">Contact
+                    </a>
                 </div>
             </div>
         </div>
