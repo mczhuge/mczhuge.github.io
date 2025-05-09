@@ -18,10 +18,10 @@
 
     <style>
         :root {
-            --primary-color: #6C49B8; /* Claude的主紫色 */
-            --secondary-color: #5437A5; /* 深紫色 */
-            --accent-color: #8B6CC9; /* 浅紫色 */
-            --subtle-accent: #F4F0FF; /* 极浅紫色 */
+            --primary-color: #3B82F6; /* 蓝色主色调 */
+            --secondary-color: #1E40AF; /* 深蓝色 */
+            --accent-color: #60A5FA; /* 亮蓝色强调 */
+            --subtle-accent: #EFF6FF; /* 极浅蓝色 */
             --tech-blue: #5B6EFF; /* 保留蓝色变体 */
             --tech-cyan: #00C2CE; /* 保留青色 */
             --dark-bg-start: #1A1A1A; /* 深色渐变开始 */
@@ -30,12 +30,12 @@
             --medium-text-on-dark: #F2F2F2; /* 灰白文本 */
             --subtle-text-on-dark: #E0E0E0; /* 浅灰文本 */
 
-            --text-color: #1D1B22; /* Anthropic的近黑文本 */
-            --light-text: #6E6E80; /* 浅灰文本 */
-            --bg-light: #F9F8FA; /* Anthropic的背景色 */
+            --text-color: #1D1B22; /* 近黑文本 */
+            --light-text: #64748B; /* 浅灰文本 */
+            --bg-light: #F8FAFC; /* 浅背景色 */
             --bg-white: #FFFFFF;
-            --border-color: #EEEDF2; /* 浅紫灰边框 */
-            --button-bg: #6C49B8; /* 紫色按钮背景 */
+            --border-color: #E2E8F0; /* 浅边框色 */
+            --button-bg: #3B82F6; /* 蓝色按钮背景 */
             --button-text: #FFFFFF; /* 白色按钮文本 */
         }
 
@@ -927,11 +927,11 @@
 
         /* KAUST和IIAI特殊样式 */
         .brand-item.kaust-logo {
-            height: 60px;
+            height: 80px; /* 增大尺寸 */
         }
 
         .brand-item.iiai-logo {
-            height: 60px;
+            height: 80px; /* 增大尺寸 */
         }
 
         /* Media 部分样式 - 更加简洁现代 */
@@ -1038,8 +1038,7 @@
         }
 
         .award-year {
-            display: inline-block;
-            background-color: rgba(255, 106, 61, 0.1); /* Changed from purple to orange */
+            background-color: rgba(59, 130, 246, 0.1); /* 蓝色 */
             color: var(--primary-color);
             font-size: 14px;
             font-weight: 500;
@@ -1066,17 +1065,99 @@
         }
 
         .about-wrapper {
-            border: 2px solid #FF6A3D; /* Changed from purple to orange */
-            border-radius: 8px;
-            margin: 30px 0;
-            padding: 30px;
+            border: none; /* 移除普通边框 */
+            border-radius: 24px; /* 增加圆角 */
+            margin: 50px 0; /* 增加外边距 */
+            padding: 50px; /* 增加内边距 */
             background-color: var(--bg-white);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08); /* 增强阴影效果 */
+            position: relative; /* 相对定位用于伪元素 */
+            overflow: visible; /* 允许内容溢出 */
+        }
+        
+        /* 添加渐变边框效果 */
+        .about-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0; /* 上右下左都设为0，覆盖整个区域 */
+            padding: 4px; /* 渐变边框厚度 */
+            border-radius: 24px; /* 与父元素相同 */
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color), var(--secondary-color));
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: 1; /* 确保在上层 */
+            pointer-events: none; /* 不拦截鼠标事件 */
+        }
+        
+        /* 添加装饰性背景 */
+        .about-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 250px;
+            height: 250px;
+            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* 添加左侧装饰 */
+        .about-wrapper::before {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 180px;
+            height: 180px;
+            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* 确保内容在装饰上方 */
+        .about-wrapper .row {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .about-wrapper {
+                padding: 40px 25px;
+                margin: 30px 0;
+            }
+            
+            .about-wrapper::before {
+                width: 120px;
+                height: 120px;
+            }
         }
 
         /* 修改 Selected Awards 标题颜色 */
         #award h2 {
             color: var(--text-color); /* 黑色而不是红色 */
             font-weight: 700;
+        }
+
+        /* Meta特殊样式 */
+        .brand-item.meta-logo {
+            height: 90px; /* 保持尺寸 */
+            max-width: 20%;
+        }
+        
+        /* KAUST和IIAI特殊样式 */
+        .brand-item.kaust-logo {
+            height: 80px; /* 增大尺寸 */
+        }
+
+        .brand-item.iiai-logo {
+            height: 80px; /* 增大尺寸 */
         }
     </style>
 
