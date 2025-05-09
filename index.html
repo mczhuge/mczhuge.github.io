@@ -331,7 +331,7 @@
 
         /* Footer */
         .footer {
-            background-color: var(--bg-white);
+            background-color: var(--bg-light);
             color: var(--text-color);
             padding: 40px 0;
             margin-top: 80px;
@@ -1360,8 +1360,24 @@
 
 <html>
 <body style="background-color: #FEFBF3; color: #1D1B22;">
-
-<div class="gray-container" id="about" style="background-color: #FEFBF3;">
+<div class="gray-container" id="about" style="background: radial-gradient(circle at center, #FEFBF8 0%, #FEFBF7 85%, #FEFBF6 100%); position: relative; overflow: hidden;">
+    <div class="floating-agent" style="position: absolute; width: 40px; height: 40px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float1 15s infinite linear;"></div>
+    <div class="floating-agent" style="position: absolute; width: 30px; height: 30px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float2 20s infinite linear;"></div>
+    <div class="floating-agent" style="position: absolute; width: 35px; height: 35px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float3 18s infinite linear;"></div>
+    <style>
+        @keyframes float1 {
+            0% { transform: translate(-100px, -100px) rotate(0deg); }
+            100% { transform: translate(calc(100% + 100px), calc(100% + 100px)) rotate(360deg); }
+        }
+        @keyframes float2 {
+            0% { transform: translate(calc(100% + 100px), -100px) rotate(0deg); }
+            100% { transform: translate(-100px, calc(100% + 100px)) rotate(-360deg); }
+        }
+        @keyframes float3 {
+            0% { transform: translate(50%, -100px) rotate(0deg); }
+            100% { transform: translate(50%, calc(100% + 100px)) rotate(720deg); }
+        }
+    </style>
     <div class="container">
         <div class="about-wrapper">
             <div class="row">
@@ -1454,14 +1470,12 @@
 
 <div id="publication" style="background-color: #FEFBF3;">
     <div class="container">
-        <h2 class="title">Selected Publications       
+        <h2 class="title" style="font-size: 30px;">Selected Publications       
             <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">
                 (<img src="images/icon/scholar.png" title="scholar"
-                     width="28" style="vertical-align: middle;"> Full list)
+                     width="34" style="vertical-align: middle;"> Full list)
             </a>
         </h2>
-        <br>
-
         <h3 class="subsection_title">2024</h3>
 
         <div class="row work-block">
@@ -1669,15 +1683,15 @@
 </div>
 
 
-<div id="recent-works">
+<div id="recent-works" style="margin-top: 40px;">
 
-    <div id="experience">
+    <div id="experience" style="margin-bottom: 40px;">
         <div class="container">
-            <h2 class="experience">Experience</h2>
+            <h2 class="experience" style="font-size: 28px; margin-bottom: 30px;">Experience</h2>
             
-            <div class="experience-carousel">
+            <div class="experience-carousel" style="margin-top: 25px;">
                 <!-- Meta Card -->
-                <div class="experience-card">
+                <div class="experience-card" style="margin-bottom: 25px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/Meta-Logo.png" alt="Meta Logo" class="company-logo meta-logo" style="max-height: 70px;">
@@ -1805,7 +1819,7 @@
 
     <div id="talk" class="content-section">
         <div class="container">
-            <h2>Selected Media</h2>
+            <h2><strong>Selected Media</strong></h2>
 
             
             <div class="media-columns">
@@ -1814,21 +1828,21 @@
                     
                     <div class="article-card">
                         <div class="article-source">MIT Technology Review</div>
-                        <div class="article-title">GPTSwarm: A New Framework for AI Agent Collaboration</div>
+                        <div class="article-title">“现代AI之父”Jürgen Schmidhuber团队迎新成果：用图结构构建智能体，助力研发AI智能体</div>
                         <div class="article-date">March 15, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ" class="article-link">Read Article</a>
                     </div>
                     
                     <div class="article-card">
                         <div class="article-source">机器之心 (Synced)</div>
-                        <div class="article-title">Agent-as-a-Judge: A New Approach to AI Evaluation</div>
+                        <div class="article-title">卷起来！让智能体评估智能体，Meta发布Agent-as-a-Judge</div>
                         <div class="article-date">April 25, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ" class="article-link">Read Article</a>
                     </div>
                     
                     <div class="article-card">
                         <div class="article-source">新智元 (AI Era)</div>
-                        <div class="article-title">Revolutionary Approach to Agent Evaluation Systems</div>
+                        <div class="article-title">田渊栋团队新作祭出Agent-as-a-Judge！AI智能体自我审判，成本暴跌97%</div>
                         <div class="article-date">April 22, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw" class="article-link">Read Article</a>
                     </div>
@@ -1919,28 +1933,28 @@
         </div>
     </div>
    
-    <footer class="footer">
+    <footer class="footer" style="background-color: #FEFBF3; animation: none; padding: 20px 0; border-top: 1px solid rgba(0,0,0,0.1);">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-copyright">
+            <div class="footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <div class="footer-copyright" style="font-size: 14px; color: #666;">
                     © 2024 Mingchen Zhuge
                     <a href='https://www.counter12.com'>
                         <img src='https://www.counter12.com/img-2y15x83ZD5292yC3-77.gif' 
                              border='0' alt='counter' style="vertical-align: middle; margin-left: 10px;">
                     </a>
                 </div>
-                <div class="footer-links">
-                    <a href="https://github.com/mczhuge" target="_blank">
-                        <img src="images/GitHub-512.webp" alt="GitHub" class="social-icon">GitHub
+                <div class="footer-links" style="display: flex; gap: 20px; align-items: center;">
+                    <a href="https://github.com/mczhuge" target="_blank" style="display: flex; align-items: center; gap: 5px; text-decoration: none; color: #666; transition: color 0.2s;">
+                        <img src="images/GitHub-512.webp" alt="GitHub" style="width: 20px; height: 20px;">GitHub
                     </a>
-                    <a href="https://twitter.com/MingchenZhuge" target="_blank">
-                        <img src="images/icon/twitter.png" alt="Twitter" class="social-icon">Twitter
+                    <a href="https://twitter.com/MingchenZhuge" target="_blank" style="display: flex; align-items: center; gap: 5px; text-decoration: none; color: #666; transition: color 0.2s;">
+                        <img src="images/icon/twitter.png" alt="Twitter" style="width: 20px; height: 20px;">Twitter
                     </a>
-                    <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" target="_blank">
-                        <img src="images/icon/scholar.png" alt="Google Scholar" class="social-icon">Google Scholar
+                    <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" target="_blank" style="display: flex; align-items: center; gap: 5px; text-decoration: none; color: #666; transition: color 0.2s;">
+                        <img src="images/icon/scholar.png" alt="Google Scholar" style="width: 20px; height: 20px;">Google Scholar
                     </a>
-                    <a href="mailto:mingchen.zhuge@kaust.edu.sa">
-                        <img src="images/icon/email.png" alt="Email" class="social-icon">Contact
+                    <a href="mailto:mingchen.zhuge@kaust.edu.sa" style="display: flex; align-items: center; gap: 5px; text-decoration: none; color: #666; transition: color 0.2s;">
+                        <img src="images/icon/email.png" alt="Email" style="width: 20px; height: 20px;">Contact
                     </a>
                 </div>
             </div>
