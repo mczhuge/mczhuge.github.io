@@ -45,9 +45,25 @@
             color: var(--text-color);
             background-color: var(--bg-light);
             line-height: 1.6;
-            padding-top: 40px;
+            padding: 0;
+            margin: 0;
             letter-spacing: -0.015em; /* Slightly tighter letter spacing like Anthropic */
             font-weight: 400;
+            width: 1200px;
+            min-width: 1200px;
+            overflow-x: auto;
+            margin: 0 auto;
+        }
+
+        /* Container to ensure consistent fixed width */
+        .container {
+            width: 1200px !important;
+            max-width: 1200px !important;
+            min-width: 1200px !important;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Navbar Styling - more like Anthropic's clean minimal navbar */
@@ -56,6 +72,8 @@
             border-bottom: none;
             box-shadow: none;
             padding: 15px 0;
+            min-width: 1200px;
+            width: 1200px;
         }
         .navbar-fixed-top .navbar-nav > li > a {
             color: var(--text-color); /* Dark links */
@@ -81,6 +99,8 @@
             background-color: var(--bg-light);
             padding: 20px 0;
             border: none;
+            width: 100%;
+            margin: 0;
         }
 
         /* About section - Dark Style Override more like Anthropic */
@@ -93,8 +113,9 @@
             position: relative; /* For potential decorations */
             overflow: visible; /* Allow overflow */
             animation: none; /* Remove animation */
-            padding-top: 60px; /* More top padding */
-            padding-bottom: 60px; /* More bottom padding */
+            padding-top: 20px; /* More top padding */
+            padding-bottom: 20px; /* More bottom padding */
+            width: 100%;
         }
 
         /* Hero section styling */
@@ -108,120 +129,209 @@
             font-size: 48px; /* Larger heading */
             line-height: 1.2;
         }
-        #about .black-text { /* The name itself */
-            color: var(--text-color) !important;
-            font-weight: 700;
-        }
-        /* Social/Contact Icons in About H2 */
-        #about h2 a img {
-            background-color: transparent; /* No background */
-            border-radius: 6px;
-            padding: 0; /* No padding */
-            margin-left: 6px;
-            vertical-align: middle;
-            transition: transform 0.3s ease;
-            opacity: 0.8;
-        }
-        #about h2 a:hover img {
-            background-color: transparent;
-            transform: scale(1.1);
-            opacity: 1;
+
+        /* Container to ensure consistent width */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        #about p {
-            color: var(--text-color); /* Dark text */
-            font-weight: 400;
-            font-size: 18px; /* Larger paragraph text */
-            line-height: 1.7; /* Increased line height */
-            margin-bottom: 20px; /* More space between paragraphs */
+        /* Improved mobile responsiveness */
+        @media (max-width: 767px) {
+            #about h2 {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            
+            .col-xs-4, .col-xs-8, .col-xs-3, .col-xs-9 {
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            
+            .about-wrapper {
+                padding: 30px 15px !important;
+                margin: 15px 0 !important;
+                border-radius: 15px !important;
+            }
+            
+            .about-wrapper::after {
+                border-radius: 15px !important;
+            }
+            
+            #me-img {
+                width: 70% !important;
+                margin: 0 auto;
+                display: block;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin: 15px auto;
+                max-width: 280px;
+            }
+            
+            .experience-carousel {
+                padding: 10px 0;
+                margin: 20px 0;
+            }
+            
+            .experience-card {
+                min-width: 280px;
+                width: 280px;
+            }
+            
+            .card-logo {
+                height: 100px;
+            }
+            
+            .card-content {
+                padding: 20px 15px;
+            }
+            
+            .brands-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .brand-item {
+                max-width: 45%;
+                height: auto !important;
+            }
+            
+            .media-columns {
+                flex-direction: column !important;
+                gap: 30px !important;
+            }
+            
+            .awards-columns {
+                flex-direction: column !important;
+            }
+            
+            .project-title .links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
 
-        #about strong { /* KAUST AI, Open-source enthusiasts etc. */
-            color: var(--text-color); /* Dark strong text */
-            font-weight: 600; /* Semibold */
+        /* Ensure project images display properly on mobile */
+        @media (max-width: 767px) {
+            .project.col-xs-3 {
+                width: 40%;
+                float: left;
+                margin-right: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .col-xs-9 {
+                width: 100%;
+                float: none;
+            }
+            
+            .work-block {
+                clear: both;
+                overflow: hidden;
+            }
         }
 
-        #about a { /* Default links in About */
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: opacity 0.3s ease;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 2px;
-        }
-        #about a:hover {
-            color: var(--primary-color);
-            opacity: 0.8;
-            border-bottom: 1px solid var(--primary-color);
-        }
-        /* Override inline styles for specific links */
-        #about p a[style*="color:#fc5800"],
-        #about p a[style*="color:#3f00fc"] {
-            color: var(--primary-color) !important;
-        }
-        #about p a[style*="color:#fc5800"]:hover,
-        #about p a[style*="color:#3f00fc"]:hover {
-            opacity: 0.8;
-            border-bottom: 1px solid var(--primary-color);
-        }
-
-        #about ul { /* Skills list */
-            padding-left: 0;
-            list-style: none;
-            margin-top: 25px;
-            margin-bottom: 35px;
-        }
-        #about ul li {
-            margin-bottom: 16px;
-            position: relative;
-            padding-left: 30px;
-            font-size: 18px;
-            line-height: 1.7;
-        }
-        #about ul li::before { /* Custom bullet */
-            content: '•'; /* Simple bullet */
-            position: absolute;
-            left: 5px;
-            top: 0px;
-            color: var(--accent-color); /* Coral accent color */
-            font-weight: bold;
-            font-size: 1.5em;
-            line-height: 1;
-        }
-        #about ul li strong { /* Skill keywords */
-            color: var(--text-color); /* Dark text */
-            font-weight: 600; /* Semibold */
+        /* Fix for award item and publication styles on mobile */
+        @media (max-width: 767px) {
+            .award-item {
+                margin-bottom: 20px;
+            }
+            
+            h2.title, h2.experience, h2.section_title {
+                font-size: 28px !important;
+                margin-bottom: 25px;
+            }
+            
+            h3.subsection_title {
+                font-size: 22px !important;
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+            
+            .project-name strong {
+                font-size: 16px;
+                line-height: 1.4;
+            }
+            
+            .authors {
+                font-size: 14px;
+                line-height: 1.5;
+            }
         }
 
-        /* Image and Caption */
-        #me-img {
-            border: none; /* No border */
-            box-shadow: none; /* No shadow */
-            border-radius: 16px; /* Rounded corners */
-        }
-        #about .col-xs-4 div[style*="margin-top: 15px"] { /* Target image caption */
-            color: var(--light-text) !important;
-            font-family: 'Inter', sans-serif !important;
-            margin-top: 20px !important;
-            font-size: 14px;
+        /* Ensure all content stays within viewport width */
+        img, svg, video {
+            max-width: 100%;
+            height: auto;
         }
 
-        /* Logo box */
-        #about .col-xs-8 div[style*="border"] { /* Select the logo container */
-            border: none !important;
-            background-color: transparent !important;
-            padding: 0 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            margin-top: 40px;
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+            width: auto;
         }
-        #about .col-xs-8 div[style*="border"] img {
-            filter: none !important;
-            opacity: 0.9 !important;
-            transition: opacity 0.3s ease !important;
+
+        /* Fix experience carousel scrolling */
+        .experience-carousel {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px 5px;
+            margin: 0 -5px;
         }
-        #about .col-xs-8 div[style*="border"] img:hover {
-            opacity: 1.0 !important;
+
+        /* Make sure floating animation stays within bounds */
+        .floating-agent {
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Ensure consistent social icon appearance */
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        
+        .social-icons img {
+            height: 30px;
+            width: 30px;
+            object-fit: contain;
+        }
+
+        /* Make all brand logos responsive */
+        .brands-section {
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .brand-item {
+            max-height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        /* Fix spacing in work blocks */
+        .work-block {
+            padding: 0 0 30px 0;
+            margin: 0 0 30px 0;
         }
 
         /* General Headings (outside #about) */
@@ -480,14 +590,16 @@
         /* Experience Carousel Styling */
         .experience-carousel {
             display: flex;
-            overflow-x: hidden;
+            overflow-x: auto;
             scroll-behavior: smooth;
             position: relative;
-            margin: 40px 0;
             padding: 20px 0;
-            gap: 25px;
+            gap: 20px;
             -ms-overflow-style: none;
             scrollbar-width: none;
+            margin-left: 10px;
+            margin-right: 10px;
+            width: calc(100% - 20px);
         }
         
         .experience-carousel::-webkit-scrollbar {
@@ -495,14 +607,14 @@
         }
         
         .experience-card {
-            min-width: 300px;
-            width: 300px;
+            min-width: 280px;
+            width: 280px;
             background-color: var(--bg-white);
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             transition: all 0.4s ease;
-            margin: 10px 5px;
+            margin: 5px;
             border: 1px solid var(--border-color);
             flex-shrink: 0;
             position: relative;
@@ -668,7 +780,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
         
         .prev-btn, .next-btn {
@@ -967,11 +1080,12 @@
             width: 100%;
             background-color: var(--bg-light); /* 使用与网页背景相同的颜色 */
             padding: 35px 0; /* 减小上下内边距 */
-            margin: 20px 0 40px; /* 减小上下外边距 */
+            margin: 20px 0; /* 减小上下外边距 */
             border-top: 1px solid rgba(0,0,0,0.03);
             border-bottom: 1px solid rgba(0,0,0,0.03);
             display: flex;
             justify-content: center;
+            overflow: hidden;
         }
         
         .brands-container {
@@ -988,7 +1102,7 @@
         }
         
         .brand-item {
-            height: auto; /* 移除统一高度 */
+            height: 50px; /* 统一高度 */
             width: auto;
             object-fit: contain;
             filter: grayscale(100%) opacity(65%);
@@ -1002,27 +1116,27 @@
 
         /* 各品牌自定义尺寸 */
         .brand-item.microsoft-logo {
-            height: 80px;
+            height: 130px;
         }
 
         .brand-item.alibaba-logo {
-            height: 40px;
+            height: 140px;
         }
         
         .brand-item.meta-logo {
-            height: 65px;
+            height: 55px;
         }
         
         .brand-item.kaust-logo {
-            height: 50px;
+            height: 45px;
         }
 
         .brand-item.iiai-logo {
             height: 45px;
         }
-        
+
         /* 手机端响应式样式 */
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             .brands-container {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -1030,27 +1144,8 @@
             }
             
             .brand-item {
-                max-width: 40%;
-            }
-            
-            .brand-item.microsoft-logo {
-                height: 55px;
-            }
-            
-            .brand-item.alibaba-logo {
-                height: 30px;
-            }
-            
-            .brand-item.meta-logo {
-                height: 32px;
-            }
-            
-            .brand-item.kaust-logo {
-                height: 40px;
-            }
-            
-            .brand-item.iiai-logo {
-                height: 38px;
+                max-width: 45%;
+                height: 40px !important;
             }
             
             /* 调整文章链接在手机端的显示 */
@@ -1067,8 +1162,9 @@
             
             /* 调整About部分在手机端的留白 */
             .about-wrapper {
-                padding: 30px 20px;
-                margin: 20px 0;
+                padding: 30px 20px !important;
+                margin: 20px 0 !important;
+                border-radius: 20px !important;
             }
             
             /* 技能列表在手机端更紧凑 */
@@ -1077,55 +1173,50 @@
                 margin-bottom: 8px;
             }
             
-            /* 解决两列布局在手机端的问题 */
-            .media-columns {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
             /* 工作卡片在手机端的布局优化 */
             .row.work-block {
                 margin-bottom: 30px;
+                overflow: hidden;
             }
             
-            .row.work-block .col-xs-3,
+            .row.work-block .project.col-xs-3 {
+                text-align: center;
+            }
+            
+            .row.work-block .project.col-xs-3 img {
+                max-width: 180px;
+                height: auto;
+            }
+            
             .row.work-block .col-xs-9 {
-                padding: 0 10px;
+                width: 100%;
             }
             
             /* 文章标题在手机上更紧凑 */
             .project-title .project-name {
                 font-size: 16px;
                 line-height: 1.4;
+                display: block;
+                margin-bottom: 5px;
             }
             
             .project-title .authors {
                 font-size: 13px;
                 line-height: 1.4;
+                display: block;
+                margin-bottom: 5px;
             }
             
             .project-title .publisher {
                 font-size: 14px;
+                display: block;
+                margin-bottom: 5px;
             }
             
             /* 图片在手机上占满宽度 */
-            .project.col-xs-3 {
-                margin-bottom: 15px;
-            }
-            
-            .project.col-xs-3 img {
+            img {
                 max-width: 100%;
                 height: auto;
-            }
-            
-            /* 渐变边框在手机端适配 */
-            .about-wrapper::after {
-                padding: 3px; /* 减少边框厚度 */
-            }
-            
-            /* 修复About部分的两列布局 */
-            #about .col-xs-4 {
-                padding-bottom: 20px;
             }
         }
 
@@ -1259,15 +1350,19 @@
             color: var(--primary-color);
         }
 
+        /* Fix for all wrapper content */
         .about-wrapper {
             border: none; /* 移除普通边框 */
             border-radius: 24px; /* 增加圆角 */
-            margin: 50px 0; /* 增加外边距 */
-            padding: 50px; /* 增加内边距 */
+            margin: 20px 0; /* 增加外边距 */
+            padding: 30px; /* 增加内边距 */
             background-color: var(--bg-white);
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08); /* 增强阴影效果 */
             position: relative; /* 相对定位用于伪元素 */
             overflow: visible; /* 允许内容溢出 */
+            width: calc(100% - 40px); /* 确保宽度占满但留有边距 */
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* 添加渐变边框效果 */
@@ -1275,8 +1370,8 @@
             content: '';
             position: absolute;
             inset: 0; /* 上右下左都设为0，覆盖整个区域 */
-            padding: 4px; /* 渐变边框厚度 */
-            border-radius: 24px; /* 与父元素相同 */
+            padding: 3px; /* 渐变边框厚度 */
+            border-radius: 16px; /* 与父元素相同 */
             background: linear-gradient(45deg, var(--accent-color), var(--primary-color), var(--secondary-color));
             -webkit-mask: 
                 linear-gradient(#fff 0 0) content-box,
@@ -1291,11 +1386,11 @@
         .about-wrapper::before {
             content: '';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 250px;
-            height: 250px;
-            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%);
+            top: 15px;
+            right: 15px;
+            width: 150px;
+            height: 150px;
+            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0) 70%);
             border-radius: 50%;
             z-index: 0;
             pointer-events: none;
@@ -1354,36 +1449,651 @@
         .brand-item.iiai-logo {
             height: 80px; /* 增大尺寸 */
         }
+
+        /* Media queries for different screen sizes */
+        /* Extra small devices (phones, less than 576px) */
+        @media (max-width: 575.98px) {
+            #about h2 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
+            
+            #about p, #about ul li {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+            
+            .social-icons {
+                max-width: 240px;
+            }
+            
+            .social-icons img {
+                height: 26px;
+                width: 26px;
+            }
+            
+            .experience-card {
+                min-width: 260px;
+                width: 260px;
+            }
+            
+            .card-logo {
+                height: 90px;
+            }
+            
+            .card-content h3 {
+                font-size: 16px;
+            }
+            
+            .brand-item {
+                max-width: 40%;
+                height: 35px !important;
+            }
+            
+            .project-title .project-name strong {
+                font-size: 15px;
+            }
+            
+            .project-title .authors {
+                font-size: 12px;
+            }
+            
+            .project-title .publisher {
+                font-size: 13px;
+            }
+            
+            .project-title .links a {
+                font-size: 12px;
+            }
+            
+            .highlight-desc {
+                font-size: 13px;
+            }
+            
+            /* Table cells for GitHub stars might break layout */
+            .project-title .links img[src*="shields.io"] {
+                display: none;
+            }
+        }
+        
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            #about h2 {
+                font-size: 32px;
+            }
+            
+            .brand-item {
+                max-width: 30%;
+            }
+            
+            .social-icons {
+                max-width: 280px;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .brands-container {
+                flex-wrap: nowrap;
+                gap: 15px;
+            }
+            
+            .brand-item {
+                height: 40px !important;
+            }
+            
+            .about-wrapper {
+                padding: 35px 30px;
+            }
+            
+            #about .col-xs-4 {
+                width: 35%;
+            }
+            
+            #about .col-xs-8 {
+                width: 65%;
+            }
+        }
+        
+        /* Fix for specific iPhone SE and other very small screens */
+        @media (max-width: 374.98px) {
+            .about-wrapper {
+                padding: 25px 15px !important;
+                margin: 15px 0 !important;
+            }
+            
+            #about h2 {
+                font-size: 24px;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            
+            #about p, #about ul li {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .social-icons {
+                max-width: 200px;
+                gap: 10px;
+            }
+            
+            .social-icons img {
+                height: 24px;
+                width: 24px;
+            }
+            
+            .project-title .links {
+                gap: 6px;
+            }
+            
+            .project-title .links a {
+                font-size: 11px;
+            }
+            
+            .footer-links {
+                gap: 12px;
+            }
+            
+            .footer-links a {
+                font-size: 12px;
+            }
+        }
+
+        /* Remove all remaining media queries */
+
+        /* Brands display settings */
+        .brand-item {
+            height: 50px; /* 统一高度 */
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(65%);
+            transition: filter 0.3s ease;
+            max-width: 18%;
+        }
+
+        /* Ensure fixed layout for publication images */
+        .project.col-xs-3 {
+            width: 25%;
+            padding: 0 15px;
+        }
+
+        .col-xs-9 {
+            width: 75%;
+            padding: 0 15px;
+        }
+
+        .project.col-xs-3 img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+        }
+
+        /* Fixed layout for about section */
+        #about .col-xs-4 {
+            width: 33.33%;
+            padding: 0 15px;
+        }
+
+        #about .col-xs-8 {
+            width: 66.67%;
+            padding: 0 15px;
+        }
+
+        /* Fixed footer */
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Fixed experience cards */
+        .experience-card {
+            min-width: 300px;
+            width: 300px;
+        }
+
+        /* Full width sections */
+        #publication, #experience, #talk, #award, #recent-works {
+            width: 100%;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        /* Experience carousel fixes */
+        .experience-carousel {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px 0;
+            margin: 0;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .experience-carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+
+        /* Footer fixes */
+        .footer {
+            width: 100%;
+            padding: 20px 0;
+            margin: 0;
+            background-color: var(--bg-light);
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Fixed layout for about section */
+        #about .col-xs-4 {
+            width: 33.33%;
+            padding: 0 15px;
+        }
+
+        #about .col-xs-8 {
+            width: 66.67%;
+            padding: 0 15px;
+        }
+
+        /* Consistent image size */
+        #me-img {
+            width: 90%;
+            max-width: 300px;
+            border-radius: 12px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* 技能列表修复 - 移除多余的黑点 */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        /* 个人介绍部分的技能列表 */
+        #about ul li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 10px;
+            list-style-type: none; /* 强制移除所有列表样式 */
+        }
+        
+        /* 注意：不要在前面添加额外的黑点 */
+        #about ul li::before {
+            display: none; /* 禁用前面的黑点 */
+        }
+
+        /* 作者名字设置为灰色 */
+        .authors {
+            color: #666666; /* 灰色 */
+            font-weight: normal;
+        }
+
+        /* Remove responsive adjustments that change layout */
+        @media (max-width: 767px) {
+            /* Remove layout-changing styles */
+            .col-xs-4, .col-xs-8, .col-xs-3, .col-xs-9 {
+                width: initial; /* Remove width override */
+            }
+            
+            /* Remove column direction changes */
+            .media-columns {
+                flex-direction: initial !important;
+            }
+            
+            .awards-columns {
+                flex-direction: initial !important;
+            }
+            
+            /* Remove wrapping for social icons */
+            .social-icons {
+                flex-wrap: nowrap;
+                max-width: initial;
+            }
+            
+            /* Maintain footer layout */
+            .footer-content {
+                flex-direction: initial;
+            }
+        }
+
+        /* Fix column widths to be consistent across all device sizes */
+        #about .col-xs-4 {
+            width: 33.33% !important;
+            padding: 0 15px;
+            float: left;
+        }
+
+        #about .col-xs-8 {
+            width: 66.67% !important;
+            padding: 0 15px;
+            float: left;
+        }
+
+        .project.col-xs-3 {
+            width: 25% !important;
+            float: left;
+            padding: 0 15px;
+        }
+
+        .col-xs-9 {
+            width: 75% !important;
+            float: left;
+            padding: 0 15px;
+        }
+
+        /* Override any additional responsive layout changes */
+        @media (max-width: 575.98px), 
+               (min-width: 576px) and (max-width: 767.98px),
+               (min-width: 768px) and (max-width: 991.98px),
+               (max-width: 374.98px) {
+            
+            /* Reset layout-changing styles */
+            #about .col-xs-4 {
+                width: 33.33% !important;
+            }
+            
+            #about .col-xs-8 {
+                width: 66.67% !important;
+            }
+            
+            .brands-container {
+                flex-wrap: nowrap !important;
+            }
+            
+            .project-title .links {
+                display: initial;
+                flex-wrap: initial;
+            }
+            
+            /* Maintain horizontal scrolling for experience carousel */
+            .experience-carousel {
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+            }
+            
+            /* Force same size for images */
+            .brand-item {
+                max-width: 18% !important;
+                height: 50px !important;
+            }
+            
+            /* Special logo sizes */
+            .brand-item.microsoft-logo {
+                height: 130px !important;
+            }
+
+            .brand-item.alibaba-logo {
+                height: 140px !important;
+            }
+            
+            .brand-item.meta-logo {
+                height: 55px !important;
+            }
+            
+            .brand-item.kaust-logo {
+                height: 45px !important;
+            }
+
+            .brand-item.iiai-logo {
+                height: 45px !important;
+            }
+            
+            /* Force multi-columns to stay in row format */
+            .media-columns, .awards-columns {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+            }
+        }
+
+        /* Prevent text size changes on mobile */
+        @media (max-width: 767px) {
+            #about h2, h2.title, h2.experience, h2.section_title {
+                font-size: initial !important;
+            }
+            
+            #about p, #about ul li, .project-title .project-name strong,
+            .project-title .authors, .project-title .publisher,
+            .project-title .links a, .highlight-desc {
+                font-size: initial !important;
+            }
+        }
+
+        /* Remove all responsive media queries that change layout */
+        @media (max-width: 767px) {
+            /* Disable all mobile-specific styles */
+            .col-xs-4, .col-xs-8, .col-xs-3, .col-xs-9 {
+                width: initial; /* Remove width override */
+            }
+            
+            .media-columns, .awards-columns, .footer-content {
+                flex-direction: initial !important;
+            }
+            
+            .social-icons {
+                flex-wrap: initial;
+                max-width: initial;
+            }
+            
+            .brands-container {
+                flex-wrap: initial !important;
+            }
+            
+            .project-title .links {
+                display: initial;
+                flex-wrap: initial;
+            }
+            
+            .brand-item {
+                max-width: initial !important;
+                height: initial !important;
+            }
+            
+            #about h2, h2.title, h2.experience, h2.section_title,
+            #about p, #about ul li, .project-title .project-name strong,
+            .project-title .authors, .project-title .publisher,
+            .project-title .links a, .highlight-desc {
+                font-size: initial !important;
+            }
+        }
+        
+        /* Force all columns to maintain desktop widths */
+        .col-xs-4 {
+            width: 33.33% !important;
+        }
+
+        .col-xs-8 {
+            width: 66.67% !important;
+        }
+
+        .col-xs-3 {
+            width: 25% !important;
+        }
+
+        .col-xs-9 {
+            width: 75% !important;
+        }
+
+        /* Keep multi-column layouts in row format */
+        .media-columns,
+        .awards-columns {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+        }
+
+        /* Set fixed width for all major containers */
+        .gray-container, #about, #publication, #experience, #talk, #award, #recent-works, .footer {
+            width: 1200px !important;
+            min-width: 1200px !important;
+            max-width: 1200px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* Override any viewport-based measurements */
+        .about-wrapper {
+            width: calc(100% - 30px) !important;
+            max-width: 1140px !important;
+        }
+        
+        /* Ensure brand items have fixed sizes */
+        .brand-item.microsoft-logo {
+            height: 130px !important;
+        }
+
+        .brand-item.alibaba-logo {
+            height: 140px !important;
+        }
+        
+        .brand-item.meta-logo {
+            height: 55px !important;
+        }
+        
+        .brand-item.kaust-logo {
+            height: 45px !important;
+        }
+
+        .brand-item.iiai-logo {
+            height: 45px !important;
+        }
+
+        /* Override and disable ALL media queries */
+        @media only screen and (max-width: 1200px),
+               only screen and (max-width: 992px),
+               only screen and (max-width: 768px),
+               only screen and (max-width: 576px),
+               only screen and (max-width: 375px) {
+            
+            /* Force body to fixed desktop width */
+            html, body {
+                min-width: 1200px;
+                width: 1200px !important;
+                overflow-x: auto !important;
+                margin: 0 auto !important;
+            }
+            
+            /* Force containers to fixed width */
+            .container, .row, .col, [class*="col-"] {
+                max-width: none !important;
+            }
+            
+            /* Prevent any transformations of layout */
+            .row {
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+            }
+            
+            /* Ensure footer stays in row format */
+            .footer-content {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+            }
+            
+            /* Force minimum height for cards */
+            .experience-card {
+                min-height: 450px !important;
+            }
+            
+            /* Ensure all font sizes remain at desktop sizes */
+            body, p, h1, h2, h3, h4, h5, h6, span, a, li {
+                font-size: initial !important;
+            }
+        }
+        
+        /* Completely disable the mobile menu behavior */
+        .navbar-toggle {
+            display: none !important;
+        }
+        
+        .navbar-collapse {
+            display: block !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+            width: auto;
+            border-top: 0;
+            box-shadow: none;
+        }
+        
+        .navbar-collapse.collapse {
+            display: block !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }
+        
+        .navbar-nav {
+            float: left;
+            margin: 0;
+        }
+        
+        .navbar-nav > li {
+            float: left;
+        }
+        
+        .navbar-nav > li > a {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
     </style>
 
 </head>
-
 <html>
-<body style="background-color: #FEFBF3; color: #1D1B22;">
-<div class="gray-container" id="about" style="background: radial-gradient(circle at center, #FEFBF8 0%, #FEFBF7 85%, #FEFBF6 100%); position: relative; overflow: hidden;">
-    <div class="floating-agent" style="position: absolute; width: 40px; height: 40px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float1 15s infinite linear;"></div>
-    <div class="floating-agent" style="position: absolute; width: 30px; height: 30px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float2 20s infinite linear;"></div>
-    <div class="floating-agent" style="position: absolute; width: 35px; height: 35px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float3 18s infinite linear;"></div>
+<body style="background-color: #FEFBF3; color: #1D1B22; width: 100%; margin: 0; padding: 0;">
+<div class="gray-container" id="about" style="background: radial-gradient(circle at center, #FEFBF8 0%, #FEFBF7 85%, #FEFBF6 100%); position: relative; overflow: hidden; width: 100%; margin: 0; padding: 0;">
+    <!-- Honeycomb background pattern -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.08; background-color: #000; clip-path: url(#honeycomb-mask);"></div>
+    <svg width="0" height="0">
+        <defs>
+            <pattern id="honeycomb" x="0" y="0" width="50" height="86.6" patternUnits="userSpaceOnUse">
+                <path d="M25 0 L50 14.43 L50 43.3 L25 57.73 L0 43.3 L0 14.43 Z" stroke="#000" fill="none"/>
+            </pattern>
+            <mask id="honeycomb-mask">
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#honeycomb)"/>
+            </mask>
+        </defs>
+    </svg>
+
+    <div class="floating-agent" style="position: absolute; width: 40px; height: 40px; opacity: 0.15; background-image: url('images/icon/robot.png'); background-size: contain; animation: float1 12s infinite linear;"></div>
+    <div class="floating-agent" style="position: absolute; width: 35px; height: 35px; opacity: 0.12; background-image: url('images/icon/robot.png'); background-size: contain; animation: float2 15s infinite linear;"></div>
+    <div class="floating-agent" style="position: absolute; width: 45px; height: 45px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float3 18s infinite linear;"></div>
+    <div class="floating-agent" style="position: absolute; width: 30px; height: 30px; opacity: 0.13; background-image: url('images/icon/robot.png'); background-size: contain; animation: float4 20s infinite linear;"></div>
+    <div class="floating-agent" style="position: absolute; width: 38px; height: 38px; opacity: 0.11; background-image: url('images/icon/robot.png'); background-size: contain; animation: float5 16s infinite linear;"></div>
     <style>
         @keyframes float1 {
-            0% { transform: translate(-100px, -100px) rotate(0deg); }
-            100% { transform: translate(calc(100% + 100px), calc(100% + 100px)) rotate(360deg); }
+            0% { transform: translate(-50px, -50px) rotate(0deg); }
+            50% { transform: translate(calc(50% + 50px), calc(50% + 50px)) rotate(180deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
         }
         @keyframes float2 {
-            0% { transform: translate(calc(100% + 100px), -100px) rotate(0deg); }
-            100% { transform: translate(-100px, calc(100% + 100px)) rotate(-360deg); }
+            0% { transform: translate(calc(100% + 50px), -50px) rotate(0deg); }
+            50% { transform: translate(-50px, calc(50% + 50px)) rotate(-180deg); }
+            100% { transform: translate(calc(100% + 50px), -50px) rotate(-360deg); }
         }
         @keyframes float3 {
-            0% { transform: translate(50%, -100px) rotate(0deg); }
-            100% { transform: translate(50%, calc(100% + 100px)) rotate(720deg); }
+            0% { transform: translate(25%, -50px) rotate(0deg); }
+            50% { transform: translate(75%, calc(100% + 50px)) rotate(360deg); }
+            100% { transform: translate(25%, -50px) rotate(720deg); }
+        }
+        @keyframes float4 {
+            0% { transform: translate(75%, calc(100% + 50px)) rotate(0deg); }
+            50% { transform: translate(25%, -50px) rotate(-360deg); }
+            100% { transform: translate(75%, calc(100% + 50px)) rotate(-720deg); }
+        }
+        @keyframes float5 {
+            0% { transform: translate(50%, 50%) rotate(0deg) scale(1); }
+            50% { transform: translate(50%, 50%) rotate(180deg) scale(1.2); }
+            100% { transform: translate(50%, 50%) rotate(360deg) scale(1); }
         }
     </style>
     <div class="container">
-        <div class="about-wrapper">
-            <div class="row">
+        <div class="about-wrapper" style="width: calc(100% - 30px); margin: 15px auto; border-radius: 16px;">
+            <div class="row" style="margin: 0;">
 
-                <div class="col-xs-4" style="text-align: center;">
-                    <img style="margin-top: 10%; width: 80%; border-radius: 10px;" id="me-img" src="images/mingchen.jpeg">
+                <div class="col-xs-4" style="text-align: center; padding: 0 10px;">
+                    <img style="margin: 0 auto; width: 85%; border-radius: 10px; max-width: 280px;" id="me-img" src="images/mingchen.jpeg">
                     <br>
                     <div style="margin-top: 15px; font-size: small;">
                         *Taken in the KAUST AI Initiative.
@@ -1410,8 +2120,8 @@
                 </div>
                 
 
-                <div class="col-xs-8">
-                    <h2> <span class="black-text">Mingchen Zhuge</span></span>
+                <div class="col-xs-8" style="padding: 0 15px;">
+                    <h2 style="margin-top: 0;"> <span class="black-text">Mingchen Zhuge</span></span>
                     </h2>
 
 
@@ -1426,11 +2136,11 @@
                     <p>
                         My current research interests and skills include:
                         <ul class="skills-list">
-                            <li><strong>Multimodal:</strong> Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
-                            <li><strong>LLMs:</strong> Post-Training.</li>
-                            <li><strong>Meta Learning:</strong> Recursive Self-Improvement.</li>
-                            <li><strong>Agents:</strong> LLM-based Multi-Agent Systems, Code Generation.</li>
-                            <li><strong>AI Judges:</strong> Agent-as-a-Judge, LLM-as-a-Judge.</li>
+                            <li><span style="color: var(--accent-color);">•</span> <strong>Multimodal:</strong> Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
+                            <li><span style="color: var(--accent-color);">•</span> <strong>LLMs:</strong> Post-Training.</li>
+                            <li><span style="color: var(--accent-color);">•</span> <strong>Meta Learning:</strong> Recursive Self-Improvement.</li>
+                            <li><span style="color: var(--accent-color);">•</span> <strong>Agents:</strong> LLM-based Multi-Agent Systems, Code Generation.</li>
+                            <li><span style="color: var(--accent-color);">•</span> <strong>AI Judges:</strong> Agent-as-a-Judge, LLM-as-a-Judge.</li>
                         </ul>
                     </p>                
                     <p>
@@ -1441,7 +2151,7 @@
                  -->
                 </p>
                     <p>
-                        <strong>⭐ Open-source enthusiasts.</strong> I am active in open-sourced communities like <a href="https://github.com/geekan/MetaGPT" class="highlight-link">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm" class="highlight-link">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin" class="highlight-link">OpenDevin</a>.
+                        <strong>I am active in open-sourced communities like <a href="https://github.com/geekan/MetaGPT" class="highlight-link">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm" class="highlight-link">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin" class="highlight-link">OpenDevin</a>.
                     </p>    
                     <p>
                          <strong>Before joining KAUST</strong>, I've worked as an engineer, researcher (or intern) at 
@@ -1457,18 +2167,18 @@
     </div>
 </div>
 
-<!-- 品牌展示部分 - 单独的部分 -->
-<div class="brands-section" style="background-color: #FEFBF3;">
-    <div class="brands-container">
-        <img src="images/kaust.png" alt="KAUST" class="brand-item" style="height: 45px;">
-        <img src="images/Meta-Logo.png" alt="Meta" class="brand-item" style="height: 55px;">
-        <img src="images/microsoft_logo.png" alt="Microsoft" class="brand-item" style="height: 125px;">
-        <img src="images/alibaba_logo.png" alt="Alibaba" class="brand-item" style="height: 85px;">
-        <img src="images/iiai_logo.png" alt="IIAI" class="brand-item" style="height: 42px;">
+ <!-- 品牌展示部分 - 单独的部分 -->
+<div style="width: 100%; background-color: var(--bg-light); padding: 35px 0; margin: 20px 0; border-top: 1px solid rgba(0,0,0,0.03); border-bottom: 1px solid rgba(0,0,0,0.03); display: flex; justify-content: center; overflow: hidden;">
+    <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 30px; margin: 0 auto; padding: 0 20px; background-color: transparent; width: 100%; max-width: 1100px;">
+        <img src="images/kaust.png" alt="KAUST" style="height: 45px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
+        <img src="images/Meta-Logo.png" alt="Meta" style="height: 55px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
+        <img src="images/microsoft_logo.png" alt="Microsoft" style="height: 130px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
+        <img src="images/alibaba_logo.png" alt="Alibaba" style="height: 119px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
+        <img src="images/iiai_logo.png" alt="IIAI" style="height: 49.5px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
     </div>
 </div>
 
-<div id="publication" style="background-color: #FEFBF3;">
+<div id="publication" style="background-color: #FEFBF3; width: 100%; margin: 0; padding: 0;">
     <div class="container">
         <h2 class="title" style="font-size: 30px;">Selected Publications       
             <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">
@@ -1480,13 +2190,13 @@
 
         <div class="row work-block">
             <div class="project col-xs-3" style="text-align: center;">
-                <img src="images/aaaj.png" alt="Agent-as-a-Judge Image" style="width: 100%; height: auto;">
+                <img src="images/aaaj.png" alt="Agent-as-a-Judge Image" style="width: 100%; height: auto; max-width: 180px;">
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
                     <span class="project-name"><strong>Agent-as-a-Judge: Evaluate Agents with Agents</strong></span>
                     <br>
-                    <span class="authors"><strong>Mingchen Zhuge</strong>, Changsheng Zhao, Dylan Ashley, Wenyi Wang, Dmitrii Khizbullin, Yunyang Xiong, Zechun Liu, Ernie Chang, Raghuraman Krishnamoorthi, Yuandong Tian, Yangyang Shi, Vikas Chandra, Jürgen Schmidhuber</span>
+                    <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge</strong>, Changsheng Zhao, Dylan Ashley, Wenyi Wang, Dmitrii Khizbullin, Yunyang Xiong, Zechun Liu, Ernie Chang, Raghuraman Krishnamoorthi, Yuandong Tian, Yangyang Shi, Vikas Chandra, Jürgen Schmidhuber</span>
                     <br>
                     <span class="publisher"><strong>ICML 2025</strong></span>
                     <br>
@@ -1510,13 +2220,13 @@
 
         <div class="row work-block">
             <div class="project col-xs-3" style="text-align: center;">
-                <img src="images/opendevin.jpeg" alt="Image Description" style="width: 100%; height: auto;">
+                <img src="images/opendevin.jpeg" alt="Image Description" style="width: 100%; height: auto; max-width: 180px;">
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
                     <span class="project-name"><strong>OpenHands: An Open Platform for AI Software Developers as Generalist Agents</strong></span>
                     <br>
-                    <span class="authors">OpenHands Open-sourced Community (Lead General Agent Part)</span>
+                    <span class="authors" style="color: #666666;">OpenHands Open-sourced Community (Lead General Agent Part)</span>
                     <br>
                     <span class="publisher"><strong>ICLR 2025</strong></span>
                     <br>
@@ -1537,13 +2247,13 @@
         
         <div class="row work-block">
             <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/gptswarm.png" alt="Image Description" style="width: 100%; height: auto;">
+                <img src="papers/gptswarm.png" alt="Image Description" style="width: 100%; height: auto; max-width: 180px;">
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
                     <span class="project-name"><strong>GPTSwarm: Language Agents as Optimizable Graphs</strong></span>
                     <br>
-                    <span class="authors"><strong>Mingchen Zhuge</strong>, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin and Jürgen Schmidhuber</span>
+                    <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge</strong>, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin and Jürgen Schmidhuber</span>
                     <br>
                     <span class="publisher"><strong>ICML 2024 <span style="color:#FF6A3D;">(Oral)</span></strong></span>
                     <br>
@@ -1567,13 +2277,13 @@
 
         <div class="row work-block">
             <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/metagpt.jpeg" alt="Image Description" style="width: 100%; height: auto;">
+                <img src="papers/metagpt.jpeg" alt="Image Description" style="width: 100%; height: auto; max-width: 180px;">
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
                     <span class="project-name"><strong>MetaGPT: Meta Programming For A Multi-Agent Collaborative Framework</strong></span>
                     <br>
-                    <span class="authors">Sirui Hong∗, <strong>Mingchen Zhuge∗</strong>, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka Shing Yau, Zijuan Lin,
+                    <span class="authors" style="color: #666666;">Sirui Hong∗, <strong>Mingchen Zhuge∗</strong>, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka Shing Yau, Zijuan Lin,
                         Liyang Zhou, Chenyu Ran, Lingfeng Xiao, Chenglin Wu†, Jürgen Schmidhuber</span>
                     <br>
                     <span class="publisher"><strong>ICLR 2024  <span style="color:#FF6A3D;">(Oral)</span></strong></span>
@@ -1594,13 +2304,13 @@
 
         <div class="row work-block">
             <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/nlsom.png" alt="Image Description" style="width: 100%; height: auto;">
+                <img src="papers/nlsom.png" alt="Image Description" style="width: 100%; height: auto; max-width: 180px;">
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
                     <span class="project-name"><strong>Mindstorms in Natural Language-Based Societies of Mind</strong></span>
                     <br>
-                    <span class="authors"><strong>Mingchen Zhuge*</strong>, Haozhe Liu*, Francesco Faccio*, Dylan R. Ashley*, Róbert Csordás, Anand Gopalakrishnan, Abdullah Hamdi, Hasan Abed Al Kader Hammoud, Vincent Herrmann, Kazuki Irie, Louis Kirsch, Bing Li, Guohao Li, Shuming Liu, Jinjie Mai, Piotr Piękos, Aditya Ramesh, Imanol Schlag, Weimin Shi, Aleksandar Stanić, Wenyi Wang, Yuhui Wang, Mengmeng Xu, Deng-Ping Fan, Bernard Ghanem, Jü̈rgen Schmidhuber</span>
+                    <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge*</strong>, Haozhe Liu*, Francesco Faccio*, Dylan R. Ashley*, Róbert Csordás, Anand Gopalakrishnan, Abdullah Hamdi, Hasan Abed Al Kader Hammoud, Vincent Herrmann, Kazuki Irie, Louis Kirsch, Bing Li, Guohao Li, Shuming Liu, Jinjie Mai, Piotr Piękos, Aditya Ramesh, Imanol Schlag, Weimin Shi, Aleksandar Stanić, Wenyi Wang, Yuhui Wang, Mengmeng Xu, Deng-Ping Fan, Bernard Ghanem, Jü̈rgen Schmidhuber</span>
                     <br>
                     <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:#FF6A3D;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
                     <br> 
@@ -1625,13 +2335,13 @@
 
         <div class="row work-block">
             <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/icon.jpeg" alt="Image Description" style="width: 100%; height: auto;">
+                <img src="papers/icon.jpeg" alt="Image Description" style="width: 100%; height: auto; max-width: 180px;">
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
                     <span class="project-name"><strong>Salient Object Detection via Integrity Learning</strong></span>
                     <br>
-                    <span class="authors"><strong>Mingchen Zhuge*</strong>, Deng-Ping Fan*, Nian Liu, Dingwen Zhang, Dong Xu, Ling Shao</span>
+                    <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge*</strong>, Deng-Ping Fan*, Nian Liu, Dingwen Zhang, Dong Xu, Ling Shao</span>
                     <br>
                     <span class="publisher"><strong>TPAMI 2022</strong></span>
                     <br>
@@ -1653,13 +2363,13 @@
 
         <div class="row work-block">
             <div class="project col-xs-3" style="text-align: center;">
-                <img src="papers/kaleido-bert.jpeg" alt="Image Description" style="width: 100%; height: auto;">
+                <img src="papers/kaleido-bert.jpeg" alt="Image Description" style="width: 100%; height: auto; max-width: 180px;">
             </div>
             <div class="col-xs-9">
                 <div class="project-title">
                     <span class="project-name"><strong>Kaleido-BERT: Vision-Language Pre-training on Fashion Domain</strong></span>
                     <br>
-                    <span class="authors"><strong>Mingchen Zhuge*</strong>, Dehong Gao*, Deng-Ping Fan†, Linbo Jin, Ben Chen, Haoming Zhou, Minghui Qiu, Ling Shao</span>
+                    <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge*</strong>, Dehong Gao*, Deng-Ping Fan†, Linbo Jin, Ben Chen, Haoming Zhou, Minghui Qiu, Ling Shao</span>
                     <br>
                     <span class="publisher"><strong>CVPR 2021</strong></span>
                     <br>
@@ -1683,15 +2393,15 @@
 </div>
 
 
-<div id="recent-works" style="margin-top: 40px;">
+<div id="recent-works" style="margin: 0; padding: 0; width: 100%; background-color: #FEFBF3;">
 
-    <div id="experience" style="margin-bottom: 40px;">
+    <div id="experience" style="margin: 0; padding: 20px 0; width: 100%; background-color: #FEFBF3;">
         <div class="container">
             <h2 class="experience" style="font-size: 28px; margin-bottom: 30px;">Experience</h2>
             
-            <div class="experience-carousel" style="margin-top: 25px;">
+            <div class="experience-carousel" style="margin: 0; padding: 20px 0; width: 100%;">
                 <!-- Meta Card -->
-                <div class="experience-card" style="margin-bottom: 25px;">
+                <div class="experience-card" style="margin-bottom: 25px; background-color: #FFFFFF; height: 450px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/Meta-Logo.png" alt="Meta Logo" class="company-logo meta-logo" style="max-height: 70px;">
@@ -1707,7 +2417,7 @@
                 </div>
                 
                 <!-- KAUST Card -->
-                <div class="experience-card">
+                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/kaust.png" alt="KAUST Logo" class="company-logo kaust-logo" style="max-height: 65px;">
@@ -1722,7 +2432,7 @@
                 </div>
                 
                 <!-- Microsoft Card -->
-                <div class="experience-card">
+                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/microsoft_logo.png" alt="Microsoft Logo" class="company-logo microsoft-logo" style="max-height: 155px;">
@@ -1737,7 +2447,7 @@
                 </div>
                 
                 <!-- SUSTech Card -->
-                <div class="experience-card">
+                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/sustech_logo.png" alt="SUSTech Logo" class="company-logo sustech-logo" style="max-height: 70px;">
@@ -1752,7 +2462,7 @@
                 </div>
                 
                 <!-- IIAI Card -->
-                <div class="experience-card">
+                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/iiai_logo.png" alt="IIAI Logo" class="company-logo iiai-logo" style="max-height: 65px;">
@@ -1768,7 +2478,7 @@
                 </div>
                 
                 <!-- Alibaba Card -->
-                <div class="experience-card">
+                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/alibaba_logo.png" alt="Alibaba Logo" class="company-logo alibaba-logo" style="max-height: 120px;">
@@ -1783,7 +2493,7 @@
                 </div>
                 
                 <!-- NSFocus Card -->
-                <div class="experience-card">
+                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
                     <div class="shine-effect"></div>
                     <div class="card-logo">
                         <img src="images/nsfocus_logo.png" alt="NSFocus Logo" class="company-logo nsfocus-logo" style="max-height: 65px;">
@@ -1817,9 +2527,9 @@
     <br>
 
 
-    <div id="talk" class="content-section">
+    <div id="talk" class="content-section" style="margin: 0; padding: 20px 0; width: 100%; background-color: #FEFBF3;">
         <div class="container">
-            <h2><strong>Selected Media</strong></h2>
+
 
             
             <div class="media-columns">
@@ -1828,7 +2538,7 @@
                     
                     <div class="article-card">
                         <div class="article-source">MIT Technology Review</div>
-                        <div class="article-title">“现代AI之父”Jürgen Schmidhuber团队迎新成果：用图结构构建智能体，助力研发AI智能体</div>
+                        <div class="article-title">"现代AI之父"Jürgen Schmidhuber团队迎新成果：用图结构构建智能体，助力研发AI智能体</div>
                         <div class="article-date">March 15, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ" class="article-link">Read Article</a>
                     </div>
@@ -1885,7 +2595,7 @@
         </div>
     </div>
 
-    <div id="award" class="content-section">
+    <div id="award" class="content-section" style="margin: 0; padding: 20px 0; width: 100%; background-color: #FEFBF3;">
         <div class="container">
             <h2>Selected Awards</h2>
 
@@ -1933,17 +2643,17 @@
         </div>
     </div>
    
-    <footer class="footer" style="background-color: #FEFBF3; animation: none; padding: 20px 0; border-top: 1px solid rgba(0,0,0,0.1);">
+    <footer class="footer" style="background-color: #FEFBF3; animation: none; padding: 20px 0; border-top: 1px solid rgba(0,0,0,0.1); width: 100%; margin: 0;">
         <div class="container">
-            <div class="footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                <div class="footer-copyright" style="font-size: 14px; color: #666;">
+            <div class="footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div class="footer-copyright" style="font-size: 14px; color: #666; text-align: center;">
                     © 2024 Mingchen Zhuge
                     <a href='https://www.counter12.com'>
                         <img src='https://www.counter12.com/img-2y15x83ZD5292yC3-77.gif' 
                              border='0' alt='counter' style="vertical-align: middle; margin-left: 10px;">
                     </a>
                 </div>
-                <div class="footer-links" style="display: flex; gap: 20px; align-items: center;">
+                <div class="footer-links" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: center;">
                     <a href="https://github.com/mczhuge" target="_blank" style="display: flex; align-items: center; gap: 5px; text-decoration: none; color: #666; transition: color 0.2s;">
                         <img src="images/GitHub-512.webp" alt="GitHub" style="width: 20px; height: 20px;">GitHub
                     </a>
@@ -1970,17 +2680,18 @@
             const dotsContainer = document.querySelector('.indicator-dots');
             const cards = document.querySelectorAll('.experience-card');
             
-            // Calculate visible cards based on container width
+            // Calculate visible cards based on fixed container width
             const getVisibleCount = () => {
                 const containerWidth = carousel.offsetWidth;
-                const cardWidth = 310; // Card width + margin
+                const cardWidth = 280 + 20; // Card width + gap
                 return Math.floor(containerWidth / cardWidth);
             };
             
             // Create indicator dots
             const createDots = () => {
                 dotsContainer.innerHTML = '';
-                const totalDots = cards.length - getVisibleCount() + 1;
+                const visibleCount = getVisibleCount();
+                const totalDots = Math.max(1, cards.length - visibleCount + 1);
                 
                 for (let i = 0; i < totalDots; i++) {
                     const dot = document.createElement('div');
@@ -2001,7 +2712,7 @@
             
             // Scroll to specific card
             const scrollToCard = (index) => {
-                const cardWidth = cards[0].offsetWidth + 20; // Including margin
+                const cardWidth = 280 + 20; // Card width + gap
                 carousel.scrollTo({
                     left: index * cardWidth,
                     behavior: 'smooth'
@@ -2012,7 +2723,7 @@
             
             // Handle next and previous buttons
             let currentIndex = 0;
-            const maxIndex = cards.length - getVisibleCount();
+            let maxIndex = Math.max(0, cards.length - getVisibleCount());
             
             prevBtn.addEventListener('click', () => {
                 if (currentIndex > 0) {
@@ -2022,6 +2733,7 @@
             });
             
             nextBtn.addEventListener('click', () => {
+                maxIndex = Math.max(0, cards.length - getVisibleCount());
                 if (currentIndex < maxIndex) {
                     currentIndex++;
                     scrollToCard(currentIndex);
@@ -2033,6 +2745,7 @@
             
             const startAutoScroll = () => {
                 autoScrollInterval = setInterval(() => {
+                    maxIndex = Math.max(0, cards.length - getVisibleCount());
                     if (currentIndex < maxIndex) {
                         currentIndex++;
                     } else {
@@ -2056,27 +2769,28 @@
             
             // Detect scroll to update active dot
             carousel.addEventListener('scroll', () => {
-                const cardWidth = cards[0].offsetWidth + 20;
+                const cardWidth = 280 + 20; // Card width + gap
                 const scrollPos = carousel.scrollLeft;
                 const newIndex = Math.round(scrollPos / cardWidth);
                 
-                if (newIndex !== currentIndex) {
+                if (newIndex !== currentIndex && newIndex <= maxIndex) {
                     currentIndex = newIndex;
                     updateDots(currentIndex);
                 }
             });
-            
-            // Initialize dots
-            createDots();
             
             // Handle window resize
             window.addEventListener('resize', () => {
                 // Recalculate visible count and update dots
                 createDots();
                 // Reset to first card on resize
+                maxIndex = Math.max(0, cards.length - getVisibleCount());
                 currentIndex = 0;
                 scrollToCard(0);
             });
+            
+            // Initialize dots
+            createDots();
             
             // Start auto-scroll on page load
             startAutoScroll();
