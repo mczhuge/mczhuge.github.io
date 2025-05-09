@@ -14,654 +14,1070 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-color: #01579b; /* Deeper Blue */
-            --secondary-color: #0288d1; /* Medium Blue */
-            --accent-color: #4fc3f7; /* Light Blue */
-            --subtle-accent: #b3e5fc; /* Very Light Blue / Subtle Teal */
-            --tech-blue: #3498db; /* Brighter Blue for tech feel */
-            --tech-cyan: #1abc9c; /* Cyan for accents */
-            --dark-bg-start: #2c3e50; /* Dark gradient start */
-            --dark-bg-end: #1a252f;   /* Dark gradient end */
-            --light-text-on-dark: #ecf0f1; /* Light grey text */
-            --medium-text-on-dark: #bdc3c7; /* Medium grey text */
-            --subtle-text-on-dark: #95a5a6; /* Subtle grey text */
+            --primary-color: #6C49B8; /* Claude的主紫色 */
+            --secondary-color: #5437A5; /* 深紫色 */
+            --accent-color: #8B6CC9; /* 浅紫色 */
+            --subtle-accent: #F4F0FF; /* 极浅紫色 */
+            --tech-blue: #5B6EFF; /* 保留蓝色变体 */
+            --tech-cyan: #00C2CE; /* 保留青色 */
+            --dark-bg-start: #1A1A1A; /* 深色渐变开始 */
+            --dark-bg-end: #0F0F0F;   /* 深色渐变结束 */
+            --light-text-on-dark: #FFFFFF; /* 纯白文本 */
+            --medium-text-on-dark: #F2F2F2; /* 灰白文本 */
+            --subtle-text-on-dark: #E0E0E0; /* 浅灰文本 */
 
-            --text-color: #37474f; /* Dark Grey-Blue */
-            --light-text: #78909c; /* Lighter Grey-Blue */
-            --bg-light: #f8f9fa;
-            --bg-white: #ffffff;
-            --border-color: #e0e0e0;
+            --text-color: #1D1B22; /* Anthropic的近黑文本 */
+            --light-text: #6E6E80; /* 浅灰文本 */
+            --bg-light: #F9F8FA; /* Anthropic的背景色 */
+            --bg-white: #FFFFFF;
+            --border-color: #EEEDF2; /* 浅紫灰边框 */
+            --button-bg: #6C49B8; /* 紫色按钮背景 */
+            --button-text: #FFFFFF; /* 白色按钮文本 */
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--text-color);
             background-color: var(--bg-light);
             line-height: 1.6;
-            padding-top: 40px; /* Added padding for removed navbar */
+            padding-top: 40px;
+            letter-spacing: -0.015em; /* Slightly tighter letter spacing like Anthropic */
+            font-weight: 400;
         }
 
-        /* Navbar Styling */
+        /* Navbar Styling - more like Anthropic's clean minimal navbar */
         .navbar-fixed-top {
-            background: var(--bg-white); /* Solid white background */
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            background: var(--bg-light); /* Match page background */
+            border-bottom: none;
+            box-shadow: none;
+            padding: 15px 0;
         }
         .navbar-fixed-top .navbar-nav > li > a {
-            color: var(--primary-color); /* Dark blue links */
+            color: var(--text-color); /* Dark links */
             font-weight: 500; /* Medium weight */
-            padding-top: 18px;
-            padding-bottom: 18px;
+            padding: 15px;
             transition: color 0.3s ease, background-color 0.3s ease;
+            font-size: 16px;
         }
         .navbar-fixed-top .navbar-nav > li > a:hover,
         .navbar-fixed-top .navbar-nav > li > a:focus {
-            color: var(--accent-color); /* Lighter blue on hover */
+            color: var(--primary-color); /* Purple on hover */
             background-color: transparent; /* No background color change */
         }
         .navbar-fixed-top .navbar-text {
-             color: var(--primary-color) !important; /* Dark Blue for METAUTO.ai */
-             font-weight: 700; /* Bold */
-             font-size: 18px; /* Slightly larger */
-             padding-top: 18px; /* Align vertically */
-             padding-bottom: 18px;
+            color: var(--text-color) !important; /* Dark text */
+            font-weight: 600; /* Semibold */
+            font-size: 18px; /* Slightly larger */
+            padding: 15px; /* Align vertically */
         }
 
         /* Section Container */
         .gray-container { /* Renaming might be good later, but keep for now */
-            background-color: var(--bg-white);
-            padding: 40px; /* More padding */
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
-            margin-top: 30px;
-            border: 1px solid var(--border-color); /* Subtle border */
+            background-color: var(--bg-light);
+            padding: 20px 0;
+            border: none;
         }
 
-        /* About section - Techy Style Override */
-         #about.gray-container {
-             /* Star Layer 1 (Small, Dense) */
-             background-image: radial-gradient(1px 1px at 20px 30px, white, rgba(255,255,255,0)),
-                               radial-gradient(1px 1px at 40px 70px, white, rgba(255,255,255,0)),
-                               radial-gradient(1px 1px at 50px 160px, white, rgba(255,255,255,0)),
-                               radial-gradient(1.5px 1.5px at 90px 40px, white, rgba(255,255,255,0)),
-                               radial-gradient(1px 1px at 130px 80px, white, rgba(255,255,255,0)),
-                               radial-gradient(1.5px 1.5px at 160px 120px, white, rgba(255,255,255,0)),
-             /* Star Layer 2 (Medium, Sparse) */
-                               radial-gradient(2px 2px at 25% 20%, white, rgba(255,255,255,0)),
-                               radial-gradient(2.5px 2.5px at 55% 35%, white, rgba(255,255,255,0)),
-                               radial-gradient(2px 2px at 70% 80%, white, rgba(255,255,255,0)),
-                               radial-gradient(2.5px 2.5px at 90% 60%, white, rgba(255,255,255,0)),
-             /* Base Dark Gradient */
-                               linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
-             background-repeat: repeat;
-             background-size: 200px 200px, /* Layer 1 tile size */
-                            350px 350px, /* Layer 2 tile size */
-                            auto; /* Gradient size */
-             color: var(--medium-text-on-dark); /* Default text color on dark */
-             border: 1px solid var(--dark-bg-start); /* Border matching gradient */
-             margin-top: 0; /* Remove top margin if it's the first element */
-             position: relative; /* Needed for potential future pseudo-elements */
-             overflow: hidden; /* Hide anything straying outside */
-             animation: move-stars 150s linear infinite; /* Slow star movement */
-         }
+        /* About section - Dark Style Override more like Anthropic */
+        #about.gray-container {
+            background-color: var(--bg-light);
+            background-image: none; /* Remove stars background */
+            color: var(--text-color); /* Dark text */
+            border: none; /* No border */
+            margin-top: 0; /* Remove top margin */
+            position: relative; /* For potential decorations */
+            overflow: visible; /* Allow overflow */
+            animation: none; /* Remove animation */
+            padding-top: 60px; /* More top padding */
+            padding-bottom: 60px; /* More bottom padding */
+        }
 
-         #about h2 { /* Main name heading in About */
-             color: var(--bg-white); /* White heading */
-             border-bottom: 2px solid var(--tech-blue); /* Bright blue underline */
-             padding-bottom: 15px;
-             margin-bottom: 30px;
-         }
-         #about .black-text { /* The name itself */
-             color: var(--bg-white) !important;
-             font-weight: 700;
-         }
-         /* Social/Contact Icons in About H2 */
-         #about h2 a img {
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
-            border-radius: 4px;
-            padding: 3px;
+        /* Hero section styling */
+        #about h2 { /* Main name heading in About */
+            color: var(--text-color); /* Dark heading */
+            border-bottom: none; /* No underline */
+            padding-bottom: 0;
+            margin-bottom: 30px;
+            font-weight: 700; /* Bold */
+            letter-spacing: -0.03em; /* Tighter heading like Anthropic */
+            font-size: 48px; /* Larger heading */
+            line-height: 1.2;
+        }
+        #about .black-text { /* The name itself */
+            color: var(--text-color) !important;
+            font-weight: 700;
+        }
+        /* Social/Contact Icons in About H2 */
+        #about h2 a img {
+            background-color: transparent; /* No background */
+            border-radius: 6px;
+            padding: 0; /* No padding */
             margin-left: 6px;
-            vertical-align: middle; /* Align icons better */
-            transition: background-color 0.3s ease;
-         }
-          #about h2 a:hover img {
-            background-color: rgba(255, 255, 255, 1);
-         }
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+            opacity: 0.8;
+        }
+        #about h2 a:hover img {
+            background-color: transparent;
+            transform: scale(1.1);
+            opacity: 1;
+        }
 
+        #about p {
+            color: var(--text-color); /* Dark text */
+            font-weight: 400;
+            font-size: 18px; /* Larger paragraph text */
+            line-height: 1.7; /* Increased line height */
+            margin-bottom: 20px; /* More space between paragraphs */
+        }
 
-         #about p {
-             color: var(--light-text-on-dark); /* Brighter grey paragraphs */
-         }
+        #about strong { /* KAUST AI, Open-source enthusiasts etc. */
+            color: var(--text-color); /* Dark strong text */
+            font-weight: 600; /* Semibold */
+        }
 
-         #about strong { /* KAUST AI, Open-source enthusiasts etc. */
-             color: var(--bg-white); /* White strong text */
-             font-weight: 500;
-         }
+        #about a { /* Default links in About */
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+        #about a:hover {
+            color: var(--primary-color);
+            opacity: 0.8;
+            border-bottom: 1px solid var(--primary-color);
+        }
+        /* Override inline styles for specific links */
+        #about p a[style*="color:#fc5800"],
+        #about p a[style*="color:#3f00fc"] {
+            color: var(--primary-color) !important;
+        }
+        #about p a[style*="color:#fc5800"]:hover,
+        #about p a[style*="color:#3f00fc"]:hover {
+            opacity: 0.8;
+            border-bottom: 1px solid var(--primary-color);
+        }
 
-         #about a { /* Default links in About */
-             color: var(--tech-blue);
-             font-weight: 500;
-             transition: color 0.3s ease, text-shadow 0.3s ease;
-         }
-         #about a:hover {
-             color: var(--accent-color);
-             text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); /* Subtle glow on hover */
-         }
-         /* Override inline styles for specific links */
-         #about p a[style*="color:#fc5800"],
-         #about p a[style*="color:#3f00fc"] {
-            color: var(--tech-blue) !important;
-         }
-         #about p a[style*="color:#fc5800"]:hover,
-         #about p a[style*="color:#3f00fc"]:hover {
-            color: var(--accent-color) !important;
-         }
-
-
-         #about ul { /* Skills list */
-             padding-left: 0; /* Remove default indent */
-             list-style: none;
-             margin-top: 15px;
-         }
-         #about ul li {
-             margin-bottom: 12px; /* More space */
-             position: relative;
-             padding-left: 30px;
-             font-size: 1.05em; /* Slightly larger skills text */
-         }
-         #about ul li::before { /* Custom bullet */
-            content: '»'; /* Techy double arrow */
+        #about ul { /* Skills list */
+            padding-left: 0;
+            list-style: none;
+            margin-top: 25px;
+            margin-bottom: 35px;
+        }
+        #about ul li {
+            margin-bottom: 16px;
+            position: relative;
+            padding-left: 30px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        #about ul li::before { /* Custom bullet */
+            content: '•'; /* Simple bullet */
             position: absolute;
             left: 5px;
             top: 0px;
-            color: var(--tech-blue); /* Blue bullet */
+            color: var(--accent-color); /* Coral accent color */
             font-weight: bold;
             font-size: 1.5em;
             line-height: 1;
-         }
-         #about ul li strong { /* Skill keywords */
-             color: var(--tech-cyan); /* Use cyan accent for keywords */
-             font-weight: 500;
-         }
-
-         /* Image and Caption */
-        #me-img {
-            border: 3px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* More pronounced shadow on dark */
         }
-         #about .col-xs-4 div[style*="margin-top: 15px"] { /* Target image caption */
-             color: var(--subtle-text-on-dark) !important; /* Use variable */
-             font-family: 'Roboto', sans-serif !important;
-             margin-top: 20px !important; /* More space below image */
-         }
+        #about ul li strong { /* Skill keywords */
+            color: var(--text-color); /* Dark text */
+            font-weight: 600; /* Semibold */
+        }
 
-         /* Logo box */
-         #about .col-xs-8 div[style*="border"] { /* Select the logo container */
-            border: 1px solid var(--border-color) !important; /* Use standard light border color */
-            background-color: var(--bg-white) !important; /* Set background to white */
-            padding: 20px !important;
-            border-radius: 6px !important;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important; /* Add subtle shadow */
-            margin-top: 30px; /* More margin */
-         }
-         #about .col-xs-8 div[style*="border"] img {
-              filter: none !important; /* Ensure logos are not inverted */
-              opacity: 1.0 !important; /* Ensure full opacity */
-              transition: none !important; /* Remove transition */
-         }
-         #about .col-xs-8 div[style*="border"] img:hover {
-             opacity: 1.0 !important; /* Keep full opacity on hover */
-         }
+        /* Image and Caption */
+        #me-img {
+            border: none; /* No border */
+            box-shadow: none; /* No shadow */
+            border-radius: 16px; /* Rounded corners */
+        }
+        #about .col-xs-4 div[style*="margin-top: 15px"] { /* Target image caption */
+            color: var(--light-text) !important;
+            font-family: 'Inter', sans-serif !important;
+            margin-top: 20px !important;
+            font-size: 14px;
+        }
 
+        /* Logo box */
+        #about .col-xs-8 div[style*="border"] { /* Select the logo container */
+            border: none !important;
+            background-color: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            margin-top: 40px;
+        }
+        #about .col-xs-8 div[style*="border"] img {
+            filter: none !important;
+            opacity: 0.9 !important;
+            transition: opacity 0.3s ease !important;
+        }
+        #about .col-xs-8 div[style*="border"] img:hover {
+            opacity: 1.0 !important;
+        }
 
         /* General Headings (outside #about) */
         h2.title, h2.experience, h2.section_title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--subtle-accent);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-         h3.subsection_title {
-            color: var(--secondary-color);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            font-weight: 500;
+            color: var(--text-color);
             border-bottom: none;
-         }
+            padding-bottom: 0;
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            font-size: 42px;
+            line-height: 1.2;
+        }
+        h3.subsection_title {
+            color: var(--text-color);
+            margin-top: 60px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            border-bottom: none;
+            letter-spacing: -0.02em;
+            font-size: 28px;
+        }
 
         /* General Links (outside #about) */
         a {
-            color: var(--secondary-color);
-            transition: color 0.3s ease;
+            color: var(--primary-color);
+            transition: opacity 0.3s ease;
+            text-decoration: none;
         }
         a:hover, a:focus {
-            color: var(--accent-color);
+            color: var(--primary-color);
+            opacity: 0.8;
             text-decoration: none;
         }
 
-         /* Publication Highlights & Links (remain light themed) */
-         .project-title .publisher strong {
-             color: var(--primary-color);
-         }
-         .project-title span[style*="color:red"],
-         .project-title span[style*="color:#d32f2f"] {
-             color: #c62828 !important;
-             font-weight: 500;
-         }
-         .project-title .highlight-desc { /* Target the highlight description class */
-            color: var(--light-text) !important; /* Use standard light text color */
+        /* Publication Highlights & Links (remain light themed) */
+        .project-title .publisher strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        .project-title span[style*="color:red"],
+        .project-title span[style*="color:#d32f2f"] {
+            color: var(--accent-color) !important;
+            font-weight: 600;
+        }
+        .project-title .highlight-desc { /* Target the highlight description class */
+            color: var(--light-text) !important;
             font-weight: 400;
             font-style: italic;
-         }
-         .project-title .highlight-prominent { /* Override for specific highlights */
-            color: var(--tech-cyan) !important; /* Use a bright tech color */
-            font-weight: 600 !important; /* Make it bolder */
-            font-style: normal !important; /* Remove italics */
-         }
-         .project-title .links a {
-             margin-right: 8px;
-             color: var(--secondary-color);
-             font-size: 0.9em;
-         }
-          .project-title .links a:hover {
-             color: var(--accent-color);
-          }
+        }
+        .project-title .highlight-prominent { /* Override for specific highlights */
+            color: var(--accent-color) !important;
+            font-weight: 600 !important;
+            font-style: normal !important;
+        }
+        .project-title .links a {
+            margin-right: 12px;
+            color: var(--primary-color);
+            font-size: 0.95em;
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+        }
+        .project-title .links a:hover {
+            color: var(--primary-color);
+            opacity: 0.8;
+            border-bottom: 1px solid var(--primary-color);
+        }
 
         /* Badges (remain light themed) */
         .badge {
-             font-size: 12px !important;
-             padding: 6px 12px;
-             border-radius: 12px;
-             font-weight: 500;
-             border: none;
-             color: var(--primary-color) !important;
-             background-color: var(--subtle-accent) !important;
-         }
+            font-size: 14px !important;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            border: none;
+            color: var(--button-text) !important;
+            background-color: var(--button-bg) !important;
+        }
 
+        /* Button styling like Anthropic */
+        .btn {
+            border-radius: 4px;
+            font-weight: 500;
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+            text-transform: none;
+            letter-spacing: -0.01em;
+        }
+        .btn-primary {
+            background-color: var(--button-bg);
+            border-color: var(--button-bg);
+            color: var(--button-text);
+        }
+        .btn-primary:hover {
+            background-color: #333;
+            border-color: #333;
+        }
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--button-bg);
+            color: var(--button-bg);
+        }
+        .btn-outline:hover {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+        }
 
-         /* Footer */
-         .footer {
-             background-color: var(--text-color);
-             color: var(--bg-light);
-             padding: 25px 0;
-             margin-top: 50px;
-             text-align: center;
-         }
-         .footer a {
-             color: var(--accent-color);
-         }
-         .footer a:hover {
-             color: var(--bg-white);
-         }
+        /* Footer */
+        .footer {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            padding: 40px 0;
+            margin-top: 80px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer-copyright {
+            font-size: 14px;
+            color: var(--light-text);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            color: var(--primary-color);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
 
-         /* General Adjustments (work blocks in light sections) */
-         .work-block {
-             margin-bottom: 25px;
-             padding-bottom: 25px;
-             border-bottom: 1px dashed var(--border-color);
-         }
-         .work-block:last-child {
-             border-bottom: none;
-             margin-bottom: 0;
-             padding-bottom: 0;
-         }
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
 
-         /* Social Icons under Profile Picture */
-         .social-icons {
-             text-align: center; /* Center the icons */
-             margin-top: 20px; /* Space above the icons */
-         }
-         .social-icons a {
-             display: inline-block; /* Allow margin/padding */
-             margin: 0 8px; /* Space between icons */
-             text-decoration: none;
-         }
-         .social-icons img {
-             height: 30px; /* Consistent icon height */
-             width: auto; /* Maintain aspect ratio */
-             vertical-align: middle;
-             border-radius: 5px; /* Slightly rounded corners */
-             background-color: rgba(255, 255, 255, 0.9); /* Match original style */
-             padding: 4px; /* Padding around icon */
-             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-         }
-         .social-icons img:hover {
-             transform: scale(1.1); /* Slight zoom effect */
-             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-             background-color: rgba(255, 255, 255, 1);
-         }
+        /* General Adjustments (work blocks in light sections) */
+        .work-block {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .work-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
 
-         /* Keyframes for star movement */
-         @keyframes move-stars {
-             from { background-position: 0 0, 0 0, 0 0; } /* Start positions */
-             to { background-position: -10000px 5000px, -5000px 2500px, 0 0; } /* End positions (large values for slow continuous move) */
-         }
+        /* Social Icons under Profile Picture */
+        .social-icons {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .social-icons img {
+            height: 30px;
+            width: auto;
+            vertical-align: middle;
+            border-radius: 8px;
+            background-color: transparent;
+            padding: 0;
+            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.3s ease;
+            opacity: 0.8;
+            filter: grayscale(100%);
+        }
+        .social-icons img:hover {
+            transform: scale(1.1);
+            box-shadow: none;
+            background-color: transparent;
+            opacity: 1;
+            filter: grayscale(0%);
+        }
 
-         /* Experience Carousel Styling */
-         .experience-carousel {
-             display: flex;
-             overflow-x: hidden;
-             scroll-behavior: smooth;
-             position: relative;
-             margin: 30px 0;
-             padding: 20px 0;
-             gap: 20px;
-             -ms-overflow-style: none;  /* IE and Edge */
-             scrollbar-width: none;  /* Firefox */
-         }
-         
-         .experience-carousel::-webkit-scrollbar {
-             display: none; /* Chrome, Safari, Opera */
-         }
-         
-         .experience-card {
-             min-width: 300px;
-             width: 300px;
-             background-color: var(--bg-white);
-             border-radius: 12px; /* 增加圆角 */
-             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* 增强阴影效果 */
-             overflow: hidden;
-             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 使用更平滑的动画曲线 */
-             margin: 10px 5px;
-             border: 1px solid var(--border-color);
-             flex-shrink: 0;
-             position: relative; /* 添加相对定位用于伪元素 */
-             z-index: 1; /* 确保内容在伪元素之上 */
-             transform-style: preserve-3d; /* 开启3D效果 */
-             perspective: 1000px; /* 3D透视效果 */
-         }
-         
-         /* 卡片背景纹理 */
-         .experience-card::after {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             background-image: 
-                 radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.02) 0%, transparent 10%),
-                 radial-gradient(circle at 80% 30%, rgba(26, 188, 156, 0.02) 0%, transparent 15%),
-                 radial-gradient(circle at 40% 70%, rgba(241, 196, 15, 0.02) 0%, transparent 12%),
-                 radial-gradient(circle at 70% 90%, rgba(231, 76, 60, 0.02) 0%, transparent 10%);
-             opacity: 0;
-             transition: opacity 0.6s ease;
-             z-index: -1;
-             pointer-events: none;
-         }
-         
-         .experience-card::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 5px;
-             background: linear-gradient(90deg, var(--tech-blue), var(--tech-cyan), var(--tech-blue)); /* 顶部彩色条纹 */
-             background-size: 200% 100%;
-             z-index: 2;
-             transform: scaleX(0);
-             transform-origin: left;
-             transition: transform 0.4s ease;
-             animation: gradient-shift 3s linear infinite;
-         }
-         
-         /* 闪光效果 */
-         .experience-card .shine-effect {
-             position: absolute;
-             top: -50%;
-             left: -50%;
-             width: 200%;
-             height: 200%;
-             background: linear-gradient(
-                 to right,
-                 rgba(255, 255, 255, 0) 0%,
-                 rgba(255, 255, 255, 0.1) 50%,
-                 rgba(255, 255, 255, 0) 100%
-             );
-             transform: rotate(30deg);
-             opacity: 0;
-             z-index: 3;
-             pointer-events: none;
-             transition: opacity 0.15s ease;
-         }
-         
-         .experience-card:hover {
-             transform: translateY(-15px) scale(1.02) rotateY(2deg); /* 添加Y轴旋转 */
-             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(52, 152, 219, 0.1), 0 0 20px rgba(26, 188, 156, 0.05); /* 多层阴影效果 */
-         }
-         
-         .experience-card:hover::before {
-             transform: scaleX(1); /* 悬停时显示顶部彩色条纹 */
-         }
-         
-         .experience-card:hover::after {
-             opacity: 1; /* 显示背景纹理 */
-         }
-         
-         .experience-card:hover .shine-effect {
-             opacity: 1;
-             animation: shine 1.5s ease-in-out; /* 应用闪光动画 */
-         }
-         
-         @keyframes shine {
-             0% { transform: rotate(30deg) translateX(-100%); }
-             100% { transform: rotate(30deg) translateX(100%); }
-         }
-         
-         @keyframes gradient-shift {
-             0% { background-position: 0% 50%; }
-             50% { background-position: 100% 50%; }
-             100% { background-position: 0% 50%; }
-         }
-         
-         .card-logo {
-             height: 120px;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             background-color: #ffffff; /* 修改为纯白色 */
-             border-bottom: 1px solid var(--border-color);
-             padding: 15px;
-             position: relative;
-             overflow: hidden;
-             transition: all 0.3s ease;
-         }
-         
-         .card-logo::after {
-             content: '';
-             position: absolute;
-             width: 200%;
-             height: 200%;
-             background: radial-gradient(circle, rgba(52, 152, 219, 0.07) 0%, rgba(255, 255, 255, 0) 70%);
-             top: -50%;
-             left: -50%;
-             opacity: 0;
-             transition: opacity 0.5s ease, transform 1s ease;
-         }
-         
-         .experience-card:hover .card-logo::after {
-             opacity: 1;
-             transform: scale(1.1) rotate(5deg);
-         }
-         
-         .card-logo img {
-             max-width: 80%;
-             max-height: 80px;
-             object-fit: contain;
-             width: auto;
-             height: auto;
-             margin: 0 auto;
-             display: block;
-             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-             transform-origin: center center;
-         }
-         
-         .card-logo:hover img {
-             transform: scale(1.08) rotate(2deg); /* 添加轻微旋转效果 */
-             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15)) brightness(1.03); /* 增强阴影和亮度 */
-         }
-         
-         .card-content {
-             padding: 25px 20px; /* 增加内边距 */
-             background: linear-gradient(180deg, #ffffff, #f9f9f9); /* 添加微妙渐变 */
-             position: relative;
-             z-index: 1;
-             transition: transform 0.3s ease;
-         }
-         
-         .experience-card:hover .card-content {
-             transform: translateZ(10px); /* 3D效果 */
-         }
-         
-         .card-content h3 {
-             margin-top: 5px;
-             font-size: 18px;
-             color: var(--primary-color);
-             margin-bottom: 15px;
-             position: relative;
-             padding-bottom: 10px;
-             transition: all 0.3s ease;
-         }
-         
-         .card-content h3::after {
-             content: "";
-             position: absolute;
-             bottom: 0;
-             left: 0;
-             width: 40px;
-             height: 2px;
-             background: linear-gradient(90deg, var(--tech-blue), var(--tech-cyan));
-             transition: width 0.4s ease, opacity 0.4s ease;
-             opacity: 0.8;
-         }
-         
-         .experience-card:hover .card-content h3 {
-             color: var(--tech-blue);
-             transform: translateX(3px); /* 文字轻微移动 */
-         }
-         
-         .experience-card:hover .card-content h3::after {
-             width: 100px; /* 悬停时扩展下划线 */
-             opacity: 1;
-         }
-         
-         .card-content p {
-             margin-bottom: 8px;
-             font-size: 14px;
-             color: var(--text-color);
-             transform: translateY(0);
-             transition: transform 0.3s ease, opacity 0.3s ease;
-             opacity: 0.9;
-             position: relative;
-         }
-         
-         .card-content p strong {
-             position: relative;
-             z-index: 1;
-             transition: color 0.3s ease;
-         }
-         
-         .card-content p strong::before {
-             content: "";
-             position: absolute;
-             bottom: 0;
-             left: 0;
-             width: 0;
-             height: 30%;
-             background-color: rgba(26, 188, 156, 0.1);
-             z-index: -1;
-             transition: width 0.3s ease;
-         }
-         
-         .experience-card:hover .card-content p strong::before {
-             width: 100%;
-         }
-         
-         .experience-card:hover .card-content p {
-             transform: translateY(-2px);
-             opacity: 1;
-         }
-         
-         .experience-card:hover .card-content p:nth-child(1) { transition-delay: 0.05s; }
-         .experience-card:hover .card-content p:nth-child(2) { transition-delay: 0.1s; }
-         .experience-card:hover .card-content p:nth-child(3) { transition-delay: 0.15s; }
-         .experience-card:hover .card-content p:nth-child(4) { transition-delay: 0.2s; }
-         
-         /* Carousel Controls */
-         .carousel-controls {
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             margin-top: 20px;
-         }
-         
-         .prev-btn, .next-btn {
-             display: inline-block;
-             width: 40px;
-             height: 40px;
-             background-color: var(--primary-color);
-             color: white;
-             border-radius: 50%;
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             cursor: pointer;
-             font-size: 20px;
-             margin: 0 10px;
-             transition: background-color 0.3s ease, transform 0.3s ease;
-         }
-         
-         .prev-btn:hover, .next-btn:hover {
-             background-color: var(--secondary-color);
-             transform: scale(1.1);
-         }
-         
-         .indicator-dots {
-             display: flex;
-             gap: 8px;
-             margin: 0 15px;
-         }
-         
-         .dot {
-             width: 10px;
-             height: 10px;
-             border-radius: 50%;
-             background-color: var(--border-color);
-             cursor: pointer;
-             transition: background-color 0.3s ease, transform 0.3s ease;
-         }
-         
-         .dot.active {
-             background-color: var(--primary-color);
-             transform: scale(1.2);
-         }
-         
-         /* Animation for cards */
-         @keyframes fadeIn {
-             from { opacity: 0; transform: translateY(20px); }
-             to { opacity: 1; transform: translateY(0); }
-         }
-         
-         .experience-card {
-             animation: fadeIn 0.5s ease forwards;
-             opacity: 0;
-         }
+        /* Experience Carousel Styling */
+        .experience-carousel {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+            margin: 40px 0;
+            padding: 20px 0;
+            gap: 25px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .experience-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .experience-card {
+            min-width: 300px;
+            width: 300px;
+            background-color: var(--bg-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin: 10px 5px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .experience-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            background-size: 100% 100%;
+            z-index: 2;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .experience-card .shine-effect {
+            display: none; /* Remove shine effect */
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card-logo {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .card-logo::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: none; /* Remove radial gradient */
+            top: -50%;
+            left: -50%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .card-logo img {
+            max-width: 80%;
+            max-height: 80px;
+            object-fit: contain;
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.3s ease;
+            filter: none; /* Remove shadow */
+        }
+        
+        .card-logo:hover img {
+            transform: scale(1.05);
+            filter: none; /* Remove shadow */
+        }
+        
+        .card-content {
+            padding: 25px 20px;
+            background: #ffffff;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-content h3 {
+            margin-top: 5px;
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        
+        .card-content h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.4s ease, opacity 0.4s ease;
+            opacity: 0.8;
+        }
+        
+        .experience-card:hover .card-content h3 {
+            color: var(--text-color);
+            transform: translateX(0); /* No movement */
+        }
+        
+        .experience-card:hover .card-content h3::after {
+            width: 70px;
+            opacity: 1;
+        }
+        
+        .card-content p {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-color);
+            transform: translateY(0);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        .card-content p strong {
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .card-content p strong::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0; /* Remove background highlight */
+            z-index: -1;
+            transition: width 0.3s ease;
+        }
+        
+        /* Carousel Controls */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .prev-btn, .next-btn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--button-bg);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .prev-btn:hover, .next-btn:hover {
+            background-color: #333;
+            transform: scale(1.1);
+        }
+        
+        .indicator-dots {
+            display: flex;
+            gap: 8px;
+            margin: 0 15px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: var(--button-bg);
+            transform: scale(1.2);
+        }
+        
+        /* Animation for cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .experience-card {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
 
-         .experience-card:nth-child(1) { animation-delay: 0.1s; }
-         .experience-card:nth-child(2) { animation-delay: 0.2s; }
-         .experience-card:nth-child(3) { animation-delay: 0.3s; }
-         .experience-card:nth-child(4) { animation-delay: 0.4s; }
-         .experience-card:nth-child(5) { animation-delay: 0.5s; }
-         .experience-card:nth-child(6) { animation-delay: 0.6s; }
-         .experience-card:nth-child(7) { animation-delay: 0.7s; }
+        .experience-card:nth-child(1) { animation-delay: 0.1s; }
+        .experience-card:nth-child(2) { animation-delay: 0.2s; }
+        .experience-card:nth-child(3) { animation-delay: 0.3s; }
+        .experience-card:nth-child(4) { animation-delay: 0.4s; }
+        .experience-card:nth-child(5) { animation-delay: 0.5s; }
+        .experience-card:nth-child(6) { animation-delay: 0.6s; }
+        .experience-card:nth-child(7) { animation-delay: 0.7s; }
 
+        /* Hero section with decorative element */
+        .hero-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            right: 0;
+            top: 80px;
+            width: 300px;
+            height: 300px;
+            background-image: url('path-to-decoration.svg'); /* Optional: add a decoration SVG */
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        /* Featured/highlighted section */
+        .featured-section {
+            background-color: var(--bg-white);
+            padding: 60px 40px;
+            margin: 80px 0;
+            position: relative;
+        }
+
+        .featured-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            letter-spacing: -0.03em;
+        }
+
+        .featured-quote {
+            font-size: 24px;
+            line-height: 1.6;
+            font-weight: 400;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .featured-quote::before {
+            content: "\201C"; /* 使用Unicode转义序列代替直接使用引号 */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 48px;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        .featured-author {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .featured-role {
+            font-size: 14px;
+            color: var(--light-text);
+            margin-top: 5px;
+        }
+
+        /* Card grid for features/publications */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background-color: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card-header {
+            padding: 25px 25px 15px;
+        }
+
+        .feature-card-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-card-body {
+            padding: 0 25px 25px;
+        }
+
+        .feature-card-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+
+        .feature-card-link {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card-link:hover {
+            border-bottom: 1px solid var(--primary-color);
+            opacity: 0.8;
+        }
+
+        /* 添加新的样式以匹配截图中的布局 */
+        /* 技能列表样式 - 更接近截图样式 */
+        #about ul.skills-list {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        
+        #about ul.skills-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        #about ul.skills-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        /* 公司/品牌容器 - 更新为更匹配截图 */
+        .brands-container {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background-color: transparent;
+            width: 100%;
+            max-width: 1100px; /* 增加容器宽度 */
+        }
+        
+        .brand-item {
+            height: 65px; /* 增加基准高度 */
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(65%);
+            transition: filter 0.3s ease;
+            max-width: 18%;
+        }
+        
+        .brand-item:hover {
+            filter: grayscale(0%) opacity(90%);
+        }
+        
+        /* 链接高亮样式 */
+        .highlight-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .highlight-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        
+        /* 调整个人介绍部分的布局 */
+        #about .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #about .profile-image {
+            width: 80%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        #about .profile-caption {
+            font-size: 13px;
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+        
+        /* 调整社交图标 */
+        #about .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        #about .social-icon {
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+        
+        #about .social-icon:hover {
+            opacity: 1;
+        }
+
+        /* 品牌展示部分 */
+        .brands-section {
+            width: 100%;
+            background-color: var(--bg-light); /* 使用与网页背景相同的颜色 */
+            padding: 35px 0; /* 减小上下内边距 */
+            margin: 20px 0 40px; /* 减小上下外边距 */
+            border-top: 1px solid rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Microsoft和Alibaba特殊样式 */
+        .brand-item.microsoft-logo {
+            height: 130px; /* 增大尺寸 */
+            max-width: 22%;
+            padding: 0 10px;
+        }
+
+        .brand-item.alibaba-logo {
+            height: 110px; /* 增大尺寸 */
+            max-width: 20%;
+        }
+
+        /* KAUST和IIAI特殊样式 */
+        .brand-item.kaust-logo {
+            height: 60px;
+        }
+
+        .brand-item.iiai-logo {
+            height: 60px;
+        }
+
+        /* Media 部分样式 - 更加简洁现代 */
+        .media-section {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+            margin: 0;
+            border: none;
+        }
+
+        .media-columns {
+            display: flex;
+            gap: 60px;
+            margin-top: 30px;
+        }
+
+        .media-column {
+            flex: 1;
+        }
+
+        .media-column h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+
+        .article-card {
+            padding: 15px 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: transparent;
+        }
+
+        .article-source {
+            font-size: 14px;
+            color: var(--light-text);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .article-date {
+            font-size: 14px;
+            color: var(--light-text);
+            margin-bottom: 8px;
+        }
+
+        .article-link, .watch-link {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .talk-item {
+            margin-bottom: 20px;
+        }
+
+        .talk-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .talk-host {
+            font-size: 14px;
+            color: var(--light-text);
+            margin-bottom: 6px;
+        }
+
+        /* Awards 部分样式 */
+        .awards-section {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+            margin: 0;
+            border-top: 1px solid rgba(0,0,0,0.07);
+        }
+
+        .awards-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .awards-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .award-item {
+            margin-bottom: 30px;
+        }
+
+        .award-year {
+            display: inline-block;
+            background-color: rgba(255, 106, 61, 0.1); /* Changed from purple to orange */
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .award-title {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        .award-title a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .award-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .about-wrapper {
+            border: 2px solid #FF6A3D; /* Changed from purple to orange */
+            border-radius: 8px;
+            margin: 30px 0;
+            padding: 30px;
+            background-color: var(--bg-white);
+        }
+
+        /* 修改 Selected Awards 标题颜色 */
+        #award h2 {
+            color: var(--text-color); /* 黑色而不是红色 */
+            font-weight: 700;
+        }
     </style>
 
 </head>
@@ -671,103 +1087,94 @@
 
 <div class="gray-container" id="about">
     <div class="container">
-        <div class="row">
+        <div class="about-wrapper">
+            <div class="row">
 
-            <div class="col-xs-4" style="text-align: center;">
-                <img style="margin-top: 10%; width: 80%; border-radius: 10px;" id="me-img" src="images/mingchen.jpeg">
-                <br>
-                <div style="margin-top: 15px; font-size: small;">
-                    *Taken in the KAUST AI Initiative.
-                </div>
-                <!-- Add social icons div here -->
-                <div class="social-icons">
-                   <a href="https://twitter.com/MingchenZhuge"
-                       style="text-decoration: none;">
-                       <img src="images/icon/twitter.png" alt="Twitter">
-                   </a>
-                   <a href="https://github.com/mczhuge" style="text-decoration: none;">
-                       <img src="images/GitHub-512.webp" alt="GitHub">
-                   </a>
-                   <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" style="text-decoration: none;">
-                       <img src="images/icon/scholar.png" alt="Google Scholar">
-                   </a>
-                   <a href="mailto:mingchen.zhuge@kaust.edu.sa" style="text-decoration: none;">
-                       <img src="images/icon/email.png" alt="Email">
-                   </a>
-                </div>
-            </div>
-            
-
-            <div class="col-xs-8">
-                <h2> <span class="black-text">Mingchen Zhuge</span></span>
-                </h2>
-
-
-                <p>
-                    I am a PhD Candidate and recently start my third year at the
-                    <strong>KAUST AI Initiative</strong>. I am fortunate to have 
-                        <a
-                        href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Jürgen Schmidhuber</a> as my advisor.
-                        </a>
-                    <br/>
-                </p>
-                <p>
-                    My current research interests and skills include:
-                    <ul>
-                        <li><strong>Multimodal</strong>: Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
-                        <li><strong>LLMs</strong>: Post-Training.</li>
-                        <li><strong>Meta Learning</strong>: Recursive Self-Improvement.</li>
-                        <li><strong>Agents</strong>: LLM-based Multi-Agent Systems, Code Generation.</li>
-                        <li><strong>AI Judges</strong>: Agent-as-a-Judge, LLM-as-a-Judge.</li>
-                    </ul>
-                </p>                
-                <p>
-             <a
-             href="mailto:mingchen.zhuge@kaust.edu.sa">
-             😀 Feel free to contact me for future collaboration, whether it's for providing a 2025 summer internship, co-founding a venture, or a full-time job opportunity (industry or faculty). Appreciate your guidances.
-            </a>
-           
-            </p>
-                <p>
-                    <strong>⭐ Open-source enthusiasts.</strong> I am active in open-sourced communities like <a href="https://github.com/geekan/MetaGPT" style="color:#fc5800;">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm"  style="color:#fc5800;">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin"  style="color:#fc5800;">OpenDevin</a>.
-                </p>    
-                <p>
-                     <strong>Before joining KAUST</strong>, I've worked as an engineer, researcher (or intern) at 
-                     <a
-                     href="https://nsfocusglobal.com"
-                     style="color:#fc5800;">NSFocus,
-                     </a>
-                     <a
-                     href="https://www.alibabagroup.com/en/global/home"
-                     style="color:#fc5800;">Alibaba Group,</a>
-                     </a>
-                     <a
-                     href="https://www.inceptioniai.org/"
-                     style="color:#fc5800;">IIAI (G42),
-                     </a> 
-                     <a
-                     href="https://zhengfenglab.com"
-                     style="color:#fc5800;">SUSTech VIP Lab,</a> and
-                     <a
-                     href="https://github.com/nlpxucan/WizardLM"
-                     style="color:#fc5800;">Microsoft.
-                     </a>
-                </p>
-
-
-                <div style="background-color: white;"> <!-- Style applied via CSS -->
-                    <img style="width: 55%; height: auto; display: block; margin: auto;" src="images/logo.png" alt="Sponsor Logos"> <!-- Style applied via CSS -->
+                <div class="col-xs-4" style="text-align: center;">
+                    <img style="margin-top: 10%; width: 80%; border-radius: 10px;" id="me-img" src="images/mingchen.jpeg">
+                    <br>
+                    <div style="margin-top: 15px; font-size: small;">
+                        *Taken in the KAUST AI Initiative.
+                    </div>
+                    <!-- Add social icons div here -->
+                    <div class="social-icons">
+                       <a href="https://twitter.com/MingchenZhuge"
+                           style="text-decoration: none;">
+                           <img src="images/icon/twitter.png" alt="Twitter">
+                       </a>
+                       <a href="https://github.com/mczhuge" style="text-decoration: none;">
+                           <img src="images/GitHub-512.webp" alt="GitHub">
+                       </a>
+                       <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" style="text-decoration: none;">
+                           <img src="images/icon/scholar.png" alt="Google Scholar">
+                       </a>
+                       <a href="https://www.linkedin.com/in/mingchen-zhuge-7599a1272/" style="text-decoration: none;">
+                           <img src="images/icon/linkedin.png" alt="LinkedIn">
+                       </a>
+                       <a href="mailto:mingchen.zhuge@kaust.edu.sa" style="text-decoration: none;">
+                           <img src="images/icon/email.png" alt="Email">
+                       </a>
+                    </div>
                 </div>
                 
 
+                <div class="col-xs-8">
+                    <h2> <span class="black-text">Mingchen Zhuge</span></span>
+                    </h2>
 
-                </div>
+
+                    <p>
+                        I am a PhD Candidate and recently start my third year at the
+                        <strong>KAUST AI Initiative</strong>. I am fortunate to have 
+                            <a
+                            href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Jürgen Schmidhuber</a> as my advisor.
+                            </a>
+                        <br/>
+                    </p>
+                    <p>
+                        My current research interests and skills include:
+                        <ul class="skills-list">
+                            <li><strong>Multimodal:</strong> Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
+                            <li><strong>LLMs:</strong> Post-Training.</li>
+                            <li><strong>Meta Learning:</strong> Recursive Self-Improvement.</li>
+                            <li><strong>Agents:</strong> LLM-based Multi-Agent Systems, Code Generation.</li>
+                            <li><strong>AI Judges:</strong> Agent-as-a-Judge, LLM-as-a-Judge.</li>
+                        </ul>
+                    </p>                
+                    <p>
+                 <!-- <a
+                 href="mailto:mingchen.zhuge@kaust.edu.sa">
+                 😀 Feel free to contact me for future collaboration, whether it's for providing a 2025 summer internship, co-founding a venture, or a full-time job opportunity (industry or faculty). Appreciate your guidances.
+                </a>
+                 -->
+                </p>
+                    <p>
+                        <strong>⭐ Open-source enthusiasts.</strong> I am active in open-sourced communities like <a href="https://github.com/geekan/MetaGPT" class="highlight-link">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm" class="highlight-link">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin" class="highlight-link">OpenDevin</a>.
+                    </p>    
+                    <p>
+                         <strong>Before joining KAUST</strong>, I've worked as an engineer, researcher (or intern) at 
+                         <a href="https://nsfocusglobal.com" class="highlight-link">NSFocus</a>,
+                         <a href="https://www.alibabagroup.com/en/global/home" class="highlight-link">Alibaba Group</a>,
+                         <a href="https://www.inceptioniai.org/" class="highlight-link">IIAI (G42)</a>, 
+                         <a href="https://zhengfenglab.com" class="highlight-link">SUSTech VIP Lab</a>, and
+                         <a href="https://github.com/nlpxucan/WizardLM" class="highlight-link">Microsoft</a>.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- 品牌展示部分 - 单独的部分 -->
+<div class="brands-section">
+    <div class="brands-container">
+        <img src="images/kaust.png" alt="KAUST" class="brand-item kaust-logo">
+        <img src="images/Meta-Logo.png" alt="Meta" class="brand-item meta-logo">
+        <img src="images/microsoft_logo.png" alt="Microsoft" class="brand-item microsoft-logo">
+        <img src="images/alibaba_logo.png" alt="Alibaba" class="brand-item alibaba-logo">
+        <img src="images/iiai_logo.png" alt="IIAI" class="brand-item iiai-logo">
+    </div>
+</div>
 
 <div id="publication">
     <div class="container">
@@ -848,7 +1255,7 @@
                     <br>
                     <span class="authors"><strong>Mingchen Zhuge</strong>, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin and Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICML 2024 <span style="color:#d32f2f;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICML 2024 <span style="color:#FF6A3D;">(Oral)</span></strong></span>
                     <br>
                     <div class="highlight-desc highlight-prominent">
                         Oral Presentation (top 1.5% in 9,473); First framework emphasizing graph importance in LLM agents.
@@ -879,7 +1286,7 @@
                     <span class="authors">Sirui Hong∗, <strong>Mingchen Zhuge∗</strong>, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka Shing Yau, Zijuan Lin,
                         Liyang Zhou, Chenyu Ran, Lingfeng Xiao, Chenglin Wu†, Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICLR 2024  <span style="color:#d32f2f;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICLR 2024  <span style="color:#FF6A3D;">(Oral)</span></strong></span>
                     <br>
                     <div class="highlight-desc highlight-prominent">
                         Oral Presentation (top 1.2% in 7,262); Achieved 50k+ stars on GitHub.
@@ -905,7 +1312,7 @@
                     <br>
                     <span class="authors"><strong>Mingchen Zhuge*</strong>, Haozhe Liu*, Francesco Faccio*, Dylan R. Ashley*, Róbert Csordás, Anand Gopalakrishnan, Abdullah Hamdi, Hasan Abed Al Kader Hammoud, Vincent Herrmann, Kazuki Irie, Louis Kirsch, Bing Li, Guohao Li, Shuming Liu, Jinjie Mai, Piotr Piękos, Aditya Ramesh, Imanol Schlag, Weimin Shi, Aleksandar Stanić, Wenyi Wang, Yuhui Wang, Mengmeng Xu, Deng-Ping Fan, Bernard Ghanem, Jü̈rgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:red;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
+                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:#FF6A3D;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
                     <br> 
                     <div class="highlight-desc highlight-prominent">
                         Best Paper Award (NeurIPS Ro-FoMo Workshop); Position Paper.
@@ -1120,187 +1527,132 @@
     <br>
 
 
-    <div id="talk">
+    <div id="talk" class="content-section">
         <div class="container">
-            <h2 class="section_title">Invited Talks</h2>
-            <br>
+            <h2>Selected Media</h2>
 
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2025</span></h4>
+            
+            <div class="media-columns">
+                <div class="media-column">
+                    <h3>Articles/News</h3>
+                    
+                    <div class="article-card">
+                        <div class="article-source">MIT Technology Review</div>
+                        <div class="article-title">GPTSwarm: A New Framework for AI Agent Collaboration</div>
+                        <div class="article-date">March 15, 2024</div>
+                        <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ" class="article-link">Read Article</a>
+                    </div>
+                    
+                    <div class="article-card">
+                        <div class="article-source">机器之心 (Synced)</div>
+                        <div class="article-title">Agent-as-a-Judge: A New Approach to AI Evaluation</div>
+                        <div class="article-date">April 25, 2024</div>
+                        <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ" class="article-link">Read Article</a>
+                    </div>
+                    
+                    <div class="article-card">
+                        <div class="article-source">新智元 (AI Era)</div>
+                        <div class="article-title">Revolutionary Approach to Agent Evaluation Systems</div>
+                        <div class="article-date">April 22, 2024</div>
+                        <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw" class="article-link">Read Article</a>
+                    </div>
                 </div>
-                <div class="col-xs-9">
-                    奇点降临，Manus 诞生背后丨青源Workshop
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/e-NOQ0UXORatc3s8P2NWEw">智源社区</a> &nbsp; <a href="https://mp.weixin.qq.com/s/e-NOQ0UXORatc3s8P2NWEw">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="20" style="vertical-align: middle;">
-                </a>
+                
+                <div class="media-column">
+                    <h3>Recent Talks</h3>
+                    
+                    <div class="talk-item">
+                        <div class="talk-title">奇点降临，Manus 诞生背后丨青源Workshop</div>
+                        <div class="talk-host">Host: 智源社区 • 2025</div>
+                        <a href="https://mp.weixin.qq.com/s/e-NOQ0UXORatc3s8P2NWEw" class="watch-link">Watch Video</a>
+                    </div>
+                    
+                    <div class="talk-item">
+                        <div class="talk-title">智能体蜂群 - 上海人工智能实验室</div>
+                        <div class="talk-host">Host: 上海人工智能实验室 • 2024</div>
+                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
+                    </div>
+                    
+                    <div class="talk-item">
+                        <div class="talk-title">Exploring Multimodal Agents - WAIC AI Lite</div>
+                        <div class="talk-host">Host: WAIC AI Lite Think Talk • 2024</div>
+                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
+                    </div>
+                    
+                    <div class="talk-item">
+                        <div class="talk-title">浅述AI智能体 - 中科院自动化所</div>
+                        <div class="talk-host">Host: 中科院自动化所 • 2024</div>
+                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
+                    </div>
+                    
+                    <div class="talk-item">
+                        <div class="talk-title">NLSOM、MetaGPT、GPTSwarm: 以不一样的视角探索AI智能体</div>
+                        <div class="talk-host">Host: ByteDance • 2024</div>
+                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
+                    </div>
                 </div>
             </div>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    智能体蜂群
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">上海人工智能实验室</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="20" style="vertical-align: middle;">
-                </a>
-                </div>
-            </div>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    Exploring Multimodal Agents
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">WAIC AI Lite Think Talk </a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="20" style="vertical-align: middle;">
-                </a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    浅述AI智能体
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">中科院自动化所</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="20" style="vertical-align: middle;">
-                </a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    NLSOM、MetaGPT、GPTSwarm: 以不一样的视角探索AI智能体
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">ByteDance</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="20" style="vertical-align: middle;">
-                </a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2024</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    多模态AI智能体（社会）
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">华为藤蔓技术论坛2024</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="20" style="vertical-align: middle;">
-                </a>
-                </div>
-            </div>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2021</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    机器之心: "走进全球顶尖实验室第一期-IIAI"
-                    <br>
-                    Host: <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">机器之心 (Synced)</a> &nbsp; <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ">
-                    <img src="images/icon/video_new.png" title="recording"
-                         width="20" style="vertical-align: middle;">
-                </a>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <div id="award">
+    <div id="award" class="content-section">
         <div class="container">
-            <h2 class="section_title">Representative Awards</h2>
-            <br>
+            <h2>Selected Awards</h2>
 
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2023</span></h4>
+            
+            <div class="awards-columns">
+                <div class="awards-column">
+                    <div class="award-item">
+                        <div class="award-year">2023</div>
+                        <div class="award-title">
+                            <a href="https://sites.google.com/view/r0-fomo/accepted-papers?authuser=0">Best Paper Award in NeurIPS Ro-FoMo Workshop</a>
+                        </div>
+                    </div>
+                    
+                    <div class="award-item">
+                        <div class="award-year">2023</div>
+                        <div class="award-title">
+                            <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</a>
+                        </div>
+                    </div>
+                    
+                    <div class="award-item">
+                        <div class="award-year">2021</div>
+                        <div class="award-title">
+                            <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2021中兴蓝剑计划（武汉高校仅三人）</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-9">
-                    <a href="https://sites.google.com/view/r0-fomo/accepted-papers?authuser=0">Best Paper Award in NeurIPS Ro-FoMo Workshop</a>
-                </div>
-            </div>
-
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2023</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2021</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2021中兴蓝剑计划（武汉高校仅三人）</a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2019</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://www.cug.edu.cn/info/10506/92425.htm">第十六届中国研究生数学建模竞赛 国家级二等奖</a>
-                </div>
-            </div>
-
-            <div class="row work-block">
-                <div class="project col-xs-3" style="position: center">
-                    <h4><span class="badge badge-secondary">2019</span></h4>
-                </div>
-                <div class="col-xs-9">
-                    <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2019 ZTE Algorithm Competition Champion (Top 7/11000+)</a>
+                
+                <div class="awards-column">
+                    <div class="award-item">
+                        <div class="award-year">2019</div>
+                        <div class="award-title">
+                            <a href="https://www.cug.edu.cn/info/10506/92425.htm">第十六届中国研究生数学建模竞赛 国家级二等奖</a>
+                        </div>
+                    </div>
+                    
+                    <div class="award-item">
+                        <div class="award-year">2019</div>
+                        <div class="award-title">
+                            <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2019 ZTE Algorithm Competition Champion (Top 7/11000+)</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
    
-    <div class="container">
-        <div style="display:inline-block;width:500px;">
-    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=55nlylx8wym&amp;m=7&amp;c=e63100&amp;cr1=ffffff&amp;f=arial&amp;l=0&amp;bv=90&amp;lx=-420&amp;ly=420&amp;hi=20&amp;he=7&amp;hc=a8ddff&amp;rs=80" async="async"></script>
-    </div>
- </div>
-
-    <footer class="container footer">
-        <div class="row">
-
-            <div class="col-xs-12">
-                © Mingchen Zhuge &nbsp;&nbsp;&nbsp;&nbsp;
-                Visitor Number
-                <a href='https://www.counter12.com'><img
-                        src='https://www.counter12.com/img-2y15x83ZD5292yC3-77.gif'
-                        border='0' alt='counter' style="vertical-align: middle;"></a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-copyright">© 2024 Mingchen Zhuge</div>
+                <div class="footer-links">
+                    <a href="https://github.com/mczhuge" target="_blank">GitHub</a>
+                    <a href="https://twitter.com/MingchenZhuge" target="_blank">Twitter</a>
+                    <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
+                    <a href="mailto:mingchen.zhuge@kaust.edu.sa">Contact</a>
+                </div>
             </div>
         </div>
     </footer>
