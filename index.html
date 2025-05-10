@@ -19,25 +19,25 @@
 
     <style>
         :root {
-            --primary-color: #3B82F6; /* 蓝色主色调 */
-            --secondary-color: #1E40AF; /* 深蓝色 */
-            --accent-color: #60A5FA; /* 亮蓝色强调 */
-            --subtle-accent: #EFF6FF; /* 极浅蓝色 */
-            --tech-blue: #5B6EFF; /* 保留蓝色变体 */
-            --tech-cyan: #00C2CE; /* 保留青色 */
-            --dark-bg-start: #1A1A1A; /* 深色渐变开始 */
-            --dark-bg-end: #0F0F0F;   /* 深色渐变结束 */
-            --light-text-on-dark: #FFFFFF; /* 纯白文本 */
-            --medium-text-on-dark: #F2F2F2; /* 灰白文本 */
-            --subtle-text-on-dark: #E0E0E0; /* 浅灰文本 */
+            --primary-color: #A98A71; /* Beige main color instead of blue */
+            --secondary-color: #8C7458; /* Darker beige */
+            --accent-color: #C4AC91; /* Light beige accent */
+            --subtle-accent: #FFF8EB; /* Very light beige */
+            --tech-blue: #B5A48C; /* Beige variant */
+            --tech-cyan: #D6C4A8; /* Another beige variant */
+            --dark-bg-start: #1A1A1A; /* Deep color gradient start */
+            --dark-bg-end: #0F0F0F;   /* Deep color gradient end */
+            --light-text-on-dark: #FFFFFF; /* Pure white text */
+            --medium-text-on-dark: #F2F2F2; /* Gray-white text */
+            --subtle-text-on-dark: #E0E0E0; /* Light gray text */
 
-            --text-color: #1D1B22; /* 近黑文本 */
-            --light-text: #64748B; /* 浅灰文本 */
-            --bg-light: #FEFBF3; /* Claude风格的浅淡黄色背景 */
-            --bg-white: #FFFDF7; /* 与Claude背景色协调的白色 */
-            --border-color: #E2E8F0; /* 浅边框色 */
-            --button-bg: #3B82F6; /* 蓝色按钮背景 */
-            --button-text: #FFFFFF; /* 白色按钮文本 */
+            --text-color: #1D1B22; /* Near black text */
+            --light-text: #64748B; /* Light gray text */
+            --bg-light: #FEFBF3; /* Claude style light yellow background */
+            --bg-white: #FFFDF7; /* White that complements Claude background */
+            --border-color: #E2E8F0; /* Light border color */
+            --button-bg: #A98A71; /* Beige button background */
+            --button-text: #FFFFFF; /* White button text */
         }
 
         body {
@@ -519,7 +519,7 @@
         .social-icons {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* 允许图标换行 */
+            flex-wrap: wrap; /* Allow icons to wrap */
             gap: 15px;
             margin-top: 15px;
             padding: 0 10px;
@@ -529,61 +529,70 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0 5px 10px; /* 底部外边距使换行后的图标有间隔 */
+            margin: 0 5px 10px; /* Bottom margin for wrapped icons */
             text-decoration: none;
+            background-color: rgba(196, 172, 145, 0.1); /* Light Claude-style background */
+            padding: 8px;
+            border-radius: 10px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: rgba(196, 172, 145, 0.2); /* Darker background on hover */
         }
         
         .social-icons img {
             height: 30px;
             width: auto;
             vertical-align: middle;
-            border-radius: 8px;
+            border-radius: 0;
             background-color: transparent;
             padding: 0;
-            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.3s ease;
-            opacity: 0.8;
-            filter: grayscale(100%);
+            transition: transform 0.2s ease-in-out;
+            opacity: 1; /* Fully opaque */
+            filter: sepia(20%) saturate(90%); /* Light brown filter */
         }
         
         .social-icons img:hover {
             transform: scale(1.1);
-            box-shadow: none;
-            background-color: transparent;
             opacity: 1;
-            filter: grayscale(0%);
+            filter: sepia(10%) saturate(120%); /* Reduce brown effect, increase saturation on hover */
         }
         
         @media (max-width: 768px) {
             .social-icons {
-                gap: 12px;
+                gap: 8px;
                 margin-top: 10px;
                 flex-wrap: wrap;
-                max-width: 250px;
+                max-width: 280px;
                 margin-left: auto;
                 margin-right: auto;
             }
             
             .social-icons a {
                 margin: 0 3px 8px;
-            }
-            
-            .social-icons img {
-                height: 28px;
-                width: auto;
-                /* 保留其他属性，只修改尺寸 */
-            }
-        }
-        
-        /* 为特小屏幕提供更紧凑的样式 */
-        @media (max-width: 360px) {
-            .social-icons {
-                gap: 8px;
-                max-width: 200px;
+                padding: 6px;
             }
             
             .social-icons img {
                 height: 25px;
-                /* 保留其他属性，只修改尺寸 */
+                width: auto;
+            }
+        }
+        
+        /* Styles for very small screens */
+        @media (max-width: 360px) {
+            .social-icons {
+                gap: 5px;
+                max-width: 260px;
+            }
+            
+            .social-icons a {
+                padding: 5px;
+            }
+            
+            .social-icons img {
+                height: 22px;
             }
         }
 
@@ -890,7 +899,7 @@
         }
 
         .featured-quote::before {
-            content: "\201C"; /* 使用Unicode转义序列代替直接使用引号 */
+            content: "\201C"; /* Use Unicode escape sequence instead of direct quotes */
             position: absolute;
             left: 0;
             top: 0;
@@ -972,32 +981,54 @@
             opacity: 0.8;
         }
 
-        /* 添加新的样式以匹配截图中的布局 */
-        /* 技能列表样式 - 更接近截图样式 */
+        /* Add new styles for making paper descriptions more prominent */
+        .highlight-desc.highlight-prominent {
+            color: #9E5536 !important; /* Softer, more muted orange/rust color */
+            font-weight: 500 !important; /* Less bold */
+            font-style: normal !important;
+            background-color: rgba(196, 83, 42, 0.04); /* Much lighter background for subtler contrast */
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            border-left: 2px solid #C4532A; /* Thinner left border */
+            box-shadow: 0 1px 2px rgba(196, 83, 42, 0.05); /* Less pronounced shadow */
+            letter-spacing: 0em;
+            line-height: 1.5;
+            max-width: 95%;
+        }
+
+        /* Add new skill list styles - closer to screenshot style */
         #about ul.skills-list {
             margin-top: 20px;
             margin-bottom: 30px;
+            list-style-type: none;  /* Key point: remove native black dots */
+            padding-left: 20px;  /* Reduce left margin since we removed native markers */
         }
         
         #about ul.skills-list li {
             margin-bottom: 10px;
-            padding-left: 25px;
+            padding-left: 20px; /* Make space for custom beige dots */
             position: relative;
             font-size: 16px;
             line-height: 1.6;
         }
         
         #about ul.skills-list li::before {
-            content: '•';
+            content: '';
             position: absolute;
             left: 0;
-            top: 0;
-            color: var(--accent-color);
+            top: 0.6em;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
             font-weight: bold;
             font-size: 20px;
         }
         
-        /* 公司/品牌容器 - 更新为更匹配截图 */
+        /* Company/brand container - updated to better match screenshot */
         .brands-container {
             display: flex;
             flex-wrap: nowrap;
@@ -1008,11 +1039,11 @@
             padding: 0 20px;
             background-color: transparent;
             width: 100%;
-            max-width: 1100px; /* 增加容器宽度 */
+            max-width: 1100px; /* Increase container width */
         }
         
         .brand-item {
-            height: 65px; /* 增加基准高度 */
+            height: 65px; /* Increase base height */
             width: auto;
             object-fit: contain;
             filter: grayscale(100%) opacity(65%);
@@ -1024,7 +1055,7 @@
             filter: grayscale(0%) opacity(90%);
         }
         
-        /* 链接高亮样式 */
+        /* Link highlight styles */
         .highlight-link {
             color: var(--primary-color);
             font-weight: 500;
@@ -1037,7 +1068,7 @@
             text-decoration: underline;
         }
         
-        /* 调整个人介绍部分的布局 */
+        /* Adjust personal introduction layout */
         #about .profile-container {
             display: flex;
             flex-direction: column;
@@ -1056,7 +1087,7 @@
             margin-bottom: 20px;
         }
         
-        /* 调整社交图标 */
+        /* Adjust social icons */
         #about .social-icons {
             display: flex;
             justify-content: center;
@@ -1075,12 +1106,12 @@
             opacity: 1;
         }
 
-        /* 品牌展示部分 */
+        /* Brand display section */
         .brands-section {
             width: 100%;
-            background-color: var(--bg-light); /* 使用与网页背景相同的颜色 */
-            padding: 35px 0; /* 减小上下内边距 */
-            margin: 20px 0; /* 减小上下外边距 */
+            background-color: var(--bg-light); /* Use same color as website background */
+            padding: 35px 0; /* Reduce top and bottom padding */
+            margin: 20px 0; /* Reduce top and bottom margin */
             border-top: 1px solid rgba(0,0,0,0.03);
             border-bottom: 1px solid rgba(0,0,0,0.03);
             display: flex;
@@ -1098,11 +1129,11 @@
             padding: 0 20px;
             background-color: transparent;
             width: 100%;
-            max-width: 1100px; /* 增加容器宽度 */
+            max-width: 1100px; /* Increase container width */
         }
         
         .brand-item {
-            height: 50px; /* 统一高度 */
+            height: 50px; /* Uniform height */
             width: auto;
             object-fit: contain;
             filter: grayscale(100%) opacity(65%);
@@ -1114,7 +1145,7 @@
             filter: grayscale(0%) opacity(90%);
         }
 
-        /* 各品牌自定义尺寸 */
+        /* Custom sizes for each brand */
         .brand-item.microsoft-logo {
             height: 130px;
         }
@@ -1135,7 +1166,7 @@
             height: 45px;
         }
 
-        /* 手机端响应式样式 */
+        /* Mobile responsive styles */
         @media (max-width: 767px) {
             .brands-container {
                 flex-wrap: wrap;
@@ -1148,7 +1179,7 @@
                 height: 40px !important;
             }
             
-            /* 调整文章链接在手机端的显示 */
+            /* Adjust article links display on mobile */
             .project-title .links {
                 display: flex;
                 flex-wrap: wrap;
@@ -1160,20 +1191,20 @@
                 margin-right: 0;
             }
             
-            /* 调整About部分在手机端的留白 */
+            /* Adjust About section padding on mobile */
             .about-wrapper {
                 padding: 30px 20px !important;
                 margin: 20px 0 !important;
                 border-radius: 20px !important;
             }
             
-            /* 技能列表在手机端更紧凑 */
+            /* Make skill list more compact on mobile */
             #about ul.skills-list li {
                 font-size: 14px;
                 margin-bottom: 8px;
             }
             
-            /* 工作卡片在手机端的布局优化 */
+            /* Optimize work card layout on mobile */
             .row.work-block {
                 margin-bottom: 30px;
                 overflow: hidden;
@@ -1192,7 +1223,7 @@
                 width: 100%;
             }
             
-            /* 文章标题在手机上更紧凑 */
+            /* Make article titles more compact on mobile */
             .project-title .project-name {
                 font-size: 16px;
                 line-height: 1.4;
@@ -1213,7 +1244,7 @@
                 margin-bottom: 5px;
             }
             
-            /* 图片在手机上占满宽度 */
+            /* Make images full width on mobile */
             img {
                 max-width: 100%;
                 height: auto;
@@ -1324,7 +1355,7 @@
         }
 
         .award-year {
-            background-color: rgba(59, 130, 246, 0.1); /* 蓝色 */
+            background-color: rgba(169, 138, 113, 0.1); /* Beige */
             color: var(--primary-color);
             font-size: 14px;
             font-weight: 500;
@@ -1372,11 +1403,11 @@
             inset: -3px; /* Extend slightly beyond the card border */
             border-radius: 20px; /* Match card radius but slightly larger */
             background: linear-gradient(45deg, 
-                rgba(30, 64, 175, 0.5),
-                rgba(59, 130, 246, 0.6), 
-                rgba(96, 165, 250, 0.5),
-                rgba(59, 130, 246, 0.6),
-                rgba(30, 64, 175, 0.5));
+                rgba(244, 237, 220, 0.5),
+                rgba(255, 253, 247, 0.6), 
+                rgba(252, 246, 228, 0.5),
+                rgba(255, 253, 247, 0.6),
+                rgba(244, 237, 220, 0.5));
             background-size: 400% 400%;
             z-index: 0; /* Behind the content */
             filter: blur(15px); /* Create soft glow */
@@ -1391,11 +1422,11 @@
             inset: -15px; /* Extend beyond the card */
             border-radius: 30px;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%),
-                radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0) 50%),
-                radial-gradient(circle at 50% 10%, rgba(30, 64, 175, 0.2) 0%, rgba(30, 64, 175, 0) 60%),
-                radial-gradient(circle at 10% 40%, rgba(147, 197, 253, 0.2) 0%, rgba(147, 197, 253, 0) 50%),
-                radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%);
+                radial-gradient(circle at 20% 80%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%),
+                radial-gradient(circle at 80% 20%, rgba(252, 246, 228, 0.2) 0%, rgba(252, 246, 228, 0) 50%),
+                radial-gradient(circle at 50% 10%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 60%),
+                radial-gradient(circle at 10% 40%, rgba(255, 253, 247, 0.2) 0%, rgba(255, 253, 247, 0) 50%),
+                radial-gradient(circle at 90% 90%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%);
             opacity: 0.8;
             filter: blur(15px);
             z-index: 0;
@@ -1478,6 +1509,73 @@
             75% { opacity: 0.9; }
             100% { transform: translate(0, 0) rotate(360deg); opacity: 0.2; }
         }
+
+        /* Enhance About section text styles */
+        #about p {
+            color: #1D1B22; /* Darker text color for better readability */
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        #about p strong, #about p a {
+            color: #A98A71; /* Beige color for emphasis */
+            font-weight: 600;
+        }
+
+        #about p a:hover {
+            color: #8C7458; /* Darker beige on hover */
+            text-decoration: underline;
+        }
+
+        #about ul.skills-list li strong {
+            color: #A98A71; /* Beige color for skills highlights */
+            font-weight: 600;
+        }
+
+        /* Add line breaks and improved styling for paper descriptions */
+        .highlight-desc.highlight-prominent {
+            color: #9E5536 !important; /* Softer, more muted orange/rust color */
+            font-weight: 500 !important; /* Less bold */
+            font-style: normal !important;
+            background-color: rgba(196, 83, 42, 0.04); /* Much lighter background for subtler contrast */
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            border-left: 2px solid #C4532A; /* Thinner left border */
+            box-shadow: 0 1px 2px rgba(196, 83, 42, 0.05); /* Less pronounced shadow */
+            letter-spacing: 0em;
+            line-height: 1.5;
+            max-width: 95%;
+        }
+
+        /* Make the publisher name more subtle */
+        .project-title .publisher strong {
+            color: #B39778 !important; /* Lighter beige color matching our theme */
+            font-weight: 600 !important;
+            font-size: 1em;
+        }
+
+        /* Make the oral presentation badges more subtle */
+        .publisher span[style*="color:#FFFFFF; background-color:#FF6A3D"] {
+            color: #FFFFFF !important;
+            background-color: rgba(255, 106, 61, 0.7) !important; /* More transparent background */
+            padding: 1px 6px !important;
+            border-radius: 3px !important;
+            font-size: 0.85em !important;
+            font-weight: normal !important;
+        }
+
+        /* Soften About section highlighting */
+        #about p strong, #about p a, #about ul.skills-list li strong {
+            color: #B39778 !important; /* Lighter, more muted beige */
+            font-weight: 500 !important; /* Less bold */
+        }
+
+        #about p a:hover {
+            color: #9F8569 !important; /* Darker beige on hover but still muted */
+        }
     </style>
 
 </head>
@@ -1526,11 +1624,11 @@
             inset: -3px; /* Extend slightly beyond the card border */
             border-radius: 20px; /* Match card radius but slightly larger */
             background: linear-gradient(45deg, 
-                rgba(30, 64, 175, 0.5),
-                rgba(59, 130, 246, 0.6), 
-                rgba(96, 165, 250, 0.5),
-                rgba(59, 130, 246, 0.6),
-                rgba(30, 64, 175, 0.5));
+                rgba(244, 237, 220, 0.5),
+                rgba(255, 253, 247, 0.6), 
+                rgba(252, 246, 228, 0.5),
+                rgba(255, 253, 247, 0.6),
+                rgba(244, 237, 220, 0.5));
             background-size: 400% 400%;
             z-index: 0; /* Behind the content */
             filter: blur(15px); /* Create soft glow */
@@ -1545,11 +1643,11 @@
             inset: -15px; /* Extend beyond the card */
             border-radius: 30px;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%),
-                radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0) 50%),
-                radial-gradient(circle at 50% 10%, rgba(30, 64, 175, 0.2) 0%, rgba(30, 64, 175, 0) 60%),
-                radial-gradient(circle at 10% 40%, rgba(147, 197, 253, 0.2) 0%, rgba(147, 197, 253, 0) 50%),
-                radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 50%);
+                radial-gradient(circle at 20% 80%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%),
+                radial-gradient(circle at 80% 20%, rgba(252, 246, 228, 0.2) 0%, rgba(252, 246, 228, 0) 50%),
+                radial-gradient(circle at 50% 10%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 60%),
+                radial-gradient(circle at 10% 40%, rgba(255, 253, 247, 0.2) 0%, rgba(255, 253, 247, 0) 50%),
+                radial-gradient(circle at 90% 90%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%);
             opacity: 0.8;
             filter: blur(15px);
             z-index: 0;
@@ -1647,7 +1745,7 @@
                 <div class="col-xs-4" style="text-align: center; padding: 0 10px;">
                     <div class="image-container" style="position: relative; margin: 0 auto; width: 85%; max-width: 280px;">
                         <img style="width: 100%; border-radius: 10px; position: relative; z-index: 2;" id="me-img" src="images/mingchen.jpeg">
-                        <div class="image-glow" style="position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 15px; background: linear-gradient(45deg, #3b82f6, #93c5fd, #60a5fa, #3b82f6); background-size: 400% 400%; filter: blur(10px); z-index: 1; opacity: 0.6; animation: gradient 10s ease infinite;"></div>
+                        <div class="image-glow" style="position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 15px; background: linear-gradient(45deg, #F4EDDC, #FFFDF7, #FCF6E4, #FFFDF7, #F4EDDC); background-size: 400% 400%; filter: blur(10px); z-index: 1; opacity: 0.6; animation: gradient 10s ease infinite;"></div>
                     </div>
                     <br>
                     <div style="margin-top: 15px; font-size: small;">
@@ -1668,9 +1766,9 @@
                        <a href="https://www.linkedin.com/in/mingchen-zhuge-7599a1272/" style="text-decoration: none;">
                            <img src="images/icon/linkedin.png" alt="LinkedIn">
                        </a>
-                       <a href="mailto:mingchen.zhuge@kaust.edu.sa" style="text-decoration: none;">
+                       <!-- <a href="mailto:mingchen.zhuge@kaust.edu.sa" style="text-decoration: none;">
                            <img src="images/icon/email.png" alt="Email">
-                       </a>
+                       </a> -->
                     </div>
                 </div>
                 
@@ -1680,22 +1778,22 @@
                     </h2>
 
 
-                    <p>
+                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
                         I am a PhD Candidate and recently start my third year at the
-                        <strong>KAUST AI Initiative</strong>. I am fortunate to have 
+                        <strong style="color: #B39778; font-weight: 500;">KAUST AI Initiative</strong>. I am fortunate to have 
                             <a
-                            href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Jürgen Schmidhuber</a> as my advisor.
+                            href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en" style="color: #B39778; font-weight: 500; text-decoration: none;">Jürgen Schmidhuber</a> as my advisor.
                             </a>
                         <br/>
                     </p>
-                    <p>
+                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
                         My current research interests and skills include:
                         <ul class="skills-list">
-                            <li><span style="color: var(--accent-color);">•</span> <strong>Multimodal:</strong> Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
-                            <li><span style="color: var(--accent-color);">•</span> <strong>LLMs:</strong> Post-Training.</li>
-                            <li><span style="color: var(--accent-color);">•</span> <strong>Meta Learning:</strong> Recursive Self-Improvement.</li>
-                            <li><span style="color: var(--accent-color);">•</span> <strong>Agents:</strong> LLM-based Multi-Agent Systems, Code Generation.</li>
-                            <li><span style="color: var(--accent-color);">•</span> <strong>AI Judges:</strong> Agent-as-a-Judge, LLM-as-a-Judge.</li>
+                            <li><strong style="color: #B39778; font-weight: 500;">Multimodal:</strong> Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
+                            <li><strong style="color: #B39778; font-weight: 500;">LLMs:</strong> Post-Training.</li>
+                            <li><strong style="color: #B39778; font-weight: 500;">Meta Learning:</strong> Recursive Self-Improvement.</li>
+                            <li><strong style="color: #B39778; font-weight: 500;">Agents:</strong> LLM-based Multi-Agent Systems, Code Generation.</li>
+                            <li><strong style="color: #B39778; font-weight: 500;">AI Judges:</strong> Agent-as-a-Judge, LLM-as-a-Judge.</li>
                         </ul>
                     </p>                
                     <p>
@@ -1705,16 +1803,16 @@
                 </a>
                  -->
                 </p>
-                    <p>
-                        <strong>I am active in open-sourced communities like <a href="https://github.com/geekan/MetaGPT" class="highlight-link">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm" class="highlight-link">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin" class="highlight-link">OpenDevin</a>.
+                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
+                        <strong style="color: #B39778; font-weight: 500;">I am active in open-sourced communities like</strong> <a href="https://github.com/geekan/MetaGPT" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">OpenDevin</a>.
                     </p>    
-                    <p>
-                         <strong>Before joining KAUST</strong>, I've worked as an engineer, researcher (or intern) at 
-                         <a href="https://nsfocusglobal.com" class="highlight-link">NSFocus</a>,
-                         <a href="https://www.alibabagroup.com/en/global/home" class="highlight-link">Alibaba Group</a>,
-                         <a href="https://www.inceptioniai.org/" class="highlight-link">IIAI (G42)</a>, 
-                         <a href="https://zhengfenglab.com" class="highlight-link">SUSTech VIP Lab</a>, and
-                         <a href="https://github.com/nlpxucan/WizardLM" class="highlight-link">Microsoft</a>.
+                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
+                         <strong style="color: #B39778; font-weight: 500;">Before joining KAUST</strong>, I've worked as an engineer, researcher (or intern) at 
+                         <a href="https://nsfocusglobal.com" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">NSFocus</a>,
+                         <a href="https://www.alibabagroup.com/en/global/home" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">Alibaba Group</a>,
+                         <a href="https://www.inceptioniai.org/" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">IIAI (G42)</a>, 
+                         <a href="https://zhengfenglab.com" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">SUSTech VIP Lab</a>, and
+                         <a href="https://github.com/nlpxucan/WizardLM" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">Microsoft</a>.
                     </p>
                 </div>
             </div>
@@ -1756,7 +1854,8 @@
                     <span class="publisher"><strong>ICML 2025</strong></span>
                     <br>
                     <div class="highlight-desc highlight-prominent">
-                        Innovative evaluation framework using agent-based systems.
+                        The first evaluation framework using agent-based systems.<br>
+                        Dramatically reduces evaluation costs while maintaining high correlation with human judgments.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/pdf/2410.10934">[Paper]</a>
@@ -1765,8 +1864,8 @@
                         <a href="papers/aaaj.txt">[BibTex]</a>
                         <a href="https://x.com/MingchenZhuge/status/1846410651218161781">[Tweet1]</a>
                         <a href="https://x.com/tydsh/status/1846538154129375412">[Tweet2]</a>
-                        <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ">[机器之心]</a>
-                        <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw">[新智元]</a>
+                        <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ">[Machine Heart]</a>
+                        <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw">[AI Era]</a>
                     </span>
                 </div>
             </div>
@@ -1786,14 +1885,15 @@
                     <span class="publisher"><strong>ICLR 2025</strong></span>
                     <br>
                     <div class="highlight-desc highlight-prominent">
-                        Achieved 50k+ stars on GitHub.
+                        Achieved 50k+ stars on GitHub.<br>
+                        A comprehensive platform for AI software developers as generalist agents.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2407.16741">[Paper]</a>
                         <a href="https://github.com/OpenDevin/OpenDevin">[Code]</a>
                         <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars"/>
                         <a href="papers/openhands.txt">[BibTex]</a>
-                        <a href="https://www.jiqizhixin.com/articles/2024-08-02-2">[机器之心]</a>
+                        <a href="https://www.jiqizhixin.com/articles/2024-08-02-2">[Machine Heart]</a>
                     </span>
                 </div>
             </div>
@@ -1810,18 +1910,19 @@
                     <br>
                     <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge</strong>, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin and Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICML 2024 <span style="color:#FF6A3D;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICML 2024 <span style="color:#FFFFFF; background-color:#FF6A3D; padding: 2px 8px; border-radius: 4px; font-size: 0.9em;">(Oral)</span></strong></span>
                     <br>
                     <div class="highlight-desc highlight-prominent">
-                        Oral Presentation (top 1.5% in 9,473); First framework emphasizing graph importance in LLM agents.
+                        Oral Presentation (top 1.5% in 9,473).<br>
+                        First framework emphasizing graph importance in LLM agents, enabling structural optimization.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2402.16823">[Paper]</a>
                         <a href="https://github.com/metauto-ai/GPTSwarm">[Code]</a>
                         <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars"/>
                         <a href="papers/gptswarm.txt">[BibTex]</a>
-                        <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ">[麻省理工科技评论专访]</a>
-                        <a href="https://mp.weixin.qq.com/s/jb6vPi9WL9CjybhiKCFOgg">[将门创投]</a>
+                        <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ">[MIT Tech Review Interview]</a>
+                        <a href="https://mp.weixin.qq.com/s/jb6vPi9WL9CjybhiKCFOgg">[Jiangmen Ventures]</a>
                     </span>
                 </div>
             </div>
@@ -1841,17 +1942,18 @@
                     <span class="authors" style="color: #666666;">Sirui Hong∗, <strong>Mingchen Zhuge∗</strong>, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka Shing Yau, Zijuan Lin,
                         Liyang Zhou, Chenyu Ran, Lingfeng Xiao, Chenglin Wu†, Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICLR 2024  <span style="color:#FF6A3D;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICLR 2024  <span style="color:#FFFFFF; background-color:#FF6A3D; padding: 2px 8px; border-radius: 4px; font-size: 0.9em;">(Oral)</span></strong></span>
                     <br>
                     <div class="highlight-desc highlight-prominent">
-                        Oral Presentation (top 1.2% in 7,262); Achieved 50k+ stars on GitHub.
+                        Oral Presentation (top 1.2% in 7,262).<br>
+                        Achieved 50k+ stars on GitHub, pioneering multi-agent collaborative software development.
                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2308.00352">[Paper]</a>
                         <a href="https://github.com/geekan/MetaGPT">[Code]</a>
                         <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars"/>
                         <a href="papers/metagpt.txt">[BibTex]</a>
-                        <a href="https://mp.weixin.qq.com/s/s5teEWlbcfHCVFjy6Nb3AQ">[量子位报道]</a>
+                        <a href="https://mp.weixin.qq.com/s/s5teEWlbcfHCVFjy6Nb3AQ">[QianTang Report]</a>
                     </span>
                 </div>
             </div>
@@ -1867,10 +1969,11 @@
                     <br>
                     <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge*</strong>, Haozhe Liu*, Francesco Faccio*, Dylan R. Ashley*, Róbert Csordás, Anand Gopalakrishnan, Abdullah Hamdi, Hasan Abed Al Kader Hammoud, Vincent Herrmann, Kazuki Irie, Louis Kirsch, Bing Li, Guohao Li, Shuming Liu, Jinjie Mai, Piotr Piękos, Aditya Ramesh, Imanol Schlag, Weimin Shi, Aleksandar Stanić, Wenyi Wang, Yuhui Wang, Mengmeng Xu, Deng-Ping Fan, Bernard Ghanem, Jü̈rgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:#FF6A3D;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
+                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023  <span style="color:#FFFFFF; background-color:#FF6A3D; padding: 2px 8px; border-radius: 4px; font-size: 0.9em;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
                     <br> 
                     <div class="highlight-desc highlight-prominent">
-                        Best Paper Award (NeurIPS Ro-FoMo Workshop); Position Paper.
+                        Best Paper Award at NeurIPS Ro-FoMo Workshop.<br>
+                        Position Paper introducing a novel framework for collaborative AI systems.
                      </div>
 
                      
@@ -1901,7 +2004,8 @@
                     <span class="publisher"><strong>TPAMI 2022</strong></span>
                     <br>
         <div class="highlight-desc highlight-prominent">
-                            ESI Highly Cited Paper.
+                            ESI Highly Cited Paper.<br>
+                        Novel approach to salient object detection with state-of-the-art performance.
                      </div>
 
                     <span class="links">
@@ -1929,7 +2033,8 @@
                     <span class="publisher"><strong>CVPR 2021</strong></span>
                     <br>
                     <div class="highlight-desc highlight-prominent">
-                        Industry Application in Alibaba.com.
+                        Industry Application in Alibaba.com.<br>
+                        Pioneering multi-scale visual representation learning for fashion e-commerce.
                      </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2103.16110">[Paper]</a>
@@ -2093,21 +2198,21 @@
                     
                     <div class="article-card">
                         <div class="article-source">MIT Technology Review</div>
-                        <div class="article-title">"现代AI之父"Jürgen Schmidhuber团队迎新成果：用图结构构建智能体，助力研发AI智能体</div>
+                        <div class="article-title">Jürgen Schmidhuber's team presents new research: Using graph structures to build agents, advancing AI agent development</div>
                         <div class="article-date">March 13, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ" class="article-link">Read Article</a>
                     </div>
                     
                     <div class="article-card">
-                        <div class="article-source">机器之心 (Synced)</div>
-                        <div class="article-title">卷起来！让智能体评估智能体，Meta发布Agent-as-a-Judge</div>
+                        <div class="article-source">Synced (Machine Heart)</div>
+                        <div class="article-title">Raising the bar! Evaluating agents with agents, Meta releases Agent-as-a-Judge</div>
                         <div class="article-date">October 18, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ" class="article-link">Read Article</a>
                     </div>
                     
                     <div class="article-card">
-                        <div class="article-source">新智元 (AI Era)</div>
-                        <div class="article-title">田渊栋团队新作祭出Agent-as-a-Judge！AI智能体自我审判，成本暴跌97%</div>
+                        <div class="article-source">AI Era (XinZhiYuan)</div>
+                        <div class="article-title">Yuandong Tian's team introduces Agent-as-a-Judge! AI agents self-evaluation reduces costs by 97%</div>
                         <div class="article-date">October 27, 2024</div>
                         <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw" class="article-link">Read Article</a>
                     </div>
@@ -2117,14 +2222,14 @@
                     <h3>Recent Talks</h3>
                     
                     <div class="talk-item">
-                        <div class="talk-title">奇点降临，Manus 诞生背后丨青源Workshop</div>
-                        <div class="talk-host">Host: 智源社区 • 2025</div>
+                        <div class="talk-title">The Singularity Arrival, Birth of Manus | Qingyuan Workshop</div>
+                        <div class="talk-host">Host: Zhiyuan Community • 2025</div>
                         <a href="https://mp.weixin.qq.com/s/e-NOQ0UXORatc3s8P2NWEw" class="watch-link">Watch Video</a>
                     </div>
                     
                     <div class="talk-item">
-                        <div class="talk-title">智能体蜂群 - 上海人工智能实验室</div>
-                        <div class="talk-host">Host: 上海人工智能实验室 • 2024</div>
+                        <div class="talk-title">Agent Swarms - Shanghai AI Laboratory</div>
+                        <div class="talk-host">Host: Shanghai AI Laboratory • 2024</div>
                         <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
                     </div>
                     
@@ -2135,13 +2240,13 @@
                     </div>
                     
                     <div class="talk-item">
-                        <div class="talk-title">浅述AI智能体 - 中科院自动化所</div>
-                        <div class="talk-host">Host: 中科院自动化所 • 2024</div>
+                        <div class="talk-title">Introduction to AI Agents - Institute of Automation, CAS</div>
+                        <div class="talk-host">Host: Institute of Automation, CAS • 2024</div>
                         <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
                     </div>
                     
                     <div class="talk-item">
-                        <div class="talk-title">NLSOM、MetaGPT、GPTSwarm: 以不一样的视角探索AI智能体</div>
+                        <div class="talk-title">NLSOM, MetaGPT, GPTSwarm: Exploring AI Agents from Different Perspectives</div>
                         <div class="talk-host">Host: ByteDance • 2024</div>
                         <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
                     </div>
@@ -2174,7 +2279,7 @@
                     <div class="award-item">
                         <div class="award-year">2021</div>
                         <div class="award-title">
-                            <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2021中兴蓝剑计划（武汉高校仅三人）</a>
+                            <a href="https://cs.cug.edu.cn/info/1017/1010.htm">2021 ZTE Blue Sword Program (Only three selected from Wuhan universities)</a>
                         </div>
                     </div>
                 </div>
@@ -2183,7 +2288,7 @@
                     <div class="award-item">
                         <div class="award-year">2019</div>
                         <div class="award-title">
-                            <a href="https://www.cug.edu.cn/info/10506/92425.htm">第十六届中国研究生数学建模竞赛 国家级二等奖</a>
+                            <a href="https://www.cug.edu.cn/info/10506/92425.htm">16th China Graduate Mathematical Modeling Competition - National Second Prize</a>
                         </div>
                     </div>
                     
