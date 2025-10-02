@@ -130,6 +130,106 @@
             line-height: 1.2;
         }
 
+        /* About section layout */
+        .about-card {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 12px 28px rgba(15, 15, 15, 0.08);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .about-media {
+            max-width: 260px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-photo {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .about-caption {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--light-text);
+        }
+
+        .about-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .about-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background-color: rgba(169, 138, 113, 0.08);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .about-social a:hover {
+            background-color: rgba(169, 138, 113, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .about-social img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .about-social a:hover img {
+            opacity: 1;
+        }
+
+        .about-bio {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .about-details h2 {
+            margin-top: 0;
+        }
+
+        @media (max-width: 991px) {
+            .about-card {
+                padding: 30px;
+            }
+        }
+
         /* Container to ensure consistent width */
         .container {
             width: 100%;
@@ -146,29 +246,40 @@
                 font-size: 32px;
                 margin-bottom: 20px;
             }
-            
+
+            .about-card {
+                padding: 30px;
+            }
+
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+                margin-bottom: 24px;
+            }
+
+            .about-media {
+                max-width: 220px;
+                width: 100%;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .about-details {
+                width: 100%;
+                text-align: center;
+            }
+
+            .about-social {
+                gap: 15px;
+            }
+
             .col-xs-4, .col-xs-8, .col-xs-3, .col-xs-9 {
                 width: 100%;
                 padding-left: 0;
                 padding-right: 0;
             }
-            
-            .about-wrapper {
-                padding: 30px 15px !important;
-                margin: 15px 0 !important;
-                border-radius: 15px !important;
-            }
-            
-            .about-wrapper::after {
-                border-radius: 15px !important;
-            }
-            
-            #me-img {
-                width: 70% !important;
-                margin: 0 auto;
-                display: block;
-            }
-            
+
             .social-icons {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -176,52 +287,34 @@
                 margin: 15px auto;
                 max-width: 280px;
             }
-            
-            .experience-carousel {
-                padding: 10px 0;
-                margin: 20px 0;
-            }
-            
-            .experience-card {
-                min-width: 280px;
-                width: 280px;
-            }
-            
-            .card-logo {
-                height: 100px;
-            }
-            
-            .card-content {
-                padding: 20px 15px;
-            }
-            
+
             .brands-container {
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 20px;
             }
-            
+
             .brand-item {
                 max-width: 45%;
                 height: auto !important;
             }
-            
+
             .media-columns {
                 flex-direction: column !important;
                 gap: 30px !important;
             }
-            
+
             .awards-columns {
                 flex-direction: column !important;
             }
-            
+
             .project-title .links {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 10px;
                 margin-top: 10px;
             }
-            
+
             .footer-content {
                 flex-direction: column;
                 gap: 20px;
@@ -254,7 +347,7 @@
                 margin-bottom: 20px;
             }
             
-            h2.title, h2.experience, h2.section_title {
+            h2.title, h2.section_title {
                 font-size: 28px !important;
                 margin-bottom: 25px;
             }
@@ -286,20 +379,6 @@
             margin-left: -15px;
             margin-right: -15px;
             width: auto;
-        }
-
-        /* Fix experience carousel scrolling */
-        .experience-carousel {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 20px 5px;
-            margin: 0 -5px;
-        }
-
-        /* Make sure floating animation stays within bounds */
-        .floating-agent {
-            z-index: 0;
-            pointer-events: none;
         }
 
         /* Ensure consistent social icon appearance */
@@ -335,7 +414,7 @@
         }
 
         /* General Headings (outside #about) */
-        h2.title, h2.experience, h2.section_title {
+        h2.title, h2.section_title {
             color: var(--text-color);
             border-bottom: none;
             padding-bottom: 0;
@@ -596,661 +675,6 @@
             }
         }
 
-        /* Experience Carousel Styling */
-        .experience-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            position: relative;
-            padding: 20px 0;
-            gap: 20px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            margin-left: 10px;
-            margin-right: 10px;
-            width: calc(100% - 20px);
-        }
-        
-        .experience-carousel::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .experience-card {
-            min-width: 280px;
-            width: 280px;
-            background-color: var(--bg-white);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: all 0.4s ease;
-            margin: 5px;
-            border: 1px solid var(--border-color);
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .experience-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: none;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        .experience-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent-color);
-            background-size: 100% 100%;
-            z-index: 2;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        
-        .experience-card .shine-effect {
-            display: none; /* Remove shine effect */
-        }
-        
-        .experience-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .experience-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .card-logo {
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .card-logo::after {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: none; /* Remove radial gradient */
-            top: -50%;
-            left: -50%;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .card-logo img {
-            max-width: 80%;
-            max-height: 80px;
-            object-fit: contain;
-            width: auto;
-            height: auto;
-            margin: 0 auto;
-            display: block;
-            transition: transform 0.3s ease;
-            filter: none; /* Remove shadow */
-        }
-        
-        .card-logo:hover img {
-            transform: scale(1.05);
-            filter: none; /* Remove shadow */
-        }
-        
-        .card-content {
-            padding: 25px 20px;
-            background: #ffffff;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease;
-        }
-        
-        .card-content h3 {
-            margin-top: 5px;
-            font-size: 18px;
-            color: var(--text-color);
-            margin-bottom: 15px;
-            position: relative;
-            padding-bottom: 10px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
-        
-        .card-content h3::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.4s ease, opacity 0.4s ease;
-            opacity: 0.8;
-        }
-        
-        .experience-card:hover .card-content h3 {
-            color: var(--text-color);
-            transform: translateX(0); /* No movement */
-        }
-        
-        .experience-card:hover .card-content h3::after {
-            width: 70px;
-            opacity: 1;
-        }
-        
-        .card-content p {
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: var(--text-color);
-            transform: translateY(0);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0.9;
-            position: relative;
-        }
-        
-        .card-content p strong {
-            position: relative;
-            z-index: 1;
-            transition: color 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .card-content p strong::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0; /* Remove background highlight */
-            z-index: -1;
-            transition: width 0.3s ease;
-        }
-        
-        /* Carousel Controls */
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .prev-btn, .next-btn {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--button-bg);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-size: 20px;
-            margin: 0 10px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .prev-btn:hover, .next-btn:hover {
-            background-color: #333;
-            transform: scale(1.1);
-        }
-        
-        .indicator-dots {
-            display: flex;
-            gap: 8px;
-            margin: 0 15px;
-        }
-        
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--border-color);
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .dot.active {
-            background-color: var(--button-bg);
-            transform: scale(1.2);
-        }
-        
-        /* Animation for cards */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .experience-card {
-            animation: fadeIn 0.5s ease forwards;
-            opacity: 0;
-        }
-
-        .experience-card:nth-child(1) { animation-delay: 0.1s; }
-        .experience-card:nth-child(2) { animation-delay: 0.2s; }
-        .experience-card:nth-child(3) { animation-delay: 0.3s; }
-        .experience-card:nth-child(4) { animation-delay: 0.4s; }
-        .experience-card:nth-child(5) { animation-delay: 0.5s; }
-        .experience-card:nth-child(6) { animation-delay: 0.6s; }
-        .experience-card:nth-child(7) { animation-delay: 0.7s; }
-
-        /* Hero section with decorative element */
-        .hero-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-decoration {
-            position: absolute;
-            right: 0;
-            top: 80px;
-            width: 300px;
-            height: 300px;
-            background-image: url('path-to-decoration.svg'); /* Optional: add a decoration SVG */
-            background-repeat: no-repeat;
-            background-size: contain;
-            opacity: 0.8;
-            z-index: 0;
-        }
-
-        /* Featured/highlighted section */
-        .featured-section {
-            background-color: var(--bg-white);
-            padding: 60px 40px;
-            margin: 80px 0;
-            position: relative;
-        }
-
-        .featured-section h2 {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 30px;
-            letter-spacing: -0.03em;
-        }
-
-        .featured-quote {
-            font-size: 24px;
-            line-height: 1.6;
-            font-weight: 400;
-            color: var(--text-color);
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .featured-quote::before {
-            content: "\201C"; /* Use Unicode escape sequence instead of direct quotes */
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 48px;
-            color: var(--accent-color);
-            line-height: 1;
-        }
-
-        .featured-author {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        .featured-role {
-            font-size: 14px;
-            color: var(--light-text);
-            margin-top: 5px;
-        }
-
-        /* Card grid for features/publications */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .feature-card {
-            background-color: var(--bg-white);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-            height: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card-header {
-            padding: 25px 25px 15px;
-        }
-
-        .feature-card-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 10px;
-            letter-spacing: -0.02em;
-        }
-
-        .feature-card-body {
-            padding: 0 25px 25px;
-        }
-
-        .feature-card-text {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--light-text);
-            margin-bottom: 20px;
-        }
-
-        .feature-card-link {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: inline-block;
-            padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card-link:hover {
-            border-bottom: 1px solid var(--primary-color);
-            opacity: 0.8;
-        }
-
-        /* Add new styles for making paper descriptions more prominent */
-        .highlight-desc.highlight-prominent {
-            color: #8d7464 !important; /* More muted brown color */
-            font-weight: 400 !important; /* Less bold */
-            font-style: normal !important;
-            background-color: rgba(169, 138, 113, 0.04); /* Much lighter beige background */
-            padding: 6px 10px;
-            border-radius: 4px;
-            display: block;
-            margin-top: 8px;
-            margin-bottom: 12px;
-            border-left: 1px solid #d6c4a8; /* Lighter border color */
-            box-shadow: none; /* Remove shadow */
-            letter-spacing: 0em;
-            line-height: 1.5;
-            max-width: 95%;
-        }
-
-        /* Add new skill list styles - closer to screenshot style */
-        #about ul.skills-list {
-            margin-top: 20px;
-            margin-bottom: 30px;
-            list-style-type: none;  /* Key point: remove native black dots */
-            padding-left: 20px;  /* Reduce left margin since we removed native markers */
-        }
-        
-        #about ul.skills-list li {
-            margin-bottom: 10px;
-            padding-left: 20px; /* Make space for custom beige dots */
-            position: relative;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        #about ul.skills-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.6em;
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        
-        /* Company/brand container - updated to better match screenshot */
-        .brands-container {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
-            margin: 0 auto;
-            padding: 0 20px;
-            background-color: transparent;
-            width: 100%;
-            max-width: 1100px; /* Increase container width */
-        }
-        
-        .brand-item {
-            height: 65px; /* Increase base height */
-            width: auto;
-            object-fit: contain;
-            filter: grayscale(100%) opacity(65%);
-            transition: filter 0.3s ease;
-            max-width: 18%;
-        }
-        
-        .brand-item:hover {
-            filter: grayscale(0%) opacity(90%);
-        }
-        
-        /* Link highlight styles */
-        .highlight-link {
-            color: var(--primary-color);
-            font-weight: 500;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .highlight-link:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
-        
-        /* Adjust personal introduction layout */
-        #about .profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        #about .profile-image {
-            width: 80%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-        
-        #about .profile-caption {
-            font-size: 13px;
-            color: var(--light-text);
-            margin-bottom: 20px;
-        }
-        
-        /* Adjust social icons */
-        #about .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        #about .social-icon {
-            width: 24px;
-            height: 24px;
-            opacity: 0.8;
-            transition: opacity 0.2s ease;
-        }
-        
-        #about .social-icon:hover {
-            opacity: 1;
-        }
-
-        /* Brand display section */
-        .brands-section {
-            width: 100%;
-            background-color: var(--bg-light); /* Use same color as website background */
-            padding: 35px 0; /* Reduce top and bottom padding */
-            margin: 20px 0; /* Reduce top and bottom margin */
-            border-top: 1px solid rgba(0,0,0,0.03);
-            border-bottom: 1px solid rgba(0,0,0,0.03);
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .brands-container {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
-            margin: 0 auto;
-            padding: 0 20px;
-            background-color: transparent;
-            width: 100%;
-            max-width: 1100px; /* Increase container width */
-        }
-        
-        .brand-item {
-            height: 50px; /* Uniform height */
-            width: auto;
-            object-fit: contain;
-            filter: grayscale(100%) opacity(65%);
-            transition: filter 0.3s ease;
-            max-width: 18%;
-        }
-        
-        .brand-item:hover {
-            filter: grayscale(0%) opacity(90%);
-        }
-
-        /* Custom sizes for each brand */
-        .brand-item.microsoft-logo {
-            height: 130px;
-        }
-
-        .brand-item.alibaba-logo {
-            height: 140px;
-        }
-        
-        .brand-item.meta-logo {
-            height: 55px;
-        }
-        
-        .brand-item.kaust-logo {
-            height: 45px;
-        }
-
-        .brand-item.iiai-logo {
-            height: 45px;
-        }
-
-        /* Mobile responsive styles */
-        @media (max-width: 767px) {
-            .brands-container {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 25px;
-            }
-            
-            .brand-item {
-                max-width: 45%;
-                height: 40px !important;
-            }
-            
-            /* Adjust article links display on mobile */
-            .project-title .links {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 10px;
-            }
-            
-            .project-title .links a {
-                margin-right: 0;
-            }
-            
-            /* Adjust About section padding on mobile */
-            .about-wrapper {
-                padding: 30px 20px !important;
-                margin: 20px 0 !important;
-                border-radius: 20px !important;
-            }
-            
-            /* Make skill list more compact on mobile */
-            #about ul.skills-list li {
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
-            
-            /* Optimize work card layout on mobile */
-            .row.work-block {
-                margin-bottom: 30px;
-                overflow: hidden;
-            }
-            
-            .row.work-block .project.col-xs-3 {
-                text-align: center;
-            }
-            
-            .row.work-block .project.col-xs-3 img {
-                max-width: 180px;
-                height: auto;
-            }
-            
-            .row.work-block .col-xs-9 {
-                width: 100%;
-            }
-            
-            /* Make article titles more compact on mobile */
-            .project-title .project-name {
-                font-size: 16px;
-                line-height: 1.4;
-                display: block;
-                margin-bottom: 5px;
-            }
-            
-            .project-title .authors {
-                font-size: 13px;
-                line-height: 1.4;
-                display: block;
-                margin-bottom: 5px;
-            }
-            
-            .project-title .publisher {
-                font-size: 14px;
-                display: block;
-                margin-bottom: 5px;
-            }
-            
-            /* Make images full width on mobile */
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-        }
-
         /* Media 部分样式 - 更加简洁现代 */
         .media-section {
             padding: 60px 0;
@@ -1306,29 +730,11 @@
             margin-bottom: 8px;
         }
 
-        .article-link, .watch-link {
+        .article-link {
             color: var(--primary-color);
             font-size: 14px;
             font-weight: 500;
             text-decoration: none;
-        }
-
-        .talk-item {
-            margin-bottom: 20px;
-        }
-
-        .talk-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 6px;
-            line-height: 1.4;
-        }
-
-        .talk-host {
-            font-size: 14px;
-            color: var(--light-text);
-            margin-bottom: 6px;
         }
 
         /* Awards 部分样式 */
@@ -1382,135 +788,6 @@
             color: var(--primary-color);
         }
 
-        /* Fix for all wrapper content */
-        .about-wrapper {
-            border: none; /* 移除普通边框 */
-            border-radius: 24px; /* 增加圆角 */
-            margin: 20px 0; /* 增加外边距 */
-            padding: 30px; /* 增加内边距 */
-            background-color: var(--bg-white);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08); /* 增强阴影效果 */
-            position: relative; /* 相对定位用于伪元素 */
-            overflow: visible; /* 允许内容溢出 */
-            width: calc(100% - 40px); /* 确保宽度占满但留有边距 */
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* 添加渐变边框效果 */
-        .about-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: -3px; /* Extend slightly beyond the card border */
-            border-radius: 20px; /* Match card radius but slightly larger */
-            background: linear-gradient(45deg, 
-                rgba(244, 237, 220, 0.5),
-                rgba(255, 253, 247, 0.6), 
-                rgba(252, 246, 228, 0.5),
-                rgba(255, 253, 247, 0.6),
-                rgba(244, 237, 220, 0.5));
-            background-size: 400% 400%;
-            z-index: 0; /* Behind the content */
-            filter: blur(15px); /* Create soft glow */
-            opacity: 0.7;
-            animation: gradient 15s ease infinite, auraPulse 8s infinite alternate;
-        }
-        
-        /* 添加装饰性背景 */
-        .about-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -15px; /* Extend beyond the card */
-            border-radius: 30px;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%),
-                radial-gradient(circle at 80% 20%, rgba(252, 246, 228, 0.2) 0%, rgba(252, 246, 228, 0) 50%),
-                radial-gradient(circle at 50% 10%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 60%),
-                radial-gradient(circle at 10% 40%, rgba(255, 253, 247, 0.2) 0%, rgba(255, 253, 247, 0) 50%),
-                radial-gradient(circle at 90% 90%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%);
-            opacity: 0.8;
-            filter: blur(15px);
-            z-index: 0;
-            pointer-events: none;
-            animation: mistFlow 20s infinite alternate, breathe 8s infinite ease-in-out;
-        }
-        
-        @keyframes auraPulse {
-            0% { opacity: 0.6; filter: blur(15px); }
-            50% { opacity: 0.9; filter: blur(12px); }
-            100% { opacity: 0.7; filter: blur(15px); }
-        }
-        
-        @keyframes mistFlow {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 10% 20%; }
-            50% { background-position: 20% 0%; }
-            75% { background-position: 10% -20%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes breathe {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-        
-        /* Add floating particles around the card */
-        .particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 10px 2px rgba(160, 220, 255, 0.5);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .particle:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation: particleFloat 15s infinite linear;
-        }
-        
-        .particle:nth-child(2) {
-            top: 70%;
-            left: 5%;
-            animation: particleFloat 20s infinite linear;
-        }
-        
-        .particle:nth-child(3) {
-            top: 40%;
-            right: 10%;
-            animation: particleFloat 18s infinite linear;
-        }
-        
-        .particle:nth-child(4) {
-            bottom: 20%;
-            right: 5%;
-            animation: particleFloat 12s infinite linear;
-        }
-        
-        .particle:nth-child(5) {
-            top: 10%;
-            right: 20%;
-            animation: particleFloat 16s infinite linear;
-        }
-        
-        @keyframes particleFloat {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
-            25% { opacity: 0.9; }
-            50% { transform: translate(-20px, 20px) rotate(180deg); opacity: 0.5; }
-            75% { opacity: 0.9; }
-            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.2; }
-        }
-
         /* Enhance About section text styles */
         #about p {
             color: #1D1B22; /* Darker text color for better readability */
@@ -1526,11 +803,6 @@
         #about p a:hover {
             color: #8C7458; /* Darker beige on hover */
             text-decoration: underline;
-        }
-
-        #about ul.skills-list li strong {
-            color: #A98A71; /* Beige color for skills highlights */
-            font-weight: 600;
         }
 
         /* Add line breaks and improved styling for paper descriptions */
@@ -1569,7 +841,7 @@
         }
 
         /* Soften About section highlighting */
-        #about p strong, #about p a, #about ul.skills-list li strong {
+        #about p strong, #about p a {
             color: #B39778 !important; /* Lighter, more muted beige */
             font-weight: 500 !important; /* Less bold */
         }
@@ -1598,256 +870,30 @@
 </head>
 <html>
 <body style="background-color: #FEFBF3; color: #1D1B22; width: 100%; margin: 0; padding: 0;">
-<div class="gray-container" id="about" style="background: radial-gradient(circle at center, #FEFBF8 0%, #FEFBF7 85%, #FEFBF6 100%); position: relative; overflow: hidden; width: 100%; margin: 0; padding: 0;">
-    <!-- Removed honeycomb dark background pattern -->
-    
-    <!-- Floating elements for magical aura effect -->
-    <div class="floating-agent" style="position: absolute; width: 40px; height: 40px; opacity: 0.15; background-image: url('images/icon/robot.png'); background-size: contain; animation: float1 12s infinite linear;"></div>
-    <div class="floating-agent" style="position: absolute; width: 35px; height: 35px; opacity: 0.12; background-image: url('images/icon/robot.png'); background-size: contain; animation: float2 15s infinite linear;"></div>
-    <div class="floating-agent" style="position: absolute; width: 45px; height: 45px; opacity: 0.1; background-image: url('images/icon/robot.png'); background-size: contain; animation: float3 18s infinite linear;"></div>
-    <div class="floating-agent" style="position: absolute; width: 30px; height: 30px; opacity: 0.13; background-image: url('images/icon/robot.png'); background-size: contain; animation: float4 20s infinite linear;"></div>
-    <div class="floating-agent" style="position: absolute; width: 38px; height: 38px; opacity: 0.11; background-image: url('images/icon/robot.png'); background-size: contain; animation: float5 16s infinite linear;"></div>
-    <style>
-        @keyframes float1 {
-            0% { transform: translate(-50px, -50px) rotate(0deg); }
-            50% { transform: translate(calc(50% + 50px), calc(50% + 50px)) rotate(180deg); }
-            100% { transform: translate(-50px, -50px) rotate(360deg); }
-        }
-        @keyframes float2 {
-            0% { transform: translate(calc(100% + 50px), -50px) rotate(0deg); }
-            50% { transform: translate(-50px, calc(50% + 50px)) rotate(-180deg); }
-            100% { transform: translate(calc(100% + 50px), -50px) rotate(-360deg); }
-        }
-        @keyframes float3 {
-            0% { transform: translate(25%, -50px) rotate(0deg); }
-            50% { transform: translate(75%, calc(100% + 50px)) rotate(360deg); }
-            100% { transform: translate(25%, -50px) rotate(720deg); }
-        }
-        @keyframes float4 {
-            0% { transform: translate(75%, calc(100% + 50px)) rotate(0deg); }
-            50% { transform: translate(25%, -50px) rotate(-360deg); }
-            100% { transform: translate(75%, calc(100% + 50px)) rotate(-720deg); }
-        }
-        @keyframes float5 {
-            0% { transform: translate(50%, 50%) rotate(0deg) scale(1); }
-            50% { transform: translate(50%, 50%) rotate(180deg) scale(1.2); }
-            100% { transform: translate(50%, 50%) rotate(360deg) scale(1); }
-        }
-        
-        /* Add mystical aura effect around the card */
-        .about-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: -3px; /* Extend slightly beyond the card border */
-            border-radius: 20px; /* Match card radius but slightly larger */
-            background: linear-gradient(45deg, 
-                rgba(244, 237, 220, 0.5),
-                rgba(255, 253, 247, 0.6), 
-                rgba(252, 246, 228, 0.5),
-                rgba(255, 253, 247, 0.6),
-                rgba(244, 237, 220, 0.5));
-            background-size: 400% 400%;
-            z-index: 0; /* Behind the content */
-            filter: blur(15px); /* Create soft glow */
-            opacity: 0.7;
-            animation: gradient 15s ease infinite, auraPulse 8s infinite alternate;
-        }
-        
-        /* Misty particles around the card border */
-        .about-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -15px; /* Extend beyond the card */
-            border-radius: 30px;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%),
-                radial-gradient(circle at 80% 20%, rgba(252, 246, 228, 0.2) 0%, rgba(252, 246, 228, 0) 50%),
-                radial-gradient(circle at 50% 10%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 60%),
-                radial-gradient(circle at 10% 40%, rgba(255, 253, 247, 0.2) 0%, rgba(255, 253, 247, 0) 50%),
-                radial-gradient(circle at 90% 90%, rgba(244, 237, 220, 0.2) 0%, rgba(244, 237, 220, 0) 50%);
-            opacity: 0.8;
-            filter: blur(15px);
-            z-index: 0;
-            pointer-events: none;
-            animation: mistFlow 20s infinite alternate, breathe 8s infinite ease-in-out;
-        }
-        
-        @keyframes auraPulse {
-            0% { opacity: 0.6; filter: blur(15px); }
-            50% { opacity: 0.9; filter: blur(12px); }
-            100% { opacity: 0.7; filter: blur(15px); }
-        }
-        
-        @keyframes mistFlow {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 10% 20%; }
-            50% { background-position: 20% 0%; }
-            75% { background-position: 10% -20%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes breathe {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-        
-        /* Add floating particles around the card */
-        .particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 10px 2px rgba(160, 220, 255, 0.5);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .particle:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation: particleFloat 15s infinite linear;
-        }
-        
-        .particle:nth-child(2) {
-            top: 70%;
-            left: 5%;
-            animation: particleFloat 20s infinite linear;
-        }
-        
-        .particle:nth-child(3) {
-            top: 40%;
-            right: 10%;
-            animation: particleFloat 18s infinite linear;
-        }
-        
-        .particle:nth-child(4) {
-            bottom: 20%;
-            right: 5%;
-            animation: particleFloat 12s infinite linear;
-        }
-        
-        .particle:nth-child(5) {
-            top: 10%;
-            right: 20%;
-            animation: particleFloat 16s infinite linear;
-        }
-        
-        @keyframes particleFloat {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
-            25% { opacity: 0.9; }
-            50% { transform: translate(-20px, 20px) rotate(180deg); opacity: 0.5; }
-            75% { opacity: 0.9; }
-            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.2; }
-        }
-    </style>
+<div class="gray-container" id="about">
     <div class="container">
-        <div class="about-wrapper" style="width: calc(100% - 30px); margin: 15px auto; border-radius: 16px; position: relative; z-index: 1; background-color: rgba(255, 255, 255, 0.9);">
-            <!-- Add floating particles -->
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            
-            <div class="row" style="margin: 0; position: relative; z-index: 2;">
-
-                <div class="col-xs-4" style="text-align: center; padding: 0 10px;">
-                    <div class="image-container" style="position: relative; margin: 0 auto; width: 85%; max-width: 280px;">
-                        <img style="width: 100%; border-radius: 10px; position: relative; z-index: 2;" id="me-img" src="images/mingchen.jpeg">
-                        <div class="image-glow" style="position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 15px; background: linear-gradient(45deg, #F4EDDC, #FFFDF7, #FCF6E4, #FFFDF7, #F4EDDC); background-size: 400% 400%; filter: blur(10px); z-index: 1; opacity: 0.6; animation: gradient 10s ease infinite;"></div>
-                    </div>
-                    <br>
-                    <div style="margin-top: 15px; font-size: small;">
-                        *Taken in the KAUST AI Initiative.
-                    </div>
-                    <!-- Add social icons div here -->
-                    <div class="social-icons">
-                       <a href="https://twitter.com/MingchenZhuge"
-                           style="text-decoration: none;">
-                           <img src="images/icon/twitter.png" alt="Twitter">
-                       </a>
-                       <a href="https://github.com/mczhuge" style="text-decoration: none;">
-                           <img src="images/GitHub-512.webp" alt="GitHub">
-                       </a>
-                       <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao" style="text-decoration: none;">
-                           <img src="images/icon/scholar.png" alt="Google Scholar">
-                       </a>
-                       <a href="https://www.linkedin.com/in/mingchen-zhuge-7599a1272/" style="text-decoration: none;">
-                           <img src="images/icon/linkedin.png" alt="LinkedIn">
-                       </a>
-                       <!-- <a href="mailto:mingchen.zhuge@kaust.edu.sa" style="text-decoration: none;">
-                           <img src="images/icon/email.png" alt="Email">
-                       </a> -->
-                    </div>
+        <div class="about-card">
+            <div class="about-content">
+                <div class="about-media">
+                    <img class="about-photo" src="images/mingchen.jpeg" alt="Mingchen Zhuge">
+                    <p class="about-caption">*Taken in the KAUST AI Initiative.</p>
                 </div>
-
-                <div class="col-xs-8" style="padding: 0 15px;">
-                    <h2 style="margin-top: 0;"> <span class="black-text">Mingchen Zhuge</span></span>
-                    </h2>
-
-                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
-                        <span style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0D0 100%); padding: 8px 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); animation: breathe 3s ease-in-out infinite;">
-                            <span style="display: inline-block; animation: bounce 1s infinite">📢</span>
-                            <span style="color: #FF4444; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.1); animation: textBreathe 3s ease-in-out infinite;">
-                                I am on the 2025-2026 academic/industry job market!
-                            </span>
-                        </span>
-                    </p>
-
-                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
-                        I am a final-year PhD Candidate at the
-                        <strong style="color: #B39778; font-weight: 500;">KAUST AI Initiative</strong>. I am fortunate to have 
-                            <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en" style="color: #B39778; font-weight: 500; text-decoration: none;">Jürgen Schmidhuber</a> as my advisor.
-                    </p>
-                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
-                        My current research interests and skills include:
-                        <ul class="skills-list">
-                            <li><strong style="color: #B39778; font-weight: 500;">Multimodal:</strong> Vision-Language Pre-training; Currently Prefer Video-based LLMs.</li>
-                            <li><strong style="color: #B39778; font-weight: 500;">LLMs:</strong> Post-Training.</li>
-                            <li><strong style="color: #B39778; font-weight: 500;">Agents:</strong> LLM-based Multi-Agent Systems, Code Generation.</li>
-                            <li><strong style="color: #B39778; font-weight: 500;">Meta Learning:</strong> Recursive Self-Improvement.</li>
-                            <li><strong style="color: #B39778; font-weight: 500;">AI Judges:</strong> Agent-as-a-Judge, LLM-as-a-Judge.</li>
-                        </ul>
-                    </p>                
-          
-                 <!-- <a
-                 href="mailto:mingchen.zhuge@kaust.edu.sa">
-                 😀 Feel free to contact me for future collaboration, whether it's for providing a 2025 summer internship, co-founding a venture, or a full-time job opportunity (industry or faculty). Appreciate your guidances.
-                </a>
-                 -->
-          
-                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
-                        I contribute to open-source communities like <a href="https://github.com/geekan/MetaGPT" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">GPTSwarm</a> and <a href="https://github.com/OpenDevin/OpenDevin" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">OpenDevin</a>.
-                    </p>    
-                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
-                         <strong style="color: #B39778; font-weight: 500;">Before joining KAUST</strong>, I've worked as an engineer, researcher (or intern) at 
-                         <a href="https://nsfocusglobal.com" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">NSFocus</a>,
-                         <a href="https://www.alibabagroup.com/en/global/home" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">Alibaba Group</a>,
-                         <a href="https://www.inceptioniai.org/" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">IIAI (G42)</a>, 
-                         <a href="https://zhengfenglab.com" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">SUSTech VIP Lab</a>, and
-                         <a href="https://github.com/nlpxucan/WizardLM" class="highlight-link" style="color: #B39778; font-weight: 500; text-decoration: none;">Microsoft</a>.
-                    </p>
-
-                    <p style="color: #333; line-height: 1.7; margin-bottom: 15px;">
-                        I was born in a beautiful city Guilin, China, and I am a descendant of             
-                        <a href="https://en.wikipedia.org/wiki/Zhuge_Liang" style="color: #B39778; font-weight: 500; text-decoration: none;">Zhuge Liang</a>.
-                    </p>  
-
+                <div class="about-details">
+                    <h2>Mingchen Zhuge</h2>
+                    <p class="about-bio">I am a PhD candidate with a strong interest in multimodal agents and world models, including their training (especially post-training) and applications. I am fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en" style="color: #FF4444; font-weight: 600; text-decoration: underline;">Prof. Jürgen Schmidhuber</a> as my advisor. I have 20+ top-tier publications and over 3,200 citations. Additionally, I enjoy contributing to open-source frameworks such as <a href="https://github.com/geekan/MetaGPT">MetaGPT</a>, <a href="https://github.com/metauto-ai/GPTSwarm">GPTSwarm</a>, <a href="https://github.com/OpenDevin/OpenDevin">OpenDevin</a> (aka. OpenHands), and <a href="https://github.com/metauto-ai/agent-as-a-judge">agent-as-a-judge</a>, which have collectively garnered around 130,000 stars. My papers on multimodal agents were accepted as oral presentations at ICLR (<1.2%), ICML (<1.5%) or received the Best Paper Award at the NeurIPS Ro-FoMo Workshop. I was nominated for <strong>WAIC 明日之星 (15人, 2025)</strong> and recognized as an <strong>Outstanding Reviewer of CVPR2023 (232 out of 7000+)</strong>. <strong style="color: #FF4444; font-weight: 600;">I am on the 2025–2026 job market and wanna find a place with a strong ambition for future superintelligence.</strong></p>
                 </div>
+            </div>
+            <div class="about-social">
+                <a href="https://twitter.com/MingchenZhuge"><img src="images/icon/twitter.png" alt="Twitter"></a>
+                <a href="https://github.com/mczhuge"><img src="images/GitHub-512.webp" alt="GitHub"></a>
+                <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao"><img src="images/icon/scholar.png" alt="Google Scholar"></a>
+                <a href="https://www.linkedin.com/in/mingchen-zhuge-7599a1272/"><img src="images/icon/linkedin.png" alt="LinkedIn"></a>
             </div>
         </div>
     </div>
 </div>
 
- <!-- 品牌展示部分 - 单独的部分 -->
+<!-- 品牌展示部分 - 单独的部分 -->
 <div style="width: 100%; background-color: var(--bg-light); padding: 35px 0; margin: 20px 0; border-top: 1px solid rgba(0,0,0,0.03); border-bottom: 1px solid rgba(0,0,0,0.03); display: flex; justify-content: center; overflow: hidden;">
     <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 30px; margin: 0 auto; padding: 0 20px; background-color: transparent; width: 100%; max-width: 1100px;">
         <img src="images/kaust.png" alt="KAUST" style="height: 45px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
@@ -2080,138 +1126,8 @@
 </div>
 
 
-<div id="recent-works" style="margin: 0; padding: 0; width: 100%; background-color: #FEFBF3;">
-
-    <div id="experience" style="margin: 0; padding: 20px 0; width: 100%; background-color: #FEFBF3;">
-        <div class="container">
-            <h2 class="experience" style="font-size: 28px; margin-bottom: 30px;">Experience</h2>
-            
-            <div class="experience-carousel" style="margin: 0; padding: 20px 0; width: 100%;">
-                <!-- Meta Card -->
-                <div class="experience-card" style="margin-bottom: 25px; background-color: #FFFFFF; height: 450px;">
-                    <div class="shine-effect"></div>
-                    <div class="card-logo">
-                        <img src="images/Meta-Logo.png" alt="Meta Logo" class="company-logo meta-logo" style="max-height: 70px;">
-                    </div>
-                    <div class="card-content">
-                        <h4><span class="badge badge-secondary">June 2024 - Present</span></h4>
-                        <h3>Research Scientist Intern, <strong>Meta</strong></h3>
-                        <p><strong>Advisor:</strong> <a href="https://scholar.google.com/citations?user=bXnrlyAAAAAJ&hl=en">Changsheng Zhao</a>,
-                        <a href="https://scholar.google.com/citations?user=b-zD42MAAAAJ&hl=en">Yangyang Shi</a></p>
-                        <p><strong>Topic:</strong> Multimodal LLMs, Agents</p>
-                        <p><strong>Location:</strong> Burlingame, United States</p>
-                    </div>
-                </div>
-                
-                <!-- KAUST Card -->
-                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
-                    <div class="shine-effect"></div>
-                    <div class="card-logo">
-                        <img src="images/kaust.png" alt="KAUST Logo" class="company-logo kaust-logo" style="max-height: 65px;">
-                    </div>
-                    <div class="card-content">
-                        <h4><span class="badge badge-secondary">Aug 2022 - Present</span></h4>
-                        <h3>PhD Student, <strong>KAUST AI Initiative</strong></h3>
-                        <p><strong>Advisor:</strong> <a href="https://people.idsia.ch/~juergen/">Jürgen Schmidhuber</a></p>
-                        <p><strong>Topic:</strong> Multimodal, LLMs, Agent Society, Meta Learning</p>
-                        <p><strong>Location:</strong> Thuwal, KSA</p>
-                    </div>
-                </div>
-                
-                <!-- Microsoft Card -->
-                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
-                    <div class="shine-effect"></div>
-                    <div class="card-logo">
-                        <img src="images/microsoft_logo.png" alt="Microsoft Logo" class="company-logo microsoft-logo" style="max-height: 155px;">
-                    </div>
-                    <div class="card-content">
-                        <h4><span class="badge badge-secondary">May 2022 - Aug 2022</span></h4>
-                        <h3>Research Scientist Intern, <strong>Microsoft (WizardLM)</strong></h3>
-                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=x_cOKuwAAAAJ&hl=zh-CN">Chongyang Tao</a></p>
-                        <p><strong>Topic:</strong> NLP, Multimodal LLM</p>
-                        <p><strong>Location:</strong> Beijing, China</p>
-                    </div>
-                </div>
-                
-                <!-- SUSTech Card -->
-                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
-                    <div class="shine-effect"></div>
-                    <div class="card-logo">
-                        <img src="images/sustech_logo.png" alt="SUSTech Logo" class="company-logo sustech-logo" style="max-height: 70px;">
-                    </div>
-                    <div class="card-content">
-                        <h4><span class="badge badge-secondary">Jul 2021 - Jan 2022</span></h4>
-                        <h3>Visiting Scholar, <strong>SUSTech</strong></h3>
-                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=PcmyXHMAAAAJ&hl=zh-CN&oi=ao">Feng Zheng</a></p>
-                        <p><strong>Topic:</strong> Multimodal (Audio-Visual)</p>
-                        <p><strong>Location:</strong> Shenzhen, China</p>
-                    </div>
-                </div>
-                
-                <!-- IIAI Card -->
-                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
-                    <div class="shine-effect"></div>
-                    <div class="card-logo">
-                        <img src="images/iiai_logo.png" alt="IIAI Logo" class="company-logo iiai-logo" style="max-height: 65px;">
-                    </div>
-                    <div class="card-content">
-                        <h4><span class="badge badge-secondary">Mar 2021 - Jun 2021</span></h4>
-                        <h3>Research Intern, <strong>IIAI</strong></h3>
-                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=kakwJ5QAAAAJ&hl=en&oi=ao">Deng-Ping Fan</a>, 
-                        <a href="https://scholar.google.com/citations?user=z84rLjoAAAAJ&hl=en">Ling Shao</a></p>
-                        <p><strong>Topic:</strong> Computer Vision</p>
-                        <p><strong>Location:</strong> Abu Dhabi, UAE</p>
-                    </div>
-                </div>
-                
-                <!-- Alibaba Card -->
-                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
-                    <div class="shine-effect"></div>
-                    <div class="card-logo">
-                        <img src="images/alibaba_logo.png" alt="Alibaba Logo" class="company-logo alibaba-logo" style="max-height: 120px;">
-                    </div>
-                    <div class="card-content">
-                        <h4><span class="badge badge-secondary">May 2020 - Feb 2021</span></h4>
-                        <h3>Algorithm Intern, <strong>Alibaba Group</strong></h3>
-                        <p><strong>Host:</strong> <a href="https://scholar.google.com/citations?user=0uPb8MMAAAAJ&hl=en&oi=ao">Dehong Gao</a></p>
-                        <p><strong>Topic:</strong> Multimodal (Vision-Language Pre-training)</p>
-                        <p><strong>Location:</strong> Hangzhou, China</p>
-                    </div>
-                </div>
-                
-                <!-- NSFocus Card -->
-                <div class="experience-card" style="background-color: #FFFFFF; height: 450px;">
-                    <div class="shine-effect"></div>
-                    <div class="card-logo">
-                        <img src="images/nsfocus_logo.png" alt="NSFocus Logo" class="company-logo nsfocus-logo" style="max-height: 65px;">
-                    </div>
-                    <div class="card-content">
-                        <h4><span class="badge badge-secondary">March 2018 - Jun 2018</span></h4>
-                        <h3>Research Intern, <strong>NSFocus</strong></h3>
-                        <p><strong>Host:</strong> <a href="https://www.linkedin.com/in/liuwenmao/?originalSubdomain=cn">Wenmao Liu</a></p>
-                        <p><strong>Topic:</strong> Blockchain, Network Security</p>
-                        <p><strong>Location:</strong> Beijing, China</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-controls">
-                <span class="prev-btn">❮</span>
-                <div class="indicator-dots">
-                    <!-- Dots will be added by JavaScript -->
-                </div>
-                <span class="next-btn">❯</span>
-            </div>
-        </div>
-    </div>
-
-    <head>
-
-    </head>
 
     <div id="includedPubs"></div>
-
-    <br>
 
 
     <div id="talk" class="content-section" style="margin: 0; padding: 20px 0; width: 100%; background-color: #FEFBF3;">
@@ -2245,39 +1161,6 @@
                     </div>
                 </div>
                 
-                <div class="media-column">
-                    <h3>Recent Talks</h3>
-                    
-                    <div class="talk-item">
-                        <div class="talk-title">The Singularity Arrival, Birth of Manus | Qingyuan Workshop</div>
-                        <div class="talk-host">Host: Zhiyuan Community • 2025</div>
-                        <a href="https://mp.weixin.qq.com/s/e-NOQ0UXORatc3s8P2NWEw" class="watch-link">Watch Video</a>
-                    </div>
-                    
-                    <div class="talk-item">
-                        <div class="talk-title">Agent Swarms - Shanghai AI Laboratory</div>
-                        <div class="talk-host">Host: Shanghai AI Laboratory • 2024</div>
-                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
-                    </div>
-                    
-                    <div class="talk-item">
-                        <div class="talk-title">Exploring Multimodal Agents - WAIC AI Lite</div>
-                        <div class="talk-host">Host: WAIC AI Lite Think Talk • 2024</div>
-                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
-                    </div>
-                    
-                    <div class="talk-item">
-                        <div class="talk-title">Introduction to AI Agents - Institute of Automation, CAS</div>
-                        <div class="talk-host">Host: Institute of Automation, CAS • 2024</div>
-                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
-                    </div>
-                    
-                    <div class="talk-item">
-                        <div class="talk-title">NLSOM, MetaGPT, GPTSwarm: Exploring AI Agents from Different Perspectives</div>
-                        <div class="talk-host">Host: ByteDance • 2024</div>
-                        <a href="https://mp.weixin.qq.com/s/4UMyNyUKVtcZOxTrKbF4wQ" class="watch-link">Watch Video</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -2367,131 +1250,6 @@
         </div>
     </div>
 
-    <!-- Experience Carousel JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.querySelector('.experience-carousel');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            const dotsContainer = document.querySelector('.indicator-dots');
-            const cards = document.querySelectorAll('.experience-card');
-            
-            // Calculate visible cards based on fixed container width
-            const getVisibleCount = () => {
-                const containerWidth = carousel.offsetWidth;
-                const cardWidth = 280 + 20; // Card width + gap
-                return Math.floor(containerWidth / cardWidth);
-            };
-            
-            // Create indicator dots
-            const createDots = () => {
-                dotsContainer.innerHTML = '';
-                const visibleCount = getVisibleCount();
-                const totalDots = Math.max(1, cards.length - visibleCount + 1);
-                
-                for (let i = 0; i < totalDots; i++) {
-                    const dot = document.createElement('div');
-                    dot.classList.add('dot');
-                    if (i === 0) dot.classList.add('active');
-                    dot.addEventListener('click', () => scrollToCard(i));
-                    dotsContainer.appendChild(dot);
-                }
-            };
-            
-            // Update active dot
-            const updateDots = (index) => {
-                const dots = document.querySelectorAll('.dot');
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-            };
-            
-            // Scroll to specific card
-            const scrollToCard = (index) => {
-                const cardWidth = 280 + 20; // Card width + gap
-                carousel.scrollTo({
-                    left: index * cardWidth,
-                    behavior: 'smooth'
-                });
-                updateDots(index);
-                currentIndex = index;
-            };
-            
-            // Handle next and previous buttons
-            let currentIndex = 0;
-            let maxIndex = Math.max(0, cards.length - getVisibleCount());
-            
-            prevBtn.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    scrollToCard(currentIndex);
-                }
-            });
-            
-            nextBtn.addEventListener('click', () => {
-                maxIndex = Math.max(0, cards.length - getVisibleCount());
-                if (currentIndex < maxIndex) {
-                    currentIndex++;
-                    scrollToCard(currentIndex);
-                }
-            });
-            
-            // Auto-scroll functionality
-            let autoScrollInterval;
-            
-            const startAutoScroll = () => {
-                autoScrollInterval = setInterval(() => {
-                    maxIndex = Math.max(0, cards.length - getVisibleCount());
-                    if (currentIndex < maxIndex) {
-                        currentIndex++;
-                    } else {
-                        currentIndex = 0;
-                    }
-                    scrollToCard(currentIndex);
-                }, 4000); // Change card every 4 seconds
-            };
-            
-            const stopAutoScroll = () => {
-                clearInterval(autoScrollInterval);
-            };
-            
-            // Stop auto-scroll on hover or touch
-            carousel.addEventListener('mouseenter', stopAutoScroll);
-            carousel.addEventListener('touchstart', stopAutoScroll);
-            
-            // Resume auto-scroll when mouse leaves
-            carousel.addEventListener('mouseleave', startAutoScroll);
-            carousel.addEventListener('touchend', startAutoScroll);
-            
-            // Detect scroll to update active dot
-            carousel.addEventListener('scroll', () => {
-                const cardWidth = 280 + 20; // Card width + gap
-                const scrollPos = carousel.scrollLeft;
-                const newIndex = Math.round(scrollPos / cardWidth);
-                
-                if (newIndex !== currentIndex && newIndex <= maxIndex) {
-                    currentIndex = newIndex;
-                    updateDots(currentIndex);
-                }
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                // Recalculate visible count and update dots
-                createDots();
-                // Reset to first card on resize
-                maxIndex = Math.max(0, cards.length - getVisibleCount());
-                currentIndex = 0;
-                scrollToCard(0);
-            });
-            
-            // Initialize dots
-            createDots();
-            
-            // Start auto-scroll on page load
-            startAutoScroll();
-        });
-    </script>
 
 </body>
 </html>
