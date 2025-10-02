@@ -796,12 +796,12 @@
         }
 
         #about p strong, #about p a {
-            color: #DAA520; /* Warm champagne gold color for emphasis */
-            font-weight: 600;
+            color: var(--primary-color); /* Coffee/beige emphasis to match publications */
+            font-weight: 400; /* Not bold */
         }
 
         #about p a:hover {
-            color: #CD853F; /* Warmer darker gold on hover */
+            color: var(--secondary-color); /* Darker coffee on hover */
             text-decoration: underline;
         }
 
@@ -840,14 +840,20 @@
             font-weight: normal !important;
         }
 
-        /* Soften About section highlighting */
+        /* Soften About section highlighting to coffee color */
         #about p strong, #about p a {
-            color: #DAA520 !important; /* Warm champagne gold color */
-            font-weight: 600 !important; /* Medium bold */
+            color: var(--primary-color) !important; /* Coffee/beige */
+            font-weight: 400 !important; /* Not bold */
         }
 
         #about p a:hover {
-            color: #CD853F !important; /* Warmer darker gold on hover */
+            color: var(--secondary-color) !important; /* Darker coffee */
+        }
+
+        /* Reusable coffee emphasis text */
+        .coffee-text {
+            color: var(--primary-color) !important;
+            font-weight: 400 !important;
         }
 
         /* Make the oral presentation badges just red text */
@@ -880,7 +886,7 @@
                 </div>
                 <div class="about-details">
                     <h2>Mingchen Zhuge</h2>
-                    <p class="about-bio">I am a PhD candidate with a strong interest in <strong style="color: #D35400; font-weight: 600;">multimodal agents and world models</strong>, including their training (especially post-training) and applications. I am fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en" style="color: #D35400; font-weight: 600; text-decoration: none;">Prof. Jürgen Schmidhuber</a> as my advisor. I have 20+ top-tier publications and over 3,300 citations (80% from first-author papers). I enjoy contributing to open-source frameworks such as <a href="https://github.com/geekan/MetaGPT" style="color: #D35400; font-weight: 600; text-decoration: none;">MetaGPT</a> <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/GPTSwarm" style="color: #D35400; font-weight: 600; text-decoration: none;">GPTSwarm</a> <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/OpenDevin/OpenDevin" style="color: #D35400; font-weight: 600; text-decoration: none;">OpenDevin</a> (aka. OpenHands) <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, and <a href="https://github.com/metauto-ai/agent-as-a-judge" style="color: #D35400; font-weight: 600; text-decoration: none;">agent-as-a-judge</a> <img src="https://img.shields.io/github/stars/metauto-ai/agent-as-a-judge?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>. My papers on multimodal agents were accepted as <strong style="color: #D35400; font-weight: 600;">oral presentations</strong> at ICLR (<strong style="color: #D35400; font-weight: 600;"><1.2%</strong>), ICML (<strong style="color: #D35400; font-weight: 600;"><1.5%</strong>) or received the <strong style="color: #D35400; font-weight: 600;">Best Paper Award</strong> at the NeurIPS Ro-FoMo Workshop. I was nominated for <strong style="color: #D35400; font-weight: 600;">WAIC Future Star Nomination (明日之星提名奖, 15人, 2025)</strong> and recognized as an <strong style="color: #D35400; font-weight: 600;">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</strong>.</p>
+                    <p class="about-bio">I am a PhD candidate with a strong interest in <span class="coffee-text">multimodal agents and world models</span>, including their training (especially post-training) and applications. I am fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Prof. Jürgen Schmidhuber</a> as my advisor. I have 20+ top-tier publications and over 3,300 citations (80% from first-author papers). I enjoy contributing to open-source frameworks such as <a href="https://github.com/geekan/MetaGPT">MetaGPT</a> <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/GPTSwarm">GPTSwarm</a> <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/OpenDevin/OpenDevin">OpenDevin</a> (aka. OpenHands) <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, and <a href="https://github.com/metauto-ai/agent-as-a-judge">agent-as-a-judge</a> <img src="https://img.shields.io/github/stars/metauto-ai/agent-as-a-judge?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>. My papers on multimodal agents were accepted as <span class="coffee-text">oral presentations</span> at ICLR (<span class="coffee-text">&lt;1.2%</span>), ICML (<span class="coffee-text">&lt;1.5%</span>) or received the <span class="coffee-text">Best Paper Award</span> at the NeurIPS Ro-FoMo Workshop. I was nominated for <span class="coffee-text">WAIC Future Star Nomination (明日之星提名奖, 15人, 2025)</span> and recognized as an <span class="coffee-text">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</span>.</p>
                     <p class="about-bio" style="margin-top: 15px;">📣 I am on the 2025–2026 job market and wanna find a place with a strong ambition for future superintelligence.</p>
                 </div>
             </div>
