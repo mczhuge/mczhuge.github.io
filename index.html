@@ -16,9 +16,9 @@
 
     <style>
         :root {
-            --primary-color: #B3754A; /* Warm coffee accent for links/emphasis */
-            --secondary-color: #8C5C32; /* Darker coffee accent */
-            --accent-color: #D4B897; /* Light beige accent */
+            --primary-color: #A98A71; /* Original coffee accent for links/emphasis */
+            --secondary-color: #8C7458; /* Darker coffee accent */
+            --accent-color: #C4AC91; /* Light beige accent */
             --subtle-accent: #FFF8EB; /* Very light beige */
             --tech-blue: #B5A48C; /* Beige variant */
             --tech-cyan: #D6C4A8; /* Another beige variant */
@@ -33,7 +33,7 @@
             --bg-light: #FEFBF3; /* Claude style light yellow background */
             --bg-white: #FFFDF7; /* White that complements Claude background */
             --border-color: #E2E8F0; /* Light border color */
-            --button-bg: #B3754A; /* Match primary accent */
+            --button-bg: #A98A71; /* Match primary accent */
             --button-text: #FFFFFF; /* White button text */
         }
 
@@ -457,10 +457,15 @@
             text-decoration: none;
         }
 
+        /* Ensure publication block uses unified sans-serif font for bold text */
+        .project-title strong {
+            font-family: inherit;
+        }
+
         /* Publication Highlights & Links (remain light themed) */
         .project-title .publisher strong {
-            color: var(--light-text);
-            font-weight: 500;
+            color: var(--primary-color);
+            font-weight: 400;
         }
         .project-title span[style*="color:red"],
         .project-title span[style*="color:#d32f2f"] {
@@ -832,10 +837,10 @@
             max-width: 95%;
         }
 
-        /* Make the publisher name more subtle and neutral */
+        /* Make the publisher name consistent with link color and weight */
         .project-title .publisher strong {
-            color: var(--light-text) !important;
-            font-weight: 500 !important;
+            color: var(--primary-color) !important;
+            font-weight: 400 !important;
             font-size: 0.95em;
         }
 
