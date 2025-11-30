@@ -13,15 +13,12 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-color: #A98A71; /* Beige main color instead of blue */
-            --secondary-color: #8C7458; /* Darker beige */
-            --accent-color: #C4AC91; /* Light beige accent */
+            --primary-color: #B3754A; /* Warm coffee accent for links/emphasis */
+            --secondary-color: #8C5C32; /* Darker coffee accent */
+            --accent-color: #D4B897; /* Light beige accent */
             --subtle-accent: #FFF8EB; /* Very light beige */
             --tech-blue: #B5A48C; /* Beige variant */
             --tech-cyan: #D6C4A8; /* Another beige variant */
@@ -36,12 +33,15 @@
             --bg-light: #FEFBF3; /* Claude style light yellow background */
             --bg-white: #FFFDF7; /* White that complements Claude background */
             --border-color: #E2E8F0; /* Light border color */
-            --button-bg: #A98A71; /* Beige button background */
+            --button-bg: #B3754A; /* Match primary accent */
             --button-text: #FFFFFF; /* White button text */
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                         "Segoe UI", Roboto, "Helvetica Neue", Arial,
+                         "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                         "Noto Sans CJK SC", sans-serif;
             color: var(--text-color);
             background-color: var(--bg-light);
             line-height: 1.6;
@@ -416,6 +416,14 @@
             margin: 0 0 30px 0;
         }
 
+        /* Heading font family for English-heavy titles */
+        #about h2,
+        h2.title, h2.section_title, h2.section-title,
+        h3.subsection_title {
+            font-family: "Georgia", "Times New Roman", "Times",
+                         "Noto Serif", "Source Serif Pro", serif;
+        }
+
         /* General Headings (outside #about) */
         h2.title, h2.section_title, h2.section-title {
             color: var(--text-color);
@@ -451,8 +459,8 @@
 
         /* Publication Highlights & Links (remain light themed) */
         .project-title .publisher strong {
-            color: var(--text-color);
-            font-weight: 600;
+            color: var(--light-text);
+            font-weight: 500;
         }
         .project-title span[style*="color:red"],
         .project-title span[style*="color:#d32f2f"] {
@@ -678,7 +686,6 @@
             }
         }
 
-        /* Media 部分样式 - 更加简洁现代 */
         .media-section {
             padding: 60px 0;
             background-color: var(--bg-light);
@@ -740,7 +747,6 @@
             text-decoration: none;
         }
 
-        /* Awards 部分样式 */
         .awards-section {
             padding: 60px 0;
             background-color: var(--bg-light);
@@ -826,11 +832,11 @@
             max-width: 95%;
         }
 
-        /* Make the publisher name more subtle */
+        /* Make the publisher name more subtle and neutral */
         .project-title .publisher strong {
-            color: #B39778 !important; /* Lighter beige color matching our theme */
-            font-weight: 600 !important;
-            font-size: 1em;
+            color: var(--light-text) !important;
+            font-weight: 500 !important;
+            font-size: 0.95em;
         }
 
         /* Make the oral presentation badges more subtle */
@@ -903,9 +909,9 @@
     </div>
 </div>
 
-<!-- 品牌展示部分 - 单独的部分 -->
-<div style="width: 100%; background-color: var(--bg-light); padding: 35px 0; margin: 20px 0; border-top: 1px solid rgba(0,0,0,0.03); border-bottom: 1px solid rgba(0,0,0,0.03); display: flex; justify-content: center; overflow: hidden;">
-    <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 30px; margin: 0 auto; padding: 0 20px; background-color: transparent; width: 100%; max-width: 1100px;">
+
+<div style="width: 100%; background-color: var(--bg-light); padding: 15px 0; margin: 10px 0; border-top: 1px solid rgba(0,0,0,0.03); border-bottom: 1px solid rgba(0,0,0,0.03); display: flex; justify-content: center; overflow: hidden;">
+    <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 20px; margin: 0 auto; padding: 0 20px; background-color: transparent; width: 100%; max-width: 1000px;">
         <img src="images/kaust.png" alt="KAUST" style="height: 45px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
         <img src="images/Meta-Logo.png" alt="Meta" style="height: 55px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
         <img src="images/microsoft_logo.png" alt="Microsoft" style="height: 130px; width: auto; object-fit: contain; filter: grayscale(100%) opacity(65%); transition: filter 0.3s ease; max-width: 18%;">
@@ -936,19 +942,16 @@
                     <br>
                     <span class="publisher"><strong>ICML 2025</strong></span>
                     <br>
-                    <div class="highlight-desc highlight-prominent">
-                        The first paper introduce the philosophy of Agent-as-a-Judge.<br>
-                        Dramatically reduces evaluation costs while maintaining high correlation with human judgments.
-                    </div>
                     <span class="links">
                         <a href="https://arxiv.org/pdf/2410.10934">[Paper]</a>
+                        <a href="https://drive.google.com/file/d/1EnTSGztSrjooYMLaDe8EnoATfsSoe3xv/view">[Google Agent Whitebook]</a>
                         <a href="https://github.com/metauto-ai/agent-as-a-judge">[Code]</a>
                         <img src="https://img.shields.io/github/stars/metauto-ai/agent-as-a-judge?style=social" alt="GitHub Stars"/>
                         <a href="papers/aaaj.txt">[BibTex]</a>
                         <a href="https://x.com/MingchenZhuge/status/1846410651218161781">[Tweet1]</a>
                         <a href="https://x.com/tydsh/status/1846538154129375412">[Tweet2]</a>
                         <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ">[机器之心]</a>
-                        <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw">[AI Era]</a>
+                        <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw">[新智元]</a>
                     </span>
                 </div>
             </div>
@@ -967,10 +970,6 @@
                     <br>
                     <span class="publisher"><strong>ICLR 2025</strong></span>
                     <br>
-                    <div class="highlight-desc highlight-prominent">
-                        Achieved 50k+ stars on GitHub.<br>
-                        A comprehensive single-agent platform for AI software developers as generalist agents.
-                    </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2407.16741">[Paper]</a>
                         <a href="https://github.com/OpenDevin/OpenDevin">[Code]</a>
@@ -995,17 +994,13 @@
                     <br>
                     <span class="publisher"><strong>ICML 2024 <span style="color:#FF4D4D; font-weight:bold;">(Oral)</span></strong></span>
                     <br>
-                    <div class="highlight-desc highlight-prominent">
-                        Oral Presentation (top 1.5% in 9,473).<br>
-                        First framework using graph to build LLM agents, enabling node and edge optimization.
-                    </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2402.16823">[Paper]</a>
                         <a href="https://github.com/metauto-ai/GPTSwarm">[Code]</a>
                         <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars"/>
                         <a href="papers/gptswarm.txt">[BibTex]</a>
                         <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ">[MIT Tech Review Interview]</a>
-                        <a href="https://mp.weixin.qq.com/s/jb6vPi9WL9CjybhiKCFOgg">[Jiangmen Ventures]</a>
+                        <a href="https://mp.weixin.qq.com/s/jb6vPi9WL9CjybhiKCFOgg">[将门创投]</a>
                     </span>
                 </div>
             </div>
@@ -1027,16 +1022,12 @@
                     <br>
                     <span class="publisher"><strong>ICLR 2024 <span style="color:#FF4D4D; font-weight:bold;">(Oral)</span></strong></span>
                     <br>
-                    <div class="highlight-desc highlight-prominent">
-                        Oral Presentation (top 1.2% in 7,262).<br>
-                        Achieved 50k+ stars on GitHub, pioneering multi-agent collaborative software development.
-                    </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2308.00352">[Paper]</a>
                         <a href="https://github.com/geekan/MetaGPT">[Code]</a>
                         <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars"/>
                         <a href="papers/metagpt.txt">[BibTex]</a>
-                        <a href="https://mp.weixin.qq.com/s/s5teEWlbcfHCVFjy6Nb3AQ">[QianTang Report]</a>
+                        <a href="https://mp.weixin.qq.com/s/s5teEWlbcfHCVFjy6Nb3AQ">[量子位]</a>
                     </span>
                 </div>
             </div>
@@ -1054,12 +1045,6 @@
                     <br>
                     <span class="publisher"><strong>NeurIPS Ro-FoMo 2023 <span style="color:#FF4D4D; font-weight:bold;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
                     <br> 
-                    <div class="highlight-desc highlight-prominent">
-                        Best Paper Award at NeurIPS Ro-FoMo Workshop.<br>
-                        First Position Paper introducing the agentic society (society of mind) and agentic economy (economy of mind).
-                     </div>
-
-                     
                     <span class="links">
                         <a href="https://arxiv.org/abs/2305.17066">[Paper]</a>
                         <a href="https://github.com/mczhuge/NLSOM">[Code]</a>
@@ -1086,11 +1071,6 @@
                     <br>
                     <span class="publisher"><strong>TPAMI 2022</strong></span>
                     <br>
-        <div class="highlight-desc highlight-prominent">
-                            ESI Highly Cited Paper.<br>
-                     One of earliest open-sourced codebases that utilize Transformer/MLP encoder for foreground segmentation. 
-                     </div>
-
                     <span class="links">
                         <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9789317">[Paper]</a>
                         <a href="https://github.com/mczhuge/ICON">[Code]</a>
@@ -1115,16 +1095,12 @@
                     <br>
                     <span class="publisher"><strong>CVPR 2021</strong></span>
                     <br>
-                    <div class="highlight-desc highlight-prominent">
-                        Industry Application in Alibaba.com.<br>
-                        The second VLP model in e-commerce, introducing dynamic-resolution self-supervised representation learning, one of 4 VLP papers at CVPR 2021 (not many researchers work on multimodal learning at that time).
-                     </div>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2103.16110">[Paper]</a>
                         <a href="https://github.com/mczhuge/Kaleido-BERT">[Code]</a>
                         <img src="https://img.shields.io/github/stars/mczhuge/Kaleido-BERT?style=social" alt="GitHub Stars"/>
                         <a href="papers/kaleido-bert.txt">[BibTex]</a>
-                        <a href="https://app6ca5octe2206.pc.xiaoe-tech.com/p/t_pc/course_pc_detail/video/v_609cd21de4b0fe322012dd28?product_id=p_609a4610e4b01e969a60071c&type=6">[Talk]</a>
+                        <a href="https://app6ca5octe2206.pc.xiaoe-tech.com/p/t_pc/course_pc_detail/video/v_609cd21de4b0fe322012dd28?product_id=p_609a4610e4b01e969a60071c&type=6">[机器之心]</a>
                     </span>
                 </div>
             </div>
