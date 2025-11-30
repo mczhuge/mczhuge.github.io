@@ -160,6 +160,9 @@
             width: 100%;
             border-radius: 12px;
             display: block;
+            aspect-ratio: 3 / 4; /* Keep portrait feel while trimming side edges */
+            object-fit: cover;
+            object-position: 45% 50%; /* Slight nudge to show a bit more on the right */
         }
 
         .about-caption {
@@ -881,7 +884,7 @@
         <div class="about-card">
             <div class="about-content">
                 <div class="about-media">
-                    <img class="about-photo" src="images/mingchen.jpeg" alt="Mingchen Zhuge">
+                    <img class="about-photo" src="images/mingchen.jpg.webp" alt="Mingchen Zhuge">
                     <p class="about-caption">*Taken in the KAUST AI Initiative.</p>
                 </div>
                 <div class="about-details">
