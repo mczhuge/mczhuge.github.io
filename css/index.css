@@ -16,7 +16,6 @@ html, body {
 }
 
 
-/* 顶部导航栏 */
 .navbar {
     height: 60px;
     position: fixed;
@@ -31,18 +30,14 @@ html, body {
     white-space: nowrap;
     overflow: hidden;
     flex-wrap: nowrap;
-    
-    /* 科技感背景：黑+深蓝渐变，并带有透明度与模糊 */
     background: rgba(99, 52, 1, 0.7);
-    backdrop-filter: blur(10px); /* 背景模糊效果类似科幻UI面板 */
+    backdrop-filter: blur(10px);
     border-bottom: 0px solid rgba(234, 226, 4, 0.3);
 
-    /* 为导航条底部增加微弱的霓虹光晕线 */
     box-shadow: 0 0 15px rgba(237, 224, 213, 0.2), 
                 0 5px 15px rgba(241, 214, 6, 0.3);
 }
 
-/* LOGO */
 .navbar-logo {
     flex-shrink: 0;
     width: 40px;
@@ -50,10 +45,6 @@ html, body {
     background: url('../images/bee_logo.png') no-repeat center center;
     background-size: contain;
     border-radius: 50%;
-
-    /* 发光和3D感 */
-    /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
-                inset 0 0 10px rgba(197, 240, 7, 0.829); */
 
     transition: transform 0.3s ease;
 }
@@ -64,13 +55,12 @@ html, body {
                 inset 0 0 15px rgba(191, 255, 0, 0.5);
 }
 
-/* 导航文字 */
 .navbar-text {
     flex-shrink: 1;
     font-size: 22px;
     font-weight: bold;
     font-family: 'Audiowide', sans-serif;
-    color: #e8ca0b; /* 荧光色 */
+    color: #e8ca0b;
     /* text-shadow:
         0 0 5px rgba(255, 179, 0, 0.7),
         0 0 10px rgba(245, 241, 4, 0.5),
@@ -81,7 +71,6 @@ html, body {
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-/* 悬停时文字略微放大并增强发光 */
 .navbar-text:hover {
     transform: translateX(5px);
     color: #00ffe6;
@@ -99,26 +88,26 @@ html, body {
 
 
 .github-icon {
-    position: absolute; /* 绝对定位，定位在导航栏右上角 */
-    top: 55%;           /* 垂直居中对齐 */
-    right: 80px;        /* 距离导航栏右侧 20px */
-    transform: translateY(-50%); /* 确保图标垂直居中 */
-    font-size: 3rem;  /* 设置图标大小 */
-    color: #000;        /* 默认颜色为黑色 */
-    text-decoration: none; /* 移除链接下划线 */
+    position: absolute;
+    top: 55%;
+    right: 80px;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    color: #000;
+    text-decoration: none;
 }
 
 .github-icon:hover {
-    color: #ff0044; /* 鼠标悬停时的颜色 */
+    color: #ff0044;
 }
 
 
 .container {
     width: 100%;
-    height: calc(100vh - 60px); /* 除去导航栏的高度 */
+    height: calc(100vh - 60px);
     display: flex;
-    justify-content: center;    /* 水平居中 */
-    align-items: center;        /* 垂直居中 */
+    justify-content: center;
+    align-items: center;
     text-align: center;
     color: #ffffff;
     font-size: 3rem;
@@ -132,10 +121,9 @@ html, body {
     width: 80%;
     max-width: 600px;
     text-align: center;
-    color: #ffffff; /* 浅灰文字 */
+    color: #ffffff;
     font-size: 3rem;
-    font-family: 'Audiowide', sans-serif; /* 使用更有科技感的字体 */
-    /* 移除不必要的边框和阴影效果，保持干净硬朗的科技风 */
+    font-family: 'Audiowide', sans-serif;
 }
 
 
@@ -147,14 +135,12 @@ html, body {
     letter-spacing: 1px;
 }
 
-/* 光标闪烁：无荧光，仅浅灰色 */
 @keyframes blinkCursor {
     0% { border-color: #cccccc; }
     50% { border-color: transparent; }
     100% { border-color: #cccccc; }
 }
 
-/* 扫描线背景：更暗淡，不强调荧光 */
 .typing-container::before {
     content: "";
     position: absolute;
@@ -167,7 +153,7 @@ html, body {
         transparent 2px,
         transparent 4px
     );
-    opacity: 0.1; /* 非常轻微的扫描线 */
+    opacity: 0.1;
     animation: scan 5s linear infinite;
     z-index: 1;
 }
@@ -177,28 +163,16 @@ html, body {
     100% { background-position: 0 100%; }
 }
 
-/* 小屏幕字体缩小 */
 @media screen and (max-width: 600px) {
     .typing-container {
         font-size: 1.2rem;
     }
 }
 
-/* 脉冲呼吸动画，让容器有微弱的呼吸感 */
 .typing-container {
     animation: pulseGlow 3s ease-in-out infinite alternate;
 }
 
-/* @keyframes pulseGlow {
-    0% {
-        box-shadow: 0 0 10px rgba(0,255,204,0.1), inset 0 0 10px rgba(0,255,204,0.05);
-    }
-    100% {
-        box-shadow: 0 0 20px rgba(0,255,204,0.2), inset 0 0 20px rgba(0,255,204,0.1);
-    }
-} */
-
-/* 如果需要在小屏幕上调整字体大小 */
 @media screen and (max-width: 600px) {
     .typing-container {
         font-size: 1.2rem;
@@ -206,44 +180,40 @@ html, body {
 }
 
 
-/* 光标闪烁动画 */
 @keyframes blinkCursor {
     0% { border-color: #00ffcc; }
     50% { border-color: transparent; }
     100% { border-color: #00ffcc; }
 }
 
-@media screen and (max-width: 600px) {
+    @media screen and (max-width: 600px) {
     .navbar {
-        flex-wrap: nowrap; /* 禁止导航栏换行 */
+        flex-wrap: nowrap;
     }
 
     .navbar-text {
-        font-size: 18px; /* 缩小文字大小 */
+        font-size: 18px;
     }
 
     .typing-text {
-        font-size: calc(3vw + 12px); /* 在小屏幕下调整字体大小 */
-        word-wrap: break-word; /* 小屏幕强制换行 */
+        font-size: calc(3vw + 12px);
+        word-wrap: break-word;
         white-space: normal;
     }
 }
 
-/* 打字动画 */
 @keyframes typing {
     0% { width: 0ch; }
-    50% { width: 30ch; } /* 这里30ch是你的文本总字符数或略大于它的值 */
+    50% { width: 30ch; }
     100% { width: 0ch; }
 }
 
-/* 光标闪烁 */
 @keyframes blink {
     50% {
         border-color: transparent;
     }
 }
 
-/* 蜂巢样式 Roadmap */
 .roadmap {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -296,9 +266,6 @@ html, body {
 
 /* ========== */
 
-/* 因为重复出现了.container和.typing-text，所以保留最后一次定义的样式为主，此处重复定义略过 */
-
-/* 将按钮放置在左下角 */
 .hex-button-cluster {
     position: fixed;
     bottom: 20px;
@@ -308,22 +275,19 @@ html, body {
     align-items: flex-start;
     justify-content: center;
     gap: 10px;
-    transform: perspective(800px); /* 添加透视效果，以便子元素3D变换 */
+    transform: perspective(800px);
 }
 
-/* 横排六边形按钮（如需要多个一排，仍可保持flex布局） */
 .hex-row {
     display: flex;
     gap: 10px;
 }
 
 
-/* 3D科技感蜂巢按钮 */
 .hex-button {
     position: relative;
     width: 120px;
     height: 104px;
-    /* 使用更深色底色营造对比，增加科技感 */
     background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
@@ -332,18 +296,16 @@ html, body {
     font-family: 'Audiowide', sans-serif;
     font-size: 16px;
     font-weight: bold;
-    color: #fefe00; /* 荧光色字体 */
+    color: #fefe00;
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
     border: none;
-    /* 内外发光，增强科技氛围 */
     box-shadow:
         0 0 10px #3a09ec,
         inset 0 0 20px rgba(0,255,204,0.5),
         0 4px 8px rgba(0, 0, 0, 0.7);
 
-    /* 初始3D效果：稍微倾斜 */
     transform: rotateX(5deg) rotateY(-5deg);
     transform-style: preserve-3d;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -353,10 +315,9 @@ html, body {
 }
 
 .hex-button span {
-    z-index: 1; /* 确保文字在最前 */
+    z-index: 1;
 }
 
-/* 增加按钮的3D悬停动态效果 */
 .hex-button:hover {
     transform: translateY(-5px) scale(1.1) rotateX(10deg) rotateY(-10deg);
     box-shadow:
@@ -365,7 +326,6 @@ html, body {
         0 8px 20px rgba(0, 0, 0, 0.8);
 }
 
-/* 涟漪效果可保持或删除，这里稍作修改为内发光扩散 */
 .hex-button::before {
     content: "";
     position: absolute;
@@ -387,7 +347,6 @@ html, body {
     opacity: 1;
 }
 
-/* 入场动画延时根据需要调整 */
 .hex-button:nth-child(1) { animation-delay: 0.2s; }
 .hex-button:nth-child(2) { animation-delay: 0.4s; }
 .hex-button:nth-child(3) { animation-delay: 0.6s; }
@@ -403,7 +362,6 @@ html, body {
     }
 }
 
-/* 小屏幕下的响应式调整 */
 @media screen and (max-width: 600px) {
     .hex-button {
         width: 80px;
@@ -415,7 +373,6 @@ html, body {
 
 
 
-/* metauto.ai 标志 */
 .metauto {
     position: fixed;
     bottom: 10px;
@@ -426,15 +383,14 @@ html, body {
     color: #f1efef;
 }
 
-/* 小屏幕响应式 */
 @media screen and (max-width: 600px) {
     .navbar {
-        flex-wrap: nowrap; /* 保持 LOGO 和文字不换行 */
+        flex-wrap: nowrap;
         padding: 10px;
     }
 
     .navbar-text {
-        font-size: 18px; /* 缩小文字大小，防止拥挤 */
+        font-size: 18px;
     }
 }
 
@@ -472,5 +428,4 @@ html, body {
         font-size: 14px;
     }
 }
-
 

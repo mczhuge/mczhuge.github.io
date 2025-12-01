@@ -1,13 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #0F1A2B; /* 深色背景 */
-    color: #B0BEC5; /* 浅灰文字 */
+    background-color: #0F1A2B;
+    color: #B0BEC5;
     margin: 20px;
     line-height: 1.6;
 }
 
 h2, h3 {
-    color: #7C6AFF; /* 高亮色标题 */
+    color: #7C6AFF;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -39,8 +39,8 @@ h2, h3 {
 }
 
 .card {
-    background-color: #1A273A; /* 深背景卡片 */
-    border: 1px solid #2C3B52; /* 浅色边框 */
+    background-color: #1A273A;
+    border: 1px solid #2C3B52;
     border-radius: 10px;
     text-align: center;
     padding: 20px;
@@ -50,19 +50,19 @@ h2, h3 {
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: #7C6AFF; /* 悬停时边框颜色变化 */
+    border-color: #7C6AFF;
 }
 
 
 .homepage-link {
-    color: #ff9500; /* 设置颜色 */
-    text-decoration: none; /* 去掉下划线（可选） */
-    font-weight: bold; /* 加粗文字（可选） */
-    transition: color 0.3s ease; /* 悬停时的平滑过渡 */
+    color: #ff9500;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .homepage-link:hover {
-    color: #FFC300; /* 鼠标悬停时的颜色 */
+    color: #FFC300;
 }
 
 
@@ -77,7 +77,7 @@ h2, h3 {
 .card h4 {
     font-size: 18px;
     font-weight: bold;
-    color: #FFFFFF; /* 白色名称 */
+    color: #FFFFFF;
     margin-bottom: 10px;
 }
 
@@ -89,51 +89,50 @@ h2, h3 {
 
 .skills {
     font-size: 14px;
-    color: #7C6AFF; /* 高亮色强调技能 */
+    color: #7C6AFF;
     margin-bottom: 10px;
 }
 
 .card a {
     display: inline-block;
     margin-top: 10px;
-    color: #7C6AFF; /* 链接颜色 */
+    color: #7C6AFF;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .card a:hover {
-    color: #9C8AFF; /* 悬停时更浅高亮 */
+    color: #9C8AFF;
 }
 
 .industry-logos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 每行放置 3 个 Logo */
-    gap: 20px; /* Logo 之间的间距 */
-    justify-items: center; /* Logo 水平居中 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
     padding: 20px;
 }
 
 .industry-logos img {
-    height: 80px; /* 调整 Logo 高度为更小的尺寸 */
-    width: auto; /* 按比例缩放宽度 */
-    object-fit: contain; /* 确保 Logo 不被裁剪 */
-    transition: transform 0.3s ease; /* 鼠标悬停效果 */
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
 .industry-logos img:hover {
-    transform: scale(1.1); /* 鼠标悬停时略微放大 */
+    transform: scale(1.1);
 }
 
-/* 响应式设计 */
 @media (max-width: 768px) {
     .industry-logos {
-        grid-template-columns: repeat(2, 1fr); /* 中屏幕每行 2 个 Logo */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
     .industry-logos {
-        grid-template-columns: 1fr; /* 小屏幕每行 1 个 Logo */
+        grid-template-columns: 1fr;
     }
 }

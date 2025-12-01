@@ -30,24 +30,23 @@ strong {
     background-color: #000000;
     font-size: large;
     font-weight: bold;
-    padding: 11px 15px; /* 新增内边距 */
+    padding: 11px 15px;
 }
 
 .footer {
     background-image: linear-gradient(100deg, #d8db71, #cdac5f, #e3a76f, #64d4d2);
     background-color: #000000;
     font-size: medium;
-    padding: 11px 15px; /* 新增内边距 */
+    padding: 11px 15px;
 }
 
 .navbar .nav>li>a:hover,
 .navbar .nav>li>a:focus {
-    color: #000000; /* 鼠标悬停时的颜色改变 */
+    color: #000000;
     font-weight: bold;
-    text-decoration: none; /* 移除下划线 */
+    text-decoration: none;
 }
 
-/* 调整导航文字样式 */
 .navbar-text {
     font-family: 'Audiowide', sans-serif;
     font-size: 22pt;
@@ -55,14 +54,13 @@ strong {
     color: rgba(0, 0, 0, 0.805);
 }
 
-/* 响应式调整 - 小屏幕时的样式 */
 @media (max-width: 768px) {
     .navbar, .footer {
-        font-size: medium; /* 调整字体大小 */
+        font-size: medium;
     }
 
     .navbar .nav>li>a {
-        font-size: medium; /* 调整链接字体大小 */
+        font-size: medium;
     }
 }
 
@@ -105,9 +103,7 @@ strong {
 
 #me-img {
     width: 70%;
-    /*border: 10px solid #FFFFCC;*/
     border: 8px solid #FFFFCC;
-    /*transform: rotate(-10deg);*/
     box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -140,20 +136,14 @@ strong {
 }
 
 .section_title {
-    /*color: #159957;*/
     color: black;
-    /*font-family: "Tisa", Times, serif;*/
-    /*font-family: "Verdana", Geneva, sans-serif;*/
     font-family: PT Serif,serif;
     font-size: 25px;
     font-weight: 50;
 }
 
 .subsection_title {
-    /*color: #159957;*/
     color: black;
-    /*font-family: "Tisa", Times, serif;*/
-    /*font-family: "Verdana", Geneva, sans-serif;*/
     font-family: PT Serif,serif;
     font-size: 18px;
     font-weight: 50;
