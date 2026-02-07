@@ -715,6 +715,10 @@
             gap: 0;
         }
 
+        #recent-news .news-list.is-collapsed .news-item:nth-child(n+11) {
+            display: none;
+        }
+
         #recent-news .news-item {
             display: grid;
             grid-template-columns: 152px minmax(0, 1fr);
@@ -757,6 +761,36 @@
 
         #recent-news .news-content a:hover {
             border-bottom-color: var(--primary-color);
+        }
+
+        #recent-news .news-controls {
+            display: none;
+            margin-top: 12px;
+        }
+
+        #recent-news .news-controls.is-visible {
+            display: flex;
+        }
+
+        #recent-news .news-toggle {
+            border: 1px solid rgba(169, 138, 113, 0.45);
+            background: rgba(255, 253, 247, 0.95);
+            color: #3d4f6c;
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+            transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+        }
+
+        #recent-news .news-toggle:hover {
+            transform: translateY(-1px);
+            color: var(--primary-color);
+            border-color: rgba(169, 138, 113, 0.8);
         }
 
         /* Social Icons under Profile Picture */
@@ -1082,6 +1116,10 @@
 		        <h2 class="section-title">Recent News</h2>
                 <div class="news-list">
                     <div class="news-item">
+                        <p class="news-date">2026 Feb 8</p>
+                        <p class="news-content">Will work remotely from Feb 8 in China for two weeks, and welcome coffee chats.</p>
+                    </div>
+                    <div class="news-item">
                         <p class="news-date">2026 Feb 5</p>
                         <p class="news-content"><strong>HGM</strong> selected as <strong>ICLR 2026 Oral Presentation</strong> <a href="https://arxiv.org/pdf/2510.21614">[Paper]</a> <a href="https://github.com/metauto-ai/HGM">[Code]</a>.</p>
                     </div>
@@ -1121,6 +1159,9 @@
                         <p class="news-date">2025 Oct 29</p>
                         <p class="news-content">We release our recursive self-improvement paper (<strong>HGM</strong>) <a href="https://arxiv.org/pdf/2510.21614">[Paper]</a> <a href="https://github.com/metauto-ai/HGM">[Code]</a>.</p>
                     </div>
+                </div>
+                <div class="news-controls">
+                    <button type="button" class="news-toggle" aria-expanded="false">Show more</button>
                 </div>
             </div>
         </div>
@@ -1491,5 +1532,39 @@
     </footer>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var section = document.getElementById("recent-news");
+        if (!section) return;
+
+        var list = section.querySelector(".news-list");
+        var controls = section.querySelector(".news-controls");
+        var toggle = section.querySelector(".news-toggle");
+        if (!list || !controls || !toggle) return;
+
+        var items = list.querySelectorAll(".news-item");
+        var maxVisible = 10;
+
+        if (items.length <= maxVisible) {
+            controls.classList.remove("is-visible");
+            return;
+        }
+
+        list.classList.add("is-collapsed");
+        controls.classList.add("is-visible");
+
+        function syncButton() {
+            var expanded = !list.classList.contains("is-collapsed");
+            toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+            toggle.textContent = expanded ? "Show less" : "Show more";
+        }
+
+        syncButton();
+        toggle.addEventListener("click", function () {
+            list.classList.toggle("is-collapsed");
+            syncButton();
+        });
+    });
+</script>
 </body>
 </html>
