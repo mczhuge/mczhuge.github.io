@@ -371,6 +371,22 @@
                 flex-direction: column;
                 gap: 20px;
             }
+
+            #recent-news .news-item {
+                grid-template-columns: 1fr;
+                gap: 4px;
+                padding: 8px 0;
+            }
+
+            #recent-news .news-date {
+                font-size: 14px;
+                white-space: normal;
+            }
+
+            #recent-news .news-content {
+                font-size: 14px;
+                line-height: 1.55;
+            }
         }
 
         /* Ensure project images display properly on mobile */
@@ -688,18 +704,59 @@
             margin-bottom: 0;
             padding-bottom: 0;
         }
-        /* Remove separators for the Recent News section */
-        #recent-news .work-block {
+        /* Recent News: date column + content column */
+        #recent-news .section-title {
+            margin-bottom: 24px;
+        }
+
+        #recent-news .news-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        #recent-news .news-item {
+            display: grid;
+            grid-template-columns: 152px minmax(0, 1fr);
+            gap: 18px;
+            align-items: start;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.75);
+        }
+
+        #recent-news .news-item:last-child {
             border-bottom: none;
-            padding-bottom: 6px;
-            margin-bottom: 10px;
         }
-        #recent-news .work-block:last-child {
-            margin-bottom: 0;
-        }
-        /* Keep Recent News items on one line */
-        #recent-news .work-block p {
+
+        #recent-news .news-date {
+            margin: 0;
+            font-size: 15px;
+            color: var(--text-color);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.5;
             white-space: nowrap;
+        }
+
+        #recent-news .news-content {
+            margin: 0;
+            color: var(--light-text);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        #recent-news .news-content strong {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        #recent-news .news-content a {
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        #recent-news .news-content a:hover {
+            border-bottom-color: var(--primary-color);
         }
 
         /* Social Icons under Profile Picture */
@@ -1020,74 +1077,49 @@
     </div>
 </div>
 
-	<div id="recent-news" style="background-color: #FEFBF3; width: 100%; margin: 0; padding: 0;">
-	    <div class="container">
-	        <h2 class="section-title">Recent News</h2>
-	        <div class="row work-block">
-	            <div class="col-xs-9">
-	                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-		                    <span style="font-weight: 600; color: var(--text-color);">2026 Jan 27</span>, 2 papers are accepted in <strong>ICLR 2026</strong>.
-		                </p>
-		            </div>
-		        </div>
-	        <div class="row work-block">
-	            <div class="col-xs-9">
-	                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-	                    <span style="font-weight: 600; color: var(--text-color);">2026 Jan 14</span>, I serve as Area Chair at <strong>COLM 2026</strong>.
-	                </p>
+		<div id="recent-news" style="background-color: #FEFBF3; width: 100%; margin: 0; padding: 0;">
+		    <div class="container">
+		        <h2 class="section-title">Recent News</h2>
+                <div class="news-list">
+                    <div class="news-item">
+                        <p class="news-date">2026 Jan 27</p>
+                        <p class="news-content">2 papers are accepted in <strong>ICLR 2026</strong>.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2026 Jan 14</p>
+                        <p class="news-content">I serve as Area Chair at <strong>COLM 2026</strong>.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2026 Jan 8</p>
+                        <p class="news-content">We release our multimodal reasoning paper (<strong>VideoAuto-R1</strong>) <a href="https://arxiv.org/pdf/2601.05175">[Paper]</a> <a href="https://github.com/IVUL-KAUST/VideoAuto-R1">[Code]</a>.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2026 Jan 5</p>
+                        <p class="news-content">The <strong>ICLR 2026 Workshop on AI with Recursive Self-Improvement</strong> launches, welcome to submit papers: <a href="https://recursive-workshop.github.io/">[Link]</a>.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2025 Dec 17</p>
+                        <p class="news-content">Start a 10-day Christmas traveling to Kenya and Rwanda.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2025 Nov 20</p>
+                        <p class="news-content">Back to the KAUST Campus.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2025 Nov 18</p>
+                        <p class="news-content">We release our multimodal generation paper (<strong>Mixture-of-State</strong>) <a href="https://arxiv.org/abs/2511.12207">[Paper]</a>.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2025 Nov 14</p>
+                        <p class="news-content">Finished the internship at <strong>Meta</strong>.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">2025 Oct 29</p>
+                        <p class="news-content">We release our recursive self-improvement paper (<strong>HGM</strong>) <a href="https://arxiv.org/pdf/2510.21614">[Paper]</a> <a href="https://github.com/metauto-ai/HGM">[Code]</a>.</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row work-block">
-            <div class="col-xs-9">
-                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-                    <span style="font-weight: 600; color: var(--text-color);">2026 Jan 8</span>, We release our multimodal reasoning paper (<strong>VideoAuto-R1</strong>) <a href="https://arxiv.org/pdf/2601.05175">[Paper]</a> <a href="https://github.com/IVUL-KAUST/VideoAuto-R1">[Code]</a>.
-                </p>
-            </div>
-        </div>
-        <div class="row work-block">
-            <div class="col-xs-9">
-                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-                    <span style="font-weight: 600; color: var(--text-color);">2026 Jan 5</span>, The <strong>ICLR 2026 Workshop on AI with Recursive Self-Improvement</strong> launches, welcome to submit papers: <a href="https://recursive-workshop.github.io/">[Link]</a>.
-                </p>
-            </div>
-        </div>
-        <div class="row work-block">
-            <div class="col-xs-9">
-                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-                    <span style="font-weight: 600; color: var(--text-color);">2025 Dec 17</span>, Start a 10-day Christmas traveling to Kenya and Rwanda.
-                </p>
-            </div>
-        </div>
-	        <div class="row work-block">
-	            <div class="col-xs-9">
-	                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-	                    <span style="font-weight: 600; color: var(--text-color);">2025 Nov 20</span>, Back to the KAUST Campus.
-	                </p>
-            </div>
-        </div>
-        <div class="row work-block">
-            <div class="col-xs-9">
-                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-                    <span style="font-weight: 600; color: var(--text-color);">2025 Nov 18</span>, We release our multimodal generation paper (<strong>Mixture-of-State</strong>) <a href="https://arxiv.org/abs/2511.12207">[Paper]</a>.
-                </p>
-            </div>
-        </div>
-        <div class="row work-block">
-            <div class="col-xs-9">
-                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-                    <span style="font-weight: 600; color: var(--text-color);">2025 Nov 14</span>, Finished the internship at <strong>Meta</strong>.
-                </p>
-            </div>
-        </div>
-        <div class="row work-block">
-            <div class="col-xs-9">
-                <p style="margin: 0 0 8px 0; color: var(--light-text); font-size: 15px;">
-                    <span style="font-weight: 600; color: var(--text-color);">2025 Oct 29</span>, We release our recursive self-improvement paper (<strong>HGM</strong>) <a href="https://arxiv.org/pdf/2510.21614">[Paper]</a> <a href="https://github.com/metauto-ai/HGM">[Code]</a>.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div id="publication" style="background-color: #FEFBF3; width: 100%; margin: 0; padding: 0;">
     <div class="container">

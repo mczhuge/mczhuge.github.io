@@ -118,6 +118,14 @@
             padding: 0;
         }
 
+        .topic-note {
+            margin: 0 0 7px 0;
+            font-size: 10px;
+            line-height: 1.35;
+            letter-spacing: 0.04em;
+            color: #8ea0bf;
+        }
+
         .topics {
             margin: 0;
             display: flex;
@@ -130,7 +138,8 @@
             --chip-tone: #60779f;
             position: relative;
             display: inline-flex;
-            align-items: center;
+            align-items: baseline;
+            gap: 8px;
             text-decoration: none;
             padding: 0 0 0 16px;
             border: 0;
@@ -140,6 +149,21 @@
             font-weight: 600;
             letter-spacing: 0.01em;
             box-shadow: none;
+            transition: color 0.18s ease, opacity 0.18s ease;
+        }
+
+        .topic-main {
+            line-height: 1;
+        }
+
+        .topic-time {
+            font-size: 10px;
+            line-height: 1;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #8ea0bf;
+            font-weight: 700;
+            transform: translateY(-0.22em);
             transition: color 0.18s ease, opacity 0.18s ease;
         }
 
@@ -183,6 +207,10 @@
         .topic-chip:hover {
             color: #1f3358;
             opacity: 0.85;
+        }
+
+        .topic-chip:hover .topic-time {
+            color: #6f86ad;
         }
 
         .feed {
@@ -378,6 +406,11 @@
                 margin-top: 10px;
             }
 
+            .topic-note {
+                font-size: 9px;
+                line-height: 1.4;
+            }
+
             .brand-subtitle {
                 margin-top: 8px;
                 font-size: 24px;
@@ -387,6 +420,10 @@
             .topic-chip {
                 padding: 0 0 0 14px;
                 font-size: 16px;
+            }
+
+            .topic-time {
+                font-size: 9px;
             }
 
             .feed {
@@ -427,13 +464,14 @@
 
         <section class="masthead">
             <div class="topic-track">
+                <p class="topic-note">Years indicate Mingchen Zhuge's actual or expected involvement timeline for each topic.</p>
                 <div class="topics">
-                    <a class="topic-chip" href="../neuralcomputer/index.html">Multimodal</a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html">AI Agents</a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html">Code Generation</a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html">Recursive Self-Improvement</a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html">Neural Computer</a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html">World Model</a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Multimodal</span><span class="topic-time">2018-2022</span></a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">AI Agents</span><span class="topic-time">2022-2024</span></a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Code Generation</span><span class="topic-time">2022-2024</span></a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Recursive Self-Improvement</span><span class="topic-time">2023-2028</span></a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Neural Computer</span><span class="topic-time">2025-2030</span></a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">ONE</span><span class="topic-time">2030-?</span></a>
                 </div>
             </div>
         </section>
