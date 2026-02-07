@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mingchen Zhuge | Blog</title>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,700;6..72,800&display=swap");
+
+        :root {
+            --bg: #f6f1e7;
+            --panel: #fffbf4;
+            --ink: #161624;
+            --muted: #5f7190;
+            --line: #ced8ea;
+            --deep: #213a60;
+            --warm: #ad8464;
+            --chip-bg: #f0e4d4;
+            --gold-1: #f5d37d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 90% 9%, rgba(173, 132, 100, 0.12), transparent 38%),
+                radial-gradient(circle at 8% 88%, rgba(33, 58, 96, 0.08), transparent 40%),
+                var(--bg);
+            font-family: "Manrope", "Helvetica Neue", sans-serif;
+        }
+
+        .page-shell {
+            max-width: 1160px;
+            margin: 28px auto 48px;
+            padding: 0 22px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            padding-bottom: 4px;
+        }
+
+        .brand-block {
+            margin: 0;
+        }
+
+        .brand-kicker {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .brand-title {
+            margin: 4px 0 0;
+            font-family: "Newsreader", "Georgia", serif;
+            font-size: clamp(42px, 6vw, 66px);
+            line-height: 0.94;
+            letter-spacing: -0.035em;
+        }
+
+        .brand-subtitle {
+            margin: 10px 0 0;
+            font-size: clamp(30px, 2.8vw, 42px);
+            line-height: 1.12;
+            letter-spacing: -0.028em;
+            font-weight: 800;
+            max-width: 860px;
+            background: linear-gradient(98deg, #7f95d8 0%, #a08dd8 24%, #c990ce 50%, #e3a0b0 74%, #edbf90 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            padding-bottom: 0.08em;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #161616;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            padding: 6px 0;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.01em;
+            box-shadow: none;
+            border-bottom: 2px solid rgba(207, 154, 57, 0.72);
+            transition: color 0.2s ease, border-color 0.2s ease;
+            margin-top: 18px;
+        }
+
+        .home-btn:hover {
+            color: #000;
+            border-color: #a87a2f;
+        }
+
+        .masthead {
+            margin-top: 16px;
+        }
+
+        .topic-track {
+            margin-top: 8px;
+            padding: 0;
+        }
+
+        .topics {
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: flex-start;
+        }
+
+        .topic-chip {
+            --chip-tone: #60779f;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 0 0 0 16px;
+            border: 0;
+            background: transparent;
+            color: #3d5276;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            box-shadow: none;
+            transition: color 0.18s ease, opacity 0.18s ease;
+        }
+
+        .topic-chip:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--chip-tone);
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: none;
+        }
+
+        .topic-chip:nth-child(1) {
+            --chip-tone: #6a8ac6;
+        }
+
+        .topic-chip:nth-child(2) {
+            --chip-tone: #4e8aa0;
+        }
+
+        .topic-chip:nth-child(3) {
+            --chip-tone: #7d7bbf;
+        }
+
+        .topic-chip:nth-child(4) {
+            --chip-tone: #a6797a;
+        }
+
+        .topic-chip:nth-child(5) {
+            --chip-tone: #7d92cc;
+        }
+
+        .topic-chip:nth-child(6) {
+            --chip-tone: #8a7db8;
+        }
+
+        .topic-chip:hover {
+            color: #1f3358;
+            opacity: 0.85;
+        }
+
+        .feed {
+            margin-top: 18px;
+            padding: 0;
+        }
+
+        .feed-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 56px;
+            grid-template-areas:
+                "meta meta"
+                "title arrow"
+                "desc arrow";
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            align-items: start;
+            column-gap: 18px;
+            row-gap: 8px;
+            padding: 16px 0 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.32s ease;
+        }
+
+        .feed-row::before {
+            content: "";
+            position: absolute;
+            inset: -2px 0;
+            background: linear-gradient(110deg, rgba(127, 149, 216, 0.08), rgba(201, 144, 206, 0.08), rgba(237, 191, 144, 0.08));
+            opacity: 0;
+            transform: scaleX(0.985);
+            transform-origin: left center;
+            transition: opacity 0.34s ease, transform 0.46s cubic-bezier(0.22, 0.61, 0.36, 1);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .feed-row::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(127, 149, 216, 0.62), rgba(201, 144, 206, 0.62), rgba(237, 191, 144, 0.62), transparent);
+            opacity: 0;
+            transition: opacity 0.34s ease;
+            pointer-events: none;
+        }
+
+        .feed-row > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .feed-row:is(:hover, :focus-visible)::before {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .feed-row:is(:hover, :focus-visible)::after {
+            opacity: 0.95;
+        }
+
+        .feed-row:focus-visible {
+            outline: 2px solid rgba(127, 149, 216, 0.4);
+            outline-offset: 4px;
+        }
+
+        .feed-meta {
+            grid-area: meta;
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            font-weight: 700;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 2px;
+            transition: color 0.32s ease;
+        }
+
+        .feed-author {
+            color: #6c7f9f;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: color 0.32s ease;
+        }
+
+        .feed-title {
+            grid-area: title;
+            margin: 0;
+            font-family: "Newsreader", "Georgia", serif;
+            font-size: clamp(26px, 3.4vw, 46px);
+            line-height: 0.98;
+            letter-spacing: -0.032em;
+            transition: color 0.32s ease, text-shadow 0.32s ease;
+        }
+
+        .feed-desc {
+            grid-area: desc;
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: clamp(15px, 1.75vw, 18px);
+            line-height: 1.42;
+            letter-spacing: -0.02em;
+            max-width: 860px;
+            transition: color 0.32s ease;
+        }
+
+        .feed-arrow {
+            grid-area: arrow;
+            align-self: center;
+            display: inline-flex;
+            width: auto;
+            height: auto;
+            border-radius: 0;
+            border: 0;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep);
+            font-size: 48px;
+            line-height: 1;
+            transition: transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1), color 0.32s ease;
+        }
+
+        .feed-row:is(:hover, :focus-visible) .feed-title {
+            color: #233b64;
+            text-shadow: 0 10px 24px rgba(96, 121, 194, 0.18);
+        }
+
+        .feed-row:is(:hover, :focus-visible) .feed-desc {
+            color: #506892;
+        }
+
+        .feed-row:is(:hover, :focus-visible) .feed-meta {
+            color: #6a80a8;
+        }
+
+        .feed-row:is(:hover, :focus-visible) .feed-author {
+            color: #7b8fcc;
+        }
+
+        .feed-row:is(:hover, :focus-visible) .feed-arrow {
+            color: #365a95;
+            transform: translateX(8px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .feed-row,
+            .feed-row::before,
+            .feed-row::after,
+            .feed-meta,
+            .feed-author,
+            .feed-title,
+            .feed-desc,
+            .feed-arrow {
+                transition: none;
+            }
+
+            .feed-row:is(:hover, :focus-visible) .feed-arrow {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                margin: 18px auto 36px;
+                padding: 0 12px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .brand-title {
+                line-height: 1;
+            }
+
+            .home-btn {
+                padding: 4px 0;
+                font-size: 16px;
+                margin-top: 10px;
+            }
+
+            .topic-track {
+                margin-top: 10px;
+            }
+
+            .brand-subtitle {
+                margin-top: 8px;
+                font-size: 24px;
+                line-height: 1.14;
+            }
+
+            .topic-chip {
+                padding: 0 0 0 14px;
+                font-size: 16px;
+            }
+
+            .feed {
+                margin-top: 14px;
+                padding: 0;
+            }
+
+            .feed-row {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "meta"
+                    "title"
+                    "desc";
+                row-gap: 6px;
+                padding: 14px 0 12px;
+            }
+
+            .feed-desc {
+                font-size: 17px;
+            }
+
+            .feed-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-shell">
+        <header class="topbar">
+            <div class="brand-block">
+                <p class="brand-kicker">Mingchen Zhuge</p>
+                <h1 class="brand-title">Mingchen's Blog</h1>
+                <p class="brand-subtitle">Solving the Year 3000 Challenges.</p>
+            </div>
+            <a class="home-btn" href="../index.html">Back Home</a>
+        </header>
+
+        <section class="masthead">
+            <div class="topic-track">
+                <div class="topics">
+                    <a class="topic-chip" href="../neuralcomputer/index.html">Multimodal</a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html">AI Agents</a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html">Code Generation</a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html">Recursive Self-Improvement</a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html">Neural Computer</a>
+                    <a class="topic-chip" href="../neuralcomputer/index.html">World Model</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="feed">
+            <a class="feed-row" href="../neuralcomputer/index.html">
+                <div class="feed-meta">
+                    <span>Feb 7, 2026</span>
+                    <span>Draft</span>
+                    <span class="feed-author">By Mingchen Zhuge</span>
+                </div>
+                <h3 class="feed-title">Neural Computer</h3>
+                <p class="feed-desc">A long-form draft on building robust systems that reason, execute, and self-improve over long horizons.</p>
+                <span class="feed-arrow">→</span>
+            </a>
+        </section>
+
+    </main>
+</body>
+</html>
