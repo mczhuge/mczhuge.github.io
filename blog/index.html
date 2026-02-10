@@ -9,15 +9,18 @@
         @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,700;6..72,800&display=swap");
 
         :root {
-            --bg: #f6f1e7;
-            --panel: #fffbf4;
-            --ink: #161624;
-            --muted: #5f7190;
-            --line: #ced8ea;
-            --deep: #213a60;
-            --warm: #ad8464;
-            --chip-bg: #f0e4d4;
-            --gold-1: #f5d37d;
+            --bg: #fcfcfa;
+            --ink: #23283a;
+            --muted: #7483a0;
+            --deep: #3f5f8e;
+            --warm: #b69376;
+            --grid: rgba(63, 95, 142, 0.034);
+            --topic-1: #6a8ac6;
+            --topic-2: #4e8aa0;
+            --topic-3: #7d7bbf;
+            --topic-4: #a6797a;
+            --topic-5: #7d92cc;
+            --topic-6: #8a7db8;
         }
 
         * {
@@ -27,29 +30,48 @@
         body {
             margin: 0;
             color: var(--ink);
-            background:
-                radial-gradient(circle at 90% 9%, rgba(173, 132, 100, 0.12), transparent 38%),
-                radial-gradient(circle at 8% 88%, rgba(33, 58, 96, 0.08), transparent 40%),
-                var(--bg);
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(135deg, rgba(255, 246, 249, 0.56) 0%, rgba(243, 249, 255, 0.52) 46%, rgba(248, 246, 255, 0.53) 100%),
+                radial-gradient(1180px 680px at 8% 8%, rgba(255, 221, 232, 0.17), rgba(255, 255, 255, 0) 62%),
+                radial-gradient(980px 620px at 92% 12%, rgba(214, 236, 255, 0.18), rgba(255, 255, 255, 0) 64%),
+                radial-gradient(920px 560px at 50% 96%, rgba(224, 244, 226, 0.15), rgba(255, 255, 255, 0) 68%),
+                repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 46px),
+                repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 46px);
             font-family: "Manrope", "Helvetica Neue", sans-serif;
         }
 
         .page-shell {
-            max-width: 1160px;
-            margin: 28px auto 48px;
-            padding: 0 22px;
+            max-width: 1280px;
+            margin: 30px auto 56px;
+            padding: 0 clamp(22px, 3.2vw, 44px);
+        }
+
+        .page-shell::before,
+        .page-shell::after {
+            content: none;
+        }
+
+        .intro-panel {
+            padding: clamp(18px, 2.2vw, 28px) 0 clamp(14px, 2vw, 22px);
+            border-top: 1px solid rgba(63, 95, 142, 0.16);
+            border-bottom: 1px solid rgba(63, 95, 142, 0.16);
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
         }
 
         .topbar {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            padding-bottom: 4px;
+            align-items: flex-end;
+            gap: 24px;
+            padding-bottom: 6px;
         }
 
         .brand-block {
             margin: 0;
+            max-width: 880px;
         }
 
         .brand-kicker {
@@ -64,17 +86,17 @@
         .brand-title {
             margin: 4px 0 0;
             font-family: "Newsreader", "Georgia", serif;
-            font-size: clamp(42px, 6vw, 66px);
-            line-height: 0.94;
-            letter-spacing: -0.035em;
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 0.92;
+            letter-spacing: -0.032em;
         }
 
         .brand-subtitle {
             margin: 10px 0 0;
-            font-size: clamp(30px, 2.8vw, 42px);
-            line-height: 1.12;
-            letter-spacing: -0.028em;
-            font-weight: 800;
+            font-size: clamp(11px, 1.2vw, 17px);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            font-weight: 700;
             max-width: 860px;
             background: linear-gradient(98deg, #7f95d8 0%, #a08dd8 24%, #c990ce 50%, #e3a0b0 74%, #edbf90 100%);
             -webkit-background-clip: text;
@@ -90,23 +112,24 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: #161616;
+            color: #2a3143;
             background: transparent;
             border: 0;
             border-radius: 0;
             padding: 6px 0;
-            font-weight: 700;
-            font-size: 18px;
+            font-weight: 650;
+            font-size: clamp(15px, 1.1vw, 18px);
             letter-spacing: 0.01em;
-            box-shadow: none;
-            border-bottom: 2px solid rgba(207, 154, 57, 0.72);
-            transition: color 0.2s ease, border-color 0.2s ease;
-            margin-top: 18px;
+            border-bottom: 2px solid rgba(207, 154, 57, 0.56);
+            margin-bottom: 10px;
+            white-space: nowrap;
+            transition: color 0.22s ease, border-color 0.22s ease, transform 0.3s ease;
         }
 
         .home-btn:hover {
-            color: #000;
-            border-color: #a87a2f;
+            color: #304a72;
+            border-color: #a48354;
+            transform: translateX(2px);
         }
 
         .masthead {
@@ -114,24 +137,25 @@
         }
 
         .topic-track {
-            margin-top: 8px;
-            padding: 0;
+            margin-top: 0;
+            padding-top: 12px;
+            border-top: 1px solid rgba(33, 58, 96, 0.17);
         }
 
         .topic-note {
-            margin: 0 0 7px 0;
+            margin: 0 0 10px 0;
             font-size: 10px;
-            line-height: 1.35;
-            letter-spacing: 0.04em;
-            color: #8ea0bf;
+            line-height: 1.5;
+            letter-spacing: 0.02em;
+            color: #8a99b4;
         }
 
         .topics {
             margin: 0;
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
-            justify-content: flex-start;
+            gap: 12px 20px;
+            align-items: baseline;
         }
 
         .topic-chip {
@@ -139,17 +163,14 @@
             position: relative;
             display: inline-flex;
             align-items: baseline;
-            gap: 8px;
+            gap: 7px;
             text-decoration: none;
             padding: 0 0 0 16px;
-            border: 0;
-            background: transparent;
-            color: #3d5276;
-            font-size: 18px;
+            color: #3b5278;
+            font-size: clamp(15px, 1.1vw, 18px);
             font-weight: 600;
-            letter-spacing: 0.01em;
-            box-shadow: none;
-            transition: color 0.18s ease, opacity 0.18s ease;
+            letter-spacing: 0;
+            transition: color 0.2s ease, opacity 0.2s ease;
         }
 
         .topic-main {
@@ -159,25 +180,25 @@
         .topic-time {
             font-size: 10px;
             line-height: 1;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.09em;
             text-transform: uppercase;
-            color: #8ea0bf;
+            color: #90a0bc;
             font-weight: 700;
             transform: translateY(-0.22em);
-            transition: color 0.18s ease, opacity 0.18s ease;
+            transition: color 0.2s ease, opacity 0.2s ease;
         }
 
         .topic-chip:before {
             content: "";
             position: absolute;
             left: 0;
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             border-radius: 999px;
             background: var(--chip-tone);
             top: 50%;
             transform: translateY(-50%);
-            box-shadow: none;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.28);
         }
 
         .topic-chip:nth-child(1) {
@@ -205,170 +226,129 @@
         }
 
         .topic-chip:hover {
-            color: #1f3358;
-            opacity: 0.85;
+            color: #324b74;
+            opacity: 0.9;
         }
 
         .topic-chip:hover .topic-time {
-            color: #6f86ad;
+            color: #7891b2;
         }
 
         .feed {
-            margin-top: 18px;
+            margin-top: 22px;
             padding: 0;
+        }
+
+        .feed-divider {
+            margin: 0;
+            height: 1px;
+            border: 0;
+            background: rgba(63, 95, 142, 0.18);
         }
 
         .feed-row {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 56px;
+            grid-template-columns: minmax(0, 1fr) clamp(54px, 6vw, 74px);
             grid-template-areas:
                 "meta meta"
-                "title arrow"
-                "desc arrow";
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
+                "title arrow";
             align-items: start;
             column-gap: 18px;
             row-gap: 8px;
-            padding: 16px 0 14px;
+            padding: clamp(16px, 2.1vw, 24px) 0 clamp(14px, 2vw, 20px);
             text-decoration: none;
             color: inherit;
-            transition: color 0.32s ease;
-        }
-
-        .feed-row::before {
-            content: "";
-            position: absolute;
-            inset: -2px 0;
-            background: linear-gradient(110deg, rgba(127, 149, 216, 0.08), rgba(201, 144, 206, 0.08), rgba(237, 191, 144, 0.08));
-            opacity: 0;
-            transform: scaleX(0.985);
-            transform-origin: left center;
-            transition: opacity 0.34s ease, transform 0.46s cubic-bezier(0.22, 0.61, 0.36, 1);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .feed-row::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(127, 149, 216, 0.62), rgba(201, 144, 206, 0.62), rgba(237, 191, 144, 0.62), transparent);
-            opacity: 0;
-            transition: opacity 0.34s ease;
-            pointer-events: none;
-        }
-
-        .feed-row > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .feed-row:is(:hover, :focus-visible)::before {
-            opacity: 1;
-            transform: scaleX(1);
-        }
-
-        .feed-row:is(:hover, :focus-visible)::after {
-            opacity: 0.95;
+            transition: color 0.22s ease;
         }
 
         .feed-row:focus-visible {
-            outline: 2px solid rgba(127, 149, 216, 0.4);
-            outline-offset: 4px;
+            outline: 2px solid rgba(127, 149, 216, 0.25);
+            outline-offset: 5px;
         }
 
         .feed-meta {
             grid-area: meta;
             color: var(--muted);
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.09em;
+            letter-spacing: 0.1em;
             font-weight: 700;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             align-items: center;
-            margin-bottom: 2px;
-            transition: color 0.32s ease;
+            margin: 0;
+            transition: color 0.22s ease;
         }
 
         .feed-author {
-            color: #6c7f9f;
-            font-size: 12px;
-            letter-spacing: 0.08em;
+            color: #7b8fad;
+            font-size: 11px;
+            letter-spacing: 0.09em;
             text-transform: uppercase;
             font-weight: 700;
-            transition: color 0.32s ease;
+            transition: color 0.22s ease;
         }
 
         .feed-title {
             grid-area: title;
             margin: 0;
             font-family: "Newsreader", "Georgia", serif;
-            font-size: clamp(26px, 3.4vw, 46px);
-            line-height: 0.98;
-            letter-spacing: -0.032em;
-            transition: color 0.32s ease, text-shadow 0.32s ease;
+            font-size: clamp(26px, 2.8vw, 38px);
+            line-height: 0.96;
+            letter-spacing: -0.026em;
+            transition: color 0.22s ease;
         }
 
         .feed-desc {
             grid-area: desc;
             margin: 2px 0 0;
             color: var(--muted);
-            font-size: clamp(15px, 1.75vw, 18px);
-            line-height: 1.42;
-            letter-spacing: -0.02em;
-            max-width: 860px;
-            transition: color 0.32s ease;
+            font-size: clamp(15px, 1.25vw, 19px);
+            line-height: 1.45;
+            letter-spacing: -0.01em;
+            max-width: 820px;
+            transition: color 0.22s ease;
         }
 
         .feed-arrow {
             grid-area: arrow;
             align-self: center;
             display: inline-flex;
-            width: auto;
-            height: auto;
-            border-radius: 0;
-            border: 0;
             align-items: center;
             justify-content: center;
             color: var(--deep);
-            font-size: 48px;
+            font-size: clamp(44px, 4.6vw, 64px);
             line-height: 1;
-            transition: transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1), color 0.32s ease;
+            transition: transform 0.22s ease, color 0.22s ease;
         }
 
         .feed-row:is(:hover, :focus-visible) .feed-title {
-            color: #233b64;
-            text-shadow: 0 10px 24px rgba(96, 121, 194, 0.18);
+            color: #334f79;
         }
 
         .feed-row:is(:hover, :focus-visible) .feed-desc {
-            color: #506892;
+            color: #63789c;
         }
 
         .feed-row:is(:hover, :focus-visible) .feed-meta {
-            color: #6a80a8;
+            color: #7b8eac;
         }
 
         .feed-row:is(:hover, :focus-visible) .feed-author {
-            color: #7b8fcc;
+            color: #879bc0;
         }
 
         .feed-row:is(:hover, :focus-visible) .feed-arrow {
-            color: #365a95;
-            transform: translateX(8px);
+            color: #4f709f;
+            transform: translateX(3px);
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .home-btn,
+            .topic-chip,
+            .topic-time,
             .feed-row,
-            .feed-row::before,
-            .feed-row::after,
             .feed-meta,
             .feed-author,
             .feed-title,
@@ -377,72 +357,109 @@
                 transition: none;
             }
 
+            .home-btn:hover,
             .feed-row:is(:hover, :focus-visible) .feed-arrow {
                 transform: none;
             }
         }
 
-        @media (max-width: 760px) {
-            .page-shell {
-                margin: 18px auto 36px;
-                padding: 0 12px;
-            }
-
+        @media (max-width: 980px) {
             .topbar {
                 align-items: flex-start;
-            }
-
-            .brand-title {
-                line-height: 1;
+                gap: 14px;
             }
 
             .home-btn {
-                padding: 4px 0;
-                font-size: 16px;
-                margin-top: 10px;
+                margin-bottom: 6px;
             }
 
-            .topic-track {
-                margin-top: 10px;
+            .feed-title {
+                font-size: clamp(24px, 3.8vw, 34px);
             }
 
-            .topic-note {
-                font-size: 9px;
-                line-height: 1.4;
+            .feed-desc {
+                font-size: clamp(14px, 1.7vw, 18px);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                margin: 16px auto 30px;
+                padding: 0 14px;
+            }
+
+            .intro-panel {
+                padding: 14px 0 16px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding-bottom: 2px;
+            }
+
+            .brand-title {
+                line-height: 0.95;
             }
 
             .brand-subtitle {
                 margin-top: 8px;
-                font-size: 24px;
-                line-height: 1.14;
+                font-size: clamp(9px, 3.4vw, 14px);
+                line-height: 1.12;
+            }
+
+            .home-btn {
+                font-size: 15px;
+                padding: 4px 0;
+                margin-bottom: 0;
+                border-bottom-width: 2px;
+            }
+
+            .masthead {
+                margin-top: 10px;
+            }
+
+            .topic-track {
+                padding-top: 10px;
+            }
+
+            .topic-note {
+                font-size: 9px;
+                line-height: 1.45;
+                margin-bottom: 10px;
             }
 
             .topic-chip {
-                padding: 0 0 0 14px;
-                font-size: 16px;
+                padding-left: 14px;
+                font-size: 15px;
             }
 
             .topic-time {
-                font-size: 9px;
+                font-size: 8px;
             }
 
             .feed {
-                margin-top: 14px;
-                padding: 0;
+                margin-top: 16px;
             }
 
             .feed-row {
                 grid-template-columns: 1fr;
                 grid-template-areas:
                     "meta"
-                    "title"
-                    "desc";
+                    "title";
                 row-gap: 6px;
                 padding: 14px 0 12px;
             }
 
+            .feed-title {
+                font-size: clamp(20px, 7.2vw, 27px);
+                line-height: 0.95;
+            }
+
             .feed-desc {
-                font-size: 17px;
+                font-size: clamp(14px, 4.2vw, 17px);
+                line-height: 1.45;
             }
 
             .feed-arrow {
@@ -453,28 +470,32 @@
 </head>
 <body>
     <main class="page-shell">
-        <header class="topbar">
-            <div class="brand-block">
-                <p class="brand-kicker">Mingchen Zhuge</p>
-                <h1 class="brand-title">Mingchen's Blog</h1>
-                <p class="brand-subtitle">Solving the Year 3000 Challenges.</p>
-            </div>
-            <a class="home-btn" href="../index.html">Back Home</a>
-        </header>
-
-        <section class="masthead">
-            <div class="topic-track">
-                <p class="topic-note">Years indicate Mingchen Zhuge's actual or expected involvement timeline for each topic.</p>
-                <div class="topics">
-                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Multimodal</span><span class="topic-time">2018-2022</span></a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">AI Agents</span><span class="topic-time">2022-2024</span></a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Code Generation</span><span class="topic-time">2022-2024</span></a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Recursive Self-Improvement</span><span class="topic-time">2023-2028</span></a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Neural Computer</span><span class="topic-time">2025-2030</span></a>
-                    <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">ONE</span><span class="topic-time">2030-?</span></a>
+        <section class="intro-panel">
+            <header class="topbar">
+                <div class="brand-block">
+                    <p class="brand-kicker">Mingchen Zhuge</p>
+                    <h1 class="brand-title">Mingchen's Blog</h1>
+                    <p class="brand-subtitle">Solving the Year 3000 Challenges.</p>
                 </div>
-            </div>
+                <a class="home-btn" href="../index.html">Back Home</a>
+            </header>
+
+            <section class="masthead">
+                <div class="topic-track">
+                    <p class="topic-note">Years indicate Mingchen Zhuge's actual or expected involvement timeline for each topic.</p>
+                    <div class="topics">
+                        <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Multimodal</span><span class="topic-time">2018-2022</span></a>
+                        <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">AI Agents</span><span class="topic-time">2022-2024</span></a>
+                        <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Code Generation</span><span class="topic-time">2023-2026</span></a>
+                        <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Recursive Self-Improvement</span><span class="topic-time">2023-2029</span></a>
+                        <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">Neural Computer</span><span class="topic-time">2025-2035</span></a>
+                        <a class="topic-chip" href="../neuralcomputer/index.html"><span class="topic-main">ONE</span><span class="topic-time">2027-?</span></a>
+                    </div>
+                </div>
+            </section>
         </section>
+
+        <hr class="feed-divider" aria-hidden="true">
 
         <section class="feed">
             <a class="feed-row" href="../neuralcomputer/index.html">
@@ -483,8 +504,7 @@
                     <span>Draft</span>
                     <span class="feed-author">By Mingchen Zhuge</span>
                 </div>
-                <h3 class="feed-title">Neural Computer</h3>
-                <p class="feed-desc">A long-form draft on building robust systems that reason, execute, and self-improve over long horizons.</p>
+                <h3 class="feed-title">Beyond Von Neumann, Toward Complete Neural Computer</h3>
                 <span class="feed-arrow">→</span>
             </a>
         </section>

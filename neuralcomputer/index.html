@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neural Computer | METAUTO.ai Blog</title>
+    <title>Beyond Von Neumann, Toward Complete Neural Computer</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <style>
         :root {
-            --primary-color: #A98A71;
-            --secondary-color: #8C7458;
-            --text-color: #1D1B22;
-            --light-text: #64748B;
-            --bg-light: #FEFBF3;
-            --bg-white: #FFFDF7;
-            --border-color: #E2E8F0;
+            --text: #1f2937;
+            --muted: #5b6474;
+            --border: #e4e8ef;
+            --bg: #ffffff;
+            --accent: #1f3d63;
+            --grid: rgba(31, 61, 99, 0.035);
         }
 
         * {
@@ -23,304 +22,354 @@
 
         body {
             margin: 0;
-            color: var(--text-color);
-            background: var(--bg-light);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                         "Segoe UI", Roboto, "Helvetica Neue", Arial,
-                         "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
-                         "Noto Sans CJK SC", sans-serif;
-            line-height: 1.72;
-            letter-spacing: -0.01em;
+            color: var(--text);
+            background-color: #fcfcfb;
+            background-image:
+                linear-gradient(135deg, rgba(255, 246, 249, 0.60) 0%, rgba(244, 250, 255, 0.55) 46%, rgba(248, 246, 255, 0.57) 100%),
+                radial-gradient(1200px 680px at 8% 10%, rgba(255, 218, 230, 0.21), rgba(255, 255, 255, 0) 62%),
+                radial-gradient(980px 620px at 92% 12%, rgba(214, 236, 255, 0.22), rgba(255, 255, 255, 0) 64%),
+                radial-gradient(920px 560px at 50% 96%, rgba(224, 244, 226, 0.19), rgba(255, 255, 255, 0) 68%),
+                repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 44px),
+                repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 44px);
+            font-family: "Iowan Old Style", "Baskerville", "Palatino Linotype", "Book Antiqua", "Times New Roman", "Noto Serif", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+            line-height: 1.8;
+            letter-spacing: 0;
         }
 
         a {
-            color: var(--primary-color);
+            color: var(--accent);
             text-decoration: none;
             border-bottom: 1px solid transparent;
-            transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+            transition: border-color 0.2s ease;
         }
 
         a:hover {
-            color: var(--secondary-color);
-            border-color: var(--secondary-color);
-            opacity: 0.95;
+            border-color: currentColor;
         }
 
         .site-header {
             position: sticky;
             top: 0;
-            z-index: 20;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.3);
-            background: rgba(254, 251, 243, 0.94);
-            backdrop-filter: blur(6px);
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(4px);
         }
 
         .site-header-inner {
-            max-width: 1120px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 14px 24px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 18px;
+            gap: 12px;
         }
 
         .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-color);
-            text-decoration: none;
+            color: var(--text);
             border: 0;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.05;
-        }
-
-        .brand-line-1 {
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 600;
-            color: var(--light-text);
-            letter-spacing: 0.03em;
-        }
-
-        .brand-line-2 {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            color: var(--text-color);
-        }
-
-        .brand-badge {
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: linear-gradient(140deg, #A98A71, #D6C4A8);
-            box-shadow: 0 0 0 6px rgba(169, 138, 113, 0.14);
+            letter-spacing: 0.02em;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .header-link {
+            gap: 12px;
             font-size: 14px;
-            font-weight: 500;
-            color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: 999px;
-            border: 1px solid transparent;
-            text-decoration: none;
         }
 
-        .header-link:hover {
-            border-color: rgba(169, 138, 113, 0.35);
-            color: var(--secondary-color);
+        .header-actions a {
+            border: 0;
+            color: var(--muted);
         }
 
-        .header-link.primary {
-            background-color: #1F2937;
-            color: #FFFDF7;
-            border-color: #1F2937;
-        }
-
-        .header-link.primary:hover {
-            background-color: #111827;
-            color: #FFFDF7;
-            border-color: #111827;
+        .header-actions a:hover {
+            color: var(--text);
         }
 
         .page {
-            max-width: 760px;
+            max-width: 1380px;
             margin: 0 auto;
-            padding: 56px 24px 90px;
+            padding: 42px 20px 84px;
+        }
+
+        .reading-layout {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 34px;
+            align-items: start;
+        }
+
+        .article-body {
+            max-width: 860px;
+            position: relative;
+        }
+
+        .toc {
+            position: sticky;
+            top: 86px;
+            align-self: start;
+        }
+
+        .toc-title {
+            margin: 0 0 8px;
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin: 0 0 6px;
+            font-size: 13.5px;
+            line-height: 1.42;
+            color: #5f697b;
+        }
+
+        .toc-list a {
+            border: 0;
+            color: #5f697b;
+            text-decoration: none;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent);
+        }
+
+        .cite-marker {
+            font-size: 0.72em;
+            vertical-align: super;
+            margin-left: 2px;
+            color: #6d7690;
+            font-weight: 600;
+        }
+
+        .note-anchor {
+            position: relative;
+        }
+
+        .margin-ref {
+            position: absolute;
+            left: calc(100% + 28px);
+            top: 0.1em;
+            width: 250px;
+            padding-left: 12px;
+            border-left: 1px solid var(--border);
+            font-size: 13.5px;
+            line-height: 1.45;
+            color: #5d6677;
+        }
+
+        .margin-ref a {
+            color: #5d6677;
+            border-color: rgba(93, 102, 119, 0.4);
+        }
+
+        .margin-ref a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .margin-ref .ref-index {
+            color: #46536a;
+            font-weight: 600;
+            margin-right: 4px;
+            white-space: nowrap;
+        }
+
+        .eyebrow-row {
+            margin: 0 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px 12px;
         }
 
         .eyebrow {
-            margin: 0 0 16px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.14em;
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--light-text);
+            font-weight: 700;
+        }
+
+        .eyebrow-updated {
+            margin: 0;
+            color: #7b869d;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
         h1 {
-            margin: 0 0 18px;
-            font-family: "Georgia", "Times New Roman", "Times", "Noto Serif", serif;
-            font-size: clamp(34px, 5vw, 56px);
+            margin: 0 0 14px;
+            font-size: clamp(32px, 4.6vw, 50px);
+            line-height: 1.12;
+            letter-spacing: -0.01em;
+            color: #111827;
             font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.08;
-            color: var(--text-color);
         }
 
         .deck {
-            margin: 0 0 36px;
-            color: #374151;
-            font-size: clamp(17px, 2.2vw, 22px);
-            line-height: 1.5;
-            letter-spacing: -0.01em;
+            margin: 0 0 18px;
+            font-size: clamp(15px, 1.58vw, 17px);
+            line-height: 1.8;
+            color: #243244;
         }
 
-        .post-authors {
-            margin: 0 0 20px;
+        .title-links {
+            margin: 10px 0 16px;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 12px;
+        }
+
+        .title-link {
+            display: inline-flex;
             align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid #b7c3d6;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #ffffff, #f5f8fd);
+            box-shadow: 0 3px 10px rgba(31, 61, 99, 0.12);
             font-size: 14px;
-            color: var(--light-text);
+            line-height: 1;
+            font-weight: 700;
+            border-bottom: 1px solid #a9b8cf;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .author-label {
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-size: 12px;
+        .title-link:hover {
+            background: #ffffff;
+            border-color: #8d9fbc;
+            box-shadow: 0 6px 16px rgba(31, 61, 99, 0.2);
+            transform: translateY(-1px);
         }
 
-        .author-name {
-            color: var(--text-color);
-            font-size: 15px;
+        .title-link:focus-visible {
+            outline: 2px solid rgba(55, 90, 141, 0.4);
+            outline-offset: 2px;
         }
 
-        p {
-            margin: 0 0 22px;
-            color: var(--text-color);
-            font-size: clamp(17px, 2.2vw, 20px);
-            line-height: 1.72;
-            letter-spacing: -0.01em;
+        .title-link svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+            fill: currentColor;
+            flex: 0 0 auto;
+        }
+
+        .title-link.arxiv {
+            color: #b42323;
+            border-color: rgba(180, 35, 35, 0.34);
+            background: linear-gradient(180deg, #fff9f9, #fff0f0);
+        }
+
+        .title-link.github {
+            color: #111827;
+            border-color: rgba(17, 24, 39, 0.26);
+            background: linear-gradient(180deg, #ffffff, #f1f4f8);
+        }
+
+        .meta {
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .meta-note-line {
+            margin: -12px 0 18px;
+            color: #76819a;
+            font-size: 12.5px;
+            line-height: 1.5;
+        }
+
+        section {
+            margin-top: 34px;
+            padding-top: 6px;
+            scroll-margin-top: 92px;
         }
 
         h2 {
-            margin: 46px 0 14px;
-            font-family: "Georgia", "Times New Roman", "Times", "Noto Serif", serif;
-            font-size: clamp(27px, 4vw, 35px);
-            line-height: 1.2;
-            letter-spacing: -0.025em;
-            color: var(--text-color);
-        }
-
-        .metric-card {
-            margin: 36px 0 14px;
-            padding: 26px 24px 22px;
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            border-radius: 14px;
-            background: var(--bg-white);
-            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
-        }
-
-        .metric-title {
-            margin: 0 0 18px;
-            text-align: center;
-            font-size: 32px;
-            font-family: "Georgia", "Times New Roman", "Times", "Noto Serif", serif;
-            letter-spacing: -0.02em;
-        }
-
-        .metric-bars {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            align-items: flex-end;
-            padding: 6px 0 2px;
-        }
-
-        .bar-wrap {
-            text-align: center;
-            width: 120px;
-        }
-
-        .bar-score {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 8px;
-        }
-
-        .bar {
-            width: 100%;
-            border-radius: 10px 10px 4px 4px;
-            box-shadow: inset 0 -1px 0 rgba(15, 23, 42, 0.18);
-        }
-
-        .bar-a {
-            height: 12px;
-            background: #4B83B7;
-        }
-
-        .bar-b {
-            height: 22px;
-            background: #66B69D;
-        }
-
-        .bar-c {
-            height: 188px;
-            background: #D9825D;
-        }
-
-        .bar-label {
-            margin-top: 10px;
-            font-size: 13px;
-            color: var(--light-text);
-        }
-
-        .metric-note {
-            margin: 14px 0 4px;
-            font-size: 14px;
-            color: var(--light-text);
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .pull-quote {
-            margin: 34px 0 28px;
-            padding: 18px 20px;
-            border-left: 3px solid rgba(169, 138, 113, 0.65);
-            background: rgba(169, 138, 113, 0.08);
-            border-radius: 10px;
-            color: #2B2A30;
-            font-size: 18px;
-            line-height: 1.62;
-        }
-
-        .next-actions {
-            margin-top: 42px;
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            background: var(--bg-white);
-            border-radius: 14px;
-            padding: 22px 20px 20px;
-        }
-
-        .next-actions h3 {
             margin: 0 0 10px;
-            font-size: 20px;
-            letter-spacing: -0.02em;
+            font-size: clamp(24px, 3.1vw, 31px);
+            line-height: 1.26;
+            letter-spacing: -0.01em;
+            color: #111827;
         }
 
-        .next-actions ul {
-            margin: 0;
-            padding-left: 18px;
-            color: var(--text-color);
+        h3 {
+            margin: 18px 0 8px;
+            font-size: 19px;
+            line-height: 1.38;
+            color: #1f3658;
         }
 
-        .next-actions li {
+        p {
+            margin: 0 0 15px;
+            font-size: clamp(15px, 1.58vw, 17px);
+            color: var(--text);
+        }
+
+        ul,
+        ol {
+            margin: 8px 0 16px;
+            padding-left: 22px;
+        }
+
+        li {
             margin-bottom: 8px;
-            line-height: 1.6;
+            font-size: clamp(15px, 1.5vw, 16.8px);
+            color: #1f2937;
+            line-height: 1.68;
+        }
+
+        .figure-block {
+            margin: 18px 0 14px;
+        }
+
+        .figure-block img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .figure-block figcaption {
+            margin: 0;
+            padding: 8px 0 0;
+            font-size: 13px;
+            color: var(--muted);
+            border: 0;
+        }
+
+        .divider {
+            margin: 34px 0;
+            border: 0;
+            border-top: 1px solid var(--border);
         }
 
         .citation-card {
-            margin-top: 34px;
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            background: var(--bg-white);
-            border-radius: 14px;
-            padding: 18px 18px 16px;
+            margin-top: 38px;
+            border: 0;
+            border-radius: 0;
+            padding: 0;
+            background: transparent;
         }
 
         .citation-header {
@@ -328,114 +377,98 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .citation-title {
             margin: 0;
             font-size: 18px;
-            letter-spacing: -0.02em;
+            color: #111827;
         }
 
         .citation-copy {
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            background: #fff;
-            color: var(--text-color);
+            border: 1px solid var(--border);
             border-radius: 999px;
-            padding: 6px 12px;
+            background: #fff;
+            color: var(--accent);
             font-size: 13px;
+            padding: 6px 11px;
             cursor: pointer;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .citation-copy:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-1px);
         }
 
         .citation-subtitle {
             margin: 0 0 10px;
             font-size: 14px;
-            color: var(--light-text);
+            color: var(--muted);
         }
 
         .citation-code {
             margin: 0;
             white-space: pre-wrap;
             word-break: break-word;
-            background: #F7F4ED;
-            border: 1px solid rgba(169, 138, 113, 0.24);
-            border-radius: 10px;
+            border: 0;
+            border-radius: 8px;
+            background: #f7f9fc;
             padding: 12px;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 13px;
-            line-height: 1.6;
-            color: #2B2A30;
+            line-height: 1.55;
+            color: #1d2d44;
         }
 
         .citation-msg {
-            margin-top: 8px;
+            margin-top: 7px;
             min-height: 18px;
             font-size: 13px;
-            color: var(--light-text);
+            color: var(--muted);
         }
 
         .page-footer {
-            margin-top: 52px;
-            padding-top: 18px;
-            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
             display: flex;
-            justify-content: space-between;
-            gap: 12px;
             flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            color: var(--muted);
             font-size: 14px;
-            color: var(--light-text);
         }
 
-        @media (max-width: 880px) {
-            .site-header-inner {
-                padding-left: 16px;
-                padding-right: 16px;
+        @media (max-width: 1260px) {
+            .reading-layout {
+                grid-template-columns: 200px minmax(0, 1fr);
             }
 
-            .brand {
-                align-items: center;
-            }
-
-            .header-actions .header-link {
-                padding: 7px 10px;
-                font-size: 13px;
-            }
-
-            .page {
-                padding: 36px 16px 72px;
-            }
-
-            .metric-title {
-                font-size: 27px;
+            .margin-ref {
+                display: none;
             }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 980px) {
+            .reading-layout {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .toc {
+                display: none;
+            }
+
+            .article-body {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 680px) {
             .site-header-inner {
-                flex-wrap: wrap;
-                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
             }
 
-            .header-actions {
-                width: 100%;
-            }
-
-            .metric-card {
-                padding: 20px 14px;
-            }
-
-            .metric-bars {
-                gap: 10px;
-            }
-
-            .bar-wrap {
-                width: 92px;
+            .citation-header {
+                align-items: flex-start;
+                flex-direction: column;
             }
         }
     </style>
@@ -443,128 +476,412 @@
 <body>
 <header class="site-header">
     <div class="site-header-inner">
-        <a class="brand" href="../index.html">
-            <span class="brand-badge"></span>
-            <span class="brand-text">
-                <span class="brand-line-1">Mingchen Zhuge</span>
-                <span class="brand-line-2">Mingchen's Blog</span>
-            </span>
-        </a>
+        <a class="brand" href="../index.html">Mingchen Zhuge</a>
         <div class="header-actions">
-            <a class="header-link" href="../blog/index.html">All Posts</a>
-            <a class="header-link primary" href="../index.html">Back Home</a>
+            <a href="../blog/index.html">All Posts</a>
+            <a href="../index.html">Back Home</a>
         </div>
     </div>
 </header>
 
 <main class="page">
-    <h1>Neural Computer</h1>
-    <div class="post-authors">
-        <span class="author-label">Blog Authors</span>
-        <span class="author-name">Mingchen Zhuge</span>
-    </div>
-    <p class="deck">
-        This is not another agent demo. Neural Computer is a bet that one learned runtime can absorb compute, memory, and I/O and behave like a living computer.
-    </p>
+    <div class="reading-layout">
+        <aside class="toc" aria-label="Table of contents">
+            <p class="toc-title">Contents</p>
+            <ul class="toc-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#status">Prototype Observations (Brief)</a></li>
+                <li><a href="#beyond-von-neumann">What "Beyond Von Neumann" Means</a></li>
+                <li><a href="#toward-cnc">Toward CNC: Definition Before Optimism</a></li>
+                <li><a href="#cnc-practice">What a Complete NC Means in Practice</a></li>
+                <li><a href="#roadmap">The Roadmap: Five Scientific Questions</a></li>
+                <li><a href="#evolution-paths">Two Evolution Paths Toward CNC</a></li>
+                <li><a href="#relations">Relations to Other Foundation-Model Paradigms</a></li>
+                <li><a href="#evaluation-protocol">Evaluation Protocol: Why One Score Is Not Enough</a></li>
+                <li><a href="#limits">Pragmatic Stance and Open Limits</a></li>
+                <li><a href="#conclusion">Conclusion: A More Useful Standard for Progress</a></li>
+                <li><a href="#citation">Citation (BibTeX)</a></li>
+            </ul>
+        </aside>
 
-    <p>
-        In the paper, we define a Neural Computer (NC) as a learned, executable, and eventually programmable system where model, environment, and runtime share one latent state. The long game is even bigger: a Completely Neural Computer (CNC), where the classical stack is no longer bolted together module by module.
-    </p>
+        <article class="article-body">
+            <section id="intro">
+                <div class="eyebrow-row">
+                    <p class="eyebrow">Research Essay - Neural Computers</p>
+                    <p class="eyebrow-updated">Last updated: February 7, 2026</p>
+                </div>
+                <h1>Beyond Von Neumann, Toward Complete Neural Computer</h1>
+                <div class="title-links" aria-label="Paper and code links">
+                    <a class="title-link arxiv" href="https://arxiv.org/search/?query=Beyond+Von+Neumann+Toward+Complete+Neural+Computer&searchtype=all&source=header" target="_blank" rel="noopener noreferrer" aria-label="Read paper on arXiv">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="2.5" y="3" width="19" height="18" rx="4.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
+                            <path d="M6.8 16.2L10 7.9h1.5l3.2 8.3h-1.8l-.7-2h-3l-.7 2H6.8zm3-3.5h2.1l-1-2.9-1.1 2.9z"></path>
+                            <path d="M16.4 8.2h1.5l-3.7 8h-1.5l3.7-8z"></path>
+                        </svg>
+                        <span>arXiv</span>
+                    </a>
+                    <a class="title-link github" href="https://github.com/metauto-ai" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 .297a12 12 0 0 0-3.792 23.386c.6.111.82-.257.82-.574 0-.284-.011-1.038-.016-2.038-3.338.725-4.042-1.609-4.042-1.609-.546-1.387-1.333-1.755-1.333-1.755-1.09-.745.082-.729.082-.729 1.205.085 1.84 1.236 1.84 1.236 1.071 1.835 2.809 1.305 3.495.998.107-.775.418-1.305.761-1.605-2.665-.304-5.467-1.334-5.467-5.932 0-1.31.469-2.381 1.236-3.221-.124-.304-.535-1.523.118-3.176 0 0 1.008-.322 3.301 1.23a11.49 11.49 0 0 1 3.006-.404c1.02.005 2.048.138 3.006.404 2.292-1.552 3.299-1.23 3.299-1.23.653 1.653.242 2.872.118 3.176.768.84 1.235 1.911 1.235 3.221 0 4.609-2.804 5.628-5.475 5.924.43.371.814 1.102.814 2.222 0 1.605-.015 2.897-.015 3.29 0 .319.216.688.825.572A12 12 0 0 0 12 .297z"></path>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+                <p class="meta">Authors: Mingchen Zhuge</p>
+                <p class="meta-note-line">This essay is an additional reflection built on the paper itself. Most arguments and interpretations here represent Mingchen Zhuge's personal views.</p>
+            </section>
 
-    <p>
-        We instantiate this in two directions: NC-CLIGen for terminal worlds and NC-GUIWorld for desktop interfaces. Same core idea, different surfaces: read recent pixels, consume action streams, roll out the next interface frame.
-    </p>
+            <figure class="figure-block">
+                <img src="assets/data_teaser8.png" alt="Unified data engine for CLI and GUI trajectories">
+                <figcaption>Data engine overview: aligned CLI/GUI frames, text traces, and action logs on a shared timeline.</figcaption>
+            </figure>
 
-    <h2>Why This Is A Big Deal</h2>
-    <p>
-        Classical systems split responsibilities across layers: one subsystem computes, another stores state, another mediates interaction. Neural Computer collapses those boundaries into an update-and-render loop. It is a conceptual shift from “model as tool” to “model as runtime.”
-    </p>
+            <p class="deck note-anchor">
+                Can a single set of weights act as a "computer"? In our work, we build a video-based Neural Computer (NC) prototype and comprehensively illustrate the roadmap toward a Complete Neural Computer (CNC).<sup class="cite-marker">11</sup>
+                <span class="margin-ref"><span class="ref-index">[11]</span>Zhuge et al., <em>Neural Computers</em> (2026 draft).</span>
+            </p>
 
-    <p>
-        On CLI, this already looks real: structured rollouts, coherent terminal physics, multi-step command behavior, and strong character-level rendering when data is clean and conditioning is explicit.
-    </p>
+            <section id="status">
+                <h2>Prototype Observations (Brief)</h2>
+                <p class="note-anchor">
+                    This essay intentionally keeps empirical reporting brief.
+                    The role of current prototype results is observational:
+                    they show which runtime properties are already plausible, and which properties are still missing for a complete neural computer.<sup class="cite-marker">11</sup>
+                    <span class="margin-ref"><span class="ref-index">[11]</span>Zhuge et al., <em>Neural Computers</em> (2026 draft), <code>toward_cnc</code>, <code>impl_cli</code>, <code>impl_gui</code>.</span>
+                </p>
+                <p>
+                    Three observations are enough for the rest of this post.
+                    First, interface-grounded learning is real: these systems can align actions, text, and visual states in nontrivial interactive settings.
+                    Second, better conditioning and cleaner data semantics often dominate raw data scale.
+                    Third, long-horizon consistency, reusable programmability, and verified computation are still open.
+                    So the right move is not to over-read benchmarks, but to sharpen the CNC target.
+                </p>
+            </section>
 
-    <div class="metric-card">
-        <h3 class="metric-title">Arithmetic Probe (CLI)</h3>
-        <div class="metric-bars">
-            <div class="bar-wrap">
-                <div class="bar-score">0%</div>
-                <div class="bar bar-a"></div>
-                <div class="bar-label">Wan2.1</div>
-            </div>
-            <div class="bar-wrap">
-                <div class="bar-score">4%</div>
-                <div class="bar bar-b"></div>
-                <div class="bar-label">NC-CLIGen</div>
-            </div>
-            <div class="bar-wrap">
-                <div class="bar-score">83%</div>
-                <div class="bar bar-c"></div>
-                <div class="bar-label">+ Reprompt</div>
-            </div>
-        </div>
-        <p class="metric-note">
-            100 tasks sampled from a 1,000-problem holdout. Accuracy jumps from 4% to 83% via stronger conditioning.
-        </p>
-    </div>
+            <figure class="figure-block">
+                <img src="assets/nc_general.png" alt="Unified NC architecture for CLI and GUI instantiations">
+                <figcaption>Current NC evidence is interface-grounded: one architecture family, two interaction regimes, and explicit ablations.</figcaption>
+            </figure>
 
-    <p>
-        That jump is exactly the point: system-level conditioning can unlock major symbolic gains without changing the backbone. But it also tells us to be honest about what is happening: better interface specification and answer-conditioned rendering are not the same as proven native computation.
-    </p>
+            <section id="beyond-von-neumann">
+                <h2>What "Beyond Von Neumann" Actually Means</h2>
+                <p class="note-anchor">
+                    In the paper source, "Beyond Von Neumann" is not a branding phrase.
+                    It is a systems claim about where computation semantics live and how computers are programmed.<sup class="cite-marker">11</sup>
+                    <span class="margin-ref"><span class="ref-index">[11]</span>See <code>preliminaries.tex</code> and <code>toward_cnc.tex</code> for the architectural contrast and CNC definition.</span>
+                </p>
+                <ul>
+                    <li><strong>Separation versus unification:</strong> classical machines separate compute, memory, and I/O across layers; NCs attempt to internalize them in one latent runtime.</li>
+                    <li><strong>Keyhole interface versus shared internals:</strong> conventional model-computer stacks exchange compressed signals through pixels and actions; NC framing aims for higher-bandwidth interaction through shared neural state.</li>
+                    <li><strong>Designed language semantics versus learned semantics:</strong> conventional programming interfaces are explicitly designed, while NC programming semantics are learned from interaction traces and can be steered by in-context specifications.</li>
+                </ul>
+                <p>
+                    This does not mean conventional systems are obsolete.
+                    The claim is narrower: for highly coupled perception-control-reasoning workloads, a machine-native neural runtime may become a more direct substrate than a strictly layered symbolic stack.
+                </p>
+            </section>
 
-    <div class="pull-quote">
-        Neural Computer is where a video model starts to look less like a renderer and more like an executable interface runtime.
-    </div>
+            <hr class="divider">
 
-    <h2>GUI Is Where It Gets Serious</h2>
-    <p>
-        In GUIWorld, we evaluate multiple action injection strategies and both raw-action and meta-action encodings. The most striking finding: explicit visual cursor supervision changes the game.
-    </p>
+            <section id="toward-cnc">
+                <h2>Toward CNC: Definition Before Optimism</h2>
+                <p class="note-anchor">
+                    The paper's central move is definitional, and that matters.
+                    It avoids treating CNC as a rhetorical target and instead defines what a complete NC instance should satisfy.<sup class="cite-marker">11</sup>
+                    This move is easy to overlook, but it is what makes the discussion scientific rather than promotional.
+                    <span class="margin-ref"><span class="ref-index">[11]</span>CNC criteria are stated explicitly in <code>toward_cnc.tex</code>, rather than inferred from demos.</span>
+                </p>
+                <ol>
+                    <li>Turing complete.</li>
+                    <li>Universally programmable.</li>
+                    <li>Consistent in output unless explicitly reprogrammed.</li>
+                    <li>Behaviorally realizes the architectural and programming-language advantages attributed to NCs.</li>
+                </ol>
+                <p>
+                    Under this definition, high-quality predictions are necessary but insufficient.
+                    A system can produce coherent interface trajectories and still fail the computability, programmability, or consistency criteria required for a general-purpose runtime.
+                </p>
+                <p>
+                    In other words, NC is not a binary label.
+                    It is a maturity ladder.
+                    Prototype NCs may already show interaction competence, while Completely NC requires runtime-level guarantees that survive composition, reuse, and long-horizon operation.
+                </p>
+                <p>
+                    The chapter also clarifies a deeper contrast with conventional machines.
+                    Classical systems are built around local symbolic semantics and fixed instruction interfaces.
+                    NCs, by construction, operate through distributed numerical semantics and learned interface conventions.
+                    The potential upside is broader adaptation and shared internal computation.
+                    The cost is that correctness and stability are harder to certify without dedicated mechanisms and evaluation protocols.
+                </p>
+            </section>
 
-    <p>
-        Position-only supervision reaches 8.7% cursor accuracy, enhanced position features reach 13.5%, and explicit cursor-visual supervision jumps to 98.7%. Another strong signal: about 1,400 hours of noisy exploration data still lose to around 110 hours of high-quality goal-directed trajectories (Claude CUA subset). Data quality dominates raw volume.
-    </p>
+            <hr class="divider">
 
-    <h2>Toward CNC</h2>
-    <p>
-        We are still far from fully neural computers. Long-horizon layout stability, fine-grained text/icon fidelity, and verifiable in-runtime computation are open challenges. But the trajectory is now concrete, not speculative.
-    </p>
+            <section id="cnc-practice">
+                <h2>What a Complete NC Means in Practice</h2>
+                <p>
+                    A useful way to read "Completely NC" is as a runtime contract, not as branding.
+                    The question is whether computation, memory, and I/O can be jointly realized inside a trainable system with stable, programmable semantics.
+                    If any one of those three remains mostly externalized, we are still in a hybrid stage.
+                </p>
+                <p>
+                    For computation semantics, the standard is not "looks smart" but "executes reliably":
+                    repeated execution under controlled conditions should preserve intent and causal structure.
+                    For memory semantics, state should be persistent and auditable enough that users can distinguish normal execution from accidental reprogramming.
+                    For I/O semantics, interaction should be grounded at action level and maintain post-action fidelity over meaningful horizons.
+                </p>
+                <p>
+                    This is why CNC discussion should stay close to systems language:
+                    installability of routines, compositional reuse, update boundaries, rollback behavior, and verification hooks.
+                    Without these properties, model capability may still be impressive, but runtime capability is not yet complete.
+                </p>
+                <p>
+                    Under this framing, current NC work is valuable precisely because it makes the transition legible:
+                    from "can imitate interaction traces" to "can host dependable learned execution semantics."
+                </p>
+                <p>
+                    The capability map in the paper further expands this into eight axes:
+                    efficiency, computation and reasoning, memory and storage, I/O and control, tool bridges, condition-driven generalization, programmability, and artifact generation.
+                    The important nuance is that these axes co-evolve; they do not form a strict one-way prerequisite chain.
+                </p>
+            </section>
 
-    <p>
-        The roadmap is explicit: push compute, memory, and I/O into one learned runtime, then scale from interface imitation to reliable execution. If this works, we will not just have better assistants. We will have a new software substrate.
-    </p>
+            <hr class="divider">
 
-    <div class="next-actions">
-        <h3>What Comes Next</h3>
-        <ul>
-            <li>Scale high-quality interaction data instead of brute-force random traces.</li>
-            <li>Move from answer-conditioned rendering to verifiable native computation.</li>
-            <li>Unify CLI and GUI prototypes on the path to a single CNC runtime.</li>
-        </ul>
-    </div>
+            <section id="roadmap">
+                <h2>The Roadmap: Five Scientific Questions, Not One Slogan</h2>
+                <p class="note-anchor">
+                    In <code>toward_cnc.tex</code>, the CNC transition is explicitly framed as five scientific questions.
+                    This framing is one of the most useful parts of the chapter, because it turns an ambitious vision into concrete research obligations.<sup class="cite-marker">11</sup>
+                    <span class="margin-ref"><span class="ref-index">[11]</span>Framing from the Toward CNC chapter.</span>
+                </p>
 
-    <div class="citation-card">
-        <div class="citation-header">
-            <h3 class="citation-title">Citation (BibTeX)</h3>
-            <button class="citation-copy" type="button" id="copy-citation-btn">Copy BibTeX</button>
-        </div>
-        <p class="citation-subtitle">If this post helps your work, please cite it with the BibTeX below.</p>
-        <pre class="citation-code" id="citation-code">@misc{zhuge2026neuralcomputer,
-  title = {Neural Computer},
+                <h3>1) Turing Completeness of a Concrete NC Instance</h3>
+                <p class="note-anchor">
+                    The question is not whether some abstract neural family can be universal in the limit.<sup class="cite-marker">2</sup><sup class="cite-marker">3</sup>
+                    The question is whether a concrete NC instance, with fixed weights and practical precision, can emulate arbitrary machines under suitable memory states.
+                    The chapter highlights unbounded effective memory as a key requirement.<sup class="cite-marker">8</sup><sup class="cite-marker">9</sup>
+                    <span class="margin-ref"><span class="ref-index">[2][3][8][9]</span><a href="https://doi.org/10.1016/S0893-6080(05)80049-1" target="_blank" rel="noopener noreferrer">Siegelmann and Sontag</a>; <a href="https://arxiv.org/abs/1912.10077" target="_blank" rel="noopener noreferrer">Perez et al.</a>; <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">Vaswani et al.</a>; <a href="https://arxiv.org/abs/1606.04671" target="_blank" rel="noopener noreferrer">Rusu et al.</a></span>
+                </p>
+                <p class="note-anchor">
+                    This is why references to NTM and DNC are treated carefully.<sup class="cite-marker">4</sup><sup class="cite-marker">5</sup>
+                    They are important conceptual precedents, but finite precision and fixed memory budgets complicate direct claims of practical universality for any specific deployed instance.
+                    <span class="margin-ref"><span class="ref-index">[4][5]</span><a href="https://arxiv.org/abs/1410.5401" target="_blank" rel="noopener noreferrer">Neural Turing Machines</a>; <a href="https://www.nature.com/articles/nature20101" target="_blank" rel="noopener noreferrer">DNC</a>.</span>
+                </p>
+
+                <h3>2) Universal Programmability Beyond One-Off Prompting</h3>
+                <p class="note-anchor">
+                    Even if a system can represent many computations, users still need a way to install, invoke, and compose them reliably.
+                    The chapter frames this as routine-level programmability:
+                    can the system form reusable internal routines instead of relying on fragile contextual nudges?<sup class="cite-marker">6</sup>
+                    <span class="margin-ref"><span class="ref-index">[6]</span><a href="https://arxiv.org/abs/1511.06279" target="_blank" rel="noopener noreferrer">Neural Programmer-Interpreters</a> on routine-style composition.</span>
+                </p>
+                <p>
+                    A practical implication is that progress should be judged by compositional reuse and robustness under variation, not only by success on isolated prompts.
+                </p>
+
+                <h3>3) Runtime Consistency Under Normal Use</h3>
+                <p class="note-anchor">
+                    A runtime is useful only if ordinary execution inputs mostly execute installed behavior rather than silently mutating it.
+                    The chapter calls for explicit separation between function-use and function-update pathways, potentially supported by gating-like mechanisms.<sup class="cite-marker">7</sup>
+                    <span class="margin-ref"><span class="ref-index">[7]</span><a href="https://www.bioinf.jku.at/publications/older/2604.pdf" target="_blank" rel="noopener noreferrer">LSTM gating</a> as an early reference for selective state updates.</span>
+                </p>
+                <p>
+                    Without that separation, users cannot reliably tell whether a failure is an execution bug, an accidental reprogramming event, or an unstable memory transition.
+                    That ambiguity is a fundamental blocker for general-purpose deployment.
+                </p>
+
+                <h3>4) Architectural Semantics and Shared Internal Computation</h3>
+                <p>
+                    NCs are positioned as numerical runtimes with potentially different strengths from symbolic stacks.
+                    The chapter suggests these runtimes may natively support AI-centric operations, and may enable richer internal information exchange than keyhole interfaces permit.
+                </p>
+                <p class="note-anchor">
+                    It also raises a stronger idea: because NC memory states are numerical, some forms of "programming" could be reframed as optimization over machine state.<sup class="cite-marker">10</sup>
+                    The paper treats this as a research direction, not as a solved capability.
+                    <span class="margin-ref"><span class="ref-index">[10]</span><a href="https://arxiv.org/abs/1907.07587" target="_blank" rel="noopener noreferrer">Differentiable programming</a> as conceptual background.</span>
+                </p>
+
+                <h3>5) Programming-Language Semantics Learned From Interaction</h3>
+                <p>
+                    In this framing, user inputs can function as programs under learned semantics.
+                    That creates a shift from rigid code authoring toward executable specification through language, examples, and constraints.
+                </p>
+                <p>
+                    The upside is expressive flexibility.
+                    The burden shifts to verification, controllability, and reproducibility.
+                    The chapter also notes a data asymmetry: user I/O traces are often far more abundant than curated high-quality code, which may shape how NCs are trained and evaluated.
+                </p>
+
+                <p>
+                    Read together, these five questions are more informative than any single demo trajectory.
+                    They provide a map for what has to be true before CNC claims become technically defensible.
+                </p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="evolution-paths">
+                <h2>Two Evolution Paths Toward CNC</h2>
+                <p class="note-anchor">
+                    The outlook chapter suggests progress should be read as two coupled tracks rather than one monolithic scaling curve.<sup class="cite-marker">11</sup>
+                    <span class="margin-ref"><span class="ref-index">[11]</span>See <code>outlook.tex</code> for the two-path framing and staged agenda.</span>
+                </p>
+                <p>
+                    The first track is to consolidate the basic pillars:
+                    efficient streaming inference, auditable memory and storage, stronger computation and reasoning, and reliable I/O control under realistic latency and compute budgets.
+                    In practice, this motivates hybrid runtime designs that preserve pixel grounding while reducing memory and efficiency bottlenecks.
+                </p>
+                <p>
+                    The second track is to enable CNC extensions through neural artifacts:
+                    tool bridges synthesized by the runtime, condition-driven mode switching from specifications, persistent latent routines, and eventually artifact generation where NCs emit reusable executable neural modules.
+                </p>
+                <p>
+                    A practical agenda follows naturally:
+                    near-term emphasis on efficiency and memory infrastructure;
+                    mid-term emphasis on robust reasoning and control;
+                    long-term emphasis on programmability and self-extending neural artifacts.
+                </p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="relations">
+                <h2>Relations to Other Foundation-Model Paradigms</h2>
+                <h3>World Models</h3>
+                <p class="note-anchor">
+                    The paper's position is nuanced: NCs can be viewed as a world-model direction specialized to interactive computer environments.<sup class="cite-marker">1</sup>
+                    This is a scope choice, not a rejection.
+                    World models contribute the dynamics backbone; NC framing adds runtime and programmability requirements that prediction-only framing does not enforce.
+                    <span class="margin-ref"><span class="ref-index">[1]</span><a href="https://arxiv.org/abs/1803.10122" target="_blank" rel="noopener noreferrer">World Models</a> baseline framing.</span>
+                </p>
+
+                <h3>Computer Use Agents (CUAs)</h3>
+                <p>
+                    CUAs are a strong and practical paradigm today.
+                    They combine high-level model reasoning with precise classical runtimes.
+                    The tradeoff is architectural separation:
+                    model and runtime communicate through low-bandwidth interfaces, which can increase latency and limit access to internal machine state.
+                </p>
+                <p>
+                    The NC hypothesis is not that CUA is obsolete.
+                    It is that some functions currently externalized into agent-controller loops might eventually be internalized into learned runtime dynamics if stability and controllability improve.
+                </p>
+
+                <h3>A Cautious Machine-Native Hypothesis</h3>
+                <p>
+                    The chapter's "machine-native" discussion is explicitly framed as a hypothesis, not a conclusion.
+                    It suggests that closing current reasoning and consistency gaps may require architectures with stronger discrete, compositional, and verifiable primitives,
+                    rather than relying only on emergent behavior from generic video generation scaling.
+                </p>
+                <p>
+                    That hypothesis should be read as a research prompt:
+                    preserve what current video-based backbones already do well, while exploring design choices that make runtime behavior easier to verify and reuse.
+                </p>
+            </section>
+
+            <figure class="figure-block">
+                <img src="assets/contextual_mask2.png" alt="Structured temporal masking for GUI action and frame alignment">
+                <figcaption>Example of architecture-level discipline: structured temporal masking to preserve action-frame causality.</figcaption>
+            </figure>
+
+            <hr class="divider">
+
+            <section id="evaluation-protocol">
+                <h2>Evaluation Protocol: Why One Score Is Not Enough</h2>
+                <p class="note-anchor">
+                    The paper's metrics section is often summarized too quickly.
+                    It defines a three-stage evaluation mindset:
+                    perceptual checks first, text faithfulness checks for CLI scenes, and control checks for GUI behavior.
+                    The point is not to enshrine one scalar metric, but to align evaluation with what a runtime is expected to do.<sup class="cite-marker">11</sup>
+                    <span class="margin-ref"><span class="ref-index">[11]</span>Evaluation protocol definition in the NC draft metrics section.</span>
+                </p>
+                <p>
+                    This is especially important for NC claims.
+                    A model can improve FVD while still drifting on task semantics.
+                    A model can render plausible text while failing executable consistency.
+                    A model can track short cursor trajectories while collapsing under longer interaction chains.
+                    The protocol exists to prevent those category errors.
+                </p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="limits">
+                <h2>Pragmatic Stance and Open Limits</h2>
+                <p>
+                    The paper is careful that video-based NCs are presented as pragmatic prototypes, not as final CNC architecture.
+                    This distinction matters.
+                    It allows strong empirical work today while preserving clear boundaries around unsolved questions.
+                </p>
+                <p class="note-anchor">
+                    It also records negative explorations with unusual clarity.
+                    Web-scale terminal mining can increase nominal volume, but often weakens provenance, alignment reliability, and privacy safety.
+                    Likewise, online agentic loops can be promising yet operationally fragile when safety isolation and systems overhead are not mature.<sup class="cite-marker">11</sup>
+                    <span class="margin-ref"><span class="ref-index">[11]</span>Negative findings from NC data/agent-loop exploration.</span>
+                </p>
+                <p>
+                    In practice, the web-video route failed for concrete technical reasons:
+                    uncontrolled foreground content (faces, hands, overlays), heavy UI domain shift (themes, fonts, OS/window-manager differences), and capture noise (compression, variable frame rates, zoom/crop edits) jointly degraded OCR and temporal alignment.
+                    Under these conditions, raw scale did not translate into usable supervision quality.
+                </p>
+                <p>
+                    The online interaction route showed a different tradeoff.
+                    Closed-loop collection can surface rare failure modes and support curriculum-like sampling, but productionizing it required strong sandboxing, deterministic reset control, abuse monitoring, and robust multimodal serialization across heterogeneous environments.
+                    Given this overhead, curated high-alignment datasets remained the more reliable path for the current stage.
+                </p>
+                <p>
+                    These are not peripheral details.
+                    They are exactly the constraints that determine whether NC progress is reproducible and trustworthy outside a narrow demo setup.
+                </p>
+            </section>
+
+            <figure class="figure-block">
+                <img src="assets/web_data_issue.png" alt="Common issues in web-scale terminal mining">
+                <figcaption>Negative result with practical value: larger web data can reduce runtime-learning quality if alignment and safety are not tightly controlled.</figcaption>
+            </figure>
+
+            <hr class="divider">
+
+            <section id="conclusion">
+                <h2>Conclusion: A More Useful Standard for Progress</h2>
+                <p>
+                    A conservative reading of the paper is, in my view, the most useful one.
+                    We now have reproducible NC prototypes, concrete interface-grounded evidence, and a clearer language for distinguishing NC progress from CNC requirements.
+                    That is meaningful progress, even if it is still early.
+                </p>
+                <p>
+                    If this essay keeps one message from <code>toward_cnc.tex</code>, it should be a methodological one:
+                    a practical milestone is not simply better visual rollout quality, but increasingly reliable runtime behavior that can be programmed, reused, and audited across longer horizons.
+                </p>
+            </section>
+
+            <section class="citation-card" id="citation">
+                <div class="citation-header">
+                    <h3 class="citation-title">Citation (BibTeX)</h3>
+                    <button class="citation-copy" type="button" id="copy-citation-btn">Copy BibTeX</button>
+                </div>
+                <p class="citation-subtitle">If this essay helps your work, you can cite it with:</p>
+                <pre class="citation-code" id="citation-code">@misc{zhuge2026neuralcomputers_blog,
+  title = {Beyond Von Neumann, Toward Complete Neural Computer},
   author = {Mingchen Zhuge},
   year = {2026},
   month = feb,
   note = {METAUTO.ai Blog},
   url = {https://metauto.ai/neuralcomputer}
 }</pre>
-        <div class="citation-msg" id="citation-msg"></div>
-    </div>
+                <div class="citation-msg" id="citation-msg"></div>
+            </section>
 
-    <div class="page-footer">
-        <span>Last updated: February 7, 2026</span>
-        <span><a href="../blog/index.html">Back to blog index</a></span>
+            <footer class="page-footer">
+                <span>Last updated: February 7, 2026</span>
+                <span><a href="../blog/index.html">Back to blog index</a></span>
+            </footer>
+        </article>
+
     </div>
 </main>
+
 <script>
     (function () {
         var copyBtn = document.getElementById("copy-citation-btn");
@@ -575,7 +892,6 @@
         copyBtn.addEventListener("click", function () {
             var text = codeEl.textContent || "";
             if (!text) return;
-
             navigator.clipboard.writeText(text).then(function () {
                 msgEl.textContent = "BibTeX copied.";
             }).catch(function () {
