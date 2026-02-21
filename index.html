@@ -726,28 +726,6 @@
             align-items: start;
             padding: 10px 0;
             border-bottom: 1px solid rgba(226, 232, 240, 0.75);
-        /* Recent News: date column + content column */
-        #recent-news .section-title {
-            margin-bottom: 24px;
-        }
-
-        #recent-news .news-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
-        }
-
-        #recent-news .news-list.is-collapsed .news-item:nth-child(n+11) {
-            display: none;
-        }
-
-        #recent-news .news-item {
-            display: grid;
-            grid-template-columns: 152px minmax(0, 1fr);
-            gap: 18px;
-            align-items: start;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(226, 232, 240, 0.75);
         }
 
         #recent-news .news-item:last-child {
@@ -761,66 +739,7 @@
             font-weight: 700;
             letter-spacing: -0.01em;
             line-height: 1.5;
-
-        #recent-news .news-date {
-            margin: 0;
-            font-size: 15px;
-            color: var(--text-color);
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            line-height: 1.5;
             white-space: nowrap;
-        }
-
-        #recent-news .news-content {
-            margin: 0;
-            color: var(--light-text);
-            font-size: 15px;
-            line-height: 1.65;
-        }
-
-        #recent-news .news-content strong {
-            color: var(--text-color);
-            font-weight: 700;
-        }
-
-        #recent-news .news-content a {
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-
-        #recent-news .news-content a:hover {
-            border-bottom-color: var(--primary-color);
-        }
-
-        #recent-news .news-controls {
-            display: none;
-            margin-top: 12px;
-        }
-
-        #recent-news .news-controls.is-visible {
-            display: flex;
-        }
-
-        #recent-news .news-toggle {
-            border: 1px solid rgba(169, 138, 113, 0.45);
-            background: rgba(255, 253, 247, 0.95);
-            color: #3d4f6c;
-            border-radius: 999px;
-            padding: 6px 14px;
-            font-size: 12px;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            font-weight: 700;
-            line-height: 1;
-            cursor: pointer;
-            transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
-        }
-
-        #recent-news .news-toggle:hover {
-            transform: translateY(-1px);
-            color: var(--primary-color);
-            border-color: rgba(169, 138, 113, 0.8);
         }
 
         #recent-news .news-content {
@@ -1146,7 +1065,6 @@
     </style>
 
 </head>
-<html>
 <body style="background-color: #FEFBF3; color: #1D1B22; width: 100%; margin: 0; padding: 0;">
 <div class="gray-container" id="about">
     <div class="container">
@@ -1159,14 +1077,12 @@
                 </div>
                 <div class="about-details">
                     <h2>Mingchen Zhuge</h2>
-                    <p class="about-bio">Hi, I am Mingchen! I am a PhD candidate with a strong interest in <span class="coffee-text">multimodal agents, world models, and recursive self-improvement</span>. I am fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Prof. Jürgen Schmidhuber</a> as my advisor. I have 20+ top-tier publications and over 4,600 citations (70% from first-author papers). My work includes:</p>
-                    <p class="about-bio">Hi, I am Mingchen! I am a PhD candidate with a strong interest in <span class="coffee-text">multimodal agents, world models, and recursive self-improvement</span>. I am fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Prof. Jürgen Schmidhuber</a> as my advisor. I have 20+ top-tier publications and over 4,600 citations (70% from first-author papers). My work includes:</p>
+                    <p class="about-bio">Hi, I am Mingchen! I am a PhD candidate with a strong interest in <span class="coffee-text">multimodal agents, world models, and recursive self-improvement</span>. I am fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Prof. Jürgen Schmidhuber</a> as my advisor. I have 20+ top-tier publications and 5,000+ citations (70% from first-author papers). My work includes:</p>
                     <ul class="about-work-grid">
                         <li class="about-work-item">(1) code generation: <a href="https://github.com/geekan/MetaGPT">MetaGPT</a> <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/OpenDevin/OpenDevin">OpenHands</a> <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                         <li class="about-work-item">(2) swarms: <a href="https://github.com/mczhuge/NLSOM">NLSOM</a> <img src="https://img.shields.io/github/stars/mczhuge/NLSOM?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/GPTSwarm">GPTSwarm</a> <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                         <li class="about-work-item">(3) recursive self-improvement: <a href="https://github.com/metauto-ai/GPTSwarm">GPTSwarm</a> <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/HGM">HGM</a> <img src="https://img.shields.io/github/stars/metauto-ai/HGM?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                         <li class="about-work-item">(4) open-ended judge: <a href="https://github.com/metauto-ai/agent-as-a-judge">agent-as-a-judge</a> <img src="https://img.shields.io/github/stars/metauto-ai/agent-as-a-judge?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
-                        <li class="about-work-item">(5) multimodal learning, generation, reasoning: <a href="https://github.com/mczhuge/Kaleido-BERT">Kaleido-BERT</a> <img src="https://img.shields.io/github/stars/mczhuge/Kaleido-BERT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/Pollux">Pollux</a> <img src="https://img.shields.io/github/stars/metauto-ai/Pollux?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/IVUL-KAUST/VideoAuto-R1">VideoAuto-R1</a> <img src="https://img.shields.io/github/stars/IVUL-KAUST/VideoAuto-R1?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                         <li class="about-work-item">(5) multimodal learning, generation, reasoning: <a href="https://github.com/mczhuge/Kaleido-BERT">Kaleido-BERT</a> <img src="https://img.shields.io/github/stars/mczhuge/Kaleido-BERT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/Pollux">Pollux</a> <img src="https://img.shields.io/github/stars/metauto-ai/Pollux?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/IVUL-KAUST/VideoAuto-R1">VideoAuto-R1</a> <img src="https://img.shields.io/github/stars/IVUL-KAUST/VideoAuto-R1?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                     </ul>
                     <p class="about-bio">My papers were accepted as <span class="coffee-text">oral presentations</span> at ICLR (<span class="coffee-text">&lt;1.2%</span>), ICML (<span class="coffee-text">&lt;1.5%</span>), received the <span class="coffee-text">Best Paper Award</span> at the NeurIPS Ro-FoMo Workshop, and <span class="coffee-text">Outstanding Paper Nomination</span> at EMNLP 2025. I was nominated for <span class="coffee-text">WAIC Future Star Nomination</span> and recognized as an <span class="coffee-text">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</span>.</p>
@@ -1640,43 +1556,11 @@
 
         if (items.length <= maxVisible) {
             controls.classList.remove("is-visible");
+            controls.hidden = true;
             return;
         }
 
-        list.classList.add("is-collapsed");
-        controls.classList.add("is-visible");
-
-        function syncButton() {
-            var expanded = !list.classList.contains("is-collapsed");
-            toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
-            toggle.textContent = expanded ? "Show less" : "Show more";
-        }
-
-        syncButton();
-        toggle.addEventListener("click", function () {
-            list.classList.toggle("is-collapsed");
-            syncButton();
-        });
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var section = document.getElementById("recent-news");
-        if (!section) return;
-
-        var list = section.querySelector(".news-list");
-        var controls = section.querySelector(".news-controls");
-        var toggle = section.querySelector(".news-toggle");
-        if (!list || !controls || !toggle) return;
-
-        var items = list.querySelectorAll(".news-item");
-        var maxVisible = 10;
-
-        if (items.length <= maxVisible) {
-            controls.classList.remove("is-visible");
-            return;
-        }
-
+        controls.hidden = false;
         list.classList.add("is-collapsed");
         controls.classList.add("is-visible");
 
