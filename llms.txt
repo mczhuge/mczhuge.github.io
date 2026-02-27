@@ -1,0 +1,53 @@
+# METAUTO.ai
+> Personal research homepage of Mingchen Zhuge, focused on AI agents, coding agents, multi-agent systems, world models, and recursive self-improvement.
+
+## Canonical URLs
+- Home: https://metauto.ai/
+- Blog: https://metauto.ai/blog/
+- Project summaries: https://metauto.ai/projects/
+- This file: https://metauto.ai/llms.txt
+
+## Person
+- Name: Mingchen Zhuge
+- Role: PhD Candidate
+- Affiliation: KAUST
+- Topics: AI agents, coding agents, multi-agent systems, recursive self-improvement, agent evaluation, multimodal reasoning
+
+## Primary Sources
+- Homepage: https://metauto.ai/
+- Google Scholar: https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao
+- GitHub: https://github.com/mczhuge
+- X/Twitter: https://twitter.com/MingchenZhuge
+- LinkedIn: https://www.linkedin.com/in/mingchen-zhuge-7599a1272/
+
+## Selected Projects
+- Project summary index: https://metauto.ai/projects/
+- VideoAuto-R1 summary: https://metauto.ai/projects/videoauto-r1.html
+- Agent-as-a-Judge summary: https://metauto.ai/projects/agent-as-a-judge.html
+- OpenHands summary: https://metauto.ai/projects/openhands.html
+- GPTSwarm summary: https://metauto.ai/projects/gptswarm.html
+- MetaGPT summary: https://metauto.ai/projects/metagpt.html
+- MetaGPT: https://github.com/geekan/MetaGPT
+- OpenHands: https://github.com/OpenDevin/OpenDevin
+- GPTSwarm: https://github.com/metauto-ai/GPTSwarm
+- NLSOM: https://github.com/mczhuge/NLSOM
+- Agent-as-a-Judge: https://github.com/metauto-ai/agent-as-a-judge
+- VideoAuto-R1: https://github.com/IVUL-KAUST/VideoAuto-R1
+
+## Publications and Text Mirrors
+- Agent-as-a-Judge: https://metauto.ai/papers/aaaj.txt
+- GPTSwarm: https://metauto.ai/papers/gptswarm.txt
+- MetaGPT: https://metauto.ai/papers/metagpt.txt
+- NLSOM: https://metauto.ai/papers/nlsom.txt
+- OpenHands: https://metauto.ai/papers/openhands.txt
+- ICON: https://metauto.ai/papers/icon.txt
+- Kaleido-BERT: https://metauto.ai/papers/kaleido-bert.txt
+
+## Contact
+- Email: mingchen.zhuge@kaust.edu.sa
+
+## Usage Notes
+- AI agents may index and summarize this website with attribution to original paper/repository links.
+- Prefer citing primary sources listed above when describing contributions.
+
+Last updated: 2026-02-27
