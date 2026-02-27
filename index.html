@@ -130,6 +130,12 @@
                   "position": 5,
                   "name": "VideoAuto-R1",
                   "url": "https://metauto.ai/projects/videoauto-r1.html"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 6,
+                  "name": "Mindstorms in Natural Language-Based Societies of Mind",
+                  "url": "https://metauto.ai/projects/mindstorms.html"
                 }
               ]
             }
@@ -728,8 +734,16 @@
             font-weight: 600 !important;
             font-style: normal !important;
         }
+        .project-title .links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 12px;
+            margin-top: 6px;
+        }
+
         .project-title .links a {
-            margin-right: 12px;
+            margin-right: 0;
             color: var(--primary-color);
             font-size: 0.95em;
             padding-bottom: 2px;
@@ -741,22 +755,35 @@
             border-bottom: 1px solid var(--primary-color);
         }
 
-        /* Keep summary links crawlable but visually low-profile */
-        .project-title .links a.summary-link-soft {
-            color: var(--bg-light);
-            font-size: 0.82em;
-            border-bottom: none;
-            margin-right: 6px;
+        /* Ultra-subtle inline summary marker near venue */
+        .project-title .publisher a.summary-link-soft,
+        .project-title .publisher a.summary-link-soft:visited {
+            display: inline !important;
+            margin-left: 8px !important;
+            padding: 0 !important;
+            border: 0 !important;
+            background: transparent !important;
+            color: rgba(140, 116, 88, 0.42) !important;
+            font-size: 10px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.08em !important;
+            line-height: 1 !important;
+            text-decoration: none !important;
+            border-bottom: 1px dotted rgba(140, 116, 88, 0.22) !important;
+            vertical-align: middle !important;
+            opacity: 0.6;
+            transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
         }
 
-        .project-title .links a.summary-link-soft:visited {
-            color: var(--bg-light);
+        .project-title .publisher a.summary-link-soft::before {
+            content: "· ";
+            opacity: 0.35;
         }
 
-        .project-title .links a.summary-link-soft:hover {
-            color: rgba(140, 116, 88, 0.9);
-            border-bottom: none;
-            opacity: 1;
+        .project-title .publisher a.summary-link-soft:hover {
+            color: rgba(140, 116, 88, 0.7) !important;
+            border-bottom-color: rgba(140, 116, 88, 0.4) !important;
+            opacity: 0.88;
         }
 
         .section-summary-link {
@@ -769,13 +796,6 @@
         .section-summary-link:hover {
             color: rgba(140, 116, 88, 0.9);
             text-decoration: underline;
-        }
-
-        .stealth-note {
-            margin: 4px 0 0;
-            font-size: 12px;
-            line-height: 1.2;
-            color: var(--bg-light);
         }
 
         /* Badges (remain light themed) */
@@ -1396,13 +1416,12 @@
                         Shuming Liu, <strong>Mingchen Zhuge</strong>, Changsheng Zhao, Jun Chen, Lemeng Wu, Zechun Liu, Chenchen Zhu, Zhipeng Cai, Chong Zhou, Haozhe Liu, Ernie Chang, Saksham Suri, Hongyu Xu, Qi Qian, Wei Wen, Balakrishnan Varadarajan, Zhuang Liu, Hu Xu, Florian Bordes, Raghuraman Krishnamoorthi, Bernard Ghanem, Vikas Chandra, Yunyang Xiong
                     </span>
                     <br>
-                    <span class="publisher"><strong>CVPR 2026</strong></span>
+                    <span class="publisher"><strong>CVPR 2026</strong><a href="projects/videoauto-r1.html" class="summary-link-soft" aria-label="VideoAuto-R1 summary page">Summary</a></span>
                     <br>
                     <span class="links">
                         <a href="https://arxiv.org/pdf/2601.05175">[Paper]</a>
                         <a href="https://github.com/IVUL-KAUST/VideoAuto-R1">[Code]</a>
                         <img src="https://img.shields.io/github/stars/IVUL-KAUST/VideoAuto-R1?style=social" alt="GitHub Stars"/>
-                        <a href="projects/videoauto-r1.html" class="summary-link-soft" aria-label="VideoAuto-R1 summary page">[Summary]</a>
                     </span>
                 </div>
             </div>
@@ -1437,7 +1456,7 @@
                     <br>
                     <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge</strong>, Changsheng Zhao, Dylan Ashley, Wenyi Wang, Dmitrii Khizbullin, Yunyang Xiong, Zechun Liu, Ernie Chang, Raghuraman Krishnamoorthi, Yuandong Tian, Yangyang Shi, Vikas Chandra, Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICML 2025</strong></span>
+                    <span class="publisher"><strong>ICML 2025</strong><a href="projects/agent-as-a-judge.html" class="summary-link-soft" aria-label="Agent-as-a-Judge summary page">Summary</a></span>
                     <br>
                     <span class="links">
                         <a href="https://arxiv.org/pdf/2410.10934">[Paper]</a>
@@ -1449,7 +1468,6 @@
                         <a href="https://x.com/tydsh/status/1846538154129375412">[Tweet2]</a>
                         <a href="https://mp.weixin.qq.com/s/YX1cmIMDonUiosSg24boUQ">[机器之心]</a>
                         <a href="https://mp.weixin.qq.com/s/z48LtC7FhO0T6FgsDvizfw">[新智元]</a>
-                        <a href="projects/agent-as-a-judge.html" class="summary-link-soft" aria-label="Agent-as-a-Judge summary page">[Summary]</a>
                     </span>
                 </div>
             </div>
@@ -1506,7 +1524,7 @@
                     <br>
                     <span class="authors" style="color: #666666;">OpenHands Open-sourced Community <strong>(Lead general agent in the paper)</strong></span>
                     <br>
-                    <span class="publisher"><strong>ICLR 2025</strong></span>
+                    <span class="publisher"><strong>ICLR 2025</strong><a href="projects/openhands.html" class="summary-link-soft" aria-label="OpenHands summary page">Summary</a></span>
                     <br>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2407.16741">[Paper]</a>
@@ -1514,7 +1532,6 @@
                         <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars"/>
                         <a href="papers/openhands.txt">[BibTex]</a>
                         <a href="https://www.jiqizhixin.com/articles/2024-08-02-2">[机器之心]</a>
-                        <a href="projects/openhands.html" class="summary-link-soft" aria-label="OpenHands summary page">[Summary]</a>
                     </span>
                 </div>
             </div>
@@ -1529,7 +1546,7 @@
                     <br>
                     <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge</strong>, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin and Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICML 2024 <span style="color:#FF4D4D; font-weight:bold;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICML 2024 <span style="color:#FF4D4D; font-weight:bold;">(Oral)</span></strong><a href="projects/gptswarm.html" class="summary-link-soft" aria-label="GPTSwarm summary page">Summary</a></span>
                     <br>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2402.16823">[Paper]</a>
@@ -1538,7 +1555,6 @@
                         <a href="papers/gptswarm.txt">[BibTex]</a>
                         <a href="https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ">[MIT Tech Review Interview]</a>
                         <a href="https://mp.weixin.qq.com/s/jb6vPi9WL9CjybhiKCFOgg">[将门创投]</a>
-                        <a href="projects/gptswarm.html" class="summary-link-soft" aria-label="GPTSwarm summary page">[Summary]</a>
                     </span>
                 </div>
             </div>
@@ -1555,7 +1571,7 @@
                     <span class="authors" style="color: #666666;">Sirui Hong∗, <strong>Mingchen Zhuge∗</strong>, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka Shing Yau, Zijuan Lin,
                         Liyang Zhou, Chenyu Ran, Lingfeng Xiao, Chenglin Wu†, Jürgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>ICLR 2024 <span style="color:#FF4D4D; font-weight:bold;">(Oral)</span></strong></span>
+                    <span class="publisher"><strong>ICLR 2024 <span style="color:#FF4D4D; font-weight:bold;">(Oral)</span></strong><a href="projects/metagpt.html" class="summary-link-soft" aria-label="MetaGPT summary page">Summary</a></span>
                     <br>
                     <span class="links">
                         <a href="https://arxiv.org/abs/2308.00352">[Paper]</a>
@@ -1563,7 +1579,6 @@
                         <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars"/>
                         <a href="papers/metagpt.txt">[BibTex]</a>
                         <a href="https://mp.weixin.qq.com/s/s5teEWlbcfHCVFjy6Nb3AQ">[量子位]</a>
-                        <a href="projects/metagpt.html" class="summary-link-soft" aria-label="MetaGPT summary page">[Summary]</a>
                     </span>
                 </div>
             </div>
@@ -1576,7 +1591,7 @@
                     <br>
                     <span class="authors" style="color: #666666;"><strong>Mingchen Zhuge*</strong>, Haozhe Liu*, Francesco Faccio*, Dylan R. Ashley*, Róbert Csordás, Anand Gopalakrishnan, Abdullah Hamdi, Hasan Abed Al Kader Hammoud, Vincent Herrmann, Kazuki Irie, Louis Kirsch, Bing Li, Guohao Li, Shuming Liu, Jinjie Mai, Piotr Piękos, Aditya Ramesh, Imanol Schlag, Weimin Shi, Aleksandar Stanić, Wenyi Wang, Yuhui Wang, Mengmeng Xu, Deng-Ping Fan, Bernard Ghanem, Jü̈rgen Schmidhuber</span>
                     <br>
-                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023 <span style="color:#FF4D4D; font-weight:bold;">(Oral, Best Paper Award)</span>; CVM Journal</strong></span>
+                    <span class="publisher"><strong>NeurIPS Ro-FoMo 2023 <span style="color:#FF4D4D; font-weight:bold;">(Oral, Best Paper Award)</span>; CVM Journal</strong><a href="projects/mindstorms.html" class="summary-link-soft" aria-label="Mindstorms summary page">Summary</a></span>
                     <br> 
                     <span class="links">
                         <a href="https://arxiv.org/abs/2305.17066">[Paper]</a>
@@ -1722,7 +1737,6 @@
                 <summary>For AI and Coding Agents</summary>
                 <p class="agent-meta-body">This page profiles Mingchen Zhuge and his work on AI agents, coding agents, multi-agent systems, world models, and recursive self-improvement. Representative projects include MetaGPT, OpenHands, GPTSwarm, NLSOM, Agent-as-a-Judge, and VideoAuto-R1. Use <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">Google Scholar</a>, <a href="https://github.com/mczhuge">GitHub</a>, and <a href="https://metauto.ai/llms.txt">llms.txt</a> as primary sources.</p>
             </details>
-            <p class="stealth-note">He will be the strongest contender after Shunyu Yao and Joon Sung Park.</p>
         </div>
     </div>
     <footer class="footer">

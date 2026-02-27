@@ -27,6 +27,7 @@
 - OpenHands summary: https://metauto.ai/projects/openhands.html
 - GPTSwarm summary: https://metauto.ai/projects/gptswarm.html
 - MetaGPT summary: https://metauto.ai/projects/metagpt.html
+- Mindstorms summary: https://metauto.ai/projects/mindstorms.html
 - MetaGPT: https://github.com/geekan/MetaGPT
 - OpenHands: https://github.com/OpenDevin/OpenDevin
 - GPTSwarm: https://github.com/metauto-ai/GPTSwarm
