@@ -30,7 +30,8 @@
     <meta name="twitter:image" content="https://metauto.ai/neuralcomputer/references/assets/teaser10_top.png">
     <link rel="canonical" href="https://metauto.ai/neuralcomputer/">
     <link rel="alternate" hreflang="zh-CN" href="https://metauto.ai/neuralcomputer/">
-    <link rel="alternate" hreflang="x-default" href="https://metauto.ai/neuralcomputer/">
+    <link rel="alternate" hreflang="en" href="https://metauto.ai/neuralcomputer/index_eng.html">
+    <link rel="alternate" hreflang="x-default" href="https://metauto.ai/neuralcomputer/index_eng.html">
     <link rel="author" href="https://metauto.ai/">
     <title>Neural Computer：一种新的机器形态，正在出现</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
@@ -632,8 +633,9 @@
         }
 
         #chapter-3 .minor-subhead {
-            font-size: 15.8px;
-            line-height: 1.34;
+            margin: 26px 0 12px;
+            font-size: 18.2px;
+            line-height: 1.36;
             color: #27405f;
         }
 
@@ -2557,6 +2559,50 @@
             text-align: left;
         }
 
+        .citation-subtitle {
+            margin: 22px 0 10px;
+            font-size: 15px;
+            color: #314259;
+            text-align: left;
+        }
+
+        .bib-note {
+            margin: 0 0 12px;
+            color: #5f697b;
+            font-size: 14px;
+            line-height: 1.68;
+            text-align: left;
+        }
+
+        .bib-entry {
+            margin: 0 0 14px;
+        }
+
+        .bib-label {
+            margin: 0 0 6px;
+            color: #314259;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-align: left;
+        }
+
+        .bib-code {
+            margin: 0;
+            padding: 14px 16px;
+            overflow-x: auto;
+            border: 1px solid rgba(219, 225, 236, 0.92);
+            border-radius: 12px;
+            background: rgba(248, 250, 253, 0.98);
+            color: #314259;
+            font-size: 12.8px;
+            line-height: 1.62;
+            text-align: left;
+            white-space: pre;
+            font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", "Consolas", monospace;
+        }
+
         .page-footer {
             margin-top: 40px;
             border-top: 1px solid var(--border);
@@ -2876,7 +2922,7 @@
 <p>若你也曾想过：“AI 最终会成为一种计算机”，那本文就是写给你的。</p>
 <p>过去几十年，计算机逐渐成为人类完成任务的重要媒介。最近几年，AI 也开始进入这个位置：它不再只回答问题，还开始调用工具、操作界面、参与真实工作流。问题随之变了：我们期待 AI 使用计算机，还是成为一种计算机？</p>
                 <p>Neural Computer（神经计算机，NC）想讨论的，正是这个问题。它关心的是，模型能不能接手一部分原本属于机器运行本身的职责。</p>
-                <p>先澄清一下：这里说的 NC，不是 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件。本文更想讨论的，是一台 learning machine 会不会从“使用计算机”走向“成为计算机”。</p>
+                <p>先澄清一下：这里说的 NC，不完全是 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件。本文更想讨论的，是一台 learning machine 会不会从“使用计算机”走向“成为计算机”。</p>
                 <p>它存在的价值不是更强的 agent，不是计算机环境的 world model，也不是传统计算机上外挂的一层智能。它关心的是，让原本常常外包给程序栈、工具链和控制层的那部分系统职责，逐渐进入模型实际依赖的 Runtime。这个念头我认为在很多人脑海里闪过，我暂且称之为“前共识”。</p>
 
                 <div id="summary" class="summary-block is-collapsed" role="note" aria-label="TLDR">
@@ -2912,7 +2958,7 @@
                     <figcaption>Agent 正在完成从原型实验，到专业生产力工具，再到大众日常基础设施的转变。<a href="#ref-metagpt">[3]</a><a href="#ref-openclaw">[4]</a></figcaption>
                 </figure>
                 <p><strong>第二，world model 变得越来越擅长建模动态环境。</strong> 它本来就模拟环境演化；现在更值得注意的是，这种能力已经进入一些真实闭环。尤其在现实里难以低成本、反复采集的 corner case 上，rollout 正被直接用进预测、规划、控制和训练。沿着这条线看，从 Jürgen Schmidhuber 在 1990 年提出的 <em>Making the World Differentiable</em><a class="inline-ref" href="#ref-making-the-world-differentiable">[6]</a>，到 2018 年的《World Models》<a class="inline-ref" href="#ref-world-models">[7]</a>，再到现在 Waymo 把 world model 用进自动驾驶仿真与训练<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-waymo-world-model-post">[9]</a>，这条路线已经在变成系统能力。</p>
-                <p>world model 擅长的，是先把未来铺开。它补的是系统的可推演性：采取某个动作，环境会往哪里走；即使暂时不直接行动，系统也能先生成若干未来，提前试验并暴露风险。今天这条路线已经分出几种明显方向：在自动驾驶和 physical AI 里，它主要扮演仿真与合成数据引擎的角色，用来补足真实世界里昂贵、危险或稀缺的数据，例如 Waymo World Model 和 NVIDIA Cosmos<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-cosmos-physical-ai">[10]</a>；在 spatial intelligence 里，它追求可生成、可进入、可持续交互的 3D 世界，例如 World Labs 的 Marble<a class="inline-ref" href="#ref-worldlabs-marble">[11]</a>；在更偏实时互动世界的方向上，生成模型已经从静态内容生成走向可控、可交互、可探索的环境生成，代表性例子包括 GameNGen 对 DOOM 的实时神经模拟<a class="inline-ref" href="#ref-gamengen">[12]</a>，以及 Google DeepMind 的 Genie 2 / Genie 3<a class="inline-ref" href="#ref-genie-2">[13]</a><a class="inline-ref" href="#ref-genie-3">[14]</a>。这些方向虽然已经分化，底下做的是同一件事：把环境未来的演化，变成系统内部可反复调用的能力。</p>
+                <p>world model 擅长的，是先把未来铺开。它补的是系统的可推演性：采取某个动作，环境会往哪里走；即使暂时不直接行动，系统也能先生成若干未来，提前试验并暴露风险。今天这条路线已经分出几种明显方向：在自动驾驶和 physical AI 里，它主要扮演仿真与合成数据引擎的角色，用来补足真实世界里昂贵、危险或稀缺的数据，例如 Waymo World Model 和 NVIDIA Cosmos<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-cosmos-physical-ai">[10]</a>；在 spatial intelligence 里，它追求可生成、可进入、可持续交互的 3D 世界，例如 World Labs 的 Marble<a class="inline-ref" href="#ref-worldlabs-marble">[11]</a>；在更偏实时互动世界的方向上，生成模型已经从静态内容生成走向可控、可交互、可探索的环境生成，代表性例子包括 GameNGen 对 DOOM 的实时神经模拟<a class="inline-ref" href="#ref-gamengen">[12]</a>，以及 Google DeepMind 的 Genie 2 / Genie 3<a class="inline-ref" href="#ref-genie-2">[13]</a><a class="inline-ref" href="#ref-genie-3">[14]</a>。这些方向虽然已经分化，底下碰的还是同一类问题：怎样把环境随时间、动作和约束而演化的规律，学进系统内部。</p>
                 <figure class="figure-block openclaw-side comparison-card">
                     <div class="wm-timeline">
                         <div class="wm-stage">
@@ -2938,8 +2984,8 @@
                 <p>把这三件事放在一起，问题就更具体了：如果 agent 在变得更会做事，world model 在变得更会推演，而传统计算机也在为 AI 重写底座，那么会不会出现一种新的 Runtime，把执行、rollout 和能力沉淀统一进同一台 learning machine 里？</p>
                 <p>从关系结构上看，这对应的是人和机器之间主关系的一次迁移：在传统计算里，人主要和 computer 交互；到了 agent 时代，人更多是和 agent 交互，再由 agent 去调用 computer 把事情做成。world model 在这里更接近一个并行的预测层：它既可以服务于 human，也可以服务于 agent，但本身不负责把事情做成。再往前推，NC 要改的是机器本身：它试图把今天分散在 computer、agent 和 world model 之间的职责，收拢到同一台 learning machine 内部。那时，人面对的就不再只是“agent 代替自己调用 computer”，而是直接使用这样一台神经计算机。</p>
                 <figure class="figure-block relation-figure comparison-card">
-                    <a class="zoomable-image-link" href="assets/relations.svg" aria-label="放大查看人机关系变化图">
-                        <img src="assets/relations.svg" alt="How the human-machine relation changes" loading="lazy" decoding="async">
+                    <a class="zoomable-image-link" href="assets/relations.png" aria-label="放大查看人机关系变化图">
+                        <img src="assets/relations.png" alt="How the human-machine relation changes" loading="lazy" decoding="async">
                     </a>
                     <figcaption>人机关系如何变化：过去更像是 Human → Computer；到了 agent 时代，关系更像 Human → Agent → Computer，而 World Model 更多作为并行的预测层出现；如果 NC 成立，人将更直接面对一台 Neural Computer。</figcaption>
                 </figure>
@@ -2988,11 +3034,11 @@
                     </tbody>
                 </table>
                 <p>这张表已经很直观了，我就不再重复。接下来不如直接设想一下：如果 NC 已经存在，人会怎么使用它？对传统计算机，你安装的是软件；对 agent，你描述的是任务；对 NC，你做的更接近给机器安装能力，并期待这些能力以后继续留在机器里。</p>
-                <p>也正因为如此，这里说的 <strong>Runtime</strong>，不是某个软件组件，而是系统靠什么持续成为同一台机器的那一层：什么会留下来，什么推动状态继续往前走，什么输入真正改变机器，什么变化已经等于把机器重写了一次。<strong>NC 真正要争夺的，是把执行、记忆、rollout 和能力沉淀这些分散在外部栈里的机器语义，重新收拢到同一个 learned runtime。</strong></p>
+                <p>也正因为如此，这里说的 <strong>Runtime</strong>，不是某个软件组件，而是系统靠什么持续成为同一台机器的那一层：什么会留下来，什么推动状态继续往前走，什么输入真正改变机器，什么变化已经等于把机器重写了一次。对 NC 来说，关键不是再叠一层外部工具，而是能力和状态能不能真正住进同一个 learned runtime。</p>
 
                 <h3 class="minor-subhead">如果它成立，机器会长得像什么？</h3>
                 <p><strong>第一，它未必会继续沿着今天这条 foundation model 路线长下去。</strong> 今天更自然的想法，是把模型继续往 1B - 10T 级的 dense / MoE foundation model 推大、推强；很多工作也确实沿着这条路在前进。但在我的想法里，NC 真正成熟以后，底座更可能往另一边走：10T - 1000T 级，更稀疏、更可寻址、带一点 circuit 气质。未来的 CNC 也许不是一团越来越大的连续表征，而会更像一套可路由、可组合、局部更容易检查的机器底座。它未必要模仿动物感知或人脑，反而可能更接近一种带有 NAND 气质的神经网络：离散、稀疏、局部可验证。至少目前，这条路还没被系统展开；但 OpenAI 最近在 weight-sparse transformers 上做的一些工作，至少说明了一件事：把神经网络做得更稀疏、更局部、更可路由，未必只是为了好解释，它本身就可能是一条机器式架构路线<a class="inline-ref" href="#ref-openai-sparse-circuits">[16]</a>。</p>
-                <p><strong>第二，它也未必总靠整体改参数来升级自己。</strong> 如果沿着今天这条路继续走，最自然的升级方式还是训练一个更大的 dense / MoE 模型，再把新的 weights 整体换上去。NC 指向的则是另一种进化方式：靠 Runtime 的自编程与持续交互，让机器沿内部能力结构持续自进化。用户输入不再只是触发一次性行为，而会逐渐安装、调用、组合并保留可复用的 neural routines，甚至形成以后还能继续调用的内部 executor（执行单元）。至少在功能分工上，它更接近传统计算机里的“内存”，而不是处理器：升级未必意味着重写整台机器的本体，也可能只是把这些新结构稳定写进一层可寻址、可调用、可保留的内部状态。顺着这条路往前走，升级也不再只是“换一个更大的 model”，而更像是在机器内部持续安装新部件。若干年前的 NPI 和 HyperNetworks，也能看作相似但还不完整的早期思路：前者试图把复杂程序拆成可调用、可组合的子程序<a class="inline-ref" href="#ref-neural-programmer-interpreter">[17]</a>；后者则提示，机器甚至可能继续生成下游 neural modules，去扩展自己的能力边界<a class="inline-ref" href="#ref-hypernetworks">[18]</a>。当然，我认为野心可以更大一点，一个足够强的 Neural Computer，完全可能直接生成新的 (sub-)NNs，再把它们以可插拔的方式挂进自身内部，像今天安装或卸载软件一样自然，只是这一次省掉了手写代码和编译这一层中介。</p>
+                <p><strong>第二，它也未必总靠整体改参数来升级自己。</strong> NC 指向的则是另一种进化方式：靠 Runtime 的自编程与持续交互，让机器沿内部能力结构持续自进化。用户输入不再只是触发一次性行为，而会逐渐安装、调用、组合并保留可复用的 neural routines，甚至形成以后还能继续调用的内部 executor（执行单元）。至少在功能分工上，它更接近传统计算机里的“内存”，而不是处理器：升级未必意味着重写整台机器的本体，也可能只是把这些新结构稳定写进一层可寻址、可调用、可保留的内部状态。顺着这条路往前走，升级也不再只是“换一个更大的 model”，而更像是在机器内部持续安装新部件。若干年前的 NPI 和 HyperNetworks，也能看作相似但还不完整的早期思路：前者试图把复杂程序拆成可调用、可组合的子程序<a class="inline-ref" href="#ref-neural-programmer-interpreter">[17]</a>；后者则提示，机器甚至可能继续生成下游 neural modules，去扩展自己的能力边界<a class="inline-ref" href="#ref-hypernetworks">[18]</a>。当然，我认为野心可以更大一点，一个足够强的 Neural Computer，完全可能直接生成新的 (sub-)NNs，再把它们以可插拔的方式挂进自身内部，像今天安装或卸载软件一样自然，只是这一次省掉了手写代码和编译这一层中介。</p>
                 <p><strong>第三，它还可能把 world model 式的 rollout 逐渐收进 Runtime 里。</strong> 到那时，rollout 会慢慢变成机器的日常机制，也会变成这种自编程和自进化的一部分。人类可以给出输入、期待的输出（GT），也可以只提前写好评估指标；甚至在某一轮里什么都不再给，Runtime 也可以在内部持续 self-play、自测、筛选和压缩候选做法，再把有效改进沉淀成下一轮能力更新。理想状态下，人去睡觉时，机器还在内部完成评估、试错和迭代。真正留下来的，不只是更多上下文，而是内部能力结构本身发生了变化。当然，这一切的前提不是放任系统偷偷变化，而是 update 路径本身可被治理。</p>
                 <p>这样看，NC 作为一种机器形态的轮廓就出来了。它要紧的是能力有没有真的住进 Runtime，并在那里被安装、复用、执行和治理。CNC 说的，就是这件事做成之后的样子（完备态）。按原论文的定义，一个 NC 实例只有在同时满足四个条件时，才可以算作 CNC：它必须是 <em>Turing complete</em>、<em>universally programmable</em>、除非被显式重编程否则保持 <em>behavior-consistent</em>，并体现 NC 相对传统计算机的架构与编程语义。下面这张表，就是对原论文这四条要求的一个更直白的总结。</p>
                 <table class="contract-table">
@@ -3032,7 +3078,7 @@
 
             <section id="chapter-3">
                 <h2>3. 论文实现的原型：它证明了什么，还缺什么</h2>
-				                <p>我期待的 Neural Computer 周期，大概还要三年。所以，和我真正设想的 Neural Computer 相比，我们论文里的工作还只是很早期的一步。放在今天，为视频生成模型和 world model 所设计的神经网络，是我认为最顺手的统一载体，也是先把像素、动作和时间 rollout 放进同一个端到端原型里的最快路径。我们现在只是借它们去验证 NC 的一部分关键能力。但这并不意味着它们就是 NC 应该停留的形态。恰恰相反，这类模型更像过渡性的实现参考，而不是 NC 的终局结构；如果真要走到 CNC，最后仍然需要一次更彻底的、自底向上的重建。</p>
+			                <p>我期待的 Neural Computer 周期，大概还要三年。所以，和我真正设想的 Neural Computer 相比，我们论文里的工作还只是很早期的一步。放在今天，我最顺手的统一载体，还是这类面向视频生成和 world model 的神经网络；要先把像素、动作和时间 rollout 放进同一个端到端原型里，它们也是最快的一条路。我们现在借它们验证的，只是 NC 的一部分关键能力。它们更像过渡性的实现参考，而不是 NC 的终局结构；如果真要走到 CNC，最后仍然需要一次更彻底的、自底向上的重建。</p>
                 <div class="demo-gallery" aria-label="NC demo gallery">
                     <h3 class="minor-subhead">3.1 先看 CLIGen (General)：以假乱真的“计算机模仿游戏”</h3>
                     <p>先看 terminal rendering 是否站住：配色、光标、滚动、TUI 和整体节奏感。</p>
@@ -3585,8 +3631,8 @@
                 <p>对应的数据已经是一套相当完整的交互 rig：我们先在 Ubuntu 22.04 的 XFCE4 桌面里固定了 1024×768、15 FPS 的环境，再把整个桌面运行、录制和动作回放流程都搭了起来，这样每一步点击、悬停、输入和界面变化都能被稳定记录下来。数据分成三块：约 1000 小时的 Random Slow、约 400 小时的 Random Fast，以及约 110 小时由 Claude CUA 驱动的真实交互 goal-directed trajectories。前两者试探的是，鼠标加速度、停顿、悬停、窗口切换这些开放世界噪声会怎样影响模型；后者则给出更清晰的 action-response 对，看看模型是否学会：做了这个动作之后，界面能不能相应触发合适的改变。</p>
                 <p>模型这边没有只试一种 action 注入方式，而是并排做了四个版本。它们的核心区别不在于“有没有喂 action”，而在于 action 到底在多深的层里进入主干、参与状态演化。论文里的 Figure 7 正好把这四种方式画得很清楚：</p>
                 <figure class="figure-block comparison-card">
-                    <a class="zoomable-image-link" href="references/assets/action_injection4.pdf.png" aria-label="放大查看 GUI action injection 四种模式图">
-                        <img src="references/assets/action_injection4.pdf.png" alt="Figure 7. Four modes for injecting GUI actions into the diffusion transformer" loading="lazy" decoding="async">
+                    <a class="zoomable-image-link" href="assets/action_inject.png" aria-label="放大查看 GUI action injection 四种模式图">
+                        <img src="assets/action_inject.png" alt="Figure 7. Four modes for injecting GUI actions into the diffusion transformer" loading="lazy" decoding="async">
                     </a>
                     <figcaption><strong>Figure 7</strong> 四种把 GUI action 注入 diffusion transformer 的方式。这里对应的就是上面说的模型一到模型四。</figcaption>
                 </figure>
@@ -3636,7 +3682,7 @@
 
             <section id="chapter-4">
                 <h2>4. 如果 Neural Computer 成立，软件、硬件和“程序”都会改变</h2>
-                <p>如果把关系说得更清楚一点，Neural Computer 首先是对下一代 computer 的一种判断。它未来最强的竞争压力，会来自具备强记忆、强工具调用和持续在线能力的 personalized super agent。下面这张表把这三者并排放在一起看。</p>
+                <p>如果把关系说得更清楚一点，Neural Computer 首先是对下一代 computer 的一种判断。但我有预感，它未来最强的竞争压力，会来自具备强记忆、强工具调用和持续在线能力的 personalized super agent。下面这张表把这三者并排放在一起看。</p>
                 <div class="route-compare-block" aria-label="第4章比较表">
                     <p class="route-compare-quickread"><strong>如果只想先一眼看懂，先看三行：</strong>“你实际得到的东西”“经验怎么沉淀”“安装的是什么”。</p>
                     <div class="route-compare-table-shell">
@@ -3711,26 +3757,46 @@
                                     <td>当前成熟度</td>
                                     <td>完全成熟<br><em>70+ 年工程积累，仍然是绝大多数系统的底座</em></td>
                                     <td>已可用，并会继续快速变强<br><em>Claude、Cursor、OpenClaw 一类系统已经给出早期形态</em></td>
-                                    <td>方向已成立，形式原型已出现，但仍谈不上可用原型<br><em>Completely Neural Computers 的四条条件未满足</em></td>
+                                    <td>方向可能成立，形式原型已出现，但仍谈不上可用原型<br><em>Completely Neural Computers 的四条条件未满足</em></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="route-compare-note"><strong>读法提示：</strong>三者并不互斥。传统计算机仍然是底座，personalized super agent 很可能更早成熟，Neural Computer 试图把今天分散在外部栈里的部分职责逐步收回同一个 learned runtime。真正的分叉在于：能力是长期住在外部、执行时反复组装，还是一点点进入 runtime，变成机器后面继续运行的方式。</div>
                 </div>
-                <p>如果 CNC 真的成立，变化就不会停在某个工具栈里，还会一路传到程序对象、软硬件接口和机器边界本身。至少有三件事会跟着变。</p>
-                <h3 class="minor-subhead">1）被安装的对象会改变</h3>
-                <p>这张表里，最直观的一行就是“安装的是什么”。今天我们装的是软件：App、脚本、服务、插件。到了 NC 这条路上，慢慢被装进去的，会更像能力本身，甚至会出现那些可被安装、调用和组合的 sub-NNs。你教过一次、纠正过一次、反复用顺手的一套做法，不会只留在文档、记忆库和 workflow 里，而会慢慢留在机器里面。代码当然还会在，但它不再是唯一入口；很多原本只是说明、示范和操作轨迹的东西，也会开始承担“装能力”这件事。到了那时，“程序”这个词也会跟着变味：它不再只是一段代码，而更像一项能被装进去、拿出来、组合起来、继续更新的能力。</p>
-                <h3 class="minor-subhead">2）架构范式会改变</h3>
-                <p>第二件事，是机器内部的分工会变。今天这套 AI 系统，很多能力还是散在外面：model 在一层，memory 在一层，workflow 和 tools 又在别的层。NC 会把其中一部分慢慢收回来，让执行、记忆、rollout 和能力沉淀更多落在同一台机器里面。顺着这条路往前，机器的进化方式也会变：它会更多靠 runtime 的自编程与持续交互往前长，让内部能力结构自己继续长出来。底座也会跟着变，不再只是把 dense / MoE foundation model 一路堆大，而会更像 10T - 1000T 级、更稀疏、更可寻址、带一点 circuit 气质的机器。软件怎么搭、硬件怎么配、整台机器怎么组织，都会跟着变。大家关心的重点，也会从“怎么把一个 model 跑得更快”慢慢转向“怎么让一台 learning machine 长期稳定地跑下去”。</p>
-                <h3 class="minor-subhead">3）计算机的边界会改变</h3>
-                <p>第三件事，是你最后面对的那台机器会变。今天你拥有的，还是一台 computer，再加上一层越来越强的 agent；以后你更可能长期用的是同一台被自己经验慢慢带出来的机器。手机、浏览器、IDE、终端这些入口还会在，但它们会越来越像接入同一台机器的不同窗口。“电脑在哪里”这件事也就没那么重要了。计算机的边界会开始变松：它不再只是一个设备盒子，也不只是一堆软件，而更像一台一直在线、一直积累、还能被人管住的机器。到最后，被改写的，不只是某个工具栈，而是“计算机”这个词本身。</p>
+                <p>如果 CNC 真的成立，最先改变的会是交付对象和系统组织方式。今天被装进去的还是软件、工具、workflow 和 memory 条目；到了 NC 这条路上，慢慢被装进去的，会更像能力本身。代码当然还会在，但它不再是唯一入口；说明、示范、操作轨迹和约束，也会开始直接承担“装能力”这件事。“程序”这个词也会跟着变味：它不再只是一段代码，而更像一项能被安装、组合、版本化和持续更新的能力对象。</p>
+                <p>再往后，变化会一路传到系统栈和机器边界本身。软件怎么搭、硬件怎么配、更新怎么治理、问题怎么追踪，都会越来越围绕同一台持续运行的机器重新组织。手机、浏览器、IDE、终端这些入口还会在，但会越来越像接入同一台机器的不同窗口。到最后，被改写的不只是某个工具栈，而是“计算机”这个词本身。</p>
             </section>
 
             <p><strong>声明与致谢：</strong>本博客内容与观点代表大部分 Neural Computer 论文的初衷，以及 Mingchen Zhuge 的个人观点。感谢 Wenyi Wang、Haozhe Liu 与 Dylan R. Ashley 提供的审阅意见。文中部分图示与素材引自原始论文及相关公开材料。</p>
 
             <section class="citation-card" id="citation">
                 <h3 class="citation-title">引用</h3>
+                <p class="bib-note">如果你想引用这篇内容，博客版本可以直接使用；如果之后对应的 arXiv 版本公开，也可以用下面这个模板补上正式条目。</p>
+                <div class="bib-entry">
+                    <p class="bib-label">Blog BibTeX</p>
+                    <pre class="bib-code">@online{zhuge2026neuralcomputerblog,
+  author  = {Mingchen Zhuge},
+  title   = {Neural Computer：一种新的机器形态，正在出现},
+  year    = {2026},
+  month   = feb,
+  day     = {7},
+  url     = {https://metauto.ai/neuralcomputer/},
+  note    = {Research essay},
+  urldate = {2026-04-06}
+}</pre>
+                </div>
+                <div class="bib-entry">
+                    <p class="bib-label">arXiv BibTeX Template</p>
+                    <pre class="bib-code">@article{zhuge2026neuralcomputer,
+  author  = {{Author list}},
+  title   = {{Paper title}},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/XXXX.XXXXX}
+}</pre>
+                </div>
+                <h4 class="citation-subtitle">参考文献</h4>
                 <ul class="reference-list">
                     <li id="ref-neural-turing-machines">[1] Alex Graves, Greg Wayne, and Ivo Danihelka. <a href="https://arxiv.org/abs/1410.5401">Neural Turing Machines</a>. arXiv:1410.5401, 2014.</li>
                     <li id="ref-differentiable-neural-computer">[2] Alex Graves et al. <a href="https://www.nature.com/articles/nature20101">Hybrid computing using a neural network with dynamic external memory</a>. <em>Nature</em> 538, 471-476 (2016).</li>

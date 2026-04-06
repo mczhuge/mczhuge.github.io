@@ -31,7 +31,7 @@
     <link rel="canonical" href="https://metauto.ai/neuralcomputer/index_eng.html">
     <link rel="alternate" hreflang="zh-CN" href="https://metauto.ai/neuralcomputer/">
     <link rel="alternate" hreflang="en" href="https://metauto.ai/neuralcomputer/index_eng.html">
-    <link rel="alternate" hreflang="x-default" href="https://metauto.ai/neuralcomputer/">
+    <link rel="alternate" hreflang="x-default" href="https://metauto.ai/neuralcomputer/index_eng.html">
     <link rel="author" href="https://metauto.ai/">
     <title>Neural Computer: A New Machine Form Is Emerging</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
@@ -415,8 +415,29 @@
         }
 
         .title-link.translation {
-            --title-link-accent: rgba(56, 110, 166, 0.28);
-            color: #28527f;
+            --title-link-accent: rgba(188, 146, 54, 0.34);
+            color: #9a6914;
+            gap: 8px;
+        }
+
+        .title-link.translation .translation-glyph {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 34px;
+            height: 20px;
+            padding: 0 7px;
+            border-radius: 999px;
+            background:
+                linear-gradient(180deg, rgba(255, 248, 229, 0.98) 0%, rgba(250, 237, 198, 0.95) 100%);
+            box-shadow:
+                inset 0 0 0 1px rgba(191, 150, 60, 0.22),
+                0 1px 0 rgba(255, 255, 255, 0.74);
+            color: #8e6312;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .title-link.contact {
@@ -640,7 +661,8 @@
         }
 
         #chapter-3 .minor-subhead {
-            font-size: 15.8px;
+            margin: 26px 0 12px;
+            font-size: 18.4px;
             line-height: 1.34;
             color: #27405f;
         }
@@ -734,8 +756,8 @@
             border: 1px solid rgba(223, 206, 191, 0.82);
             border-radius: 16px;
             background:
-                linear-gradient(145deg, rgba(255, 252, 248, 0.98) 0%, rgba(255, 248, 243, 0.97) 100%);
-            box-shadow: 0 12px 28px rgba(94, 69, 44, 0.05);
+                linear-gradient(145deg, rgba(255, 248, 240, 0.985) 0%, rgba(252, 242, 232, 0.98) 100%);
+            box-shadow: 0 12px 26px rgba(94, 69, 44, 0.06);
         }
 
         .route-compare-table {
@@ -804,7 +826,7 @@
             line-height: 1.68;
             color: #1f2d42;
             text-wrap: pretty;
-            background: rgba(255, 253, 250, 0.96);
+            background: rgba(255, 250, 244, 0.98);
         }
 
         .route-compare-table tbody td + td {
@@ -830,7 +852,7 @@
             letter-spacing: 0.02em;
             text-transform: none;
             color: #8a7768;
-            background: linear-gradient(180deg, rgba(255, 246, 237, 0.68) 0%, rgba(255, 251, 246, 0) 100%);
+            background: rgba(249, 236, 223, 0.96);
         }
 
         .route-compare-table tbody tr.route-compare-group-row:not(:first-child) td {
@@ -846,8 +868,7 @@
         }
 
         .route-compare-table tbody tr.route-compare-key-row td {
-            background:
-                linear-gradient(180deg, rgba(255, 247, 238, 0.92) 0%, rgba(255, 252, 247, 0.98) 100%);
+            background: rgba(255, 242, 230, 0.98);
         }
 
         .route-compare-table tbody tr.route-compare-key-row td:first-child {
@@ -2565,6 +2586,50 @@
             text-align: left;
         }
 
+        .citation-subtitle {
+            margin: 22px 0 10px;
+            font-size: 15px;
+            color: #314259;
+            text-align: left;
+        }
+
+        .bib-note {
+            margin: 0 0 12px;
+            color: #5f697b;
+            font-size: 14px;
+            line-height: 1.68;
+            text-align: left;
+        }
+
+        .bib-entry {
+            margin: 0 0 14px;
+        }
+
+        .bib-label {
+            margin: 0 0 6px;
+            color: #314259;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-align: left;
+        }
+
+        .bib-code {
+            margin: 0;
+            padding: 14px 16px;
+            overflow-x: auto;
+            border: 1px solid rgba(219, 225, 236, 0.92);
+            border-radius: 12px;
+            background: rgba(248, 250, 253, 0.98);
+            color: #314259;
+            font-size: 12.8px;
+            line-height: 1.62;
+            text-align: left;
+            white-space: pre;
+            font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", "Consolas", monospace;
+        }
+
         .page-footer {
             margin-top: 40px;
             border-top: 1px solid var(--border);
@@ -2849,7 +2914,7 @@
                             <path d="M6.8 16.2L10 7.9h1.5l3.2 8.3h-1.8l-.7-2h-3l-.7 2H6.8zm3-3.5h2.1l-1-2.9-1.1 2.9z"></path>
                             <path d="M16.4 8.2h1.5l-3.7 8h-1.5l3.7-8z"></path>
                         </svg>
-                        <span>arXiv Search</span>
+                        <span>Paper (arXiv)</span>
                     </a>
                     <a class="title-link github" href="https://github.com/metauto-ai" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -2857,8 +2922,9 @@
                         </svg>
                         <span>GitHub</span>
                     </a>
-                    <a class="title-link translation" href="index.html" aria-label="查看中文版">
-                        <span>中文版</span>
+                    <a class="title-link translation" href="index.html" aria-label="Read the Chinese version of this essay">
+                        <span class="translation-glyph" aria-hidden="true">A/文</span>
+                        <span>Chinese Version (中文版)</span>
                     </a>
                     <button type="button" class="title-link contact" id="contact-toggle" aria-expanded="false" aria-controls="contact-panel" aria-label="Toggle contact details">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -2881,11 +2947,11 @@
                     <img src="assets/teaser_blog.svg" alt="Neural Computer teaser diagram" loading="eager" fetchpriority="high" decoding="async">
                 </figure>
 
-<p>If you have ever had the thought that AI may ultimately become a kind of computer, this essay is for you.</p>
-<p>Over the past decades, the computer became the main medium through which humans get things done. Over the last few years, AI has started moving into that same position: it no longer just answers questions; it calls tools, operates interfaces, and enters real workflows. That shifts the question itself. Do we want AI to use computers, or to become a kind of computer?</p>
-                <p>Neural Computer (NC) is my attempt to talk about that possibility. The core question is whether a model can take over some of the responsibilities that today belong to the machine's own runtime.</p>
-                <p>One clarification up front: NC here does not refer to the NTM / DNC line associated with Alex Graves<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>, and it is not a proposal for new hardware. The real issue is whether a learning machine can move from using computers to becoming one.</p>
-                <p>What matters here is the migration of system responsibilities. Pieces that are currently outsourced to the program stack, toolchain, and control layer may gradually move into the runtime the model actually depends on. I suspect this intuition has flashed through many people's minds before; I will call it a <em>pre-consensus</em>.</p>
+<p>If you have ever wondered whether AI might ultimately become a kind of computer, this essay is for you.</p>
+<p>Over the past few decades, the computer has become the main medium through which people get things done. In the last few years, AI has started moving into that same role: it no longer just answers questions; it calls tools, operates interfaces, and enters real workflows. That changes the question itself. Do we want AI to use computers, or to become a kind of computer?</p>
+                <p>Neural Computer (NC) is the name I use for that possibility. The real question is whether a model can take over some of the responsibilities that still belong to the machine's own runtime.</p>
+                <p>One clarification up front: NC here is not simply the NTM / DNC line associated with Alex Graves<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>, and it is not a proposal for new hardware. The real issue is whether a learning machine can move from using computers to becoming one.</p>
+                <p>The issue here is the migration of system responsibilities. Responsibilities now outsourced to the program stack, toolchain, and control layer may gradually move into the runtime the model actually depends on. I suspect many people already feel some version of this, even if they would not phrase it this way. I would call it a <em>pre-consensus</em>.</p>
 
                 <div id="summary" class="summary-block is-collapsed" role="note" aria-label="TLDR">
                     <div class="summary-header">
@@ -2906,7 +2972,7 @@
             <section id="chapter-1">
                 <h2>1. Why now: a new machine form is starting to emerge</h2>
                 <p>Three things are happening at once.</p>
-                <p><strong>First, agents are getting better and better at actually doing work.</strong> In 2023, MetaGPT, one of the early coding-agent prototypes<a class="inline-ref" href="#ref-metagpt">[3]</a>, could barely produce a few hundred lines of code. By 2025, Cursor, Codex, and Claude Code had already become default productivity tools for many programmers. Today OpenClaw<a class="inline-ref" href="#ref-openclaw">[4]</a> has started entering broader public view. The question is no longer whether an agent can occasionally pull off a task. It is whether it can enter real production and daily life and handle things for you reliably.</p>
+                <p><strong>First, agents are getting better and better at real work.</strong> In 2023, MetaGPT, one of the early coding-agent prototypes<a class="inline-ref" href="#ref-metagpt">[3]</a>, could barely produce a few hundred lines of code. By 2025, Cursor, Codex, and Claude Code had already become default productivity tools for many programmers. Today OpenClaw<a class="inline-ref" href="#ref-openclaw">[4]</a> has started entering broader public view. The question is no longer whether an agent can occasionally pull off a task. It is whether it can enter real production and daily life and handle things for you reliably.</p>
                 <p>For agents, the current consensus bottlenecks are: (1) how to stay stable over long-horizon tasks, (2) how capabilities can accumulate, and (3) how workflows can be reused over time. The dominant path today still adds structure on the scaffold or harness side: stronger memory, longer workflows, tighter action loops, whatever makes the task more likely to complete. Push that further and the more aggressive path becomes recursive self-improvement: models training the next generation of models, agents continuously rewriting themselves<a class="inline-ref" href="#ref-recursive-self-improvement">[5]</a>.</p>
                 <figure class="figure-block openclaw-side comparison-card">
                     <div class="openclaw-gallery">
@@ -2920,7 +2986,7 @@
                     <figcaption>Agents are making the transition from prototype experiments to professional productivity tools and, increasingly, to everyday infrastructure.<a href="#ref-metagpt">[3]</a><a href="#ref-openclaw">[4]</a></figcaption>
                 </figure>
                 <p><strong>Second, world models are getting better and better at modeling dynamic environments.</strong> They have always been about simulating how environments evolve. What matters now is that this ability has already entered a few real closed loops. Especially in corner cases that are hard to collect repeatedly and cheaply in the real world, rollout is already being used directly for prediction, planning, control, and training. Along this trajectory, from Jürgen Schmidhuber's 1990 vision in <em>Making the World Differentiable</em><a class="inline-ref" href="#ref-making-the-world-differentiable">[6]</a>, to the 2018 paper <em>World Models</em><a class="inline-ref" href="#ref-world-models">[7]</a>, and now to Waymo using world models in autonomous-driving simulation and training<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-waymo-world-model-post">[9]</a>, this line is becoming a real system capability.</p>
-                <p>The core strength of a world model is that it can unroll the future before the system acts. It adds a new kind of internal foresight: if you take this action, where does the environment go next? Even when no action is taken yet, the system can still generate multiple candidate futures, test them early, and surface risks ahead of time. This line has now split into several recognizable directions. In autonomous driving and physical AI, it acts as a simulation and synthetic-data engine for expensive, dangerous, or rare parts of the real world, as in Waymo World Model and NVIDIA Cosmos<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-cosmos-physical-ai">[10]</a>. In spatial intelligence, it aims at 3D worlds that can be generated, entered, and persistently interacted with, such as World Labs' Marble<a class="inline-ref" href="#ref-worldlabs-marble">[11]</a>. On the more real-time interactive side, generative models are moving from static content generation toward controllable, explorable, interactive environments, with representative examples including GameNGen's real-time neural simulation of DOOM<a class="inline-ref" href="#ref-gamengen">[12]</a> and Google DeepMind's Genie 2 / Genie 3<a class="inline-ref" href="#ref-genie-2">[13]</a><a class="inline-ref" href="#ref-genie-3">[14]</a>. These directions look different on the surface, but at the bottom they are all doing the same thing: turning future environmental evolution into a reusable internal capability.</p>
+                <p>The core strength of a world model is that it can unroll the future before the system acts. It gives the system a form of internal foresight: if you take this action, where does the environment go next? Even before any action is taken, the system can generate candidate futures, test them early, and surface risks in advance. This line has now branched into several recognizable directions. In autonomous driving and physical AI, world models act as simulation and synthetic-data engines for expensive, dangerous, or rare slices of the real world, as in Waymo World Model and NVIDIA Cosmos<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-cosmos-physical-ai">[10]</a>. In spatial intelligence, they are aimed at 3D worlds that can be generated, entered, and persistently interacted with, such as World Labs' Marble<a class="inline-ref" href="#ref-worldlabs-marble">[11]</a>. On the more real-time interactive side, generative models are moving from static content generation toward controllable, explorable environments, with examples such as GameNGen's real-time neural simulation of DOOM<a class="inline-ref" href="#ref-gamengen">[12]</a> and Google DeepMind's Genie 2 / Genie 3<a class="inline-ref" href="#ref-genie-2">[13]</a><a class="inline-ref" href="#ref-genie-3">[14]</a>. These directions look different on the surface, but they are all pushing toward the same underlying problem: how to learn the rules by which environments evolve through time, action, and constraint into the system itself.</p>
                 <figure class="figure-block openclaw-side comparison-card">
                     <div class="wm-timeline">
                         <div class="wm-stage">
@@ -2943,8 +3009,8 @@
                 </figure>
                 <p><strong>Third, conventional computers are starting to show more obvious structural friction in the age of AI.</strong> More and more tasks today are open-ended, long-horizon, and continuously interactive. That is exactly where the traditional software stack begins to feel heavy. Its stability is still a real advantage, but in settings dominated by natural language, demonstrations, interface operations, and weak constraints, the cost of organizing and driving the task keeps going up.</p>
                 <p>Conventional computers are already rewriting their own substrate for AI. Chips, compilers, memory systems, and software stacks are all becoming more model-friendly. Most of these changes, however, still happen inside the existing computational paradigm: they make the old machine better for AI, without redefining what the machine is. In that trend, projects like Taalas push a little further by turning specific models into deployment units of their own. The model is no longer just a payload running on the machine; hardware itself begins to organize more directly around the model<a href="#ref-taalas-ubiquitous-ai">[15]</a>. Even so, that is still a deployment-level change. It is not yet a new general machine form.</p>
-                <p>Put those three developments together and the question becomes much sharper: if agents are getting better at doing work, world models are getting better at internal simulation, and conventional computers are already rebuilding their substrate for AI, could there be a new runtime that unifies execution, rollout, and capability accumulation inside the same learning machine?</p>
-                <p>In relational terms, that would mark a shift in the primary human-machine relationship. In the conventional era, people mainly interact with computers. In the agent era, people increasingly interact with agents, which then call the computer to get things done. World models sit more like a parallel prediction layer: they can serve humans or agents, but they do not themselves close the loop of doing the work. NC pushes one level deeper. It asks whether some of the responsibilities now split across computers, agents, and world models can be pulled back into the same learning machine. At that point, people would no longer be facing an agent that uses a computer on their behalf. They would be interacting more directly with a Neural Computer.</p>
+                <p>Put those three developments together and the question becomes much sharper: if agents are getting better at real work, world models are getting better at internal simulation, and conventional computers are already rebuilding their substrate for AI, could there be a new runtime that unifies execution, rollout, and capability accumulation inside the same learning machine?</p>
+                <p>Seen this way, the main human-machine relationship shifts. In the conventional era, people mainly interact with computers. In the agent era, they increasingly interact with agents, which then call the computer on their behalf. World models occupy a parallel position: they can serve humans or agents, but they do not themselves close the loop of getting work done. NC goes one step deeper. It asks whether some of the responsibilities now split across computers, agents, and world models can be drawn back into the same learning machine. At that point, the object in front of the user would no longer be an agent using a computer for them. It would be a Neural Computer.</p>
                 <figure class="figure-block relation-figure comparison-card">
                     <a class="zoomable-image-link" href="assets/relations.svg" aria-label="Zoom human-machine relation diagram">
                         <img src="assets/relations.svg" alt="How the human-machine relation changes" loading="lazy" decoding="async">
@@ -2996,13 +3062,13 @@
                     </tbody>
                 </table>
                 <p>The table is already fairly direct, so I will not restate it line by line. Instead, imagine what using an NC would actually feel like. With a conventional computer, you install software. With an agent, you describe the task. With an NC, what you do is closer to installing capabilities into the machine itself, and expecting them to remain there afterward.</p>
-                <p>That is why <strong>runtime</strong> here does not mean a particular software component. It means the layer through which a system keeps remaining the same machine over time: what gets to stay, what pushes state forward, what kinds of input truly change the machine, and what kinds of change amount to rewriting it. <strong>The real struggle around NC is whether execution, memory, rollout, and capability accumulation can be pulled back out of the external stack and reorganized inside the same learned runtime.</strong></p>
+                <p>That is why <strong>runtime</strong> here does not mean a particular software component. It means the layer that lets a system remain the same machine over time: what gets to stay, what pushes state forward, what kinds of input truly change the machine, and what kinds of change amount to rewriting it. For NC, the key question is not whether we can add yet another external layer, but whether capabilities and state can actually come to live inside the same learned runtime.</p>
 
                 <h3 class="minor-subhead">If it works, what might the machine actually look like?</h3>
-                <p><strong>First, it may not keep growing along today's foundation-model path.</strong> The default instinct today is to keep pushing toward stronger dense or MoE foundation models in roughly the 1B-10T range, and a great deal of progress will continue to happen that way. My own guess is that a mature NC points toward a different substrate: something more like a 10T-1000T machine that is sparser, more addressable, and a little more circuit-like. A future CNC may look less like an ever-denser cloud of continuous representations and more like a composable, routable substrate whose parts can be inspected locally. It may borrow less from brains or animal perception than people expect, and more from the temperament of a NAND-style machine: discrete, sparse, and locally verifiable. That path is still far from developed, but recent work such as OpenAI's research on weight-sparse transformers suggests that making neural systems more sparse, local, and routable may matter for machine architecture, not just for interpretability<a class="inline-ref" href="#ref-openai-sparse-circuits">[16]</a>.</p>
-                <p><strong>Second, it may not always upgrade itself by globally changing parameters.</strong> If we keep following today's path, the natural upgrade cycle is still to train a larger dense or MoE model and swap in a new block of weights. NC points to a different mode of evolution: runtime keeps programming itself through sustained interaction, and the machine keeps evolving along its internal capability structure. User inputs stop being purely one-shot triggers and start gradually installing, invoking, composing, and preserving reusable neural routines, perhaps even forming internal executors that can be called again later. Functionally, that looks closer to memory than to a processor. Upgrading the machine would no longer always mean rewriting the whole thing; it could mean stably writing new structures into an internal state that is addressable, callable, and persistent. Along that line, progress stops looking like swapping in a larger model and starts looking like continuously installing new components into the machine. Older ideas such as NPI and HyperNetworks can be read as incomplete but suggestive precursors here: the former tried to decompose complex programs into callable, composable subprograms<a class="inline-ref" href="#ref-neural-programmer-interpreter">[17]</a>; the latter hints that machines might generate downstream neural modules to extend their own capability boundary<a class="inline-ref" href="#ref-hypernetworks">[18]</a>. Push that ambition further and a strong enough Neural Computer could eventually generate new (sub-)NNs directly and attach them internally in a plug-and-play way, as naturally as we install or uninstall software today, except without handwritten code and compilation as intermediaries.</p>
+                <p><strong>First, it may not keep growing along today's foundation-model path.</strong> The default instinct today is to keep pushing toward stronger dense or MoE foundation models in roughly the 1B-10T range, and a great deal of progress will continue to happen that way. My own guess is that a mature NC points toward a different substrate: something more like a 10T-1000T machine that is sparser, more addressable, and a little more circuit-like. A future CNC may look less like an ever-denser cloud of continuous representations and more like a composable, routable substrate whose parts can be inspected locally. It may borrow less from brains or animal perception than people expect, and more from the logic of a NAND-style machine: discrete, sparse, and locally verifiable. That path is still far from developed, but recent work such as OpenAI's research on weight-sparse transformers suggests that making neural systems more sparse, local, and routable may matter for machine architecture, not just for interpretability<a class="inline-ref" href="#ref-openai-sparse-circuits">[16]</a>.</p>
+                <p><strong>Second, it may not always upgrade itself by globally changing parameters.</strong> On today's path, the natural upgrade cycle is still to train a larger dense or MoE model and swap in a new block of weights. NC points to a different mode of evolution: runtime keeps programming itself through sustained interaction, and the machine keeps evolving along its internal capability structure. User inputs stop looking like one-shot triggers and start acting more like ways of installing, invoking, composing, and preserving reusable neural routines, perhaps even internal executors that can be called again later. Functionally, that starts to look closer to memory than to a processor. Upgrading the machine would no longer always mean rewriting the whole thing; it could mean writing new structures into an internal state that is addressable, callable, and persistent. In that picture, progress stops looking like swapping in a larger model and starts looking like continuously installing new components into the machine. Older ideas such as NPI and HyperNetworks can be read as suggestive precursors here: the former tried to decompose complex programs into callable, composable subprograms<a class="inline-ref" href="#ref-neural-programmer-interpreter">[17]</a>; the latter hinted that machines might generate downstream neural modules to extend their own capability boundary<a class="inline-ref" href="#ref-hypernetworks">[18]</a>. Push that line far enough and a strong Neural Computer could eventually generate new sub-networks directly and attach them internally in a plug-and-play way, much as we install or uninstall software today, but without handwritten code and compilation as intermediaries.</p>
                 <p><strong>Third, it may gradually pull world-model-style rollout into runtime itself.</strong> At that point, rollout becomes part of the machine's ordinary operating mechanism, and part of this self-programming loop as well. Humans may provide an input and an expected output, or simply specify evaluation criteria ahead of time. In some rounds they may provide nothing at all, and runtime could still continue with internal self-play, self-testing, candidate filtering, and compression, then turn useful improvements into the next round of capability updates. In the idealized version, the machine keeps evaluating, trying, and iterating internally while the human sleeps. What remains is not just more context; the internal capability structure itself has changed. None of this implies silent, unguided drift; the entire update path has to remain governable.</p>
-                <p>At that point the outline of NC as a machine form starts to come into focus. The key question is whether capabilities truly come to live in runtime, and whether they can be installed, reused, executed, and governed there. CNC refers to the state in which that project is genuinely completed. In the original paper, an NC instance counts as a CNC only if it satisfies four conditions at the same time: it must be <em>Turing complete</em>, <em>universally programmable</em>, <em>behavior-consistent</em> unless explicitly reprogrammed, and it must exhibit architecture and programming semantics native to NC rather than inherited from conventional computers. The table below is a more direct restatement of those four requirements.</p>
+                <p>By that point the outline of NC as a machine form starts to come into focus. The key test is whether capabilities truly come to live in runtime, and whether they can be installed, reused, executed, and governed there. CNC is the name for the state in which that project is genuinely completed. In the original paper, an NC instance counts as a CNC only if it satisfies four conditions at once: it must be <em>Turing complete</em>, <em>universally programmable</em>, <em>behavior-consistent</em> unless explicitly reprogrammed, and it must exhibit architecture and programming semantics native to NC rather than inherited from conventional computers. The table below restates those four requirements more directly.</p>
                 <table class="contract-table">
                     <thead>
                         <tr>
@@ -3040,7 +3106,7 @@
 
             <section id="chapter-3">
                 <h2>3. The paper's prototype: what it shows, and what is still missing</h2>
-				                <p>My own guess is that the real Neural Computer cycle is still about three years away. Relative to the NC I actually have in mind, the work in our paper is still an early step. Right now, neural architectures built for video generation and world modeling are the most convenient unified container I know for putting pixels, actions, and temporal rollout into the same end-to-end prototype. We are using them to test a few key NC capabilities. That does not mean this is where NC should stay. If anything, these models should be read as transitional implementation references rather than the final structure of NC; reaching CNC would still require a much more thorough rebuild from the bottom up.</p>
+		                <p>My guess is that the real Neural Computer moment is still about three years away. Relative to the NC I actually have in mind, the work in our paper is still an early step. For now, the most convenient unified container I have is this class of neural architectures built for video generation and world modeling; if the goal is to put pixels, actions, and temporal rollout into the same end-to-end prototype, they are also the fastest path. What we are using them to validate is only a subset of NC's key capabilities. They are better read as transitional prototypes than as NC's final structure; reaching CNC would still require a much deeper rebuild from the bottom up.</p>
                 <div class="demo-gallery" aria-label="NC demo gallery">
                     <h3 class="minor-subhead">3.1 Start with CLIGen (General): an imitation game for computers</h3>
                     <p>First ask whether terminal rendering holds up at all: color, cursor behavior, scrolling, TUI layout, and overall pacing.</p>
@@ -3222,8 +3288,8 @@
                     <p>The results already show that the model has learned some of the most basic operating regularities of a computer terminal. For very simple commands such as <code>pwd</code>, <code>date</code>, <code>whoami</code>, <code>echo $HOME</code>, and <code>env | head -n 5</code>, the typed input, the enter key, the echoed output, and the final display are already fairly close to reality; different commands also produce output shapes that match the corresponding terminal scenario. Relative to the previous section, the commands themselves are now driving character updates, echo generation, and local state changes, and the terminal unfolds more according to its own operating logic.</p>
                     <p>Pushed further along this line, the model has begun to pick up something in simple arithmetic scenes as well, but reasoning itself is still far from solved. Even at the level of two-digit addition, current models still struggle to compute stably. Part of that is surely a data issue: we have not yet given the model enough hard training data to force out stable reasoning. But there is also a deeper possibility: asking current DiT-based video models to carry stable reasoning may simply be the wrong bet. The more reliable conclusion for now is that terminal execution has started to hold; symbolic reasoning has not.</p>
                     <h3 class="minor-subhead">3.3 Then GUIWorld: interface control starts to work too</h3>
-                    <p>The last question is whether actions can genuinely drive interface state: whether clicks, hovers, typing, and window feedback form a closed loop.</p>
-                    <p>By the CLI stage, the picture was already becoming clear: video models are strong at rendering, and some basic memory and execution ability had begun to show up, while the lowest layer of symbolic reasoning remained weak. GUIWorld shifts the emphasis again. The question becomes whether interface state can actually be pushed forward by actions.</p>
+                    <p>The final question is whether actions can genuinely drive interface state: whether clicks, hovers, typing, and window feedback form a closed loop.</p>
+                    <p>By the CLI stage, one thing was already clear: video models are strong at rendering, and some basic memory and execution ability had begun to show up, while the lowest layer of symbolic reasoning remained weak. GUIWorld shifts the emphasis again. Now the question is whether actions can actually push interface state forward.</p>
                     <section class="demo-group gui" aria-label="GUIWorld demos" data-demo-chip="GUIWorld / CUA" data-lightbox-kind="GUI Demo">
                         <table class="gui-comparison-table" aria-label="GUIWorld main comparisons">
                             <thead>
@@ -3593,8 +3659,8 @@
                 <p>The data setup here is already a fairly complete interaction rig. We fixed the environment to Ubuntu 22.04 with XFCE4, 1024×768 resolution, and 15 FPS capture, then built the full pipeline for desktop execution, recording, and action replay so that every click, hover, input, and interface change could be recorded stably. The dataset has three parts: roughly 1,000 hours of Random Slow, roughly 400 hours of Random Fast, and roughly 110 hours of real goal-directed trajectories driven by Claude CUA. The first two probe how open-world noise such as mouse acceleration, pauses, hovering, and window switching affects the model. The third gives cleaner action-response pairs and asks a simpler question: after this action, does the interface actually make the right next move?</p>
                 <p>On the model side, we did not try just one action-injection scheme. We trained four variants in parallel. The real difference between them is not whether they receive actions at all, but how deep actions enter the trunk and where they begin to participate in state evolution. Figure 7 in the paper lays out the four designs clearly:</p>
                 <figure class="figure-block comparison-card">
-                    <a class="zoomable-image-link" href="references/assets/action_injection4.pdf.png" aria-label="Zoom figure of four GUI action injection modes">
-                        <img src="references/assets/action_injection4.pdf.png" alt="Figure 7. Four modes for injecting GUI actions into the diffusion transformer" loading="lazy" decoding="async">
+                    <a class="zoomable-image-link" href="assets/action_inject.png" aria-label="Zoom figure of four GUI action injection modes">
+                        <img src="assets/action_inject.png" alt="Figure 7. Four modes for injecting GUI actions into the diffusion transformer" loading="lazy" decoding="async">
                     </a>
                     <figcaption><strong>Figure 7</strong> Four ways of injecting GUI actions into the diffusion transformer. These correspond to Models 1 through 4 described above.</figcaption>
                 </figure>
@@ -3634,17 +3700,17 @@
                         </tr>
                     </tbody>
                 </table>
-                <p>Skipping the detailed numbers here, the overall result is straightforward: among the four designs, Model 4 performs best overall. For GUI environments with fine-grained timing and local interaction, directly injecting actions inside the block is the easiest way to teach the backbone how the interface should continue after an action. At the same time, 110 hours of supervised data clearly beat roughly 1,400 hours of random data, and explicit visual supervision of the cursor is much stronger than pure coordinate supervision. Taken together, GUIWorld says something simple: progress on GUI depends most on harder action semantics, clearer state transitions, and treating the cursor as a visual object to supervise.</p>
-                <p>Very few people initially expected video models to handle computer scenes that are this discrete, text-heavy, and action-sensitive. But once the task and data are organized well, they already produce many interesting results on interface rendering, page transitions, short-term state continuation, local interaction, execution echo, and even some early signs of working memory. In that sense, video models are still far from the endpoint, but as an early prototype container they are already good enough to bring several otherwise abstract NC questions into concrete form.</p>
+                <p>Skipping the detailed numbers, the overall result is simple: among the four designs, Model 4 works best. In GUI environments with fine-grained timing and local interaction, injecting actions directly inside the block is the most effective way to teach the backbone how the interface should continue after an action. The data story is just as clear: 110 hours of supervised data beat roughly 1,400 hours of random data, and explicit visual supervision of the cursor works far better than pure coordinate supervision. The practical takeaway is straightforward: progress on GUI depends on harder action semantics, clearer state transitions, and treating the cursor as a visual object to supervise.</p>
+                <p>Very few people initially expected video models to handle computer scenes this discrete, text-heavy, and action-sensitive. But once the task and data are organized well, they already produce interesting results on interface rendering, page transitions, short-term state continuation, local interaction, execution echo, and even some very early signs of working memory. Video models are still nowhere near the endpoint, but as an early prototype container they are already good enough to turn several otherwise abstract NC questions into concrete ones.</p>
                 <h3 class="minor-subhead">3.4 From prototype NC to CNC: what is still missing?</h3>
-                <p>If we bring back the CNC condition table from Section 2, the conclusion of the current prototype is already fairly clear: <em>Turing complete</em> has only been touched at the edge, <em>universally programmable</em> has barely appeared as an entry point, <em>behavior-consistent</em> holds only locally in controlled settings, and <em>machine-native semantics</em> is still clearer as a direction than as a result. The point of NC is not to stack agents, world models, and conventional computers on top of one another. It is to pull some of the responsibilities now scattered across those objects back into the same learned runtime. The importance of the prototype is not that it is close to the endpoint. Its importance is that it exposes, early and clearly, several of the hard gates that will decide whether CNC can ever really work.</p>
+                <p>If we bring back the CNC condition table from Section 2, the conclusion of the current prototype is already fairly clear: <em>Turing complete</em> has only been touched at the edge, <em>universally programmable</em> has barely appeared as an entry point, <em>behavior-consistent</em> holds only locally in controlled settings, and <em>machine-native semantics</em> is still clearer as a direction than as a result. The point of NC is not to stack agents, world models, and conventional computers on top of one another. It is to pull some of the responsibilities now scattered across those objects back into the same learned runtime. What matters about the prototype is not its proximity to the endpoint, but the way it exposes, early and clearly, several of the hard gates that will decide whether CNC can ever really work.</p>
             </section>
 
             <hr class="divider">
 
             <section id="chapter-4">
-                <h2>4. If Neural Computer matures, software, hardware, and even “programs” will change</h2>
-                <p>Put more plainly, Neural Computer is first of all a claim about the next generation of computers. Its strongest future competitive pressure will come from personalized super agents with strong memory, strong tool use, and persistent online presence. The table below compares the three side by side.</p>
+                <h2>4. If Neural Computer takes hold, software, hardware, and even “programs” will change</h2>
+                <p>To put the relationship more plainly, Neural Computer is first of all a claim about what the next generation of computers might become. My guess is that its strongest future competitive pressure will come from personalized super agents with strong memory, strong tool use, and persistent online presence. The table below places the three side by side.</p>
                 <div class="route-compare-block" aria-label="Chapter 4 comparison table">
                     <p class="route-compare-quickread"><strong>If you want the fastest read, start with three rows:</strong> “what you actually get,” “how experience accumulates,” and “what gets installed.”</p>
                     <div class="route-compare-table-shell">
@@ -3719,26 +3785,46 @@
                                     <td>Current maturity</td>
                                     <td>Fully mature<br><em>Backed by 70+ years of engineering and still the substrate of most systems</em></td>
                                     <td>Already usable, and likely to keep improving quickly<br><em>Systems like Claude, Cursor, and OpenClaw already show the early form</em></td>
-                                    <td>The direction is real and formal prototypes exist, but nothing close to a usable prototype yet<br><em>The four conditions of Completely Neural Computer are still unmet</em></td>
+                                    <td>The direction is plausible, and formal prototypes have appeared, but nothing close to a usable prototype yet<br><em>The four conditions of Completely Neural Computer are still unmet</em></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="route-compare-note"><strong>How to read the table:</strong> the three are not mutually exclusive. Conventional computers remain the substrate. Personalized super agents may mature earlier. Neural Computer is the route that tries to pull some of today's externally scattered responsibilities back into the same learned runtime. The real fork appears in where capabilities live over time: outside the system, repeatedly assembled at execution time, or gradually entering runtime and becoming part of how the machine keeps operating.</div>
                 </div>
-                <p>Once CNC really works, the change reaches well beyond any single tool stack. It propagates into the program object, the software-hardware interface, and the boundary of the machine itself. At least three things move with it.</p>
-                <h3 class="minor-subhead">1) What gets installed will change</h3>
-                <p>The most intuitive row in the table is “what gets installed.” Today we install software: apps, scripts, services, plugins. On the NC path, what gradually gets installed starts to look more like capability itself, and eventually may include the kind of sub-NNs that can be installed, called, and combined. Something you taught once, corrected once, and kept using successfully would no longer live only in documents, memory stores, and workflows; it would slowly stay inside the machine. Code would still matter, but it would stop being the only doorway in. Things that used to count only as instructions, demonstrations, or traces would start doing another job: they would begin installing capability. At that point, the word “program” would start to shift too. It would no longer mean only a piece of code. It would start to mean a capability that can be put in, taken out, combined, and updated.</p>
-                <h3 class="minor-subhead">2) The architectural paradigm will change</h3>
-                <p>The second shift is that the machine's internal division of labor changes. In today's AI systems, many important functions still live outside the model itself: the model is in one layer, memory in another, workflows and tools somewhere else again. NC pulls some of that back in, so execution, memory, rollout, and capability accumulation live more inside the same machine. Follow that line far enough and the mode of evolution changes too: the machine grows more through runtime self-programming and sustained interaction, with its internal capability structure continuing to evolve from within. The substrate changes with it. Instead of only scaling up dense or MoE foundation models, it starts to look more like a 10T-1000T machine that is sparser, more addressable, and a little more circuit-like. Software changes, hardware changes, and the overall shape of the machine changes with them. The main engineering question also shifts. Instead of asking only how to run a model faster, people start asking how to keep a learning machine running stably over long periods.</p>
-                <h3 class="minor-subhead">3) The boundaries of the computer will change</h3>
-                <p>The third shift is that the machine you ultimately face changes. Today what you own is still a computer, plus an increasingly powerful agent layered on top. Later, you may spend long stretches of time with the same machine as it is gradually shaped by your own experience. Phones, browsers, IDEs, and terminals would still remain, but they would feel more and more like different windows into the same machine. The question “where is the computer?” starts to matter less. The boundary of the computer loosens. It is no longer just a device box, and no longer just a pile of software. It starts to feel more like a machine that stays online, keeps accumulating, and can still be governed by its user. What gets rewritten is not only a tool stack. The word “computer” itself begins to change.</p>
+                <p>If CNC really works, the first things to change would be what gets delivered and how the stack is organized. Today what gets installed is still software, tools, workflows, and memory entries. On the NC path, what gradually gets installed starts to look more like capability itself. Code would still matter, but it would stop being the only doorway in. Instructions, demonstrations, interaction traces, and constraints would begin to do some of the work of installation themselves. Even the word “program” would start to shift: it would no longer mean only a block of code, but a capability object that can be installed, composed, versioned, and updated over time.</p>
+                <p>From there the change would propagate into the stack and into the boundary of the machine itself. Software layout, hardware interfaces, update governance, and debugging would increasingly reorganize around the same continuously running machine. Phones, browsers, IDEs, and terminals would still remain, but they would feel more and more like different windows into that same machine. In the end, what gets rewritten is not only a tool stack, but the meaning of the word “computer” itself.</p>
             </section>
 
             <p><strong>Note and acknowledgements:</strong> the content and views in this essay represent Mingchen Zhuge alone. Thanks to Wenyi Wang, Haozhe Liu, and Dylan R. Ashley for thoughtful review comments. Some figures and materials are adapted from the original paper and related public sources.</p>
 
             <section class="citation-card" id="citation">
                 <h3 class="citation-title">References</h3>
+                <p class="bib-note">If you want to cite this piece, the blog version below is ready to use today. If a dedicated arXiv version goes live later, you can use the template as well.</p>
+                <div class="bib-entry">
+                    <p class="bib-label">Blog BibTeX</p>
+                    <pre class="bib-code">@online{zhuge2026neuralcomputerblog,
+  author  = {Mingchen Zhuge},
+  title   = {Neural Computer: A New Machine Form Is Emerging},
+  year    = {2026},
+  month   = feb,
+  day     = {7},
+  url     = {https://metauto.ai/neuralcomputer/index_eng.html},
+  note    = {Research essay},
+  urldate = {2026-04-06}
+}</pre>
+                </div>
+                <div class="bib-entry">
+                    <p class="bib-label">arXiv BibTeX Template</p>
+                    <pre class="bib-code">@article{zhuge2026neuralcomputer,
+  author  = {{Author list}},
+  title   = {{Paper title}},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/XXXX.XXXXX}
+}</pre>
+                </div>
+                <h4 class="citation-subtitle">Reference List</h4>
                 <ul class="reference-list">
                     <li id="ref-neural-turing-machines">[1] Alex Graves, Greg Wayne, and Ivo Danihelka. <a href="https://arxiv.org/abs/1410.5401">Neural Turing Machines</a>. arXiv:1410.5401, 2014.</li>
                     <li id="ref-differentiable-neural-computer">[2] Alex Graves et al. <a href="https://www.nature.com/articles/nature20101">Hybrid computing using a neural network with dynamic external memory</a>. <em>Nature</em> 538, 471-476 (2016).</li>
