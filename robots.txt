@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /blog/posts/
+Disallow: /neuralcomputer/bak/
+Disallow: /neuralcomputer/index.html.bak
+
+Sitemap: https://metauto.ai/sitemap.xml

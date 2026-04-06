@@ -1,0 +1,160 @@
+\noindent This appendix summarizes collection, preprocessing, and evaluation details for the datasets used in the paper.
+For concrete examples of raw trajectory formats (asciinema \texttt{.cast} and \texttt{vhs} scripts), see Appendix~\ref{appendix:cligen-samples}. 
+% 
+Data collection uses a three-stage pipeline to maintain synchronized timing, privacy controls, and consistent, well-documented artifacts across CLIGen and GUIWorld.
+
+\noindent\textbf{Sourcing.}
+We construct our datasets from three complementary sources---public terminal recordings, scripted terminal replays, and a controlled desktop-capture rig.
+Across all sources, we emphasize rights-respecting acquisition, privacy filtering, and temporally aligned interface signals (frames, actions, and text when available):
+\begin{tcolorbox}[
+  colback=metablue!8,
+  colframe=metablue!40,
+  boxrule=0pt,
+  borderline west={1pt}{0pt}{gray!60},
+  left=6pt,right=4pt,top=3pt,bottom=3pt]
+\small
+\begin{itemize}
+  \setlength{\itemsep}{2pt}
+  \setlength{\topsep}{2pt}
+  \item \cligenGeneralLogo{}\,\textbf{CLIGen (General)}: public \texttt{asciinema} \texttt{.cast} archives; traces are replayed with official tools to preserve recorded terminal appearance (color schemes, cursor visibility, window geometry).
+  \item \cligenCleanLogo{}\,\textbf{CLIGen (Clean)}: deterministic \texttt{vhs} scripts (e.g., package installs, REPLs, log filters) executed in isolated environments.
+  \item \guiworldLogo{}\,\textbf{GUIWorld}: footage captured with the rig in \Cref{section:impl-guiworld}, pairing RGB video with low-latency pointer/key logs and optional accessibility cues (logged for analysis; not used as model inputs).
+\end{itemize}
+\end{tcolorbox}
+
+\noindent\textbf{Alignment and sanitization.} 
+All modalities share a common clock.
+We align pointer/key events to the nearest frame, apply drift correction when needed, and drop clips with residual misalignment.
+Privacy filters remove terminal sessions with sensitive strings and redact GUI regions likely to contain private content.
+Frozen or repeated-frame recordings (capture artifacts) are discarded.
+
+\noindent\textbf{Episode packaging.}
+Runs are windowed into fixed-length, overlapping episodes (window sizes and strides are specified in the released configs).
+Each shard stores RGB frames, terminal buffers or GUI metadata, serialized actions, the source tool (\texttt{asciinema}/\texttt{vhs}/GUI capture), and environment metadata.
+Structured fields (buffers/metadata) are used for alignment and evaluation, but are not provided to the video models as state inputs.
+Downstream dataloaders reconstruct batches directly.
+Released configs specify preprocessing and windowing so external users can rebuild the corpus.
+
+\subsection{Caption fields and metadata (CLIGen General)}
+For CLIGen (General), each replayed \texttt{.cast} fragment (example shown in \Cref{appendix:cast-format}) is paired with three aligned descriptions and a compact metadata record.
+Table~\ref{tab:cast-captions} summarizes the fields for clip \texttt{7****\_0001}.
+
+\begin{smallschemetable}{Caption tiers and metadata for CLIGen (General) clip \texttt{7****\_0001}.}{tab:cast-captions}
+  \rowcolors{2}{metablue!8}{white}
+  \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \toprule
+    \rowcolor{metablue!16}\textbf{Field} & \textbf{Content (abridged)} \\
+    \texttt{caption} &
+      The user (username field shown verbatim as \texttt{annonomous} [sic]) logged into their account on the host \texttt{NeuralComputer}, and after some initial terminal setup and cursor movements,
+      they started typing the command \texttt{nvim} to likely open the Neovim text editor, but the session recording ends abruptly without showing the actual command execution or any further interaction. \\
+    \texttt{caption\_detailed} &
+      At the \texttt{annonomous@NeuralComputer:~\$} prompt, the user types \texttt{nvim}, but before the command executes, the screen rapidly displays a colorful,
+      pixelated animation with various RGB colors, including shades of blue, green, and purple, filling the 80x24 terminal window.
+      The animation is briefly interrupted by a cursor blink, then the prompt returns, awaiting further input. \\
+    \texttt{caption\_semantic} &
+      The terminal displays a rapid sequence of colored text and pixel art animations, with syntax-highlighted code and prompts appearing in a mix of blue, green,
+      and white hues, as the user types commands and the system responds with scrolling output, error messages, and success indicators. \\
+    \midrule
+    \texttt{data\_info.version} & \texttt{2} (\texttt{asciinema} v2 header) \\
+    \texttt{data\_info.size} & \texttt{width=80}, \texttt{height=24}; original/target/scaled sizes all match, padding \texttt{[0,0]}. \\
+    \texttt{data\_info.env} & \texttt{SHELL=/bin/bash}, \texttt{TERM=xterm-256color}. \\
+    \texttt{meta.videogen} &
+      Automatically derived stats: visual complexity \texttt{2897.7}, interaction density \texttt{1.0}, color usage \texttt{518}, screen clears \texttt{6},
+      event rate \texttt{7.8} events/s, typing rhythm (avg interval \texttt{0.13}s, variance \texttt{0.34}), and \texttt{38} visual-change events. \\
+    \texttt{metadata} &
+      Source recording on Asciinema: id \texttt{7****}, title \texttt{``aneo.nvim demo''}, author \texttt{annonomous} [sic], creation time \texttt{2025-05-13T23:37:53Z}, URLs for the page and raw \texttt{.cast}. \\
+    \bottomrule
+  \end{tabularx}
+\end{smallschemetable}
+
+These fields make each CLIGen (General) clip self-contained.
+The three caption tiers provide prompts at different levels of detail.
+\texttt{data\_info} and \texttt{metadata} preserve the structure needed to rebuild terminal geometry, environment, and source from the raw \texttt{.cast}. 
+% A heuristic category count indicates that the dataset covers diverse terminal usage.
+% It includes general terminal operations (610,331 clips), file operations (81,783), programming activities (66,430), system administration (42,668), and text editing (22,777).
+% This distribution reflects typical command-line workflows across different user tasks.
+
+\subsection{OCR evaluation protocol (CLIGen Clean)}
+For CLIGen (Clean), OCR-based metrics evaluate how closely generated terminal videos match reference renderings derived from the ground-truth buffers in text space rather than pixels.
+Each sample consists of a generated video and its paired reference video (matched by clip ID).
+We keep only IDs where both videos are present. 
+% 
+From each paired video we use at most $K{=}5$ frames.
+Let $T_\text{gen}$ and $T_\text{gt}$ be the frame counts of the generated and reference videos.
+We set $T=\min(T_\text{gen},T_\text{gt})$.
+If $T \le K$, we use all indices in $[0, T{-}1]$; otherwise, we select $K$ evenly spaced indices by deterministic rounding, then deduplicate and sort them so evaluation frames are spread across the trajectory.
+For every selected index we read the corresponding frame from both videos.
+
+Each frame is converted to RGB and passed to Tesseract OCR.
+The resulting string is split into lines, leading and trailing whitespace is stripped, and internal whitespace is normalized by collapsing runs of spaces.
+Empty lines are dropped.
+We keep case and punctuation intact so that commands, paths, and symbols remain visible.
+This gives an ordered list of normalized lines for the ground-truth frame ($g_1,\dots,g_{N_g}$) and the generated frame ($p_1,\dots,p_{N_p}$).
+
+We summarize the OCR text-space metrics used per sampled frame as follows:
+\begin{tcolorbox}[
+  colback=metablue!8,
+  colframe=metablue!40,
+  boxrule=0pt,
+  borderline west={1pt}{0pt}{gray!60},
+  left=6pt,right=4pt,top=3pt,bottom=3pt]
+\small
+\textbf{Character accuracy.} This metric pools all lines into a single multi-line string for each side and measures normalized edit distance.
+Let $s$ and $t$ be the concatenated ground-truth and generated texts and $d(s,t)$ their Levenshtein distance (insert/delete/replace cost $1$).
+If both $s$ and $t$ are empty we set $\text{char\_acc}=1$; if only $s$ is empty we set $\text{char\_acc}=0$.
+Otherwise,
+\[
+  \text{char\_acc} = \max\Bigl(0,\ 1 - \frac{d(s,t)}{\max(|s|,1)}\Bigr),
+\]
+Extra or missing characters are normalized by the reference length through the denominator $\max(|s|,1)$.
+Frame-level scores are averaged over the selected frame pairs (up to $K{=}5$) to yield a per-video character accuracy, and group-level scores report the mean over videos.
+
+\textbf{Exact-line accuracy.} This metric treats lines as position-sensitive units and reports a recall over ground-truth lines.
+For a given frame, we compare line $g_i$ to $p_i$ at the same index.
+A line is counted as correct only if $i\le N_p$ and $p_i=g_i$; lines that appear in the wrong position do not count.
+If both lists are empty we set $\text{exact\_line\_acc}=1$; if the ground-truth list is empty but the generated list is not, we set $\text{exact\_line\_acc}=0$.
+Otherwise,
+\[
+  \text{exact\_line\_acc} = \frac{1}{N_g}\sum_{i=1}^{N_g} \mathbf{1}[i \le N_p \land p_i = g_i].
+\]
+As with character accuracy, frame scores are averaged over the $K$ sampled frames to obtain a per-video score and then averaged over videos for the reported aggregate.
+\end{tcolorbox} 
+% Unless otherwise noted, OCR results in the main text use 1,000 randomly sampled video pairs (five frame pairs per video).
+Together, these two metrics stress both fine-grained text fidelity and line-ordered terminal state reconstruction.
+
+\subsection{Evaluation metrics and protocol (GUIWorld)}
+\label{appendix:gui-metrics}
+We report both global video metrics and action-driven metrics that focus on post-interaction frames. 
+We compute these metrics using our GUIWorld evaluation suite.
+We summarize the GUIWorld protocol at a glance as follows:
+\begin{tcolorbox}[
+  colback=metablue!8,
+  colframe=metablue!40,
+  boxrule=0pt,
+  borderline west={1pt}{0pt}{gray!60},
+  left=6pt,right=4pt,top=3pt,bottom=3pt]
+\small
+\begin{itemize}
+  \setlength{\itemsep}{2pt}
+  \setlength{\topsep}{2pt}
+  \item \textbf{Global metrics} (\FVD$_\text{all}$, \SSIM$_\text{all}$, \LPIPS$_\text{all}$): computed over paired generated/ground-truth videos after standardized decoding, subsampling, and resizing.
+  \item \textbf{Action-driven metrics} (\SSIM$_{+15}$, \LPIPS$_{+15}$, \FVD$_{+15}$): computed on post-action windows to measure interface fidelity after interaction events.
+\end{itemize}
+\end{tcolorbox}
+
+\noindent\textbf{Global \FVD$_\text{all}$/\SSIM$_\text{all}$/\LPIPS$_\text{all}$}
+We decode paired generated/ground-truth videos into RGB frames with temporal subsampling and resizing (\texttt{fps}=3, \texttt{size}=256, and \texttt{max\_seconds}=5 by default).
+\SSIM$_\text{all}$~is computed using \texttt{torchmetrics} on frame tensors normalized to $[0,1]$ and averaged over frames.
+\LPIPS$_\text{all}$~uses the AlexNet backbone on frames normalized to $[-1,1]$ and is averaged over frames.
+\FVD$_\text{all}$~is computed in an \texttt{r3d18} embedding space (\texttt{prelogits} by default).
+We extract features from fixed-length clips (16 frames at 112$\times$112 after uniform subsampling/padding).
+We compute the Fr\'echet distance between the generated and reference feature distributions.
+
+\noindent\textbf{Action-driven metrics (\SSIM$_{+15}$, \LPIPS$_{+15}$, \FVD$_{+15}$)}
+For each paired rollout, we load recorded action timestamps (from JSON/CSV logs), map each timestamp $\tau$ to a frame index $f=\mathrm{round}(\tau \cdot \mathrm{fps})$, and clamp to the valid frame range.
+We skip the action frame itself (\texttt{action\_start\_offset}=1) and evaluate the next $k{=}15$ frames after each action.
+Concretely, for each action frame index $f$, we form the post-action set $\{f+1,\dots,f+k\}$ and clip it to valid frame indices.
+We then take the deduplicated union over actions in the clip and keep frame indices in chronological order.
+Clips with zero logged actions, or with empty valid post-action windows after clipping, are excluded from $+15$ metrics.
+For \SSIM$_{+15}$~/\LPIPS$_{+15}$, we compute per-clip means over selected frame pairs and then average across clips.
+For action-driven \FVD$_{+15}$, we build an \emph{after-action clip} per video by concatenating the same selected post-action frames, then uniformly subsample/pad to 16 frames and compute the Fr\'echet distance in the same \texttt{r3d18} feature space.

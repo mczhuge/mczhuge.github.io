@@ -1,0 +1,190 @@
+The Fourth System Object
+Subtitle: Agents use computers. Neural Computers become computers.
+Introduction
+For decades, humans have used computers to get things done. Over the last few years, AI has started doing the same. The next question is whether AI will merely use computers — or begin to become one.
+That is the idea behind the Neural Computer (NC): a learning system that no longer just produces answers, uses tools, or models the world, but begins to take on the core runtime responsibilities of a computer itself.
+Today’s agents can already enter parts of production workflows. They call tools, move across interfaces, and chain tasks together. But the deeper you push them, the same problems keep resurfacing: capabilities do not stick, execution drifts, and updates are hard to attribute or govern.
+NC is not about making agents better at doing things. It is about writing capability installation, behavioral consistency, and explicit updating into the runtime contract itself.
+That is why I think of it as a new system object. It is not a stronger agent. It is not a world model inside a computer environment. It is not a traditional computer with an intelligence layer bolted on top. It is competing for something deeper: the machine in operation.
+
+1. Why now: the contours of a fourth system object
+Three things have been happening at once.
+First, agents have become much better at acting.
+ They are no longer just answering questions. They operate tools, move across interfaces, and execute multi-step workflows. For many teams, the question is no longer whether an agent can demo a task. It is whether an agent can enter production without falling apart.
+Second, world models have become much better at modeling dynamics.
+ They are no longer just representing the present. Increasingly, they carry an internal model of what is likely to happen next, which makes them useful for prediction, planning, and correction.
+Third, the friction in traditional computing has become harder to ignore in the AI era.
+ More tasks are open-ended, long-horizon, and interactive. Traditional software stacks remain extraordinarily powerful, but in many settings centered on natural language, demonstrations, UI operations, and weak constraints, they increasingly feel cumbersome. The work is still doable — but only after continuous human ways of working are translated into layers of discrete interfaces, scripts, and procedures.
+Put together, these developments point to the same question:
+Can a new kind of runtime unify execution, rollout, and capability accumulation inside a single learning system?
+If you extend the two most visible directions, their trajectories are already fairly clear. On the agent side, the line points toward recursive self-improvement: systems that get better as they are used. On the world-model side, it points toward tighter rollout–action loops: richer prediction, planning, and correction grounded in interaction.
+Both matter. But they still strengthen capabilities within existing objects: the former strengthens the actor; the latter deepens environmental modeling.
+At the same time, traditional computers themselves are being redesigned for AI. Chips, compilers, memory systems, and software stacks are all becoming more model-friendly. But that is still adaptation within the existing computational paradigm. It makes the old substrate more AI-native. It does not create a new system object.
+What I want to discuss is another route: not continuing to make the actor stronger, and not merely making the existing substrate more model-friendly, but rewriting the runtime itself as a learning system — making the computer itself into the thing that learns.
+What is genuinely new about NC is this: persistent state, state progression, capability installation, and I/O coordination begin collapsing into the same learned runtime. The system is no longer merely generating answers or invoking tools. It starts taking on the role of the machine in operation.
+That shift also changes the role of interaction itself. Natural-language instructions, mouse-and-keyboard traces, screen transitions, and task feedback used to be mostly logs. In the NC setting, they start to become materials for shaping future behavior.
+Today we mostly install capabilities with code. In an NC setting, demonstrations, interaction traces, and constraints may also become installation media. What gets installed then shifts from applications and scripts toward capabilities and working methods themselves.
+And the hard part here has never been whether the demos look impressive. The hard part is what happens once the system enters long-horizon, multi-turn, real deployment settings. That is where drift, poor reuse, and poor traceability show up.
+Three years ago, it was too early to ask this question seriously. Today, for the first time, there is enough prototype evidence to make it worth asking.
+
+2. What is NC, and what would count as CNC?
+Start by separating four system objects.
+Traditional computer: the object is code; the program stack executes it.
+
+
+Agent: the object is the task; the system completes it by invoking tools on top of an existing computer.
+
+
+World model: the object is environmental dynamics; the system learns how state evolves through time and action.
+
+
+NC: the object is the runtime; capabilities are installed into a learned runtime.
+
+
+The difference is not who is “smarter.” The difference is where capability lives.
+By “system object,” I do not mean an object in the OOP sense. I mean the thing the system is fundamentally organized around: where capability lives, how state advances, and where responsibility sits. “Fourth” is not a textbook category. It is a working classification along that axis.
+These four objects differ not just in intelligence, but in which layer of the system they take responsibility for. Traditional computers execute rules. World models learn how environments evolve. Agents get tasks done on top of existing computers. NC tries to pull persistent state, capability installation, state progression, and I/O coordination into the learned runtime itself. It is not merely the sum of the other three. It is trying to claim a different layer: the machine in operation.
+NC is the name of this new category.
+ CNC is its mature form.
+NC refers to a system in which the layer that primarily determines how the system runs — persistent state, state progression, capability installation, and runtime coordination — is handled mainly by a learned runtime rather than by an external program stack.
+CNC is the mature form of NC: not just a handful of prototypes, but a system that can run over time, install capabilities, reuse them stably, update them explicitly, and support traceable governance.
+A one-line test is simple:
+Can capabilities be installed? Can behavior remain stable? Can updates be tracked?
+That is the working contract.
+A concrete example
+Suppose we install an automated research capability into a system. It follows a topic over time, filters papers, organizes notes, compares methods, and restructures material when you write a survey.
+During installation, the user does not write out a full pipeline. Instead, they teach the system through several collaborative sessions: what counts as good evidence, what to keep, how to classify notes, what standards to apply. After that, the system should stably reuse that research style unless the user explicitly updates it. And if something goes wrong, the user should be able to replay why a paper was kept or a conclusion was removed, and revert to a previous stable version.
+In that example, an agent feels like a research assistant that helps you browse, click, and edit. An NC feels more like the research workbench itself: the capability is installed into an environment that keeps running.
+That example also clarifies something important: task descriptions, demonstrations, interaction traces, and constraints can all become media for capability installation. But that does not mean they are automatically equivalent to programs. They only begin to approach programming when they enter the runtime as reusable, traceable, and reversible objects.
+What capability installation is not
+The three most common sources of confusion here are:
+prompting
+
+
+fine-tuning
+
+
+long-term memory
+
+
+All three can contribute to capability formation. But none of them automatically counts as capability installation.
+The real test is this:
+Does a way of doing something enter the runtime as a named, reusable, reversible object that can be stably invoked beyond a specific session?
+If yes, it is an installation.
+ If not, it is still temporary shaping, parameter change, or historical recall.
+NC is not just a long-lived agent
+Long-lived, memory-equipped agents already look superficially close to NC. They can accept tasks, persist across sessions, and operate your computer. But they are still not the same thing.
+An agent’s persistent state serves task completion.
+ An NC’s persistent state serves the runtime itself.
+As long as the real source of truth still lives mainly in external files, workflows, or program stacks — while the model merely calls into them — the system remains closer to a long-lived agent than to NC.
+Compressed into three distinctions
+If we compress the boundary further, the difference between NC and the other three objects can be stated in three lines:
+Compared to the traditional computer, NC rewrites runtime semantics: code is no longer the only entry point for capability; capability itself becomes an installable, reusable, versionable object.
+
+
+Compared to the world model, NC rewrites system responsibility: the former learns how the world evolves; the latter must ensure that the machine runs, with execution, programmability, and governance as the main concern.
+
+
+Compared to the agent, NC rewrites where capability lives: the agent invokes capability on top of an existing computer; NC attempts to install capability into the runtime itself.
+
+
+Two deeper differences from the traditional computer
+At a deeper level, NC differs from the traditional computer in at least two ways.
+First, architectural semantics.
+ Traditional computers excel at discrete, local, precise, symbolic operations. NC has the potential to excel at operating over high-dimensional, continuous, noisy, multimodal state. Put more directly: traditional computers excel at executing rules; NC aims to excel at running over complex distributions.
+Second, programming semantics.
+ Traditional computers mostly install capability through code. NC may increasingly install capability through task descriptions, demonstrations, interaction traces, and constraints. The point is not that code disappears. The point is that code is no longer the only entry point.
+The engineering criteria that matter first
+From an engineering perspective, the first things that must stand are not abstract completeness conditions, but three continuously testable lines:
+Installation–reuse: once a capability is installed, can it be reused stably in future tasks rather than reconstructed each time?
+ Failure mode: the method never sticks, and the system has to re-derive it from prompting every time.
+Execution consistency: under the same version and the same input, does the result remain stable?
+ Failure mode: behavior changes even though no explicit capability update occurred.
+Update governance: do capability changes happen only through explicit updates, with traceability and rollback?
+ Failure mode: something breaks and no one can say what changed or revert to the last stable version.
+These three lines ultimately collapse into two harder thresholds: behavioral consistency and general programmability. The former determines whether the system can be deployed; the latter determines whether it can be called a general-purpose computer.
+To make those conditions operational, three boundaries must be explicit:
+State boundary: what is persisted and reused, versus what is only transient context
+
+
+Update boundary: what counts as execution, versus what counts as reprogramming
+
+
+Evidence boundary: what can be replayed, compared, and rolled back
+
+
+The closest analogy is a database transaction:
+runtime should behave like a read, not silently rewrite persistent capability
+
+
+updating should behave like a write, explicit and versioned
+
+
+Without those boundaries, run/update separation is still just a slogan. With them, a learned runtime begins to approach something that deserves to be called a computer, rather than merely a system that can do useful things.
+
+3. Why current prototypes look like this — and what they have actually shown
+A common misunderstanding should be cleared up first: video models are not the final form of NC.
+They are simply the fastest path, today, to an end-to-end prototype that unifies pixels, actions, and temporal rollout. In that sense, a video model is more like a bridge than a house.
+For NC, the key is not that video looks flashy, but that it places screen frames, action conditioning, and temporal evolution inside one modeling framework. That gives us — for the first time — a relatively unified way to prototype a learned runtime across both CLI and GUI environments.
+NC certainly borrows a lot from the world-model lineage — temporal state evolution, action-conditioned dynamics, latent transitions. But what NC is trying to solve is not how the world evolves. It is how the machine runs.
+That difference matters because a computer environment is not a generic environment. It comes with programmability, state contracts, and update boundaries.
+If we evaluate current prototypes through the engineering criteria above — plus a fourth question of whether migration is actually worth it — the picture can be summarized in four judgments.
+1) Installation–reuse: the entrance is visible, but the property is not yet established
+Learned runtimes can already absorb parts of terminal and interface dynamics. That means the door has opened. But we still do not have evidence that “install once, reuse reliably later” has truly become a runtime object.
+2) Execution consistency: locally promising, but only in controlled settings
+Some controlled GUI behaviors are already approaching practical reliability. That suggests local action consistency is learnable. But local consistency is not long-horizon consistency, and stability in controlled settings is not open-environment reliability.
+3) Update governance: the outline is there, but major gaps remain
+Current prototypes already have something like the outline of a runtime, but not yet computer-grade governance. Versioned update logs, auditable diffs, replay, and rollback are still incomplete.
+4) Net benefit: internal signals exist, but the overall case is not yet made
+There are some promising signals inside the NC training paradigm. But that does not yet prove that NC has achieved an overall structural advantage over existing hybrid approaches. Symbolic robustness in CLI-like settings also remains far below what a generally programmable runtime would require.
+Put together, the conclusion is straightforward:
+Video models are enough to move NC from concept to prototype, but not enough to move CNC from prototype to reality.
+Current NC prototypes have begun to absorb some basic runtime functions — especially I/O alignment and short-horizon control — but the major gaps remain reuse, governance, consistency, and symbolic competence.
+And one boundary has to be stated again and again:
+Theoretically expressible is not the same as engineering-wise stable.
+Many systems look coherent over short horizons, only to drift badly once compositional depth and long-horizon execution show up. That gap is not a footnote. It is the core problem.
+
+4. From NC to CNC: what is still missing?
+Among the four objects, the traditional computer defines the execution substrate, the world model defines the inference substrate, and the agent defines the action interface. What NC is trying to claim is the runtime substrate itself.
+This path can be viewed in three stages.
+Prototype NC: first, make it run
+The question here is whether a learned runtime can stably absorb I/O and local control. Current prototypes have reached this stage: NC is no longer pure imagination, but an engineering object with visible contours.
+Governed NC: then, make it governable
+What has to be established here is not another demo, but run/update separation. Capability objects must be installable, reusable, versioned, logged, diffable, replayable, and reversible. Without that, even a very intelligent system is still closer to a brilliant improviser than to a governable computer.
+CNC: only then, make it substitutable
+Only once the first two stages hold does it make sense to ask about general programmability, behavioral consistency, and structural advantage over the traditional stack.
+At that stage, more machine-native neural architectures become a real constraint: not something more brain-like, but something more machine-like — where discrete operations, compositional structure, and verifiable execution become native properties of the neural system itself.
+Without the first two stages, talk of CNC is empty.
+The hardest barrier on this path is that run/update separation is not intrinsic to neural networks. Gradient descent naturally entangles “using the system” with “changing the system.” What NC has to do is force that boundary into the runtime. Otherwise the system appears to be running, while in fact silently rewriting persistent capability under the hood.
+So my current view is this:
+NC has moved from imagination into prototype. CNC is still far away.
+What will determine whether it becomes a new computational paradigm is not whether the next demo looks more impressive, but whether installation–reuse, run/update separation, replay/rollback, symbolic stability, and genuine neural net advantage can be delivered over the next few years.
+
+5. If NC works, software, hardware, and “the program” will all change
+If capability installation, behavioral consistency, and explicit updating really become runtime-level contracts, then the word computer itself will need to be rewritten.
+The change will not just be that agents become stronger or world models become more accurate. The division of labor among the four objects will be redrawn.
+Traditional computers would still handle deterministic execution.
+ World models would still model environmental dynamics.
+ Agents would still act inside real workflows.
+ But the runtime itself would, for the first time, become part of the learning system.
+Three consequences follow.
+1) The program object changes
+Today, when we “install software,” we install code. When we “write a program,” we write instruction sequences. In the NC setting, capability itself — not just the code that implements it — begins to become an installable, reusable, versioned object.
+2) The architectural paradigm changes
+CNC may require something less like a brain and more like a machine. Discrete operations, compositional structure, explicit routing, and verifiable execution would need to arise natively inside the neural substrate. The path to CNC may look less like simulating cognition and more like redesigning computation.
+3) The physical boundary of the computer loosens
+The question “Where is the computer?” becomes less important. The runtime need not live on a local device. Compute can be remote and distributed; the user may interact with a continuously running learning system the way they interact with a cloud service today.
+But this time it is not just storage and compute that move outward — the runtime, the capability objects, and the behavioral contract all live there.
+So whether this fourth system object really comes into existence will not be decided by how spectacular the demos look. It will be decided by three things only:
+Can capability be installed?
+
+
+Can behavior remain stable?
+
+
+Can updates be governed?
+
+
+If those three conditions hold, then the next step in AI is not merely stronger agents.
+It is that the computer itself begins to become a learning system.
+

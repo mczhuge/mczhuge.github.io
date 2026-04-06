@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="它不是更强的 agent 或 world model，而是在押注 learning machine 会成为运行中的机器。">
+    <meta property="og:title" content="Neural Computer：第四个系统对象，正在出现">
+    <meta property="og:description" content="它不是更强的 agent 或 world model，而是在押注 learning machine 会成为运行中的机器。">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://metauto.ai/neuralcomputer/references/assets/teaser10_top.png">
+    <meta property="og:url" content="https://metauto.ai/neuralcomputer/">
+    <link rel="canonical" href="https://metauto.ai/neuralcomputer/">
+    <title>Neural Computer：第四个系统对象，正在出现</title>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --text: #1f2937;
+            --muted: #5b6474;
+            --border: #e4e8ef;
+            --bg: #ffffff;
+            --accent: #1f3d63;
+            --grid: rgba(31, 61, 99, 0.035);
+            --content-width: 780px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            background-color: #fcfcfb;
+            background-image:
+                linear-gradient(135deg, rgba(255, 246, 249, 0.60) 0%, rgba(244, 250, 255, 0.55) 46%, rgba(248, 246, 255, 0.57) 100%),
+                radial-gradient(1200px 680px at 8% 10%, rgba(255, 218, 230, 0.21), rgba(255, 255, 255, 0) 62%),
+                radial-gradient(980px 620px at 92% 12%, rgba(214, 236, 255, 0.22), rgba(255, 255, 255, 0) 64%),
+                radial-gradient(920px 560px at 50% 96%, rgba(224, 244, 226, 0.19), rgba(255, 255, 255, 0) 68%),
+                repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 44px),
+                repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 44px);
+            font-family: "Iowan Old Style", "Baskerville", "Palatino Linotype", "Book Antiqua", "Times New Roman", "Noto Serif", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+            line-height: 1.8;
+            letter-spacing: 0;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        a:hover {
+            border-color: currentColor;
+        }
+
+        a:focus-visible {
+            outline: 2px solid rgba(55, 90, 141, 0.42);
+            outline-offset: 2px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(4px);
+        }
+
+        .site-header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            color: var(--text);
+            border: 0;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12.5px;
+        }
+
+        .header-actions a {
+            border: 0;
+            color: var(--muted);
+        }
+
+        .header-actions a:hover {
+            color: var(--text);
+        }
+
+        .page {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 42px 20px 84px;
+        }
+
+        .reading-layout {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 34px;
+            align-items: start;
+        }
+
+        .article-body {
+            max-width: var(--content-width);
+            width: 100%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .toc {
+            position: sticky;
+            top: 86px;
+            align-self: start;
+            width: 220px;
+            padding: 14px 14px 12px;
+            border: 1px solid rgba(216, 225, 236, 0.9);
+            border-radius: 16px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(252, 253, 255, 0.78)),
+                linear-gradient(135deg, rgba(255, 246, 249, 0.38), rgba(244, 250, 255, 0.34));
+            box-shadow: 0 10px 24px rgba(31, 61, 99, 0.05);
+            backdrop-filter: blur(8px);
+            max-height: calc(100vh - 104px);
+            overflow: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(132, 153, 183, 0.55) transparent;
+        }
+
+        .toc-title {
+            margin: 0 0 10px;
+            font-size: 11px;
+            color: #58667b;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 700;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin: 0 0 2px;
+            font-size: 12.8px;
+            line-height: 1.44;
+            color: #5f697b;
+        }
+
+        .toc-list a {
+            display: block;
+            padding: 7px 8px;
+            border: 0;
+            border-radius: 10px;
+            color: #5f697b;
+            text-decoration: none;
+            transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent);
+            background: rgba(236, 242, 250, 0.92);
+            transform: translateX(1px);
+        }
+
+        .toc-mobile {
+            display: none;
+            margin: 0 0 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.78);
+        }
+
+        .toc-mobile summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 9px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2a3f5f;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .toc-mobile summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .toc-mobile .toc-list {
+            padding: 0 12px 10px;
+        }
+
+        .eyebrow-row {
+            margin: 0 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px 12px;
+        }
+
+        .eyebrow {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .eyebrow-updated {
+            margin: 0;
+            color: #7b869d;
+            font-size: 11px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: clamp(24px, 3.1vw, 34px);
+            line-height: 1.16;
+            letter-spacing: -0.01em;
+            color: #111827;
+            font-weight: 700;
+            text-wrap: balance;
+        }
+
+        .deck {
+            margin: 0 0 18px;
+            font-size: clamp(15px, 1.58vw, 17px);
+            line-height: 1.8;
+            color: #243244;
+            text-align: justify;
+            text-align-last: left;
+            hyphens: auto;
+        }
+
+        .title-links {
+            margin: 10px 0 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .title-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid #b7c3d6;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #ffffff, #f5f8fd);
+            box-shadow: 0 3px 10px rgba(31, 61, 99, 0.12);
+            font-size: 14px;
+            line-height: 1;
+            font-weight: 700;
+            border-bottom: 1px solid #a9b8cf;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .title-link:hover {
+            background: #ffffff;
+            border-color: #8d9fbc;
+            box-shadow: 0 6px 16px rgba(31, 61, 99, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .title-link:focus-visible {
+            outline: 2px solid rgba(55, 90, 141, 0.4);
+            outline-offset: 2px;
+        }
+
+        .title-link svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+            fill: currentColor;
+            flex: 0 0 auto;
+        }
+
+        .title-link.arxiv {
+            color: #b42323;
+            border-color: rgba(180, 35, 35, 0.34);
+            background: linear-gradient(180deg, #fff9f9, #fff0f0);
+        }
+
+        .title-link.github {
+            color: #111827;
+            border-color: rgba(17, 24, 39, 0.26);
+            background: linear-gradient(180deg, #ffffff, #f1f4f8);
+        }
+
+        .meta {
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 72ch;
+        }
+
+        .meta-note-line {
+            margin: -12px 0 18px;
+            color: #76819a;
+            font-size: 12.5px;
+            line-height: 1.5;
+            max-width: 78ch;
+        }
+
+        .with-margin-note {
+            width: calc(100% + 176px);
+            margin-right: -176px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 156px;
+            column-gap: 20px;
+            align-items: start;
+        }
+
+        .with-margin-note-main {
+            display: block;
+            min-width: 0;
+        }
+
+        .margin-note-marker {
+            margin-left: 0.12em;
+            color: #c83a31;
+            font-size: 0.7em;
+            line-height: 0;
+            vertical-align: super;
+            font-weight: 700;
+        }
+
+        .margin-note {
+            display: block;
+            margin-top: 0.28em;
+            padding-left: 11px;
+            border-left: 2px solid rgba(200, 58, 49, 0.38);
+            font-size: clamp(11.6px, 0.95vw, 12.4px);
+            line-height: 1.62;
+            color: #8e4c46;
+            text-align: left;
+            text-wrap: pretty;
+        }
+
+        .margin-note-index {
+            display: inline-block;
+            margin-right: 5px;
+            color: #c83a31;
+            font-weight: 700;
+        }
+
+        section {
+            margin-top: 34px;
+            padding-top: 6px;
+            scroll-margin-top: 92px;
+        }
+
+        #intro {
+            margin-top: 0;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: clamp(18px, 2.05vw, 22px);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: #111827;
+        }
+
+        h3 {
+            margin: 18px 0 8px;
+            font-size: 19px;
+            line-height: 1.38;
+            color: #1f3658;
+        }
+
+        .minor-subhead {
+            font-size: 17px;
+            line-height: 1.32;
+            font-weight: 600;
+            color: #1f3658;
+        }
+
+        p {
+            margin: 0 0 15px;
+            font-size: clamp(15px, 1.58vw, 17px);
+            color: var(--text);
+            text-wrap: pretty;
+            text-align: justify;
+            text-align-last: left;
+            hyphens: auto;
+        }
+
+        ul,
+        ol {
+            margin: 8px 0 16px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: clamp(15px, 1.5vw, 16.8px);
+            color: #1f2937;
+            line-height: 1.68;
+            text-wrap: pretty;
+        }
+
+        .article-body > * {
+            width: 100%;
+        }
+
+        section > p,
+        section > ul,
+        section > ol:not(.reference-list) {
+            max-width: none;
+        }
+
+        .figure-block {
+            --figure-radius: 18px;
+            --figure-inner-radius: 12px;
+            margin: 18px auto 14px;
+            width: 100%;
+        }
+
+        .hero-figure {
+            max-width: 690px;
+            margin: 34px auto 14px;
+        }
+
+        .plain-figure {
+            padding: 10px;
+            border: 1px solid rgba(214, 223, 234, 0.88);
+            border-radius: var(--figure-radius);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 251, 254, 0.98) 100%);
+            box-shadow: 0 12px 28px rgba(31, 61, 99, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .plain-figure > img,
+        .plain-figure > .zoomable-image-link {
+            display: block;
+            overflow: hidden;
+            border-radius: var(--figure-inner-radius);
+            background: #fff;
+        }
+
+        .plain-figure > img {
+            border: 1px solid rgba(220, 228, 238, 0.94);
+            box-shadow: 0 8px 18px rgba(31, 61, 99, 0.055);
+        }
+
+        .plain-figure > .zoomable-image-link {
+            border: 1px solid rgba(220, 228, 238, 0.94);
+            box-shadow: 0 8px 18px rgba(31, 61, 99, 0.055);
+        }
+
+        .plain-figure figcaption {
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        .comparison-card {
+            padding: 10px;
+            border: 1px solid rgba(229, 214, 210, 0.72);
+            border-radius: var(--figure-radius);
+            background: linear-gradient(145deg, rgba(255, 253, 250, 0.97) 0%, rgba(255, 248, 244, 0.96) 56%, rgba(251, 244, 245, 0.96) 100%);
+            box-shadow: 0 10px 24px rgba(78, 53, 24, 0.055), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .comparison-card .zoomable-image-link {
+            display: block;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 8px 18px rgba(100, 68, 36, 0.055);
+        }
+
+        .comparison-card figcaption {
+            padding-top: 10px;
+            font-size: 12.5px;
+            line-height: 1.55;
+            text-align: center;
+        }
+
+        .relation-figure {
+            max-width: 980px;
+            margin: 18px auto 18px;
+        }
+
+        .story-aside {
+            position: relative;
+            overflow: hidden;
+            margin: 18px 0 20px;
+            padding: 18px 20px 19px;
+            border: 1px solid rgba(201, 189, 176, 0.68);
+            border-top-color: rgba(201, 189, 176, 0.26);
+            border-radius: 18px;
+            background:
+                radial-gradient(120% 100% at 0% 0%, rgba(212, 226, 242, 0.18) 0%, rgba(212, 226, 242, 0) 34%),
+                radial-gradient(110% 95% at 100% 100%, rgba(236, 220, 208, 0.16) 0%, rgba(236, 220, 208, 0) 32%),
+                linear-gradient(180deg, rgba(255, 253, 249, 0.98) 0%, rgba(249, 245, 239, 0.98) 100%);
+            box-shadow:
+                0 14px 30px rgba(31, 61, 99, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -1px 0 rgba(225, 216, 206, 0.18);
+        }
+
+        .story-aside::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: 18px;
+            width: min(248px, 38%);
+            height: 20px;
+            border-radius: 0 0 20px 20px;
+            background:
+                linear-gradient(90deg,
+                    rgba(255, 206, 214, 0.44) 0%,
+                    rgba(255, 228, 190, 0.38) 28%,
+                    rgba(255, 245, 214, 0.3) 52%,
+                    rgba(213, 232, 255, 0.34) 76%,
+                    rgba(234, 218, 255, 0.3) 100%);
+            filter: blur(0.3px);
+            opacity: 0.98;
+        }
+
+        .story-aside::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background:
+                radial-gradient(34% 82% at 13% 0%, rgba(255, 232, 214, 0.14) 0%, rgba(255, 232, 214, 0.06) 40%, rgba(255, 232, 214, 0) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 36%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+        }
+
+        .story-aside p {
+            margin: 0 0 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-aside p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-aside-title {
+            display: inline-flex;
+            align-items: center;
+            margin: 2px 0 12px;
+            padding: 3px 10px 4px;
+            border-radius: 999px;
+            border: 1px solid rgba(201, 189, 176, 0.58);
+            background: linear-gradient(180deg, rgba(255, 253, 250, 0.94) 0%, rgba(251, 247, 241, 0.9) 100%);
+            box-shadow:
+                0 3px 10px rgba(31, 61, 99, 0.034),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            font-size: 12.5px;
+            color: #35506d;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: none;
+        }
+
+        .story-figure {
+            margin: 14px auto 12px;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .story-figure .zoomable-image-link {
+            display: block;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid rgba(214, 223, 234, 0.95);
+            background: linear-gradient(180deg, #ffffff, #f8fafc);
+            box-shadow: 0 14px 28px rgba(31, 61, 99, 0.08);
+        }
+
+        .story-figure figcaption {
+            padding-top: 8px;
+            text-align: center;
+            color: #677286;
+        }
+
+        .openclaw-side {
+            position: relative;
+            width: 100%;
+            max-width: var(--content-width);
+            margin: 16px auto 18px;
+        }
+
+        .openclaw-gallery {
+            display: grid;
+            grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+            gap: 18px;
+            aspect-ratio: 16 / 6.8;
+            align-items: stretch;
+        }
+
+        .openclaw-gallery .zoomable-image-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 8px 18px rgba(100, 68, 36, 0.055);
+            height: 100%;
+            min-height: 0;
+        }
+
+        .openclaw-gallery .zoomable-image-link > img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            margin: 0;
+        }
+
+        .wm-gallery {
+            grid-template-columns: minmax(0, 1.52fr) minmax(0, 1fr);
+            gap: 28px;
+            aspect-ratio: 27.6 / 10;
+            align-items: stretch;
+        }
+
+        .wm-gallery .zoomable-image-link > img {
+            object-fit: contain;
+            object-position: center center;
+        }
+
+        .wm-timeline {
+            --wm-gap: 18px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% - var(--wm-gap)) / 2);
+            gap: var(--wm-gap);
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(147, 94, 63, 0.45) rgba(147, 94, 63, 0.08);
+        }
+
+        .wm-timeline::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .wm-timeline::-webkit-scrollbar-track {
+            background: rgba(147, 94, 63, 0.08);
+            border-radius: 999px;
+        }
+
+        .wm-timeline::-webkit-scrollbar-thumb {
+            background: rgba(147, 94, 63, 0.38);
+            border-radius: 999px;
+        }
+
+        .wm-stage {
+            min-width: 0;
+            scroll-snap-align: start;
+        }
+
+        .wm-timeline .zoomable-image-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            padding: 16px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 8px 18px rgba(100, 68, 36, 0.055);
+        }
+
+        .wm-timeline .zoomable-image-link > img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            margin: 0;
+        }
+
+        .demo-gallery {
+            margin: 22px 0 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+            width: min(1180px, calc(100vw - 340px));
+            max-width: none;
+        }
+
+        .demo-group {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .demo-group-head {
+            margin: 0 0 16px;
+            max-width: min(820px, 100%);
+        }
+
+        .demo-gallery > p {
+            max-width: min(820px, 100%);
+        }
+
+        .demo-group-kicker {
+            margin: 0 0 6px;
+            font-size: 11.5px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6d7f98;
+            font-weight: 700;
+        }
+
+        .demo-group-title {
+            margin: 0;
+            color: #1b2940;
+            font-size: 24px;
+            line-height: 1.18;
+            letter-spacing: -0.02em;
+        }
+
+        .demo-group-desc {
+            margin: 8px 0 0;
+            color: #415168;
+            font-size: 14.4px;
+            line-height: 1.68;
+        }
+
+        .demo-group-note {
+            margin: 8px 0 0;
+            color: #314259;
+            font-size: 13.8px;
+            line-height: 1.72;
+        }
+
+        .demo-group-note strong {
+            color: #1d2b42;
+        }
+
+        .demo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .demo-shot {
+            margin: 0;
+            min-width: 0;
+            flex: 1 1 clamp(220px, calc(280px * var(--shot-ratio, 1.6)), 420px);
+        }
+
+        .demo-group.general .demo-shot {
+            flex: 0 1 calc((100% - 36px) / 3);
+            max-width: calc((100% - 36px) / 3);
+        }
+
+        .demo-shot-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: var(--shot-ratio, 1.6);
+            padding: 10px;
+            border: 1px solid rgba(214, 223, 234, 0.92);
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 10px 22px rgba(31, 61, 99, 0.05);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            cursor: zoom-in;
+        }
+
+        .demo-shot-media:focus-visible {
+            outline: 0;
+            border-color: rgba(102, 140, 194, 0.98);
+            box-shadow: 0 0 0 4px rgba(112, 149, 201, 0.18), 0 14px 26px rgba(31, 61, 99, 0.07);
+        }
+
+        .demo-shot:hover .demo-shot-media {
+            transform: translateY(-1px);
+            border-color: rgba(187, 202, 223, 0.98);
+            box-shadow: 0 14px 26px rgba(31, 61, 99, 0.07);
+        }
+
+        .demo-group.clean .demo-shot {
+            flex: 0 1 calc((100% - 36px) / 3);
+            max-width: calc((100% - 36px) / 3);
+        }
+
+        .demo-group.gui .demo-shot {
+            flex: 0 1 calc((100% - 54px) / 4);
+            max-width: calc((100% - 54px) / 4);
+        }
+
+        .demo-shot video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 10px;
+            object-fit: contain;
+            object-position: center center;
+            margin: 0;
+            background: #0b1020;
+            pointer-events: none;
+        }
+
+        .demo-shot figcaption {
+            margin: 8px 2px 0;
+            color: #4c5c71;
+            font-size: 12.5px;
+            line-height: 1.58;
+            text-align: left;
+        }
+
+        .demo-shot figcaption strong {
+            color: #21324a;
+        }
+
+        .evidence-gallery {
+            margin: 18px 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .evidence-card {
+            margin: 0;
+        }
+
+        .evidence-card .zoomable-image-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 10;
+            padding: 12px;
+            border: 1px solid rgba(214, 223, 234, 0.92);
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 10px 22px rgba(31, 61, 99, 0.05);
+        }
+
+        .evidence-card .zoomable-image-link > img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 10px;
+            object-fit: contain;
+        }
+
+        .evidence-card figcaption {
+            padding: 10px 2px 0;
+            color: #304156;
+            font-size: 13.6px;
+            line-height: 1.74;
+            text-align: left;
+        }
+
+        .evidence-card figcaption strong {
+            color: #192841;
+        }
+
+        .summary-block {
+            margin: 14px 0 18px;
+            border: 1px solid rgba(229, 214, 210, 0.72);
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(255, 253, 250, 0.97) 0%, rgba(255, 248, 244, 0.96) 56%, rgba(251, 244, 245, 0.96) 100%);
+            box-shadow: 0 12px 28px rgba(31, 61, 99, 0.055), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            max-height: 680px;
+            transform-origin: top center;
+            transition: max-height 0.42s ease, margin 0.42s ease, opacity 0.26s ease, transform 0.26s ease;
+            will-change: max-height, margin, opacity, transform;
+        }
+
+        .summary-block.is-collapsed {
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            margin-top: 0;
+            margin-bottom: 0;
+            pointer-events: none;
+        }
+
+        .summary-header {
+            padding: 14px 18px 8px;
+        }
+
+        .summary-kicker {
+            margin: 0;
+            font-size: 13px;
+            color: #1e3553;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .summary-note {
+            margin: 6px 0 0;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .summary-list {
+            counter-reset: summary;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 6px;
+        }
+
+        .summary-list li {
+            counter-increment: summary;
+            display: grid;
+            grid-template-columns: 18px minmax(0, 1fr);
+            gap: 8px;
+            align-items: start;
+            margin: 0;
+            padding: 9px 18px;
+            border-top: 0;
+            font-size: 13.9px;
+            line-height: 1.52;
+        }
+
+        .summary-list li:last-child {
+            padding-bottom: 18px;
+        }
+
+        .summary-list li > div {
+            padding: 3px 10px;
+            margin: -3px -10px;
+            border-radius: 12px;
+            color: #22314a;
+            background: transparent;
+        }
+
+        .summary-list li::before {
+            content: '✦';
+            color: #f4d56a;
+            background: linear-gradient(90deg, #0f8f7b 0%, #1aa58f 18%, #e7c35a 32%, #f4d56a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.2;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.08em;
+            padding-top: 3px;
+            filter: drop-shadow(0 0 4px rgba(231, 195, 90, 0.32));
+        }
+
+        .summary-list strong {
+            color: #1b2a42;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .summary-block {
+                transition: none;
+            }
+        }
+
+        .figure-block img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: var(--figure-inner-radius);
+            margin: 0 auto;
+        }
+
+        .figure-block figcaption {
+            margin: 0;
+            padding: 8px 0 0;
+            font-size: 13px;
+            color: var(--muted);
+            border: 0;
+            max-width: none;
+        }
+
+        .center-caption figcaption {
+            text-align: center;
+        }
+
+        .inline-ref {
+            font-size: 0.82em;
+            vertical-align: super;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .inline-ref a,
+        a.inline-ref {
+            border-bottom: 0;
+        }
+
+        .zoomable-image-link {
+            display: block;
+            border: 0;
+        }
+
+        .zoomable-image-link img {
+            cursor: zoom-in;
+        }
+
+        .image-lightbox {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            overflow: visible;
+            max-width: none;
+        }
+
+        .image-lightbox::backdrop {
+            background: rgba(17, 24, 39, 0.72);
+            backdrop-filter: blur(6px);
+        }
+
+        .image-lightbox-shell {
+            position: relative;
+        }
+
+        .lightbox-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .image-lightbox img {
+            display: block;
+            max-width: min(94vw, 1480px);
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 24px 54px rgba(15, 23, 42, 0.34);
+        }
+
+        .image-lightbox video {
+            display: block;
+            max-width: min(94vw, 1480px);
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 24px 54px rgba(15, 23, 42, 0.34);
+            background: #0b1020;
+        }
+
+        .image-lightbox img[hidden],
+        .image-lightbox video[hidden] {
+            display: none;
+        }
+
+        .lightbox-close,
+        .lightbox-download {
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(17, 24, 39, 0.76);
+            color: #fff;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-download:hover {
+            background: rgba(17, 24, 39, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .lightbox-close svg,
+        .lightbox-download svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+            fill: currentColor;
+        }
+
+        .divider {
+            margin: 34px 0;
+            border: 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .contract-table,
+        .evidence-table {
+            margin: 12px 0 18px;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14.5px;
+            line-height: 1.6;
+            background: linear-gradient(145deg, rgba(255, 252, 249, 0.97) 0%, rgba(255, 249, 245, 0.96) 100%);
+        }
+
+        .contract-table th,
+        .contract-table td,
+        .evidence-table th,
+        .evidence-table td {
+            border: 1px solid rgba(226, 212, 200, 0.82);
+            padding: 9px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .contract-table th,
+        .evidence-table th {
+            background: linear-gradient(145deg, rgba(255, 246, 238, 0.98) 0%, rgba(255, 241, 230, 0.97) 100%);
+            color: #223754;
+            font-weight: 700;
+        }
+
+        .contract-table td,
+        .evidence-table td {
+            background: rgba(255, 252, 249, 0.92);
+        }
+
+        .citation-card {
+            margin-top: 38px;
+            border: 0;
+            border-radius: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        .reference-list {
+            margin: 12px 0 0 20px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .reference-list li {
+            margin: 0 0 8px;
+            color: #5f697b;
+            line-height: 1.55;
+        }
+
+        .citation-title {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .acknowledge-note {
+            margin: 18px 0 22px;
+            padding: 14px 16px;
+            border: 1px solid rgba(214, 223, 234, 0.96);
+            border-radius: 14px;
+            background: linear-gradient(145deg, rgba(255, 251, 246, 0.98) 0%, rgba(247, 250, 255, 0.96) 100%);
+            box-shadow: 0 10px 22px rgba(31, 61, 99, 0.05);
+        }
+
+        .acknowledge-note strong {
+            color: #1d2b42;
+        }
+
+        .page-footer {
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 1260px) {
+            .reading-layout {
+                grid-template-columns: 200px minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 980px) {
+            :root {
+                --content-width: 100%;
+            }
+
+            .reading-layout {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .toc {
+                display: none;
+            }
+
+            .toc-mobile {
+                display: block;
+            }
+
+            .article-body {
+                max-width: 100%;
+            }
+
+            section > p,
+            section > ul,
+            section > ol:not(.reference-list) {
+                max-width: 100%;
+            }
+
+            .demo-gallery {
+                width: 100%;
+                left: auto;
+                transform: none;
+                gap: 26px;
+            }
+
+            .demo-group-head {
+                max-width: 100%;
+            }
+
+            .demo-group.general .demo-shot,
+            .demo-group.clean .demo-shot {
+                flex: 0 1 calc((100% - 18px) / 2);
+                max-width: calc((100% - 18px) / 2);
+            }
+
+            .demo-group.gui .demo-shot {
+                flex: 0 1 calc((100% - 36px) / 3);
+                max-width: calc((100% - 36px) / 3);
+            }
+
+            .with-margin-note {
+                width: 100%;
+                margin-right: 0;
+                grid-template-columns: 1fr;
+                row-gap: 8px;
+            }
+
+            .margin-note {
+                margin-top: 0;
+                max-width: 34ch;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .openclaw-gallery {
+                grid-template-columns: 1fr;
+                aspect-ratio: auto;
+            }
+
+            .wm-gallery {
+                gap: 16px;
+                aspect-ratio: auto;
+            }
+
+            .wm-timeline {
+                --wm-gap: 16px;
+                grid-auto-columns: 100%;
+            }
+
+            .openclaw-gallery .zoomable-image-link {
+                height: auto;
+            }
+
+            .openclaw-gallery .zoomable-image-link > img {
+                height: auto;
+            }
+
+            .demo-gallery {
+                gap: 20px;
+            }
+
+            .demo-group.gui .demo-shot {
+                flex: 0 1 calc((100% - 18px) / 2);
+                max-width: calc((100% - 18px) / 2);
+            }
+
+            .evidence-gallery {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .site-header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .citation-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .demo-shot {
+                flex-basis: 100%;
+            }
+
+            .demo-group.general .demo-shot,
+            .demo-group.clean .demo-shot,
+            .demo-group.gui .demo-shot {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="site-header-inner">
+        <a class="brand" href="../index.html">Mingchen Zhuge</a>
+        <div class="header-actions">
+            <a href="../blog/index.html">All Posts</a>
+            <a href="../index.html">Back Home</a>
+        </div>
+    </div>
+</header>
+
+<main class="page">
+    <div class="reading-layout">
+        <aside class="toc" aria-label="Table of contents">
+            <p class="toc-title">目录</p>
+            <ul class="toc-list">
+                <li><a href="#summary">先说结论</a></li>
+                <li><a href="#intro">引言</a></li>
+                <li><a href="#chapter-1">1）为什么是现在</a></li>
+                <li><a href="#chapter-2">2）什么是 NC，什么又算 CNC？</a></li>
+                <li><a href="#chapter-3">3）当前原型会长成什么样，以及它到底证明了什么</a></li>
+                <li><a href="#chapter-4">4）如果 NC 成立，软件、硬件和“程序”都会改变</a></li>
+                <li><a href="#citation">引用</a></li>
+            </ul>
+        </aside>
+
+        <article class="article-body">
+            <details class="toc-mobile">
+                <summary>目录</summary>
+                <ul class="toc-list">
+                    <li><a href="#summary">先说结论</a></li>
+                    <li><a href="#intro">引言</a></li>
+                    <li><a href="#chapter-1">1）为什么是现在</a></li>
+                    <li><a href="#chapter-2">2）什么是 NC，什么又算 CNC？</a></li>
+                    <li><a href="#chapter-3">3）当前原型会长成什么样，以及它到底证明了什么</a></li>
+                    <li><a href="#chapter-4">4）如果 NC 成立，软件、硬件和“程序”都会改变</a></li>
+                    <li><a href="#citation">引用</a></li>
+                </ul>
+            </details>
+
+            <section id="intro">
+                <div class="eyebrow-row">
+                    <p class="eyebrow">研究随笔 · Neural Computers</p>
+                    <p class="eyebrow-updated">最后更新：2026 年 3 月 14 日</p>
+                </div>
+                <h1>Neural Computer：第四个系统对象，正在出现</h1>
+                <p class="deck">TL;DR: 它不是更强的 agent 或 world model，而是在押注 Neural Computer 会成为下一种机器形态。</p>
+                <div class="title-links" aria-label="Paper and code links">
+                    <a class="title-link arxiv" href="https://arxiv.org/search/?query=Neural+Computers+Mingchen+Zhuge&amp;searchtype=all&amp;source=header" target="_blank" rel="noopener noreferrer" aria-label="Search related preprints on arXiv">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="2.5" y="3" width="19" height="18" rx="4.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
+                            <path d="M6.8 16.2L10 7.9h1.5l3.2 8.3h-1.8l-.7-2h-3l-.7 2H6.8zm3-3.5h2.1l-1-2.9-1.1 2.9z"></path>
+                            <path d="M16.4 8.2h1.5l-3.7 8h-1.5l3.7-8z"></path>
+                        </svg>
+                        <span>arXiv Search</span>
+                    </a>
+                    <a class="title-link github" href="https://github.com/metauto-ai" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 .297a12 12 0 0 0-3.792 23.386c.6.111.82-.257.82-.574 0-.284-.011-1.038-.016-2.038-3.338.725-4.042-1.609-4.042-1.609-.546-1.387-1.333-1.755-1.333-1.755-1.09-.745.082-.729.082-.729 1.205.085 1.84 1.236 1.84 1.236 1.071 1.835 2.809 1.305 3.495.998.107-.775.418-1.305.761-1.605-2.665-.304-5.467-1.334-5.467-5.932 0-1.31.469-2.381 1.236-3.221-.124-.304-.535-1.523.118-3.176 0 0 1.008-.322 3.301 1.23a11.49 11.49 0 0 1 3.006-.404c1.02.005 2.048.138 3.006.404 2.292-1.552 3.299-1.23 3.299-1.23.653 1.653.242 2.872.118 3.176.768.84 1.235 1.911 1.235 3.221 0 4.609-2.804 5.628-5.475 5.924.43.371.814 1.102.814 2.222 0 1.605-.015 2.897-.015 3.29 0 .319.216.688.825.572A12 12 0 0 0 12 .297z"></path>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+
+                <figure class="figure-block hero-figure">
+                    <img src="assets/teaser_blog.svg" alt="Neural Computer teaser diagram" loading="eager" fetchpriority="high" decoding="async">
+                </figure>
+
+<p>过去几十年，计算机逐渐成为人类完成任务的重要媒介。最近几年，AI 也开始进入这个位置：它不再只回答问题，还开始调用工具、操作界面、参与真实工作流。于是，一个更深的问题出现了：我们期待 AI 继续使用计算机呢？还是期待它最终成为一种计算机？</p>
+                <p>Neural Computer（神经计算机，NC）想讨论的，正是这个问题。它关心的，不是 AI 在现有计算机上把事情做得更多，而是模型能不能开始接手一部分原本属于机器运行本身的职责。</p>
+                <p>先澄清一下：这里说的 NC，不是 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件。本文更想讨论的，是一台 learning machine 会不会从“使用计算机”走向“成为计算机”。</p>
+                <p>它存在的价值不是更强的 agent，不是计算机环境的 world model，也不是传统计算机上外挂的一层智能。它真正关心的，是让原本常常外包给程序栈、工具链和控制层的那部分系统职责，开始进入模型实际依赖的 Runtime。我相信，这个设想其实早已在不少人的脑海里若隐若现；我想把这种状态称为“前共识”。但到现在，还没有一篇论文或博客把它讲得足够清楚、足够完整。
+                </p>
+
+<div id="summary" class="summary-block is-collapsed" role="note" aria-label="TLDR">
+                    <div class="summary-header">
+                        <p class="summary-kicker">先说结论</p>
+                    </div>
+                    <ol class="summary-list">
+                        <li><div><strong>Neural Computer（NC）讨论的，不是“怎样让 agent 更强”，也不是“怎样做一个模拟计算机的世界模型”。</strong> 它真正追问的是：模型能不能承担计算机 Runtime 的核心职责。</div></li>
+                        <li><div><strong>它和另外三个系统对象并列。</strong> 传统计算机负责稳定执行，Agent 负责在既有计算机上完成任务，World Model 负责学习环境动态，而 NC 试图让 learning machine 本身成为运行中的机器。</div></li>
+                        <li><div><strong>Completely Neural Computer（完备神经计算机，CNC）是 NC 的完成态。</strong> 能力可以被安装、稳定复用、显式更新，并且变化可以被追踪、回放和回滚。</div></li>
+                        <li><div><strong>当前原型已经开始证明一部分早期 Runtime 原语。</strong> 尤其是 I/O 对齐和短时程控制；但复用、治理、一致性和符号稳定性还远没有真正建立起来。</div></li>
+                        <li><div><strong>真正的门槛不是下一次系统展示。</strong> 而是 <code>run / update separation</code> 能否成立，以及状态边界、更新边界和证据边界能否被明确写进 Runtime。</div></li>
+                        <li><div><strong>如果这些条件成立，讨论的就不再只是“更强的 agent”。</strong> learning machine 本身会开始成为“计算机”。</div></li>
+                    </ol>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="chapter-1">
+                <h2>1）为什么是现在：“一种新的系统对象”正在出现</h2>
+                <p>今天同时发生着三件事。</p>
+                <p><strong>第一，agent 变得越来越会做事。</strong> 从 2023年的 MetaGPT (“古早” Coding Agents之一)<a class="inline-ref" href="#ref-metagpt">[3]</a> 只能勉强写出几百行代码，到2025年 Cursor、Codex 和 Claude Code 已经成为程序员生产力标配工具，再到今天 OpenClaw<a class="inline-ref" href="#ref-openclaw">[4]</a> 真正走入大众视野，大家关心的已经不只是 agent 偶尔能把一件事做成，而是它能不能进入真实生产或日常生活，并稳定、持续地替你处理一系列或琐碎或高级的人类事务。</p>
+                <p>对 agent 来说，共识是：bottleneck 在于（1）长时程任务怎样保持稳定，（2）能力怎样沉淀，（3）流程怎样持续复用。眼下的解决路径，仍主要是在 agent 的 scaffold（或 harness）一侧做加法：用更强的记忆、更长的工作流和更稳的行动闭环，尽可能把事情做成。再往前推，更激进的一条路径是递归式自我改进：模型开始训练下一代模型，agent 开始持续改写自身<a class="inline-ref" href="#ref-recursive-self-improvement">[5]</a>。</p>
+                <figure class="figure-block openclaw-side comparison-card">
+                    <div class="openclaw-gallery">
+                        <a class="zoomable-image-link" href="assets/agent1.png" aria-label="放大查看 MetaGPT 论文截图">
+                            <img src="assets/agent1.png" alt="MetaGPT paper front page" loading="lazy" decoding="async">
+                        </a>
+                        <a class="zoomable-image-link" href="assets/openclaw2.png" aria-label="放大查看 OpenClaw 仓库热度图">
+                            <img src="assets/openclaw2.png" alt="OpenClaw repository popularity chart" loading="lazy" decoding="async">
+                        </a>
+                    </div>
+                    <figcaption>Agent 正在完成从原型实验，到专业生产力工具，再到大众日常基础设施的转变。<a href="#ref-metagpt">[3]</a><a href="#ref-openclaw">[4]</a></figcaption>
+                </figure>
+                <p><strong>第二，world model 变得越来越擅长建模动态环境。</strong> 它本来就指向环境演化；更值得注意的是，这种能力开始进入真实系统。尤其在现实里难以低成本、反复采集的 corner case 上，rollout 正被直接用进预测、规划、控制和训练。沿着这条线看，从 Jürgen Schmidhuber 在 1990 年提出的 <em>Making the World Differentiable</em><a class="inline-ref" href="#ref-making-the-world-differentiable">[6]</a>，到 David Ha 和 Jürgen Schmidhuber 在 2018 年的《World Models》<a class="inline-ref" href="#ref-world-models">[7]</a>，再到现在 Waymo 把 world model 用进自动驾驶仿真与训练<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-waymo-world-model-post">[9]</a>，这条路线已经不只是研究方向，而是在变成系统能力。</p>
+                <p>对 world model 来说，关键不是把任务做成，而是把未来先展开。它补的不是执行本身，而是系统的可推演性：采取某个动作，环境会往哪里走；即使不直接行动，哪些未来也值得先生成、先试验、先暴露风险。今天这条路线已经分出几种明显方向：在自动驾驶和 physical AI 里，它更像一种仿真与合成数据引擎，用来补足真实世界里昂贵、危险或稀缺的数据，例如 Waymo World Model 和 NVIDIA Cosmos<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-cosmos-physical-ai">[10]</a>；在 spatial intelligence 里，它开始追求可生成、可进入、可持续交互的 3D 世界，例如 World Labs 的 Marble<a class="inline-ref" href="#ref-worldlabs-marble">[11]</a>；在更偏实时互动世界的方向上，生成模型已经开始从静态内容生成走向可控、可交互、可探索的环境生成，代表性例子包括 GameNGen 对 DOOM 的实时神经模拟<a class="inline-ref" href="#ref-gamengen">[12]</a>，以及 Google DeepMind 的 Genie 2 / Genie 3<a class="inline-ref" href="#ref-genie-2">[13]</a><a class="inline-ref" href="#ref-genie-3">[14]</a>。这些方向看起来差异很大，但本质上都在做同一件事：把对环境未来演化的模拟，变成系统内部的一种能力。</p>
+                <figure class="figure-block openclaw-side comparison-card">
+                    <div class="wm-timeline">
+                        <div class="wm-stage">
+                            <a class="zoomable-image-link" href="assets/js_mtwd.png" aria-label="放大查看 1990 年 Making the World Differentiable 论文图">
+                                <img src="assets/js_mtwd.png" alt="Diagram from Jürgen Schmidhuber's 1990 Making the World Differentiable paper" loading="lazy" decoding="async">
+                            </a>
+                        </div>
+                        <div class="wm-stage">
+                            <a class="zoomable-image-link" href="assets/wm1.png" aria-label="放大查看 World Models 论文截图">
+                                <img src="assets/wm1.png" alt="World Models paper front page" loading="lazy" decoding="async">
+                            </a>
+                        </div>
+                        <div class="wm-stage">
+                            <a class="zoomable-image-link" href="assets/wm2.png" aria-label="放大查看 Waymo World Model 相关截图">
+                                <img src="assets/wm2.png" alt="Waymo World Model social post screenshot" loading="lazy" decoding="async">
+                            </a>
+                        </div>
+                    </div>
+                    <figcaption>从 1990 到 2018 再到现在：world model 从早期可微世界建模设想，走向 Waymo World Model 代表的自动驾驶仿真与训练<a href="#ref-making-the-world-differentiable">[6]</a><a href="#ref-world-models">[7]</a><a href="#ref-waymo-world-model-blog">[8]</a><a href="#ref-waymo-world-model-post">[9]</a></figcaption>
+                </figure>
+                <p><strong>第三，传统计算机在 AI 时代的结构性摩擦越来越明显。</strong> 今天大量任务都是开放式的、长时程的、持续交互的。传统软件栈依然极其强大，但在许多以自然语言、示范、界面操作和弱约束为主的场景中，它已经显得笨重。</p>
+                <p>传统计算机本身也在为 AI 重写底座。芯片、编译器、内存系统、软件栈都在变得更 model-friendly。但这些变化多数仍然发生在既有计算范式内部：它们让旧机器更适合 AI，却没有改写“机器是什么”。像 Taalas 这样的路线则更进一步，开始把特定模型做成一种部署单元：模型不再只是跑在机器上的负载，而是在逼近“按模型组织硬件”这条线<a href="#ref-taalas-ubiquitous-ai">[15]</a>。但至少今天，这还只是推理部署单元层面的变化，还谈不上一个已经成立的通用新系统对象。</p>
+                <p>把这三件事放在一起，问题就更具体了：如果 agent 在变得更会做事，world model 在变得更会推演，而传统计算机也在为 AI 重写底座，那么会不会出现一种新的 Runtime，把执行、rollout 和能力沉淀统一进同一台 learning machine 里？</p>
+                <p>从关系结构上看，这对应的是人和机器之间主关系的一次迁移：在传统计算里，人主要和 computer 交互；到了 agent 时代，人更多是和 agent 交互，再由 agent 去调用 computer 把事情做成。world model 更像一个并行的预测层：它既可以服务于 human，也可以服务于 agent，但本身不负责把事情做成。再往前推，NC 要改的就不再是中介，而是机器本身：它不是在人和 computer 之间再加一个更强的 agent，而是试图把今天分散在 computer、agent 和 world model 之间的职责，收拢到同一台 learning machine 内部。那时，人面对的就不再只是“agent 代替自己调用 computer”，而是直接使用这样一台神经计算机。</p>
+                <figure class="figure-block relation-figure comparison-card">
+                    <a class="zoomable-image-link" href="assets/relations.svg" aria-label="放大查看人机关系变化图">
+                        <img src="assets/relations.svg" alt="How the human-machine relation changes" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption>人机关系如何变化：过去更像是 Human → Computer；到了 agent 时代，关系更像 Human → Agent → Computer，而 World Model 更多作为并行的预测层出现；如果 NC 成立，人将更直接面对一台 Neural Computer。</figcaption>
+                </figure>
+                <p>这也说明，交互本身会开始带有“编程”的意味。今天，自然语言指令、键鼠轨迹、屏幕变化和任务反馈，大多只是过程日志；在 NC 的设定里，它们会变成塑造未来行为的材料。今天我们主要通过代码安装能力；以后，示范、交互轨迹和约束本身，也可能成为能力进入 Runtime 的入口。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="chapter-2">
+                <h2>2）什么是 NC，什么又算 CNC？</h2>
+                <p>先看一张表：它把传统计算机、Agent、World Model 和 Neural Computer 放到同一把“尺子”上比较。看完这张表，大家应该就能一眼看出它们的区别和联系：它们各自围绕什么组织，source of truth 主要落在哪里，又分别承担什么职责。</p>
+                <table class="contract-table">
+                    <thead>
+                        <tr>
+                            <th>系统对象</th>
+                            <th>围绕什么组织</th>
+                            <th>source of truth 主要在哪里</th>
+                            <th>主要职责</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>传统计算机</td>
+                            <td>程序</td>
+                            <td>程序与程序栈</td>
+                            <td>稳定执行程序</td>
+                        </tr>
+                        <tr>
+                            <td>Agent</td>
+                            <td>任务</td>
+                            <td>外部环境、工具链与工作流</td>
+                            <td>在既有环境中完成任务</td>
+                        </tr>
+                        <tr>
+                            <td>World Model</td>
+                            <td>环境演化</td>
+                            <td>状态演化模型</td>
+                            <td>预测与推演环境变化</td>
+                        </tr>
+                        <tr>
+                            <td>Neural Computer</td>
+                            <td>Runtime</td>
+                            <td>Runtime 里的能力与状态</td>
+                            <td>让机器持续运行、沉淀能力并治理更新</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>这张表已经很直观了，我就不再用一大段抽象描述去重复它。接下来不如直接设想一下：如果 NC 已经存在，人会怎么使用它？对传统计算机，你安装的是软件；对 agent，你描述的是任务；对 NC，你更像是在给机器安装能力，并期待这些能力以后继续留在机器里。</p>
+
+                <h3 class="minor-subhead">如果它成立，机器会长得像什么？</h3>
+                <p><strong>第一，它未必会继续朝“更像大脑、更像感知模型”的方向长。</strong> 主流模型作者通常喜欢把自己的结构说得更像人类大脑，或者模拟动物感知。但在我的想法里，当规模继续上去，NC 更可能朝更稀疏、更可解释、更像 circuit 的方向演化。未来的 CNC 也许不是一团难以追踪的连续表征，而会更像一个可路由、可组合、强解释性的逻辑底座。它不一定模仿动物感知或人脑，反而可能更接近一种带有 NAND 气质的神经网络：离散、稀疏、局部可验证。至少目前，这条路还没有被系统展开；但我有点惊喜地发现，OpenAI 最近在 weight-sparse transformers 上做的一些工作，至少说明了一件事：把神经网络做得更稀疏、更局部、更可路由，未必只是为了好解释，它本身就可能是一条机器式架构路线<a class="inline-ref" href="#ref-openai-sparse-circuits">[16]</a>。</p>
+                <p><strong>第二，它也未必总靠整体改参数来升级自己。</strong> 更自然的图景是：用户输入不只触发一次性行为，而是逐渐安装、调用、组合并保留可复用的 neural routines，甚至形成以后还能继续调用的内部 executor。至少在功能分工上，这更像传统计算机里的“内存”而不是处理器：升级未必意味着重写整台机器的本体，也可能只是把这些新结构稳定写进一层可寻址、可调用、可保留的内部状态。沿着这条线往前推，升级不再只是“换一个更大的 model”，而更像是在机器内部持续安装新部件。有意思的是，若干年前的 NPI 和 HyperNetworks 可以被看成一些相似但还不完整的早期思路：前者试图把复杂程序拆成可调用、可组合的子程序<a class="inline-ref" href="#ref-neural-programmer-interpreter">[17]</a>；后者则提示，机器甚至可能继续生成下游 neural modules，去扩展自己的能力边界<a class="inline-ref" href="#ref-hypernetworks">[18]</a>。当然，我认为野心可以更大一点，一个足够强的 Neural Computer，完全可能直接生成新的 (sub-)NNs，再把它们以可插拔的方式挂进自身内部，像今天安装或卸载软件一样自然，只是这一次省掉了手写代码和编译这一层中介。</p>
+                <p><strong>第三，它还可能把 world model 式的 rollout 逐渐收进 Runtime 里。</strong> 到那时，rollout 不再只是外部的训练工具或规划模块，而会开始变成机器的日常机制。人类可以给出输入、期待的输出（GT），也可以只提前写好评估指标；甚至在某一轮里什么都不再给，Runtime 也可以在内部持续 self-play、自测、筛选和压缩候选做法，再把有效改进沉淀成下一轮能力更新。理想状态下，人去睡觉的时候，机器并不是停着的；它还在内部完成评估、试错和自我迭代。当然，这一切的前提不是放任系统偷偷变化，而是 update 路径本身可被治理。</p>
+                <p>这么一放，NC 的对象感其实就出来了：关键不在于它一次能做多少事，而在于能力是否真的开始住进 Runtime，并在那里被安装、复用、执行和治理。CNC 则是这个想法的完成态。按原论文的定义，一个 NC 实例只有在同时满足四个条件时，才可以算作 CNC：它必须是 <em>Turing complete</em>、<em>universally programmable</em>、除非被显式重编程否则保持 <em>behavior-consistent</em>，并真正体现 NC 相对传统计算机的架构与编程语义。下面这张表，就是对原论文这四条要求的一个更直白的总结。</p>
+                <table class="contract-table">
+                    <thead>
+                        <tr>
+                            <th>CNC 条件</th>
+                            <th>更直白地说</th>
+                            <th>工程上大概要看到什么</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><em>Turing complete</em></td>
+                            <td>不是只能完成几类固定任务，而是在原则上具备通用计算的表达能力。</td>
+                            <td>但“可表达”不等于“可执行”：真正要看的是，随着有效 memory 和 context 增长，同一个 NC 能否稳定承接更长、更复杂的算法过程，而不是任务一拉长就换一种失效方式。</td>
+                        </tr>
+                        <tr>
+                            <td><em>Universally programmable</em></td>
+                            <td>输入给它的，不该只触发一次行为，而应能真正安装成以后还能调用的 routine 或 executor。</td>
+                            <td>能力可以被安装、调用、组合、保留；一旦进入 Runtime，就能跨任务稳定复用，而不是每次重新教一遍或重新外包给工具链。</td>
+                        </tr>
+                        <tr>
+                            <td><em>Behavior-consistent</em></td>
+                            <td>日常使用不应偷偷改变机器；行为变化只能来自显式更新。</td>
+                            <td>同版本行为可复现，执行与更新轨迹都可追踪，出了问题能 replay / rollback，长时程 drift 可以被测量和治理。</td>
+                        </tr>
+                        <tr>
+                            <td><em>Machine-native semantics</em></td>
+                            <td>它不只是用神经网络去模仿旧计算机，而是开始长出自己的机器语义和编程方式。</td>
+                            <td>神经底座能靠组合、路由、连续状态和内部执行结构带来传统栈不擅长的能力；同时，instructions、demonstrations、traces 和 constraints 本身开始成为编程入口，而不再只有手写代码。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr class="divider">
+
+            <section id="chapter-3">
+                <h2>3）为什么论文当前原型会长成这样，以及它到底证明了什么</h2>
+				                <p>我真正期待的 Neural Computer 周期，大概要再过三年才会到来。而在那之前，更需要有人先把 Neural Computer 讲清楚：它到底是什么，我们又为什么需要它。也正因为如此，前面的 1）和 2）章节，其实都走在当前 3）这一原型前面。我先叠个甲：论文里用视频生成模型来建模 NC，大概率不是 NC 的终局形态。但放在今天，它仍然是我认为最快把像素、动作和时间 rollout 统一进一个端到端原型的路径。换句话说，它更像眼下最顺手的统一载体。</p>
+                <aside class="story-aside" role="note" aria-label="一个有趣的事">
+                    <p class="story-aside-title">一个有趣的事</p>
+		                    <p>这个小故事和 Neural Computer 本身无关，但能从侧面说明一件事：从“前共识”走到被广泛接受，往往需要一段不短的沉默期。我自己一直受 Gödel Machine 和 ultraintelligent machine 这些想法影响<a class="inline-ref" href="#ref-godel-machines">[30]</a><a class="inline-ref" href="#ref-ij-good-ultraintelligent-machine">[29]</a>。所以在 2023 年，尽管那时基础模型的 intelligence 还远远不够，Coding Agent 也还只是萌芽期，我就有一个很强的判断：Recursive Self-Improvement 和 Learning from Experience 会托基础模型和 Coding Agents 的福，真的实现。我还是把这段判断写进了 MetaGPT outlook。</p>
+                    <figure class="figure-block story-figure">
+                        <a class="zoomable-image-link" href="assets/metagpt_outlook.png" aria-label="放大查看 MetaGPT outlook 原始图">
+                            <img src="assets/metagpt_outlook.png" alt="MetaGPT outlook original screenshot mentioning Recursive Self-Improvement and Learning from Experience" loading="lazy" decoding="async">
+                        </a>
+	                        <figcaption>2023 年 9 月，我在 MetaGPT outlook 里写下的 Recursive Self-Improvement 片段。</figcaption>
+                    </figure>
+	                    <p>后来，我自己也贡献了 GPTSwarm 和 Agent-as-a-Judge 这些相关工作<a class="inline-ref" href="#ref-gptswarm">[24]</a><a class="inline-ref" href="#ref-agent-as-a-judge">[25]</a>；也将在 ICLR 2026 举办第一届 AI with Recursive Self-Improvement 研讨会<a class="inline-ref" href="#ref-recursive-workshop">[27]</a>。今天回头看，这条判断之所以会在 2025 到 2026 密集浮到台前，一方面是因为 Learning from Experience 被 David Silver 和 Richard Sutton 在 2025 年更明确地命名并推到前台<a class="inline-ref" href="#ref-era-of-experience">[19]</a>；另一方面，则是因为 Recursive Self-Improvement 在这段时间里被顶咖讨论得越来越具体：</p>
+	                    <p>Sam Altman 在 2025 年 6 月把“用现有工具帮助我们找到新的科学洞见，并帮助我们创造更好的 AI 系统”称作 recursive self-improvement 的 larval version<a class="inline-ref" href="#ref-gentle-singularity">[20]</a>；Dario Amodei 在 2026 年 1 月把它写成一个已经启动的自我加速闭环，并判断 1 到 2 年内就可能走到“当前一代 AI 自主构建下一代”<a class="inline-ref" href="#ref-dario-adolescence-of-technology">[21]</a>；Demis Hassabis 在同月的 Davos 对谈里更谨慎一些，把问题收束到自我改进闭环能否在没有人类介入的情况下真正闭合，以及这种系统本身的风险<a class="inline-ref" href="#ref-demis-hassabis-davos">[22]</a>；Elon Musk 的公开表述则更激进一些，更接近把它看成一个已经开始滚动的自增强过程<a class="inline-ref" href="#ref-elon-musk-rsi">[28]</a>。</p>
+	                    <p>但在 2023 年，它们（RSI, Learning from Experience）还远没有成为主流叙事。也正因为有这个时间差，我会觉得今天的 Neural Computer 也处在一个相似的周期里。</p>
+                </aside>
+                <p>我们正式进入这一章节的正题。先别急着分析方法，请读者先把下面这组视频当成偶然刷到的终端录屏去看。如果在第一眼，尤其是不认真看的那几秒里，你已经有一点“这像是真的”感觉，那么这篇论文想建立的第一层直觉，其实就已经成立了。</p>
+                <p>因为作者并不是一上来就要证明“神经计算机已经会推理、会编程、会长期运行”这么重的命题；他们先做的，是把最外层的 runtime 表象稳住，让模型先学会屏幕上那些最容易被人忽视、却最构成“这就是一台机器正在运行”的东西：终端几何、ANSI 配色、光标显隐、输入节奏、长日志滚动，以及动作之后界面怎样继续往前走。</p>
+                <p>训练方式也故意保持得很朴素：底座就是 Wan2.1<a class="inline-ref" href="#ref-wan-model">[31]</a>，CLI 这边把任务当成 text-and-image-to-video，用 caption 和首帧去驱动 latent rollout；GUI 这边则在同一个 backbone 上额外接入 action encoder，并把动作以不同深度注入 transformer。也正因为框架没有玩太多花活，后面几组结果里真正起作用的东西才更容易被看清。更重要的是，作者不是只放一组“很像”的 demo 就收手，而是故意搭了三层台阶：先用公开终端回放把开放世界终端动态学出来，再用显式脚本终端轨迹把动作因果钉牢，最后推到真实 GUI 桌面，去看点击、悬停、键盘输入和窗口切换能不能真的驱动状态变化。下面就沿着这三层往上走。</p>
+
+                <div class="demo-gallery" aria-label="NC demo gallery">
+                    <section class="demo-group general" aria-label="CLIGen General demos">
+                        <div class="demo-group-head">
+                            <p class="demo-group-kicker">CLIGen (General)</p>
+                            <h4 class="demo-group-title">1）先看 CLIGen (General)：不认真看时，已经有点以假乱真</h4>
+                            <p class="demo-group-desc">这一组最适合先用肉眼扫过去。如果我不先说这是生成视频，在不认真看的时候，它已经很像真实的终端录屏；真正该盯的，是终端几何、配色、光标和滚动节奏能不能一直稳住。</p>
+                        </div>
+                        <div class="demo-grid general">
+                            <figure class="demo-shot" style="--shot-ratio: 0.743;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen General demo 337321_0031">
+                                        <source src="assets/demos/CLIGen/general/337321_0031_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>337321_0031</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 0.743;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen General demo 438053_0051">
+                                        <source src="assets/demos/CLIGen/general/438053_0051_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>438053_0051</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 0.743;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen General demo 441366_0002">
+                                        <source src="assets/demos/CLIGen/general/441366_0002_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>441366_0002</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 0.743;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen General demo 445257_0019">
+                                        <source src="assets/demos/CLIGen/general/445257_0019_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>445257_0019</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 0.743;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen General demo 520570_0033">
+                                        <source src="assets/demos/CLIGen/general/520570_0033_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>520570_0033</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 0.743;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen General demo 548330_0162">
+                                        <source src="assets/demos/CLIGen/general/548330_0162_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>548330_0162</strong></figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <p>最外层这组对应的是 CLIGen (General)：大约 82 万段公开 <code>asciinema .cast</code> 轨迹，被用官方工具回放，再用 <code>agg</code> 和 <code>ffmpeg</code> 渲染成视频。这里保留的不是抽象“终端语义”，而是终端真正让人信服的那些细枝末节：palette transition、cursor state、terminal geometry、长日志滚动、全屏 TUI、进度条和状态栏。作者还把底层 buffer、时间轴和键盘事件对齐起来，再自动补齐多档文本描述，去给这些片段生成 prompt。</p>
+                    <p>为什么一定要先看这一步？因为它最像“先把读者骗过第一眼”。如果 CLIGen (General) 都做不到，后面再谈动作、控制、乃至 Neural Computer 都会显得太早。但它一旦成立，你就会意识到：模型至少已经开始把开放世界终端的外部动态压进自己的 rollout 里了。只是到这一步，我们还不能说它真的“理解”了终端，只能说它先学会了终端作为 runtime 的表象。</p>
+                    <section class="demo-group clean" aria-label="CLIGen Clean demos">
+                        <div class="demo-group-head">
+                            <p class="demo-group-kicker">CLIGen (Clean) / Math</p>
+                            <h4 class="demo-group-title">2）再看 REPL 和 Math：它不只是在“画终端”</h4>
+                            <p class="demo-group-desc">再往下一层看，就不是“像不像终端”了，而是它有没有一点真正的 REPL 感：输入、编辑、回车、回显，以及一些简单 math 过程能不能被承接。</p>
+                        </div>
+                        <div class="demo-grid clean">
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_001886">
+                                        <source src="assets/demos/CLIGen/clean/sft_001886_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_001886</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_002943">
+                                        <source src="assets/demos/CLIGen/clean/sft_002943_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_002943</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_002978">
+                                        <source src="assets/demos/CLIGen/clean/sft_002978_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_002978</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_008079">
+                                        <source src="assets/demos/CLIGen/clean/sft_008079_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_008079</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_013895">
+                                        <source src="assets/demos/CLIGen/clean/sft_013895_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_013895</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_014225">
+                                        <source src="assets/demos/CLIGen/clean/sft_014225_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_014225</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_015216">
+                                        <source src="assets/demos/CLIGen/clean/sft_015216_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_015216</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_015675">
+                                        <source src="assets/demos/CLIGen/clean/sft_015675_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_015675</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_032966">
+                                        <source src="assets/demos/CLIGen/clean/sft_032966_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_032966</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_052862">
+                                        <source src="assets/demos/CLIGen/clean/sft_052862_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_052862</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_142331">
+                                        <source src="assets/demos/CLIGen/clean/sft_142331_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_142331</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Clean demo sft_161543">
+                                        <source src="assets/demos/CLIGen/clean/sft_161543_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_161543</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Math demo sft_000852">
+                                        <source src="assets/demos/CLIGen/math/sft_000852_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_000852</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Math demo sft_008469">
+                                        <source src="assets/demos/CLIGen/math/sft_008469_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_008469</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Math demo sft_008589">
+                                        <source src="assets/demos/CLIGen/math/sft_008589_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_008589</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.778;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="CLIGen Math demo sft_008993">
+                                        <source src="assets/demos/CLIGen/math/sft_008993_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>sft_008993</strong></figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <p>但如果只停在 CLIGen (General)，你完全可以说：这还只是把终端“画得更像”。所以作者又单独做了 CLIGen (Clean)：用开源 <code>vhs</code> 工具把终端交互写成脚本，在 Docker 环境里重复执行，得到显式动作、节奏更干净、因果关系更硬的终端轨迹。这里大约写了 25 万条脚本，过滤后保留下来两块数据：约 7.8 万条 regular traces，以及约 5 万条 Python math validation traces；caption 也不再靠模型脑补，而是直接从脚本本身导出。</p>
+                    <p>这一步的意义，是把问题从“像不像一段终端录屏”推进到“它有没有一点真正的 REPL 感”。你现在看的不该只是配色和滚动，而要去盯输入、编辑、回车、回显、报错、以及局部字符更新是不是能被动作带着走。换句话说，CLIGen (Clean) 不是为了让 demo 更花，而是为了把 action-to-pixel causality 钉住。</p>
+                    <p>结果也很有意思。OCR character accuracy 从 0.03 拉到 0.54，exact-line 到 0.31，说明字符已经开始往对的位置落；但如果把问题逼到最硬的符号层，CLI 算术原生只有 4%，靠 reprompt 才能到 83%。这恰好给出一个很诚实的结论：当前原型已经不只是“会画终端”，但也远远不能说它已经长出了可靠的原生符号能力。它更像是在把交互形态和局部因果先学进去，而不是已经把推理底座一并解决了。</p>
+                    <section class="demo-group gui" aria-label="GUIWorld demos">
+                        <div class="demo-group-head">
+                            <p class="demo-group-kicker">GUIWorld</p>
+                            <h4 class="demo-group-title">3）再看 GUIWorld：界面操控也开始成立</h4>
+                            <p class="demo-group-desc">到了 GUI，真正要看的也不是画面顺不顺眼，而是点击、悬停、切换窗口、编辑字段之后，界面有没有真的往对的状态走。</p>
+                        </div>
+                        <div class="demo-grid gui">
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758884565_0 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758884565_0_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758884565_0 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758884565_0 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758884565_0_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758884565_0 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758884565_1 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758884565_1_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758884565_1 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758884565_1 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758884565_1_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758884565_1 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_102 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_102_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_102 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_102 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_102_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_102 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_13 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_13_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_13 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_13 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_13_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_13 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_163 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_163_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_163 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_163 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_163_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_163 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_16 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_16_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_16 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_16 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_16_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_16 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_193 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_193_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_193 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_193 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_193_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_193 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_1 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_1_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_1 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_1 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_1_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_1 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_225 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_225_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_225 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_225 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_225_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_225 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_275 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_275_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_275 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_275 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_275_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_275 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_308 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_308_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_308 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_308 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_308_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_308 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_30 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_30_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_30 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_30 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_30_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_30 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_323 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_323_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_323 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_323 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_323_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_323 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_348 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_348_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_348 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_348 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_348_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_348 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_354 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_354_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_354 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_354 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_354_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_354 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_384 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_384_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_384 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_384 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_384_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_384 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_5 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_5_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_5 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_5 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_5_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_5 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_605 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_605_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_605 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_605 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_605_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_605 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_63 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_63_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_63 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_63 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_63_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_63 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_67 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_67_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_67 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_67 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_67_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_67 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_6 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_6_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_6 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_6 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_6_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_6 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_715 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_715_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_715 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_715 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_715_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_715 · Generated</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_7 GT">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_7_gt_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_7 · GT</strong></figcaption>
+                            </figure>
+                            <figure class="demo-shot" style="--shot-ratio: 1.333;">
+                                <div class="demo-shot-media">
+                                    <video autoplay muted loop playsinline preload="none" aria-label="GUIWorld instruction_1758885160_7 Generated">
+                                        <source src="assets/demos/GUIWorld/instruction_1758885160_7_generated_video.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <figcaption><strong>instruction_1758885160_7 · Generated</strong></figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                </div>
+                <p>真正让这条线从“终端视频生成”往“运行中的机器”再推一步的，是 GUIWorld。因为到了 GUI，终端里很多可被文本吸收的结构都消失了，你面对的是更脏、更连续、也更依赖精确时序的世界：鼠标移动要落点，悬停要出反馈，点击之后按钮、下拉框、模态窗和输入框都要真的变状态。</p>
+                <p>GUIWorld 的数据也因此更像一个完整的交互 rig：作者在 Ubuntu 22.04 的 XFCE4 桌面里固定了 1024×768、15 FPS 的环境，用 Xvfb 和 VNC/noVNC 跑桌面，录屏用 <code>mss</code> 和 <code>ffmpeg</code>，动作回放与日志用 <code>xdotool</code>。数据分成三块：约 1000 小时的 Random Slow、约 400 小时的 Random Fast，以及约 110 小时 goal-directed supervised trajectories。前两者负责把鼠标加速度、停顿、悬停、窗口切换这些开放世界噪声喂给模型，后者则给出更清晰的 action-response 对，让模型真正学会“做了这个动作之后，界面接下来该怎么变”。</p>
+                <p>更关键的是，作者基本把今天几类主流动作注入思路都试了一遍。<code>external</code> 是最浅的一种，只在输入侧调制 latent；<code>contextual</code> 把动作 token 并进主序列里，和 World and Human Action Models 这一类 token-based world model 很接近<a class="inline-ref" href="#ref-wham">[33]</a>；<code>residual</code> 则像 ControlNet 一样，在 backbone 旁边挂一条 residual branch 来推动作信息<a class="inline-ref" href="#ref-controlnet">[34]</a>；而 <code>internal</code> 是把 action cross-attention 直接插进 transformer block 内部，这一点和 Matrix-Game 2.0 的 multi-stream injection 思路最像<a class="inline-ref" href="#ref-matrix-game-2">[32]</a>。这几种设计的差别，不只是“有没有看见动作”，而是动作到底在多深的层里、以多核心的方式参与状态演化。</p>
+                <p>最后的心得也很清楚。四种模式里，<code>internal</code> 的综合结果最好：SSIM 0.863、FVD 14.5，说明对于 GUI 这种细粒度、强时序、强局部交互的环境，把动作直接打进 block 内部，比只在输入层改一把，或者像 ControlNet 那样在外面补一条残差分支，更容易让模型真正把“动作之后界面怎样继续走”学进主干里。作者还把 raw-action 和 meta-action 两种编码单独比过，后者略好，但差距远小于注入位置本身。与此同时，110 小时的 supervised data 明显好于约 1400 小时 random data，显式光标视觉监督又把 cursor accuracy 直接拉到 98.7%。这说明 GUIWorld 给出的最重要结论不是“桌面终于生成得很漂亮”，而是另一件更关键的事：GUI 这条线真正缺的不是更多随机视频，而是更硬的动作语义、更明确的状态转移、以及把光标当成视觉对象来监督。</p>
+                <h3 class="minor-subhead">4）最后再回到论文：它已经证明了什么，还差什么</h3>
+                <p>如果按 CLIGen (General) 到 CLIGen (Clean) 再到 GUIWorld 这一条线看，这篇论文真正漂亮的地方，不是某一个 demo 特别像，而是它把问题拆成了三层越来越难的命题，并且每一层都各自给出了一点成立的证据。第一层，开放世界终端动态可以被压进 rollout 里；第二层，显式动作开始能落到字符编辑、回车回显和局部 math REPL 这种更硬的交互上；第三层，GUI 里的点击、悬停、输入和窗口切换，已经开始出现可辨认、可量化的 post-action state change。</p>
+                <p>但它真正证明的，也就到这里为止。它证明了像素、动作和时间 rollout 可以先被统一进同一个端到端原型；证明了动作注入的位置、数据质量、以及显式 cursor supervision 会强烈影响一个“神经 runtime”能不能站稳；也证明了如果你想让模型更像一台运行中的机器，光靠把视频做得像还不够，必须把 action semantics 一起压进去。可它还没有证明，我们已经拥有了一台可长期运行、可稳定复用、可治理更新、原生符号可靠的 Neural Computer。</p>
+                <p>所以我看完这篇论文之后最大的心得反而不是“CNC 已经来了”，而是“接下来最该补的短板已经暴露得很清楚了”。CLI 上最薄弱的是原生符号能力，GUI 上最薄弱的是长期一致的动作-状态对齐，而两者共同缺的，则是 installation、reuse、update governance 这些真正让 runtime 变成 machine 的东西。算术原生只有 4% 这件事，其实不是一个小瑕疵，而是在提醒我们：系统杠杆已经出现了，但 machine-native intelligence 还远没有站稳。</p>
+                <p>也正因为如此，这篇论文最有价值的地方，不是提前宣判 Neural Computer 已经成立，而是把下一步的施工图画出来了：先用更高质量、目的明确的交互数据把动作语义钉牢；再把像 <code>internal</code> 这样更靠近 backbone 核心的注入方式做深做稳；然后才谈更强的记忆、更新、复用和治理。它真正照亮的，不是终局，而是通往终局时哪几步最该先做。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="chapter-4">
+                <h2>4）如果 NC 成立，软件、硬件和“程序”都会改变</h2>
+                <p>最后，如果 NC 真的成立，变化就不只发生在某个工具栈里，还会一路传到程序对象、软硬件接口和机器边界本身。至少有三件事会跟着变。</p>
+                <h3 class="minor-subhead">1）被安装的对象会改变</h3>
+                <p>今天我们安装的是代码，写的是指令序列；到了 NC 的设定里，被安装、复用和版本化的对象，会逐渐从代码转向能力本身。代码不会立刻消失，但它会失去“唯一入口”这层特权。instructions、demonstrations、traces 和 constraints 都可能直接变成安装材料；而有些能力，未来甚至可能以内置 executor、内部 routine 或被编译进神经底座的结构存在，而不再总要先翻译成外部工具链里的代码。软件生产也会从“先写程序，再执行程序”转向“先塑形能力，再让机器长期调用它”。到那时，“程序”不再只是一段待执行代码，而会越来越像一种可被安装、组合、更新和治理的能力对象。</p>
+                <h3 class="minor-subhead">2）架构范式会改变</h3>
+                <p>如果 Runtime 真开始承接能力安装、复用和治理，那么今天的软件栈和硬件栈也会跟着变。第 2 节已经提过，NC 可能会长成更稀疏、更可路由、更 machine-native 的神经底座，也可能通过可插拔的 neural routines 持续扩展自己；同一台机器内部，甚至可能并存擅长感知与 rollout 的路径，以及更适合精确执行与结构化计算的路径。落到工程上，变化就不只在模型本身，还会波及围绕它的 memory、routing、scheduling、verification、logging、replay / rollback，乃至整套软硬件协同方式。硬件不再只是给某个模型推理加速，而会开始为一台持续运行、持续安装能力、持续治理更新的机器服务。换句话说，系统设计的重心会从“怎样把一个 model 跑快”转向“怎样让一台 learning machine 长期稳定地运行”。</p>
+                <h3 class="minor-subhead">3）计算机的物理边界会变松</h3>
+                <p>“电脑在哪里”这个问题会变得次要。高性能的神经计算机会越来越像一种持续在线的能力基础设施：用户不必先承担高昂硬件成本，也能直接使用足够强的神经计算能力；被服务化的，不只是存储和算力，还有 Runtime 本身、能力对象和行为规则。更重要的是，多个入口会开始接入同一台持续运行的机器：手机、浏览器、终端、IDE，甚至未来的具身设备，都可能只是在接入同一个 NC，而不再各自对应一套割裂的软件实例。</p>
+                <p>所以真正押注的，我想再重申，不是 agent 再强一点，也不是 world model 再往前推一点，而是 Neural Computer 会重新定义我们所说的“计算机”。到那时，被安装、调用和治理的对象都会往机器本身收拢；被改写的，也不只是某个工具栈，而是“计算机”这个词本身。</p>
+            </section>
+
+            <p class="acknowledge-note"><strong>Acknowledge:</strong> 感谢 Dylan R. Ashley、Wenyi Wang 对本文博客版本的 review。</p>
+
+            <section class="citation-card" id="citation">
+                <h3 class="citation-title">引用</h3>
+                <ul class="reference-list">
+                    <li id="ref-neural-turing-machines">[1] Alex Graves, Greg Wayne, and Ivo Danihelka. <a href="https://arxiv.org/abs/1410.5401">Neural Turing Machines</a>. arXiv:1410.5401, 2014.</li>
+                    <li id="ref-differentiable-neural-computer">[2] Alex Graves et al. <a href="https://www.nature.com/articles/nature20101">Hybrid computing using a neural network with dynamic external memory</a>. <em>Nature</em> 538, 471-476 (2016).</li>
+                    <li id="ref-metagpt">[3] <a href="https://iclr.cc/virtual/2024/oral/19756">MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework</a>. ICLR 2024.</li>
+                    <li id="ref-openclaw">[4] <a href="https://github.com/openclaw/openclaw">OpenClaw</a>. GitHub repository.</li>
+                    <li id="ref-recursive-self-improvement">[5] Mingchen Zhuge et al. <a href="https://openreview.net/pdf?id=OsPQ6zTQXV">AI with Recursive Self-Improvement</a>. ICLR 2026 Workshop Proposals.</li>
+                    <li id="ref-making-the-world-differentiable">[6] Schmidhuber, Jürgen. <em>Making the world differentiable: on using self supervised fully recurrent neural networks for dynamic reinforcement learning and planning in non-stationary environments</em>. Vol. 126. Inst. für Informatik, 1990.</li>
+                    <li id="ref-world-models">[7] David Ha and Jürgen Schmidhuber. <a href="https://worldmodels.github.io/">World Models</a>. 2018.</li>
+                    <li id="ref-waymo-world-model-blog">[8] <a href="https://waymo.com/blog/2026/02/the-waymo-world-model-a-new-frontier-for-autonomous-driving-simulation/">The Waymo World Model: A New Frontier For Autonomous Driving Simulation</a>. Waymo Blog.</li>
+                    <li id="ref-waymo-world-model-post">[9] <a href="https://x.com/demishassabis/status/2019827916385972517?s=20">Demis Hassabis on Waymo World Model and Genie 3</a>. X post.</li>
+                    <li id="ref-cosmos-physical-ai">[10] NVIDIA Research. <a href="https://research.nvidia.com/labs/dir/cosmos-world-foundation-models/">Cosmos World Foundation Models</a>. NVIDIA, 2025.</li>
+                    <li id="ref-worldlabs-marble">[11] World Labs. <a href="https://www.worldlabs.ai/blog/marble">Marble: A Multimodal World Model</a>. World Labs, 2025.</li>
+                    <li id="ref-gamengen">[12] Dani Valevski, Yaniv Leviathan, Moab Arar, and Shlomi Fruchter. <a href="https://gamengen.github.io/">GameNGen: Diffusion Models Are Real-Time Game Engines</a>. Project page, 2024.</li>
+                    <li id="ref-genie-2">[13] Google DeepMind. <a href="https://deepmind.google/discover/blog/genie-2-a-large-scale-foundation-world-model/">Genie 2: A large-scale foundation world model</a>. DeepMind Blog, 2024.</li>
+                    <li id="ref-genie-3">[14] Google DeepMind. <a href="https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/">Genie 3: A new frontier for world models</a>. DeepMind Blog, 2025.</li>
+                    <li id="ref-taalas-ubiquitous-ai">[15] Ljubisa Bajic. <a href="https://taalas.com/the-path-to-ubiquitous-ai/">The Path to Ubiquitous AI</a>. Taalas.</li>
+                    <li id="ref-openai-sparse-circuits">[16] Leo Gao, Achyuta Rajaram, Jacob Coxon, Soham V. Govande, Bowen Baker, and Dan Mossing. <a href="https://arxiv.org/abs/2511.13653">Weight-sparse transformers have interpretable circuits</a>. arXiv:2511.13653, 2025.</li>
+                    <li id="ref-neural-programmer-interpreter">[17] Scott Reed and Nando de Freitas. <a href="https://arxiv.org/abs/1511.06279">Neural Programmer-Interpreters</a>. arXiv:1511.06279, 2015.</li>
+                    <li id="ref-hypernetworks">[18] David Ha, Andrew Dai, and Quoc V. Le. <a href="https://arxiv.org/abs/1609.09106">HyperNetworks</a>. arXiv:1609.09106, 2016.</li>
+                    <li id="ref-era-of-experience">[19] David Silver and Richard S. Sutton. <a href="https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf">Welcome to the Era of Experience</a>. Preprint of a chapter to appear in <em>Designing an Intelligence</em>. 2025.</li>
+                    <li id="ref-gentle-singularity">[20] Sam Altman. <a href="https://blog.samaltman.com/the-gentle-singularity">The Gentle Singularity</a>. Sam Altman Blog. Accessed March 15, 2026.</li>
+                    <li id="ref-dario-adolescence-of-technology">[21] Dario Amodei. <a href="https://darioamodei.com/essay/the-adolescence-of-technology">The Adolescence of Technology</a>. Dario Amodei, January 2026.</li>
+                    <li id="ref-demis-hassabis-davos">[22] Demis Hassabis, Dario Amodei, and Zanny Minton Beddoes. <a href="https://www.weforum.org/meetings/world-economic-forum-annual-meeting-2026/sessions/the-day-after-agi/">The Day After AGI</a>. World Economic Forum Annual Meeting 2026 session, January 20, 2026.</li>
+                    <li id="ref-neuromorphic-engineering">[23] Carver Mead. <a href="https://www.nature.com/articles/s41928-020-0448-2">How we created neuromorphic engineering</a>. <em>Nature Electronics</em> 3, 434-435 (2020).</li>
+                    <li id="ref-gptswarm">[24] Mingchen Zhuge, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Khizbullin, and Jürgen Schmidhuber. <a href="https://proceedings.mlr.press/v235/zhuge24a.html">GPTSwarm: Language Agents as Optimizable Graphs</a>. <em>Proceedings of the 41st International Conference on Machine Learning</em>, PMLR 235:62743-62767, 2024.</li>
+                    <li id="ref-agent-as-a-judge">[25] Mingchen Zhuge, Changsheng Zhao, Dylan R. Ashley, Wenyi Wang, Dmitrii Khizbullin, Yunyang Xiong, Zechun Liu, Ernie Chang, Raghuraman Krishnamoorthi, Yuandong Tian, Yangyang Shi, Vikas Chandra, and Jürgen Schmidhuber. <a href="https://proceedings.mlr.press/v267/zhuge25a.html">Agent-as-a-Judge: Evaluate Agents with Agents</a>. <em>Proceedings of the 42nd International Conference on Machine Learning</em>, PMLR 267:80569-80611, 2025.</li>
+                    <li id="ref-huxley-godel-machine">[26] Wenyi Wang, Piotr Piękos, Li Nanbo, Firas Laakom, Yimeng Chen, Mateusz Ostaszewski, Mingchen Zhuge, and Jürgen Schmidhuber. <a href="https://arxiv.org/abs/2510.21614">Huxley-Gödel Machine: Human-Level Coding Agent Development by an Approximation of the Optimal Self-Improving Machine</a>. arXiv:2510.21614, 2025.</li>
+                    <li id="ref-recursive-workshop">[27] <a href="https://recursive-workshop.github.io/">ICLR 2026 Workshop: AI with Recursive Self-Improvement</a>. Workshop website.</li>
+                    <li id="ref-elon-musk-rsi">[28] Peter H. Diamandis. <a href="https://www.youtube.com/watch?v=N5KCm_55xeQ">Elon Musk: Optimus 3 Is Coming, Recursive Self-Improvement Is Already Here, and the Singularity #239</a>. YouTube, March 11, 2026.</li>
+                    <li id="ref-ij-good-ultraintelligent-machine">[29] I. J. Good. <a href="https://www.sciencedirect.com/science/article/pii/S0065245808604180">Speculations Concerning the First Ultraintelligent Machine</a>. <em>Advances in Computers</em>, Volume 6, 1966.</li>
+                    <li id="ref-godel-machines">[30] Jürgen Schmidhuber. <a href="https://people.idsia.ch/~juergen/gmweb4/gmweb4.html">Gödel Machines: Self-Referential Universal Problem Solvers Making Provably Optimal Self-Improvements</a>. IDSIA Technical Report, revised December 27, 2004.</li>
+                    <li id="ref-wan-model">[31] Wan Team. <a href="https://arxiv.org/abs/2503.20314">Wan: Open and Advanced Large-Scale Video Generative Models</a>. arXiv:2503.20314, 2025.</li>
+                    <li id="ref-matrix-game-2">[32] Xianglong He et al. <a href="https://arxiv.org/abs/2508.13009">Matrix-Game 2.0: An Open-Source, Real-Time, and Streaming Interactive World Model</a>. arXiv:2508.13009, 2025.</li>
+                    <li id="ref-wham">[33] Anssi Kanervisto et al. <a href="https://www.nature.com/articles/s41586-025-08600-3">World and Human Action Models towards gameplay ideation</a>. <em>Nature</em>, 2025.</li>
+                    <li id="ref-controlnet">[34] Lvmin Zhang, Anyi Rao, and Maneesh Agrawala. <a href="https://arxiv.org/abs/2302.05543">Adding Conditional Control to Text-to-Image Diffusion Models</a>. ICCV 2023.</li></ul>
+            </section>
+
+            <dialog class="image-lightbox" id="image-lightbox" aria-label="媒体放大预览">
+                <div class="image-lightbox-shell">
+                    <div class="lightbox-actions">
+                        <a class="lightbox-download" id="image-lightbox-download" href="#" download aria-label="保存原文件" title="保存原文件">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.29a1 1 0 1 1 1.4 1.41l-4 3.99a1 1 0 0 1-1.4 0l-4-3.99a1 1 0 1 1 1.4-1.41L11 12.59V4a1 1 0 0 1 1-1z"></path>
+                                <path d="M5 17a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"></path>
+                            </svg>
+                        </a>
+                        <button class="lightbox-close" type="button" id="image-lightbox-close" aria-label="关闭预览" title="关闭预览">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6.7 5.3a1 1 0 0 1 1.4 0L12 9.17l3.9-3.88a1 1 0 1 1 1.4 1.42L13.4 10.6l3.9 3.89a1 1 0 0 1-1.4 1.42L12 12.01l-3.9 3.9a1 1 0 0 1-1.4-1.42l3.89-3.89-3.9-3.89a1 1 0 0 1 0-1.41z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <img id="image-lightbox-img" alt="">
+                    <video id="image-lightbox-video" controls playsinline loop hidden></video>
+                </div>
+            </dialog>
+
+            <footer class="page-footer">
+                <span>最后更新：2026 年 3 月 14 日</span>
+                <span><a href="../blog/index.html">返回博客目录</a></span>
+            </footer>
+        </article>
+
+    </div>
+</main>
+
+<script>
+    (function () {
+        var lightbox = document.getElementById("image-lightbox");
+        var lightboxImg = document.getElementById("image-lightbox-img");
+        var lightboxVideo = document.getElementById("image-lightbox-video");
+        var lightboxDownload = document.getElementById("image-lightbox-download");
+        var lightboxClose = document.getElementById("image-lightbox-close");
+        var zoomableLinks = document.querySelectorAll(".zoomable-image-link");
+        var zoomableVideos = document.querySelectorAll(".demo-shot-media");
+        if (lightbox && lightboxImg && lightboxVideo && lightboxDownload && lightboxClose && lightbox.showModal) {
+            function resetLightboxMedia() {
+                lightboxImg.removeAttribute("src");
+                lightboxImg.removeAttribute("alt");
+                lightboxImg.hidden = true;
+                lightboxVideo.pause();
+                lightboxVideo.hidden = true;
+                lightboxVideo.removeAttribute("src");
+                lightboxVideo.load();
+                lightboxDownload.setAttribute("href", "#");
+                lightboxDownload.removeAttribute("download");
+            }
+
+            function closeLightbox() {
+                if (lightbox.open) lightbox.close();
+                resetLightboxMedia();
+            }
+
+            function openImageLightbox(href, altText) {
+                var filename = href.split("/").pop() || "image";
+                resetLightboxMedia();
+                lightboxImg.hidden = false;
+                lightboxImg.src = href;
+                lightboxImg.alt = altText || "";
+                lightboxDownload.setAttribute("href", href);
+                lightboxDownload.setAttribute("download", filename);
+                lightbox.showModal();
+            }
+
+            function openVideoLightbox(href) {
+                var filename = href.split("/").pop() || "video.mp4";
+                resetLightboxMedia();
+                lightboxVideo.hidden = false;
+                lightboxVideo.src = href;
+                lightboxDownload.setAttribute("href", href);
+                lightboxDownload.setAttribute("download", filename);
+                lightbox.showModal();
+                var playPromise = lightboxVideo.play();
+                if (playPromise && typeof playPromise.catch === "function") {
+                    playPromise.catch(function () {});
+                }
+            }
+
+            zoomableLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    var img = link.querySelector("img");
+                    var href = link.getAttribute("href") || "";
+                    event.preventDefault();
+                    openImageLightbox(href, img ? (img.getAttribute("alt") || "") : "");
+                });
+            });
+
+            zoomableVideos.forEach(function (media) {
+                var video = media.querySelector("video");
+                var source = video ? video.querySelector("source") : null;
+                var href = source ? source.getAttribute("src") : "";
+                if (!video || !href) return;
+                if (!media.hasAttribute("tabindex")) media.setAttribute("tabindex", "0");
+                if (!media.hasAttribute("role")) media.setAttribute("role", "button");
+                if (!media.hasAttribute("aria-label")) {
+                    media.setAttribute("aria-label", (video.getAttribute("aria-label") || "放大查看视频") + "，点击放大");
+                }
+                media.addEventListener("click", function () {
+                    openVideoLightbox(href);
+                });
+                media.addEventListener("keydown", function (event) {
+                    if (event.key !== "Enter" && event.key !== " ") return;
+                    event.preventDefault();
+                    openVideoLightbox(href);
+                });
+            });
+
+            lightboxClose.addEventListener("click", closeLightbox);
+            lightbox.addEventListener("click", function (event) {
+                var rect = lightbox.getBoundingClientRect();
+                var isInsideDialog =
+                    event.clientX >= rect.left &&
+                    event.clientX <= rect.right &&
+                    event.clientY >= rect.top &&
+                    event.clientY <= rect.bottom;
+                if (!isInsideDialog) closeLightbox();
+            });
+            lightbox.addEventListener("close", function () {
+                resetLightboxMedia();
+            });
+        }
+
+        var wmTimelines = document.querySelectorAll(".wm-timeline");
+        wmTimelines.forEach(function (timeline) {
+            var stages = timeline.querySelectorAll(".wm-stage");
+            if (stages.length < 3) return;
+
+            var autoplayId = null;
+
+            function getStepWidth() {
+                var stage = stages[0];
+                if (!stage) return 0;
+                var timelineStyle = window.getComputedStyle(timeline);
+                var gap = parseFloat(timelineStyle.columnGap || timelineStyle.gap || "0") || 0;
+                return stage.getBoundingClientRect().width + gap;
+            }
+
+            function goNext() {
+                var stepWidth = getStepWidth();
+                if (!stepWidth) return;
+
+                var maxScrollLeft = Math.max(timeline.scrollWidth - timeline.clientWidth, 0);
+                if (timeline.scrollLeft >= maxScrollLeft - stepWidth * 0.35) {
+                    timeline.scrollTo({ left: 0, behavior: "smooth" });
+                    return;
+                }
+
+                timeline.scrollTo({
+                    left: Math.min(timeline.scrollLeft + stepWidth, maxScrollLeft),
+                    behavior: "smooth"
+                });
+            }
+
+            function stopAutoplay() {
+                if (!autoplayId) return;
+                window.clearInterval(autoplayId);
+                autoplayId = null;
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                if (timeline.scrollWidth <= timeline.clientWidth + 4) return;
+                autoplayId = window.setInterval(goNext, 4000);
+            }
+
+            timeline.addEventListener("mouseenter", stopAutoplay);
+            timeline.addEventListener("mouseleave", startAutoplay);
+            timeline.addEventListener("focusin", stopAutoplay);
+            timeline.addEventListener("focusout", startAutoplay);
+            timeline.addEventListener("pointerdown", stopAutoplay);
+            timeline.addEventListener("pointerup", startAutoplay);
+            timeline.addEventListener("touchstart", stopAutoplay, { passive: true });
+            timeline.addEventListener("touchend", startAutoplay, { passive: true });
+
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) {
+                    stopAutoplay();
+                } else {
+                    startAutoplay();
+                }
+            });
+
+            window.addEventListener("resize", startAutoplay);
+            startAutoplay();
+        });
+
+        var summary = document.getElementById("summary");
+        if (!summary) return;
+
+        var expandedHeight = 0;
+        var revealThreshold = 0;
+        var isCollapsed = summary.classList.contains('is-collapsed');
+
+        function measureSummary() {
+            var wasCollapsed = summary.classList.contains('is-collapsed');
+            summary.classList.remove('is-collapsed');
+            summary.style.maxHeight = 'none';
+            expandedHeight = summary.scrollHeight;
+            summary.style.maxHeight = expandedHeight + 'px';
+            revealThreshold = Math.min(Math.max(window.innerHeight * 0.04, 20), 48);
+            if (wasCollapsed) summary.classList.add('is-collapsed');
+        }
+
+        function setCollapsed(next) {
+            if (next === isCollapsed) return;
+            isCollapsed = next;
+            if (isCollapsed) {
+                summary.classList.add('is-collapsed');
+            } else {
+                summary.classList.remove('is-collapsed');
+                summary.style.maxHeight = expandedHeight + 'px';
+            }
+        }
+
+        function updateSummaryState() {
+            setCollapsed(window.scrollY < revealThreshold);
+        }
+
+        measureSummary();
+        updateSummaryState();
+        window.addEventListener('scroll', updateSummaryState, { passive: true });
+        window.addEventListener('resize', function () {
+            measureSummary();
+            updateSummaryState();
+        });
+    })();
+</script>
+</body>
+</html>

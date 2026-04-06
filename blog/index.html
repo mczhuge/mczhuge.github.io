@@ -3,8 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mingchen Zhuge | Blog</title>
+    <meta name="description" content="Research essays by Mingchen Zhuge on AI agents, code generation, recursive self-improvement, and neural computers.">
+    <meta name="author" content="Mingchen Zhuge">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://metauto.ai/blog/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="METAUTO.ai">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mingchen Zhuge Blog | AI Agents, Neural Computer, Research Essays">
+    <meta property="og:description" content="Research essays by Mingchen Zhuge on AI agents, code generation, recursive self-improvement, and neural computers.">
+    <meta property="og:url" content="https://metauto.ai/blog/">
+    <meta property="og:image" content="https://metauto.ai/neuralcomputer/references/assets/teaser10_top.png">
+    <meta property="og:image:alt" content="Neural Computer teaser diagram">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mingchen Zhuge Blog | AI Agents, Neural Computer, Research Essays">
+    <meta name="twitter:description" content="Research essays by Mingchen Zhuge on AI agents, code generation, recursive self-improvement, and neural computers.">
+    <meta name="twitter:image" content="https://metauto.ai/neuralcomputer/references/assets/teaser10_top.png">
+    <title>Mingchen Zhuge Blog | AI Agents, Neural Computer, Research Essays</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "WebSite",
+                    "@id": "https://metauto.ai/#website",
+                    "url": "https://metauto.ai/",
+                    "name": "METAUTO.ai"
+                },
+                {
+                    "@type": "CollectionPage",
+                    "@id": "https://metauto.ai/blog/#webpage",
+                    "url": "https://metauto.ai/blog/",
+                    "name": "Mingchen Zhuge Blog",
+                    "description": "Research essays by Mingchen Zhuge on AI agents, code generation, recursive self-improvement, and neural computers.",
+                    "inLanguage": "en",
+                    "isPartOf": {
+                        "@id": "https://metauto.ai/#website"
+                    },
+                    "mainEntity": {
+                        "@id": "https://metauto.ai/blog/#blog"
+                    },
+                    "breadcrumb": {
+                        "@id": "https://metauto.ai/blog/#breadcrumb"
+                    }
+                },
+                {
+                    "@type": "Blog",
+                    "@id": "https://metauto.ai/blog/#blog",
+                    "url": "https://metauto.ai/blog/",
+                    "name": "Mingchen's Blog",
+                    "description": "Research essays by Mingchen Zhuge on AI agents, code generation, recursive self-improvement, and neural computers.",
+                    "publisher": {
+                        "@type": "Person",
+                        "name": "Mingchen Zhuge",
+                        "url": "https://metauto.ai/"
+                    },
+                    "blogPost": [
+                        {
+                            "@id": "https://metauto.ai/neuralcomputer/#blogposting"
+                        }
+                    ]
+                },
+                {
+                    "@type": "BlogPosting",
+                    "@id": "https://metauto.ai/neuralcomputer/#blogposting",
+                    "url": "https://metauto.ai/neuralcomputer/",
+                    "headline": "Neural Computer：一种新的机器形态，正在出现",
+                    "alternativeHeadline": "Beyond Von Neumann, Toward Complete Neural Computer",
+                    "description": "A research essay on Neural Computer, runtime-native AI systems, and how they differ from agents, world models, and traditional computers.",
+                    "inLanguage": "zh-CN",
+                    "datePublished": "2026-02-07",
+                    "dateModified": "2026-03-14",
+                    "author": {
+                        "@type": "Person",
+                        "name": "Mingchen Zhuge",
+                        "url": "https://metauto.ai/"
+                    },
+                    "image": "https://metauto.ai/neuralcomputer/references/assets/teaser10_top.png",
+                    "isPartOf": {
+                        "@id": "https://metauto.ai/blog/#blog"
+                    }
+                },
+                {
+                    "@type": "BreadcrumbList",
+                    "@id": "https://metauto.ai/blog/#breadcrumb",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://metauto.ai/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Blog",
+                            "item": "https://metauto.ai/blog/"
+                        }
+                    ]
+                }
+            ]
+        }
+    </script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,700;6..72,800&display=swap");
 
@@ -251,7 +352,8 @@
             grid-template-columns: minmax(0, 1fr) clamp(54px, 6vw, 74px);
             grid-template-areas:
                 "meta meta"
-                "title arrow";
+                "title arrow"
+                "desc arrow";
             align-items: start;
             column-gap: 18px;
             row-gap: 8px;
@@ -288,6 +390,16 @@
             text-transform: uppercase;
             font-weight: 700;
             transition: color 0.22s ease;
+        }
+
+        .feed-language {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 9px 4px;
+            border-radius: 999px;
+            background: rgba(127, 149, 216, 0.13);
+            color: #506d97;
+            letter-spacing: 0.06em;
         }
 
         .feed-title {
@@ -447,7 +559,8 @@
                 grid-template-columns: 1fr;
                 grid-template-areas:
                     "meta"
-                    "title";
+                    "title"
+                    "desc";
                 row-gap: 6px;
                 padding: 14px 0 12px;
             }
@@ -500,11 +613,12 @@
         <section class="feed">
             <a class="feed-row" href="../neuralcomputer/index.html">
                 <div class="feed-meta">
-                    <span>Feb 7, 2026</span>
-                    <span>Draft</span>
+                    <time datetime="2026-02-07">Feb 7, 2026</time>
+                    <span class="feed-language" aria-label="Language: Chinese essay">Chinese Essay</span>
                     <span class="feed-author">By Mingchen Zhuge</span>
                 </div>
                 <h3 class="feed-title">Beyond Von Neumann, Toward Complete Neural Computer</h3>
+                <p class="feed-desc">A Chinese long-form essay arguing that Neural Computer is not merely a stronger agent, but a runtime that begins to learn how to run itself.</p>
                 <span class="feed-arrow">→</span>
             </a>
         </section>

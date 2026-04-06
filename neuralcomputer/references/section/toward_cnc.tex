@@ -1,0 +1,127 @@
+\paragraph{Section Overview}
+This section summarizes what the current Neural Computer (NC) prototypes can already do and where they still fail as general-purpose systems.
+We then define Completely Neural Computers (CNCs) using operational requirements and map those requirements to measurable challenge families.
+Finally, we position NCs relative to world models and computer-use agents, and we outline design hypotheses beyond the current video-based instantiation.
+
+\subsection{From Neural Computers to Completely Neural Computers}
+
+\paragraph{Current Status of NCs}
+Our CLI and GUI prototypes show that a learned latent runtime state can reproduce core interface behaviors with measurable fidelity.
+In terminal environments, character-level OCR accuracy reaches $0.54$ (\Cref{tab:cligen-ocr}), while desktop cursor control reaches $98.7\%$ with explicit visual supervision (\Cref{tab:cursor-loss}).
+In GUIWorld, $110$ hours of goal-directed trajectories outperform approximately $1{,}400$ hours of random exploration (\Cref{tab:gui-data-quality}), underscoring the role of aligned supervision.
+These results support a bounded claim: current NCs can learn interface I/O and short-horizon control at moderate training cost when data are well aligned.
+They do not yet establish robust long-horizon reasoning, stable routine reuse, or deployment-grade governance.
+
+To move from prototype NCs to general-purpose systems, four properties are central.
+An NC instance should be computationally universal~\citep{turing1936computable,siegelmann1992computational}, universally programmable~\citep{von1993first,wilkes1981best}, behavior-consistent unless explicitly updated~\citep{queloz2025explainability}, and able to realize practical advantages of neural architectural and programming-language semantics.
+While several sequential neural architectures are universal in principle~\citep{siegelmann1992computational,perez2021attention}, reliably programming trained instances remains difficult.
+Preliminary attempts such as Neural Virtual Machine and NeuroLISP suggest feasibility but also highlight engineering gaps~\citep{katz2019programmable,davis2022neurolisp}.
+Long-horizon stability remains an open systems problem in neural runtimes~\citep{kirkpatrick2017overcoming,calanzonelogically}.
+Section~\ref{sec:roadmap} reframes these requirements as operational targets.
+Existing world-model work rarely frames these targets in computability and programmability terms, and we revisit this relation in Section~\ref{sec:relations}.
+
+\paragraph{Fundamental differences between NCs and conventional computers}
+We compare NCs with conventional computers.
+Here, \emph{conventional computers} denote random-access machines with instruction-set architecture and layered OS/application stacks programmed through human-designed high-level languages~\citep{hartmanis1974power,anagnostopoulos1973computer,backus1957fortran,backus1963revised}.
+NCs differ from this paradigm in both architectural semantics and programming-language semantics.
+
+At the architectural level, conventional machines implement local, compositional symbolic semantics, which provide exactness and interpretability but can be brittle under noise and model mismatch~\citep{Newell1976,BROOKS1991139}.
+NCs use holistic, distributed numerical semantics, trading strict local exactness for robustness and generalization~\citep{Hinton1986,Bishop2006,lecun2015deep}.
+Such representations are particularly effective in domains with high-dimensional observations, soft constraints, and globally coupled dynamics~\citep{bengio2013representation,Smolensky1988-SMOOTP-2,silver2017mastering,vaswani2017attention}.
+Although conventional systems can emulate NC behavior in principle, that emulation can introduce avoidable conceptual and engineering overhead when the task is naturally neural.
+
+At the programming-language level, NC semantics are learned from data rather than fully specified by human-designed grammar and runtime rules.
+Prompts and interaction traces can therefore function as executable specifications~\citep{Reynolds2021}.
+This makes natural-language and multimodal intent a practical programming interface at scale, which has historically been hard to realize in non-neural systems~\citep{jm3,wei2023chainofthoughtpromptingelicitsreasoning}.
+
+\paragraph{Definition of Completely Neural Computers}
+We define a Neural Computer instance as \emph{complete} if it is (1) Turing complete, (2) universally programmable, (3) behavior-consistent unless explicitly reprogrammed, and (4) able to realize practically useful neural architectural and programming-language semantics relative to conventional systems.
+The next section turns these properties into concrete challenge families and evaluation signals.
+
+\subsection{A Roadmap Towards CNC}
+\label{sec:roadmap}
+We organize the CNC roadmap into five challenge families.
+The first three correspond directly to universality, programmability, and behavior consistency.
+The last two unpack the fourth property into architectural semantics and programming-language semantics.
+
+\paragraph{Turing completeness}
+In the limit, a CNC should be as expressive as a universal computing model~\citep{turing1936computable,siegelmann1992computational}.
+Any physical implementation is finite, so we treat universality as an asymptotic design requirement rather than a near-term pass/fail benchmark.
+Operationally, the key question is scaling behavior: as effective memory and context grow, can one NC instance execute longer algorithmic procedures without qualitatively new failure modes?
+Prior work on recurrent neural networks (RNNs), Neural Turing Machines (NTMs), and Differentiable Neural Computers (DNCs) motivates this direction, while also exposing practical limits under finite precision and finite memory~\citep{graves2014neural,graves2016hybrid,perez2021attention,rusu2016progressive,vaswani2017attention}.
+
+\paragraph{Universal programmability}
+Universal programmability asks whether input sequences can install reusable routines instead of only triggering one-off behaviors.
+The practical target is routine lifecycle control: install, invoke, compose, and retain routines under distribution shift.
+Useful proxies include installation success, cross-task reuse without retraining, and compositional generalization of previously installed routines.
+Compositional neural routines are a plausible path toward this objective~\citep{reed2015neural}.
+
+\paragraph{Behavior consistency}
+A CNC should preserve function during ordinary execution and change function only through explicit updates~\citep{queloz2025explainability}.
+This requires a runtime contract that separates function use from function update.
+Operationally, every behavioral change should be attributable to a versioned update and reversible through replay/rollback.
+Progress should be tracked by same-version reproducibility, update traceability, rollback success, and drift rates in long-horizon workloads.
+
+\paragraph{Architectural semantics}
+Because NC behavior is parameterized in continuous space, learning can produce mappings beyond observed training pairs and can introduce new functional primitives~\citep{poggio2019theoretical,ha2016hypernetworks}.
+Recombining these primitives can yield out-of-distribution functional generalization~\citep{lake2018generalization}.
+For CNCs, the critical test is practical transfer rather than short demos: after learning many trajectories of an interface family, can the system generalize to unseen tasks, files, and contexts with stable behavior?
+Beyond emulating symbolic APIs, NCs may natively support uncertainty-aware inference, dense retrieval, and tightly coupled perception-control loops that operate directly on distributed states~\citep{marcus2018deep,kingma2013auto,bengio2013representation,graves2016hybrid,silver2017mastering,clements2019estimating,parisi2019continual}.
+
+Because NC memory is numerical, computer configuration can be cast as optimization over internal state rather than only authoring discrete symbolic code.
+Depending on objective differentiability, both gradient-based and gradient-free methods are relevant~\citep{adam2014method,wierstra2014natural}.
+This reframes part of system construction as synthesizing target behaviors through state optimization, with progress measured by convergence reliability and stability relative to combinatorial program search~\citep{innes2019differentiable,hong2023metagpt}.
+
+\paragraph{Programming-language semantics}
+Learned programming-language semantics shift development from rigid code authoring to specification by instructions, demonstrations, and constraints~\citep{brown2020language,wei2022chain,ouyang2022training}.
+Brief inputs can then trigger longer structured behaviors when routines are already installed.
+Development emphasis moves toward curating data, specifying intent, and verifying behavior under learned semantics rather than hard-coding every execution path~\citep{austin2021program}.
+
+This shift is supported by data availability.
+Paired I/O traces are continuously generated during ordinary computer use and are often far more abundant than high-quality hand-written programs~\citep{flener2008introduction,yao2022webshop}.
+These traces act as executable specifications of user intent and environment response~\citep{cypher1993watch,yao2022react}.
+This asymmetry in supervision favors NC training regimes that exploit ubiquitous interaction logs while preserving rigorous evaluation.
+
+\subsection{Relations to Other Foundation Models}
+\label{sec:relations}
+\paragraph{World Models}
+World models learn environment dynamics through action-conditioned prediction~\citep{ha2018world}.
+Their target environments range from broad real-world sensory streams to narrow control systems~\citep{schmidhuber1990making,feng2023finetuning}.
+From this perspective, NCs are world models specialized for interactive computers.
+The key distinction is objective: predictive coherence is necessary, but CNCs additionally require installable routines, reusable behavior, and governed updates.
+Many current world-model pipelines also rely heavily on computer-generated data, which creates methodological overlap with NC development~\citep{richter2016playing,tobin2017domain,dosovitskiy2017carla,garcia2023robust}.
+
+\paragraph{Computer Use Agents}
+Computer-use agents (CUAs) combine foundation models with conventional computers through an external control layer~\citep{openaiComputerUsingAgent,claudeComputerTool,sager2025comprehensivesurveyagentscomputer}.
+This design leverages both model-level cognition and the precision of conventional software stacks~\citep{song2025coact1computerusingagentscoding}.
+Its main constraints come from low-bandwidth I/O mediation and strict separation of internal states between model and runtime.
+As a result, application development often remains anchored to fixed symbolic semantics on the conventional side, which can limit end-to-end optimization over richer latent representations~\citep{liang-etal-2017-neural,hu2017learningreasonendtoendmodule,gaunt2016terpretprobabilisticprogramminglanguage}.
+Near term, CUAs and NCs should be viewed as complementary: CUAs remain strong production baselines, while NCs investigate what can be internalized into a single learned runtime.
+
+\subsection{Additional Thoughts}
+
+\paragraph{Video models as a pragmatic prototype substrate}
+We currently build NC prototypes on top of state-of-the-art video models because they provide the simplest end-to-end substrate for joint pixel dynamics and action-conditioned control.
+This choice is pragmatic, not fundamental.
+In our experiments, symbolic and algorithmic reasoning in terminal settings remains inconsistent for most strong video models, and even simple arithmetic can fail (\Cref{tab:cligen-arith}).
+One frontier model in our probe reaches $71\%$ on arithmetic, indicating partial progress but not deployment-grade reliability.
+At the same time, we do not claim that video models cannot reason more broadly; recent work reports zero-shot reasoning in naturalistic settings~\citep{wiedemer2025video}.
+Our current evidence suggests that CNC-level reliability will likely require additional architectural and training ingredients beyond scaling today's generic video generators.
+
+\paragraph{A hypothesis: machine-native neural architectures}
+This subsection states a conjecture rather than an experimental conclusion.
+Closing the reasoning gap may require machine-native neural designs instead of architectures primarily inherited from biological perception analogies.
+Many influential architectures are highly engineered yet still rely on continuous distributed representations in which reasoning emerges implicitly~\citep{fukushima1980neocognitron,lecun2015deep,vaswani2017attention}.
+CNCs may benefit from designs that explicitly incorporate discrete operations, compositional structure, and verifiable computation while remaining compatible with neural optimization.
+
+\paragraph{Neural network generation via NC interaction}
+Generating neural networks can be viewed as a programming activity that synthesizes both architecture and weights.
+Because NC semantics are already neural and numerical, such generation can operate directly over internal memory states rather than through symbolic translation layers.
+NCs can also be programmed through interaction: sequences of inputs, observations, and outcomes act as executable specifications that shape internal routines~\citep{cypher1993watch}.
+This suggests a path where users iteratively generate and refine neural modules through interaction traces.
+
+\paragraph{Unified hardware requirements and data representation}
+NCs treat tensors and tensor-to-tensor transforms as primary computational primitives.
+This contrasts with conventional stacks that combine many heterogeneous abstractions (files, sockets, processes, pointers, and subsystem-specific APIs) coordinated by OS services.
+A tensor-uniform pipeline can simplify optimization and tooling because compilers, profilers, and runtime systems target a shared representation.
+The same representation can naturally support multimodal computation across vision, language, audio, control, and planning.

@@ -1,0 +1,78 @@
+\subsection{CLIGen Visualizations}
+\noindent This subsection consolidates \emph{all} CLIGen visualization pages referenced in the paper.
+The main text keeps section-local thumbnail panels at the end of each visualization subsection, while full-size pages are collected here.
+
+\noindent\textbf{(1) \cligenGeneralData{} visualizations.}
+Qualitative samples highlight the breadth of real-world terminal dynamics captured in CLIGen (General): ANSI escape sequences that repaint regions with changing foreground/background colors, incremental command entry with syntax highlighting and cursor edits, classic shell prompts and system outputs, long-running jobs with rapidly scrolling and color-coded package logs, full-screen TUIs, and progress dashboards.
+
+\noindent\textbf{(2) \cligenCleanData{} REPL visualizations.}
+In contrast to open-world traces, CLIGen (Clean) REPL samples are scripted and temporally well-paced (Figures~\ref{fig:cligen-clean-viz-a}--\ref{fig:cligen-clean-viz-d}; additional format examples are in Appendix~\ref{appendix:cligen-samples}). Each sample includes an explicit action trace (e.g., \texttt{Sleep}, \texttt{Type}, \texttt{Enter}, arrow keys, \texttt{Hide}) alongside rendered terminal frames, making action-to-pixel causality easy to inspect.
+
+\noindent\textbf{(3) \cligenCleanData{} math visualizations.}
+Figures~\ref{fig:cligen-clean-math-comp-a}--\ref{fig:cligen-clean-math-comp-c} compare model rollouts on CLIGen (Clean) math REPL prompts. Figures~\ref{fig:cligen-clean-math-rep-a}--\ref{fig:cligen-clean-math-rep-c} show reprompting cases and highlight why these probes should separate native computation from answer-conditioned rendering.
+
+\subsection{GUIWorld Visualizations}
+\noindent This subsection consolidates \emph{all} GUIWorld rollout visualizations (Figures~\ref{fig:guiworld-sample-1}--\ref{fig:guiworld-sample-14}).
+CUA-based pages overlay the CUA trace (natural-language rationale when available, e.g., in a \texttt{thinking} field, plus structured \emph{action} fields such as \texttt{left\_click}, \texttt{double\_click}, \texttt{left\_click\_drag}, and \texttt{type}).
+It contrasts the \emph{Ground Truth} trajectory (top) with a \emph{Generation} conditioned on the first frame and the action sequence (bottom), making state drift easy to spot.
+
+Figures~\ref{fig:guiworld-sample-6}--\ref{fig:guiworld-sample-8} emphasize compounding low-level deviations; Figures~\ref{fig:guiworld-sample-9}--\ref{fig:guiworld-sample-11} focus on numeric/UI fidelity and interaction semantics; and Figures~\ref{fig:guiworld-sample-12}--\ref{fig:guiworld-sample-14} provide additional stress cases where correctness hinges on precise field edits and page state.
+
+\newcommand{\BackToMainThumbs}[1]{%
+  \hyperlink{#1}{%
+    {\setlength{\fboxsep}{8.5pt}%
+    \fcolorbox{metablue!55}{white}{\Large\bfseries\textsf{\strut Back to Main Thumbnails}}}%
+  }%
+}
+
+\newcommand{\VisPage}[4]{%
+  \clearpage
+  \newgeometry{top=1.2cm,bottom=1.6cm,left=1.2cm,right=1.2cm,includefoot,footskip=22pt}
+  \begin{landscape}
+  \thispagestyle{plain}
+  \noindent\makebox[\linewidth][r]{\BackToMainThumbs{#4}}\par
+  \centering
+  \vspace*{\fill}
+  \includegraphics[width=0.98\linewidth,height=0.84\textheight,keepaspectratio]{#1}\par
+  {\captionsetup{type=figure,skip=2pt}\captionof{figure}{#2}\label{#3}}
+  \vspace*{\fill}
+  \end{landscape}
+  \restoregeometry
+}
+
+% CLIGen (General)
+\VisPage{assets/cligen_general_1.pdf}{\cligenGeneralData{} visualization samples (A).}{fig:cligen-general-viz-1}{main-cligen-vis-thumbs-p1}
+\VisPage{assets/cligen_general_2.pdf}{\cligenGeneralData{} visualization samples (B).}{fig:cligen-general-viz-2}{main-cligen-vis-thumbs-p1}
+\VisPage{assets/cligen_general_3.pdf}{\cligenGeneralData{} visualization samples (C).}{fig:cligen-general-viz-3}{main-cligen-vis-thumbs-p1}
+
+% CLIGen (Clean) REPL
+\VisPage{assets/cligen_clean_1.pdf}{\cligenCleanData{} REPL visualization samples (A).}{fig:cligen-clean-viz-a}{main-cligen-vis-thumbs-p2}
+\VisPage{assets/cligen_clean_2.pdf}{\cligenCleanData{} REPL visualization samples (B).}{fig:cligen-clean-viz-b}{main-cligen-vis-thumbs-p2}
+\VisPage{assets/cligen_clean_3.pdf}{\cligenCleanData{} REPL visualization samples (C).}{fig:cligen-clean-viz-c}{main-cligen-vis-thumbs-p2}
+\VisPage{assets/cligen_clean_4.pdf}{\cligenCleanData{} REPL visualization samples (D).}{fig:cligen-clean-viz-d}{main-cligen-vis-thumbs-p2}
+
+% CLIGen (Clean) math comparisons
+\VisPage{assets/cligen_math_comp1.pdf}{\cligenCleanData{} math comparison samples (A).}{fig:cligen-clean-math-comp-a}{main-cligen-vis-thumbs-p3}
+\VisPage{assets/cligen_math_comp2.pdf}{\cligenCleanData{} math comparison samples (B).}{fig:cligen-clean-math-comp-b}{main-cligen-vis-thumbs-p3}
+\VisPage{assets/cligen_math_comp3.pdf}{\cligenCleanData{} math comparison samples (C).}{fig:cligen-clean-math-comp-c}{main-cligen-vis-thumbs-p3}
+
+% CLIGen (Clean) reprompting
+\VisPage{assets/cligen_math_rep1.pdf}{\cligenCleanData{} math reprompting samples (A).}{fig:cligen-clean-math-rep-a}{main-cligen-vis-thumbs-p4}
+\VisPage{assets/cligen_math_rep2.pdf}{\cligenCleanData{} math reprompting samples (B).}{fig:cligen-clean-math-rep-b}{main-cligen-vis-thumbs-p4}
+\VisPage{assets/cligen_math_rep3.pdf}{\cligenCleanData{} math reprompting samples (C).}{fig:cligen-clean-math-rep-c}{main-cligen-vis-thumbs-p4}
+
+% GUIWorld
+\VisPage{assets/guiworld_sample_1.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (1).}{fig:guiworld-sample-1}{main-gui-vis-thumbs-p1}
+\VisPage{assets/guiworld_sample_2.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (2).}{fig:guiworld-sample-2}{main-gui-vis-thumbs-p1}
+\VisPage{assets/guiworld_sample_3.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (3).}{fig:guiworld-sample-3}{main-gui-vis-thumbs-p1}
+\VisPage{assets/guiworld_sample_4.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (4).}{fig:guiworld-sample-4}{main-gui-vis-thumbs-p1}
+\VisPage{assets/guiworld_sample_5.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (5).}{fig:guiworld-sample-5}{main-gui-vis-thumbs-p1}
+\VisPage{assets/guiworld_sample_6.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (6).}{fig:guiworld-sample-6}{main-gui-vis-thumbs-p2}
+\VisPage{assets/guiworld_sample_7.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (7).}{fig:guiworld-sample-7}{main-gui-vis-thumbs-p2}
+\VisPage{assets/guiworld_sample_8.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (8).}{fig:guiworld-sample-8}{main-gui-vis-thumbs-p2}
+\VisPage{assets/guiworld_sample_9.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (9).}{fig:guiworld-sample-9}{main-gui-vis-thumbs-p2}
+\VisPage{assets/guiworld_sample_10.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (10).}{fig:guiworld-sample-10}{main-gui-vis-thumbs-p2}
+\VisPage{assets/guiworld_sample_11.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (11).}{fig:guiworld-sample-11}{main-gui-vis-thumbs-p3}
+\VisPage{assets/guiworld_sample_12.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (12).}{fig:guiworld-sample-12}{main-gui-vis-thumbs-p3}
+\VisPage{assets/guiworld_sample_13.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (13).}{fig:guiworld-sample-13}{main-gui-vis-thumbs-p4}
+\VisPage{assets/guiworld_sample_14.pdf}{\guiworldLogo{}\,GUIWorld visualization sample (14).}{fig:guiworld-sample-14}{main-gui-vis-thumbs-p5}

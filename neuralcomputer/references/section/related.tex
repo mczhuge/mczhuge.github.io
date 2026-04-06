@@ -1,0 +1,14 @@
+Early work on world models showed that compact latent dynamics can capture environment structure and support planning~\citep{ha2018world}.
+Recent video systems scale spatiotemporal generation and simulation, including Sora~\citep{openai2024sora}, Veo~\citep{deepmind_veo_2025}, and Movie Gen~\citep{polyak2024movie}.
+Together they suggest that high‑capacity video generators can form the basis for interface modeling when aligned with inputs and actions.
+
+Neural‑OS explores neural desktop modeling with recurrent components and latent diffusion~\citep{rivard2025neuralos,hochreiter1997long,rombach2022high}, pointing toward OS‑level simulators.
+Our position differs: we pursue a pixel‑grounded, action‑conditioned framework instantiated as interface-specific NCs for CLI and GUI without hand‑coded planners.
+
+Structured, DOM‑based agents enable reliable web interaction and evaluation~\citep{deng2023mind2web} and are widely used in commercial assistants with LLM planning and tool use.
+We treat DOM/accessibility as optional auxiliaries; a unified pixel interface with a latent runtime state generalizes beyond web UIs and keeps I/O on one timeline.
+
+Pixel‑acting agents with multimodal backbones are increasingly capable.
+Expressing control as conditioning—rather than as a separate controller—reduces brittleness and improves transfer across interfaces.
+
+Joint-embedding predictive objectives and latent diffusion backbones provide practical building blocks~\citep{assran2023self,rombach2022high}. We align these components around a shared latent-dynamics recipe and add rigorous, pixel-grounded evaluation focusing on action–frame alignment, temporal context, and capacity. Our contribution is a pixel-based system spanning CLI/GUI interfaces without hand-coded controllers, with action-conditioned training and evaluation that measures on-screen performance (pointer accuracy, latency, \LPIPS/\FVD) and maps design choices to functional improvements.

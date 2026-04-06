@@ -1,0 +1,121 @@
+\noindent This appendix provides concrete format examples for the two CLI sources referenced throughout the data pipeline (Appendix~\ref{appendix:pipeline}).
+We show asciinema \texttt{.cast} trajectories for CLIGen (General) and \texttt{vhs} scripts for CLIGen (Clean).
+\subsection{Asciinema (\texttt{.cast}) example}
+\label{appendix:cast-format}
+The header line stores the recording config (version, terminal size, timestamp, env).
+In this excerpt, output rows follow \texttt{[time, "o", "payload"]}, where \texttt{"o"} indicates screen output.
+The payload contains the terminal text with color codes at that timestamp.
+\begin{verbatim}
+{"version": 2, "width": 80, "height": 24,
+ "timestamp": 1747177906,
+ "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.082492, "o", "\u001b[H\u001b[2J\u001b[3J"]
+[0.950038, "o", "\u001b[38;2;16;131;236m\u001b[39m\r\n..."]
+[0.950733, "o", "\u001b[38;2;6;156;220m ... \u001b[38;2;1;195;187m█"]
+\end{verbatim}
+
+\subsection{VHS script example}
+\label{appendix:vhs-format}
+\begin{verbatim}
+# ---- VHS documentation start (DO NOT CHANGE) ----
+# Require:
+#   Require <string>
+# Sleep:
+#   Sleep <time>
+# Type:
+#   Type[@<time>] "<characters>"
+# Keys:
+#   Escape[@<time>] [number]
+#   Backspace[@<time>] [number]
+#   Delete[@<time>] [number]
+#   Insert[@<time>] [number]
+#   Down[@<time>] [number]
+#   Enter[@<time>] [number]
+#   Space[@<time>] [number]
+#   Tab[@<time>] [number]
+#   Left[@<time>] [number]
+#   Right[@<time>] [number]
+#   Up[@<time>] [number]
+#   PageUp[@<time>] [number]
+#   PageDown[@<time>] [number]
+#   ctrl+<key>
+# Display:
+#   Hide
+#   Show
+# ---- VHS documentation end (DO NOT CHANGE) ----
+
+# ID: vhs_example
+# INSTRUCTION: Runs `uname -s` repeatedly as a basic shell exercise, then hides the prompt.
+# LEVEL: 1
+# EVENTS: 23
+# VISUAL_COMPLEXITY: 45
+
+# ---- Theme setting start (DO NOT CHANGE) ----
+Output vhs_example.mp4
+
+Set Shell "bash"
+
+Set Theme {
+  "name": "Catppuccin Mocha (Pure White, Warm Pink Cursor)",
+  "background": "#1e1e2e",
+  "foreground": "#ffffff",
+  "black": "#45475a",
+  "red": "#f38ba8",
+  "green": "#a6e3a1",
+  "yellow": "#f9e2af",
+  "blue": "#89b4fa",
+  "purple": "#cba6f7",
+  "cyan": "#94e2d5",
+  "white": "#ffffff",
+  "brightBlack": "#585b70",
+  "brightRed": "#f38ba8",
+  "brightGreen": "#a6e3a1",
+  "brightYellow": "#f9e2af",
+  "brightBlue": "#89b4fa",
+  "brightPurple": "#cba6f7",
+  "brightCyan": "#89dceb",
+  "brightWhite": "#ffffff",
+  "cursor": "#f5c2e7",
+  "cursorAccent": "#1e1e2e",
+  "selectionBackground": "#585b70"
+}
+
+Set FontSize 40
+Set Width 1600
+Set Height 900
+Set TypingSpeed 300ms
+Set PlaybackSpeed 1
+Set Margin 28
+Set MarginFill "#0091FF"
+Set BorderRadius 25
+Set Padding 18
+Set LineHeight 1.2
+Set LetterSpacing 0.8
+# ---- Theme setting end (DO NOT CHANGE) ----
+
+Sleep 800ms
+Sleep 180ms
+Type "uname -s"
+Sleep 120ms
+Enter
+Sleep 400ms
+Type "uname -s"
+Sleep 120ms
+Enter
+Sleep 400ms
+Type "uname -s"
+Sleep 120ms
+Enter
+Sleep 400ms
+Type "uname -s"
+Sleep 120ms
+Enter
+Sleep 400ms
+Type "uname -s"
+Sleep 120ms
+Enter
+Sleep 400ms
+Sleep 400ms
+Sleep 600ms
+Hide
+\end{verbatim}

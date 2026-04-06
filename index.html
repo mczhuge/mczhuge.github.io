@@ -6,9 +6,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy"
           content="block-all-mixed-content">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mingchen Zhuge's homepage featuring research on multimodal agents, world models, recursive self-improvement, and Neural Computer.">
+    <meta name="author" content="Mingchen Zhuge">
+    <link rel="canonical" href="https://metauto.ai/">
+    <meta property="og:title" content="METAUTO.ai | Mingchen Zhuge">
+    <meta property="og:description" content="Research homepage of Mingchen Zhuge covering multimodal agents, world models, recursive self-improvement, and Neural Computer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metauto.ai/">
+    <meta property="og:image" content="https://metauto.ai/images/mingchen.jpeg">
+    <meta property="og:site_name" content="METAUTO.ai">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="METAUTO.ai | Mingchen Zhuge">
+    <meta name="twitter:description" content="Research homepage of Mingchen Zhuge covering multimodal agents, world models, recursive self-improvement, and Neural Computer.">
+    <meta name="twitter:image" content="https://metauto.ai/images/mingchen.jpeg">
 
-    <title> METAUTO.ai | Mingchen Zhuge</title>
+    <title>METAUTO.ai | Mingchen Zhuge</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -49,17 +62,15 @@
             margin: 0;
             letter-spacing: -0.015em; /* Slightly tighter letter spacing like Anthropic */
             font-weight: 400;
-            width: 1200px;
-            min-width: 1200px;
-            overflow-x: auto;
-            margin: 0 auto;
+            width: 100%;
+            min-width: 320px;
+            overflow-x: hidden;
         }
 
-        /* Container to ensure consistent fixed width */
+        /* Container to ensure consistent readable width */
         .container {
-            width: 1200px !important;
-            max-width: 1200px !important;
-            min-width: 1200px !important;
+            width: 100%;
+            max-width: 1200px;
             padding-left: 15px;
             padding-right: 15px;
             margin-left: auto;
@@ -72,8 +83,7 @@
             border-bottom: none;
             box-shadow: none;
             padding: 15px 0;
-            min-width: 1200px;
-            width: 1200px;
+            width: 100%;
         }
         .navbar-fixed-top .navbar-nav > li > a {
             color: var(--text-color); /* Dark links */
@@ -119,6 +129,7 @@
         }
 
         /* Hero section styling */
+        #about h1,
         #about h2 { /* Main name heading in About */
             color: var(--text-color); /* Dark heading */
             border-bottom: none; /* No underline */
@@ -267,6 +278,7 @@
             margin: 0;
         }
 
+        .about-details h1,
         .about-details h2 {
             margin-top: 0;
         }
@@ -277,18 +289,9 @@
             }
         }
 
-        /* Container to ensure consistent width */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            padding-left: 15px;
-            padding-right: 15px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         /* Improved mobile responsiveness */
         @media (max-width: 767px) {
+            #about h1,
             #about h2 {
                 font-size: 32px;
                 margin-bottom: 20px;
@@ -1065,8 +1068,7 @@
     </style>
 
 </head>
-<html>
-<body style="background-color: #FEFBF3; color: #1D1B22; width: 100%; margin: 0; padding: 0;">
+<body>
 <div class="gray-container" id="about">
     <div class="container">
         <div class="about-card">
@@ -1077,7 +1079,7 @@
                     <a href="blog/index.html" class="about-blog-link">Blog</a>
                 </div>
                 <div class="about-details">
-                    <h2>Mingchen Zhuge</h2>
+                    <h1>Mingchen Zhuge</h1>
                     <p class="about-bio">Hi, I am Mingchen! I am a PhD candidate with a strong interest in <span class="coffee-text">multimodal agents, world models, and recursive self-improvement</span>. I am fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Prof. Jürgen Schmidhuber</a> as my advisor. I have 20+ top-tier publications and over 4,600 citations (70% from first-author papers). My work includes:</p>
                     <ul class="about-work-grid">
                         <li class="about-work-item">(1) code generation: <a href="https://github.com/geekan/MetaGPT">MetaGPT</a> <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/OpenDevin/OpenDevin">OpenHands</a> <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
