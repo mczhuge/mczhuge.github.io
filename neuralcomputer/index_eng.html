@@ -755,9 +755,8 @@
             -webkit-overflow-scrolling: touch;
             border: 1px solid rgba(223, 206, 191, 0.82);
             border-radius: 16px;
-            background:
-                linear-gradient(145deg, rgba(255, 248, 240, 0.985) 0%, rgba(252, 242, 232, 0.98) 100%);
-            box-shadow: 0 12px 26px rgba(94, 69, 44, 0.06);
+            background: linear-gradient(145deg, rgba(255, 252, 248, 0.98) 0%, rgba(255, 248, 243, 0.97) 100%);
+            box-shadow: 0 12px 28px rgba(94, 69, 44, 0.05);
         }
 
         .route-compare-table {
@@ -785,8 +784,7 @@
             font-weight: 700;
             line-height: 1.52;
             color: #1f3553;
-            background:
-                linear-gradient(145deg, rgba(255, 244, 232, 0.98) 0%, rgba(255, 239, 223, 0.97) 100%);
+            background: linear-gradient(145deg, rgba(255, 244, 232, 0.98) 0%, rgba(255, 239, 223, 0.97) 100%);
             border-bottom: 1px solid rgba(223, 210, 197, 0.72);
         }
 
@@ -826,7 +824,7 @@
             line-height: 1.68;
             color: #1f2d42;
             text-wrap: pretty;
-            background: rgba(255, 250, 244, 0.98);
+            background: rgba(255, 253, 250, 0.96);
         }
 
         .route-compare-table tbody td + td {
@@ -852,7 +850,7 @@
             letter-spacing: 0.02em;
             text-transform: none;
             color: #8a7768;
-            background: rgba(249, 236, 223, 0.96);
+            background: rgba(255, 253, 250, 0.96);
         }
 
         .route-compare-table tbody tr.route-compare-group-row:not(:first-child) td {
@@ -868,7 +866,7 @@
         }
 
         .route-compare-table tbody tr.route-compare-key-row td {
-            background: rgba(255, 242, 230, 0.98);
+            background: rgba(255, 253, 250, 0.96);
         }
 
         .route-compare-table tbody tr.route-compare-key-row td:first-child {
@@ -3012,10 +3010,10 @@
                 <p>Put those three developments together and the question becomes much sharper: if agents are getting better at real work, world models are getting better at internal simulation, and conventional computers are already rebuilding their substrate for AI, could there be a new runtime that unifies execution, rollout, and capability accumulation inside the same learning machine?</p>
                 <p>Seen this way, the main human-machine relationship shifts. In the conventional era, people mainly interact with computers. In the agent era, they increasingly interact with agents, which then call the computer on their behalf. World models occupy a parallel position: they can serve humans or agents, but they do not themselves close the loop of getting work done. NC goes one step deeper. It asks whether some of the responsibilities now split across computers, agents, and world models can be drawn back into the same learning machine. At that point, the object in front of the user would no longer be an agent using a computer for them. It would be a Neural Computer.</p>
                 <figure class="figure-block relation-figure comparison-card">
-                    <a class="zoomable-image-link" href="assets/relations.svg" aria-label="Zoom human-machine relation diagram">
-                        <img src="assets/relations.svg" alt="How the human-machine relation changes" loading="lazy" decoding="async">
+                    <a class="zoomable-image-link" href="assets/relations.png" aria-label="Zoom human-machine relation diagram">
+                        <img src="assets/relations.png" alt="How the human-machine relation changes" loading="lazy" decoding="async">
                     </a>
-                    <figcaption>How the human-machine relation changes: the conventional pattern looked more like Human → Computer; the agent era looks more like Human → Agent → Computer, with world models appearing as a parallel predictive layer; if NC matures, humans would face a Neural Computer more directly.</figcaption>
+                    <figcaption>How the human-machine relation changes: in the conventional era, the relation looked more like Human → Computer; in the agent era, it looks more like Human → Agent → Computer, while World Model appears more as a parallel predictive layer; if NC matures, humans would face a Neural Computer more directly.</figcaption>
                 </figure>
                 <p>This is also why interaction starts to take on a programming flavor. Today, natural-language instructions, keyboard and mouse traces, screen transitions, and task feedback are mostly just logs of what happened. Under the NC framing, they become materials that shape future behavior. Today we install capabilities mainly through code. Later, demonstrations, interaction traces, and constraints may themselves become ways for capabilities to enter runtime.</p>
             </section>
