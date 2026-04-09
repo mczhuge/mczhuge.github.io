@@ -2921,8 +2921,8 @@
 <p>若你也曾想过：“AI 最终会成为一种计算机”，那本文就是写给你的。</p>
 <p>过去几十年，计算机逐渐成为人类完成任务的重要媒介。最近几年，AI 也开始进入这个位置：它不再只回答问题，还开始调用工具、操作界面、参与真实工作流。问题随之变了：我们期待 AI 使用计算机，还是成为一种计算机？</p>
                 <p>Neural Computer（神经计算机，NC）讨论的就是这个问题：模型能不能承担一部分原本属于机器运行本身的职责。</p>
-                <p>这里说的 NC，不完全指 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件。本文更想讨论的，是一台 learning machine 会不会从“使用计算机”走向“成为计算机”。</p>
-                <p>它要讨论的，不是更强的 agent，不是计算机环境里的 world model，也不是在传统计算机上再加一层智能。它更关心的是，原本由程序栈、工具链和控制层承担的那部分系统职责，会不会逐渐进入模型实际依赖的 Runtime。这个念头很多人应该都想过，我先把它叫作“前共识”。</p>
+                <p>这里说的 Neural Computer，不完全指 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件（如最近的）。本文更想讨论的，是一台 learning machine 会不会从“使用计算机”走向“成为计算机”。</p>
+                <p>所以以下并不是我们的目标，比如：更强的 agent，计算机环境里的 world model，额外在传统计算机上再加一层智能。它关心的是，原本由程序栈、工具链和控制层承担的那部分系统职责，会不会逐渐进入模型实际依赖的 Runtime。这个念头，我想在很多脑海里浮现过，我先把它叫作“前共识”。</p>
 
                 <div id="summary" class="summary-block is-collapsed" role="note" aria-label="TLDR">
                     <div class="summary-header">
@@ -3044,7 +3044,7 @@
                     <thead>
                         <tr>
                             <th>CNC 条件</th>
-                            <th>更直白地说</th>
+                            <th>内涵</th>
                             <th>工程上大概要看到什么</th>
                         </tr>
                     </thead>
@@ -3077,7 +3077,7 @@
 
             <section id="chapter-3">
                 <h2>3. 论文实现的原型：它证明了什么，还缺什么</h2>
-				                <p>按我的判断，Neural Computer 真正成形，大概还要三年。所以，和我真正设想的 Neural Computer 相比，我们论文里的工作还只是很早的一步。放在今天，我最顺手的统一载体，还是这类面向视频生成和 world model 的神经网络；要先把像素、动作和时间 rollout 放进同一个端到端原型里，它们也是最快的一条路。我们现在借它们验证的，只是 NC 的部分关键能力。它们更像过渡性的实现参考，而不是 NC 的最终结构；如果真要走到 CNC，最后仍然需要一次更彻底、自底向上的重建。</p>
+				                <p>按我的判断，Neural Computer 真正成形，大概还要三年。所以，和我真正设想的 Neural Computer 相比，我们论文里的工作还只是很早的一步。放在今天，我认为最顺手的统一载体，还是这类面向视频生成和 world model 的神经网络；要先把像素、动作和时间 rollout 放进同一个端到端原型里，它们也是最快的一条路。我们现在借它们验证的，只是 NC 的部分关键能力。它们更像过渡性的实现参考，而不是 NC 的最终结构；如果真要走到 CNC，最后仍然需要一次更彻底、自底向上的重建。</p>
                 <div class="demo-gallery" aria-label="NC demo gallery">
 	                    <h3 class="minor-subhead">3.1 CLIGen (General)：以假乱真的“计算机模仿游戏”</h3>
 	                    <p>先看 terminal rendering 能不能站住：配色、光标、滚动、TUI 和整体节奏感。</p>
@@ -3671,7 +3671,7 @@
                         </tr>
                     </tbody>
                 </table>
-	                <p>从最终实验结果来看，这里先省略细节：四个模型设计里，模型四的综合结果最好。这组结果表明，对于 GUI 这种细粒度、强时序、强局部交互的环境，把 action 直接打进 block 内部，最容易让模型把“动作之后界面怎样继续走”学进主干里。与此同时，110 小时的 supervised data 明显好于约 1400 小时 random data；显式光标视觉监督也比单纯坐标监督强得多。合在一起看，GUIWorld 最直白的结论是：GUI 这条线最缺的是更硬的动作语义、更明确的状态转移，以及把光标当成视觉对象来监督。</p>
+	                <p>从最终实验结果来看（这里先省略细节）：四个模型设计里，模型四的综合结果最好。这组结果表明，对于 GUI 这种细粒度、强时序、强局部交互的环境，把 action 直接打进 block 内部，最容易让模型把“动作之后界面怎样继续走”学进主干里。与此同时，110 小时的 supervised data 明显好于约 1400 小时 random data；显式光标视觉监督也比单纯坐标监督强得多。合在一起看，GUIWorld 最直白的结论是：GUI 这条线最缺的是更硬的动作语义、更明确的状态转移，以及把光标当成视觉对象来监督。</p>
 	                <p>虽然一开始很少有人看好视频模型能处理这种高度离散、文字密集、动作敏感的计算机场景，但只要任务设计和数据组织得当，它在界面渲染、页面切换、短时状态延续、局部交互、执行回显，甚至一些非常初步的工作记忆上，都已经能给出很多有意思的结果。换句话说，video models 也许离终局还很远，但作为早期原型的容器，已经足够把不少原本抽象的 Neural Computer 问题先摆到台面上。</p>
                 <h3 class="minor-subhead">3.4 从 Prototype NC 到 CNC，还差什么</h3>
 	                <p>把第 2 节那张 CNC 条件表重新拿回来，当前原型的大致结论已经比较清楚了：<em>Turing complete</em> 只触到边缘，<em>universally programmable</em> 还只是入口出现，<em>behavior-consistent</em> 只在受控环境里局部成立，<em>machine-native semantics</em> 则方向比结论更清楚。NC 要解决的不是把 agent、world model 和传统 computer 简单叠加，而是把今天分散在这些对象里的部分职责，逐步收回同一个 learned runtime。当前原型真正重要的地方，不是它已经逼近终局，而是它把决定 CNC 能不能成立的几道硬门槛提前暴露出来。</p>
@@ -3761,7 +3761,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="route-compare-note"><strong>读法提示：</strong>三者并不互斥。传统计算机仍然是底座，personalized super agent 很可能更早成熟，Neural Computer 试图把今天分散在外部栈里的部分职责逐步收回同一个 learned runtime。真正的分叉在于：能力是长期住在外部、执行时反复组装，还是一点点进入 runtime，变成机器后面继续运行的方式。</div>
                 </div>
 	                <p>如果 CNC 真的成立，最先改变的会是交付对象和系统的组织方式。今天被装进去的还是软件、工具、workflow 和 memory 条目；到了 NC 这条路上，慢慢被装进去的，更像是能力本身。代码当然还会在，但它不再是唯一入口；说明、示范、操作轨迹和约束，也会开始直接承担“装能力”这件事。“程序”这个词的含义也会跟着变化：它不再只是一段代码，而更像一项能被安装、组合、版本化和持续更新的能力对象。</p>
 	                <p>再往后，变化会一路传到系统栈和机器边界本身。软件怎么搭、硬件怎么配、更新怎么治理、问题怎么追踪，都会越来越围绕同一台持续运行的机器重新组织。手机、浏览器、IDE、终端这些入口还会在，但会越来越像接入同一台机器的不同窗口。到最后，被改写的不只是某个工具栈，而是“计算机”这个词本身的含义。</p>
