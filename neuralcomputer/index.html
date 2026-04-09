@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="一篇关于 Neural Computer 的研究随笔：解释它与 agent、world model、传统计算机的区别，讨论 runtime、CNC、当前原型，以及对软件与硬件的影响。">
+    <meta name="description" content="A research essay on Neural Computer: how it differs from agents, world models, and conventional computers; what runtime and CNC would mean; what current prototypes already show; and how software and hardware might change.">
     <meta name="author" content="Mingchen Zhuge">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta property="og:locale" content="zh_CN">
+    <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="METAUTO.ai">
-    <meta property="og:title" content="Neural Computer：一种新的机器形态，正在出现">
-    <meta property="og:description" content="一篇关于 Neural Computer 的研究随笔：解释它与 agent、world model、传统计算机的区别，讨论 runtime、CNC、当前原型，以及对软件与硬件的影响。">
+    <meta property="og:title" content="Neural Computer: A New Machine Form Is Emerging">
+    <meta property="og:description" content="A research essay on Neural Computer: how it differs from agents, world models, and conventional computers; what runtime and CNC would mean; what current prototypes already show; and how software and hardware might change.">
     <meta property="og:type" content="article">
     <meta property="og:image" content="https://metauto.ai/neuralcomputer/references/assets/teaser10_top.png">
     <meta property="og:image:alt" content="Neural Computer teaser diagram">
@@ -25,15 +25,15 @@
     <meta property="article:tag" content="World Model">
     <meta property="article:tag" content="Runtime">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Neural Computer：一种新的机器形态，正在出现">
-    <meta name="twitter:description" content="一篇关于 Neural Computer 的研究随笔：解释它与 agent、world model、传统计算机的区别，讨论 runtime、CNC、当前原型，以及对软件与硬件的影响。">
+    <meta name="twitter:title" content="Neural Computer: A New Machine Form Is Emerging">
+    <meta name="twitter:description" content="A research essay on Neural Computer: how it differs from agents, world models, and conventional computers; what runtime and CNC would mean; what current prototypes already show; and how software and hardware might change.">
     <meta name="twitter:image" content="https://metauto.ai/neuralcomputer/references/assets/teaser10_top.png">
     <link rel="canonical" href="https://metauto.ai/neuralcomputer/">
-    <link rel="alternate" hreflang="zh-CN" href="https://metauto.ai/neuralcomputer/">
-    <link rel="alternate" hreflang="en" href="https://metauto.ai/neuralcomputer/index_eng.html">
-    <link rel="alternate" hreflang="x-default" href="https://metauto.ai/neuralcomputer/index_eng.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://metauto.ai/neuralcomputer/index_cn.html">
+    <link rel="alternate" hreflang="en" href="https://metauto.ai/neuralcomputer/">
+    <link rel="alternate" hreflang="x-default" href="https://metauto.ai/neuralcomputer/">
     <link rel="author" href="https://metauto.ai/">
-    <title>Neural Computer：一种新的机器形态，正在出现</title>
+    <title>Neural Computer: A New Machine Form Is Emerging</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <script type="application/ld+json">
         {
@@ -61,9 +61,9 @@
                     "@type": "WebPage",
                     "@id": "https://metauto.ai/neuralcomputer/#webpage",
                     "url": "https://metauto.ai/neuralcomputer/",
-                    "name": "Neural Computer：一种新的机器形态，正在出现",
-                    "description": "一篇关于 Neural Computer 的研究随笔：解释它与 agent、world model、传统计算机的区别，讨论 runtime、CNC、当前原型，以及对软件与硬件的影响。",
-                    "inLanguage": "zh-CN",
+                    "name": "Neural Computer: A New Machine Form Is Emerging",
+                    "description": "A research essay on Neural Computer: how it differs from agents, world models, and conventional computers; what runtime and CNC would mean; what current prototypes already show; and how software and hardware might change.",
+                    "inLanguage": "en",
                     "isPartOf": {
                         "@id": "https://metauto.ai/#website"
                     },
@@ -91,10 +91,10 @@
                     "mainEntityOfPage": {
                         "@id": "https://metauto.ai/neuralcomputer/#webpage"
                     },
-                    "headline": "Neural Computer：一种新的机器形态，正在出现",
+                    "headline": "Neural Computer: A New Machine Form Is Emerging",
                     "alternativeHeadline": "Beyond Von Neumann, Toward Complete Neural Computer",
-                    "description": "一篇关于 Neural Computer 的研究随笔：解释它与 agent、world model、传统计算机的区别，讨论 runtime、CNC、当前原型，以及对软件与硬件的影响。",
-                    "inLanguage": "zh-CN",
+                    "description": "A research essay on Neural Computer: how it differs from agents, world models, and conventional computers; what runtime and CNC would mean; what current prototypes already show; and how software and hardware might change.",
+                    "inLanguage": "en",
                     "datePublished": "2026-04-07T00:00:00+08:00",
                     "dateModified": "2026-04-07T00:00:00+08:00",
                     "author": {
@@ -167,7 +167,7 @@
                         {
                             "@type": "ListItem",
                             "position": 3,
-                            "name": "Neural Computer：一种新的机器形态，正在出现",
+                            "name": "Neural Computer: A New Machine Form Is Emerging",
                             "item": "https://metauto.ai/neuralcomputer/"
                         }
                     ]
@@ -183,7 +183,7 @@
             --bg: #ffffff;
             --accent: #1f3d63;
             --grid: rgba(31, 61, 99, 0.024);
-            --content-width: 895px;
+            --content-width: 860px;
             --demo-card-bg:
                 radial-gradient(122% 110% at 0% 0%, rgba(212, 226, 242, 0.16) 0%, rgba(212, 226, 242, 0) 34%),
                 radial-gradient(104% 90% at 100% 0%, rgba(236, 220, 208, 0.12) 0%, rgba(236, 220, 208, 0) 30%),
@@ -206,9 +206,11 @@
                 radial-gradient(980px 620px at 50% 96%, rgba(224, 244, 226, 0.13), rgba(255, 255, 255, 0) 72%),
                 repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 44px),
                 repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 44px);
-            font-family: "Iowan Old Style", "Baskerville", "Palatino Linotype", "Book Antiqua", "Times New Roman", "Noto Serif", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
-            line-height: 1.8;
+            font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Georgia", "Times New Roman", "Noto Serif", serif;
+            line-height: 1.82;
             letter-spacing: 0;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -252,6 +254,7 @@
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.02em;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .header-actions {
@@ -259,6 +262,7 @@
             align-items: center;
             gap: 12px;
             font-size: 12.5px;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .header-actions a {
@@ -303,6 +307,7 @@
             letter-spacing: 0.12em;
             text-transform: uppercase;
             font-weight: 700;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .eyebrow-updated {
@@ -316,6 +321,7 @@
             justify-content: flex-end;
             gap: 4px 8px;
             white-space: normal;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .eyebrow-updated time {
@@ -328,9 +334,9 @@
 
         h1 {
             margin: 0 0 14px;
-            font-size: clamp(24px, 3.1vw, 34px);
-            line-height: 1.16;
-            letter-spacing: -0.01em;
+            font-size: clamp(29px, 3.35vw, 42px);
+            line-height: 1.12;
+            letter-spacing: -0.018em;
             color: #111827;
             font-weight: 700;
             text-wrap: balance;
@@ -338,11 +344,10 @@
 
         .deck {
             margin: 0 0 18px;
-            font-size: clamp(15px, 1.58vw, 17px);
-            line-height: 1.8;
+            font-size: clamp(16.2px, 1.5vw, 17.8px);
+            line-height: 1.78;
             color: #243244;
-            text-align: justify;
-            text-align-last: left;
+            text-align: left;
             hyphens: auto;
         }
 
@@ -410,8 +415,29 @@
         }
 
         .title-link.translation {
-            --title-link-accent: rgba(56, 110, 166, 0.28);
-            color: #28527f;
+            --title-link-accent: rgba(188, 146, 54, 0.34);
+            color: #9a6914;
+            gap: 8px;
+        }
+
+        .title-link.translation .translation-glyph {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 34px;
+            height: 20px;
+            padding: 0 7px;
+            border-radius: 999px;
+            background:
+                linear-gradient(180deg, rgba(255, 248, 229, 0.98) 0%, rgba(250, 237, 198, 0.95) 100%);
+            box-shadow:
+                inset 0 0 0 1px rgba(191, 150, 60, 0.22),
+                0 1px 0 rgba(255, 255, 255, 0.74);
+            color: #8e6312;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .title-link.contact {
@@ -543,6 +569,7 @@
             color: var(--muted);
             font-size: 14px;
             max-width: 72ch;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .meta-note-line {
@@ -551,6 +578,7 @@
             font-size: 12.5px;
             line-height: 1.5;
             max-width: 78ch;
+            font-family: "Inter", "Avenir Next", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
         }
 
         .with-margin-note {
@@ -607,9 +635,9 @@
 
         h2 {
             margin: 0 0 10px;
-            font-size: clamp(18px, 2.05vw, 22px);
-            line-height: 1.3;
-            letter-spacing: -0.01em;
+            font-size: clamp(19px, 2.14vw, 24px);
+            line-height: 1.24;
+            letter-spacing: -0.012em;
             color: #111827;
         }
 
@@ -620,32 +648,32 @@
 
         h3 {
             margin: 18px 0 8px;
-            font-size: 19px;
-            line-height: 1.38;
+            font-size: 20px;
+            line-height: 1.3;
             color: #1f3658;
         }
 
         .minor-subhead {
-            font-size: 17px;
-            line-height: 1.32;
+            font-size: 17.6px;
+            line-height: 1.28;
             font-weight: 600;
             color: #1f3658;
         }
 
         #chapter-3 .minor-subhead {
             margin: 26px 0 12px;
-            font-size: 18.2px;
-            line-height: 1.36;
+            font-size: 18.4px;
+            line-height: 1.34;
             color: #27405f;
         }
 
         p {
             margin: 0 0 15px;
-            font-size: clamp(15px, 1.58vw, 17px);
+            font-size: clamp(16.1px, 1.52vw, 17.8px);
             color: var(--text);
+            line-height: 1.82;
             text-wrap: pretty;
-            text-align: justify;
-            text-align-last: left;
+            text-align: left;
             hyphens: auto;
         }
 
@@ -657,9 +685,9 @@
 
         li {
             margin-bottom: 8px;
-            font-size: clamp(15px, 1.5vw, 16.8px);
+            font-size: clamp(15.8px, 1.45vw, 17.1px);
             color: #1f2937;
-            line-height: 1.68;
+            line-height: 1.76;
             text-wrap: pretty;
         }
 
@@ -727,8 +755,7 @@
             -webkit-overflow-scrolling: touch;
             border: 1px solid rgba(223, 206, 191, 0.82);
             border-radius: 16px;
-            background:
-                linear-gradient(145deg, rgba(255, 252, 248, 0.98) 0%, rgba(255, 248, 243, 0.97) 100%);
+            background: linear-gradient(145deg, rgba(255, 252, 248, 0.98) 0%, rgba(255, 248, 243, 0.97) 100%);
             box-shadow: 0 12px 28px rgba(94, 69, 44, 0.05);
         }
 
@@ -757,8 +784,7 @@
             font-weight: 700;
             line-height: 1.52;
             color: #1f3553;
-            background:
-                linear-gradient(145deg, rgba(255, 244, 232, 0.98) 0%, rgba(255, 239, 223, 0.97) 100%);
+            background: linear-gradient(145deg, rgba(255, 244, 232, 0.98) 0%, rgba(255, 239, 223, 0.97) 100%);
             border-bottom: 1px solid rgba(223, 210, 197, 0.72);
         }
 
@@ -2868,19 +2894,19 @@
         <article class="article-body">
             <section id="intro">
                 <div class="eyebrow-row">
-                    <p class="eyebrow">研究随笔 · Neural Computers</p>
+                    <p class="eyebrow">Research Essay · Neural Computers</p>
                     <p class="eyebrow-updated">
-                        <span>作者：Mingchen Zhuge</span>
+                        <span>By Mingchen Zhuge</span>
                         <span class="meta-divider" aria-hidden="true">·</span>
-                        <span>发布于 <time datetime="2026-04-07">2026 年 4 月 7 日</time></span>
+                        <span>Published <time datetime="2026-04-07">April 7, 2026</time></span>
                         <span class="meta-divider" aria-hidden="true">·</span>
-                        <span>更新于 <time datetime="2026-04-07">2026 年 4 月 7 日</time></span>
+                        <span>Updated <time datetime="2026-04-07">April 7, 2026</time></span>
                     </p>
                 </div>
-                <h1>Neural Computer：一种新的机器形态，正在出现</h1>
-                <p class="deck">TL;DR: 我们开始期待机器本身学会运行。</p>
+                <h1>Neural Computer: A New Machine Form Is Emerging</h1>
+                <p class="deck">TL;DR: we are starting to expect the machine itself to learn how to run.</p>
                 <div class="title-links" aria-label="Paper and code links">
-                    <a class="title-link arxiv" href="https://arxiv.org/abs/2604.06425" target="_blank" rel="noopener noreferrer" aria-label="View Neural Computers on arXiv">
+                    <a class="title-link arxiv" href="https://arxiv.org/abs/2604.06425" target="_blank" rel="noopener noreferrer" aria-label="Read the paper on arXiv">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <rect x="2.5" y="3" width="19" height="18" rx="4.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
                             <path d="M6.8 16.2L10 7.9h1.5l3.2 8.3h-1.8l-.7-2h-3l-.7 2H6.8zm3-3.5h2.1l-1-2.9-1.1 2.9z"></path>
@@ -2894,8 +2920,9 @@
                         </svg>
                         <span>GitHub</span>
                     </a>
-                    <a class="title-link translation" href="index_eng.html" aria-label="View English version of this essay">
-                        <span>English Version</span>
+                    <a class="title-link translation" href="index_cn.html" aria-label="Read the Chinese version of this essay">
+                        <span class="translation-glyph" aria-hidden="true">A/文</span>
+                        <span>Chinese Version (中文版)</span>
                     </a>
                     <button type="button" class="title-link contact" id="contact-toggle" aria-expanded="false" aria-controls="contact-panel" aria-label="Toggle contact details">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -2918,22 +2945,22 @@
                     <img src="assets/teaser_blog.svg" alt="Neural Computer teaser diagram" loading="eager" fetchpriority="high" decoding="async">
                 </figure>
 
-<p>若你也曾想过：“AI 最终会成为一种计算机”，那本文就是写给你的。</p>
-<p>过去几十年，计算机逐渐成为人类完成任务的重要媒介。最近几年，AI 也开始进入这个位置：它不再只回答问题，还开始调用工具、操作界面、参与真实工作流。问题随之变了：我们期待 AI 使用计算机，还是成为一种计算机？</p>
-                <p>Neural Computer（神经计算机，NC）讨论的就是这个问题：模型能不能承担一部分原本属于机器运行本身的职责。</p>
-                <p>这里说的 NC，不完全指 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件。本文更想讨论的，是一台 learning machine 会不会从“使用计算机”走向“成为计算机”。</p>
-                <p>它要讨论的，不是更强的 agent，不是计算机环境里的 world model，也不是在传统计算机上再加一层智能。它更关心的是，原本由程序栈、工具链和控制层承担的那部分系统职责，会不会逐渐进入模型实际依赖的 Runtime。这个念头很多人应该都想过，我先把它叫作“前共识”。</p>
+<p>If you have ever wondered whether AI might ultimately become a kind of computer, this essay is for you.</p>
+<p>Over the past few decades, the computer has become the main medium through which people get things done. In the last few years, AI has started moving into that same role: it no longer just answers questions; it calls tools, operates interfaces, and enters real workflows. That changes the question itself. Do we want AI to use computers, or to become a kind of computer?</p>
+                <p>Neural Computer (NC) is the name I use for that question: can a model start taking on some of the responsibilities that still belong to the machine's own runtime?</p>
+                <p>NC here does not simply refer to the NTM / DNC line associated with Alex Graves<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>, and it is not a proposal for new hardware. The question is whether a learning machine could move from using computers to becoming one.</p>
+                <p>This is not mainly a story about a stronger agent, a world model for computer environments, or another layer of intelligence added on top of conventional computers. It is about whether some of the responsibilities now carried by the program stack, toolchain, and control layer could gradually move into the runtime the model actually depends on.</p>
 
                 <div id="summary" class="summary-block is-collapsed" role="note" aria-label="TLDR">
                     <div class="summary-header">
-                        <p class="summary-kicker">大致观点</p>
+                        <p class="summary-kicker">Big picture</p>
                     </div>
                     <ol class="summary-list">
-                        <li><div><strong>Neural Computer（NC）</strong>想讨论的是，模型会不会开始承担一部分原本属于机器本身的运行职责。</div></li>
-                        <li><div>传统计算机围绕显式程序，<strong>Agent</strong> 围绕任务，<strong>World Model</strong> 围绕环境，而 <strong>NC</strong> 围绕 <strong>Runtime</strong>。</div></li>
-                        <li><div><strong>Completely Neural Computer（完备神经计算机，CNC）</strong>是 <strong>NC</strong> 的完备态。</div></li>
-                        <li><div>当前的一些原型，已经开始显示出早期 <strong>Runtime 原语</strong>的雏形。</div></li>
-                        <li><div>如果能力开始进入 <strong>Runtime</strong>，并能在那里被安装、复用和治理，那么 <strong>Neural Computer</strong> 可能会<strong>重新定义</strong>“<strong>计算机</strong>”这个词。</div></li>
+                        <li><div><strong>Neural Computer (NC)</strong> asks whether models can start taking on some runtime responsibilities that still belong to the machine itself.</div></li>
+                        <li><div>Conventional computers organize around explicit programs, <strong>agents</strong> around tasks, <strong>world models</strong> around environments, and <strong>NC</strong> around <strong>runtime</strong>.</div></li>
+                        <li><div><strong>Completely Neural Computer (CNC)</strong> is the completed form of <strong>NC</strong>.</div></li>
+                        <li><div>Current prototypes already show early hints of <strong>runtime primitives</strong>.</div></li>
+                        <li><div>If capabilities can enter <strong>runtime</strong> and remain installable, reusable, and governable there, <strong>Neural Computer</strong> could change what we mean by a <strong>computer</strong>.</div></li>
                     </ol>
                 </div>
             </section>
@@ -2941,133 +2968,133 @@
             <hr class="divider">
 
             <section id="chapter-1">
-                <h2>1. 为什么是现在：“一种新的机器形态”正在出现</h2>
-                <p>今天有三件事正在同时发生。</p>
-                <p><strong>第一，agent 变得越来越会做事。</strong> 从 2023年的 MetaGPT (“古早” Coding Agents之一)<a class="inline-ref" href="#ref-metagpt">[3]</a> 只能勉强写出几百行代码，到2025年 Cursor、Codex 和 Claude Code 已经成为程序员生产力标配工具，再到今天 OpenClaw<a class="inline-ref" href="#ref-openclaw">[4]</a> 真正走入大众视野，大家关心的，已经不是 agent 偶尔把一件事做成，而是它能不能进入真实生产和日常生活，稳定处理各类事务。</p>
-	                <p>对 agent 来说，现在大家更关心的 bottleneck 是：（1）长时程任务怎么保持稳定，（2）能力怎么沉淀下来，（3）流程怎么持续复用。眼下的解决办法，主要还是在 agent 的 scaffold（或 harness）这一侧继续做加法：用更强的记忆、更长的工作流和更稳的行动闭环，尽可能提高任务完成率。再往前走，一条更激进的方向是递归式自我改进：模型训练下一代模型，agent 持续改写自己<a class="inline-ref" href="#ref-recursive-self-improvement">[5]</a>。</p>
+                <h2>1. Why now: a new machine form is starting to emerge</h2>
+                <p>Three things are happening at once.</p>
+                <p><strong>First, agents are getting better and better at real work.</strong> In 2023, MetaGPT, one of the early coding-agent prototypes<a class="inline-ref" href="#ref-metagpt">[3]</a>, could barely produce a few hundred lines of code. By 2025, Cursor, Codex, and Claude Code had already become default productivity tools for many programmers. Today OpenClaw<a class="inline-ref" href="#ref-openclaw">[4]</a> has started entering broader public view. The question is no longer whether an agent can occasionally pull off a task. It is whether it can enter real production and daily life and handle things for you reliably.</p>
+                <p>For agents, the main bottlenecks now are: (1) how to stay stable over long-horizon tasks, (2) how capabilities can be retained and reused, and (3) how workflows can be reused over time. The dominant path still adds structure on the scaffold or harness side: stronger memory, longer workflows, and tighter action loops, all in service of raising task completion rates. Push that further and the more aggressive path becomes recursive self-improvement: models training the next generation of models, agents continuously rewriting themselves<a class="inline-ref" href="#ref-recursive-self-improvement">[5]</a>.</p>
                 <figure class="figure-block openclaw-side comparison-card">
                     <div class="openclaw-gallery">
-                        <a class="zoomable-image-link" href="assets/agent1.png" aria-label="放大查看 MetaGPT 论文截图">
+                        <a class="zoomable-image-link" href="assets/agent1.png" aria-label="Zoom MetaGPT paper screenshot">
                             <img src="assets/agent1.png" alt="MetaGPT paper front page" loading="lazy" decoding="async">
                         </a>
-                        <a class="zoomable-image-link" href="assets/openclaw2.png" aria-label="放大查看 OpenClaw 仓库热度图">
+                        <a class="zoomable-image-link" href="assets/openclaw2.png" aria-label="Zoom OpenClaw repository popularity chart">
                             <img src="assets/openclaw2.png" alt="OpenClaw repository popularity chart" loading="lazy" decoding="async">
                         </a>
                     </div>
-                    <figcaption>Agent 正在从原型实验，走向专业生产力工具，再走向大众日常基础设施。<a href="#ref-metagpt">[3]</a><a href="#ref-openclaw">[4]</a></figcaption>
+                    <figcaption>Agents are making the transition from prototype experiments to professional productivity tools and, increasingly, to everyday infrastructure.<a href="#ref-metagpt">[3]</a><a href="#ref-openclaw">[4]</a></figcaption>
                 </figure>
-	                <p><strong>第二，world model 越来越擅长建模动态环境。</strong> 最近一年，从 GameNGen、Genie 2/3 等项目的世界模型实验，越来越多人开始相信：模型不仅能表示当前状态，还能在内部维持一个关于“下一步会发生什么”的动态结构。它本来就模拟环境演化；现在更值得注意的是，这种能力已经进入一些真实闭环。尤其在现实里难以低成本、反复采集的 corner case 上，rollout 正被直接用进预测、规划、控制和训练。沿着这条线看，从 Jürgen Schmidhuber 在 1990 年提出的 <em>Making the World Differentiable</em><a class="inline-ref" href="#ref-making-the-world-differentiable">[6]</a>，到 2018 年的《World Models》<a class="inline-ref" href="#ref-world-models">[7]</a>，再到现在 Waymo 把 world model 用进自动驾驶仿真与训练<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-waymo-world-model-post">[9]</a>，这条路线已经开始进入自动驾驶仿真、训练和交互式环境生成这些具体系统环节。</p>
-	                <p>这也让 world model 不再只是“表示世界”，而开始朝“展开世界”和“介入世界”走。对 world model 来说，它更擅长的是先生成若干可能的未来状态，再根据这些 rollout 去做规划、筛选和行动闭环。今天这条路线已经分出几种明显方向：在自动驾驶和 physical AI 里，它主要扮演仿真与合成数据引擎的角色，用来补足真实世界里昂贵、危险或稀缺的数据，例如 Waymo World Model 和 NVIDIA Cosmos<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-cosmos-physical-ai">[10]</a>；在 spatial intelligence 里，它追求可生成、可进入、可持续交互的 3D 世界，例如 World Labs 的 Marble<a class="inline-ref" href="#ref-worldlabs-marble">[11]</a>；在更偏实时互动世界的方向上，生成模型已经从静态内容生成走向可控、可交互、可探索的环境生成，代表性例子包括 GameNGen 对 DOOM 的实时神经模拟<a class="inline-ref" href="#ref-gamengen">[12]</a>，以及 Google DeepMind 的 Genie 2 / Genie 3<a class="inline-ref" href="#ref-genie-2">[13]</a><a class="inline-ref" href="#ref-genie-3">[14]</a>。这些方向虽然已经分化，但本质还是在解决同一类问题：怎样把环境随时间、动作和约束而演化的规律，学进系统内部。</p>
+                <p><strong>Second, world models are getting better at modeling dynamic environments.</strong> Over the last year, projects such as GameNGen and Genie 2 / 3 have made more people believe that a model can do more than represent the current state. It can also maintain an internal structure for what is likely to happen next. More importantly, this ability has already entered a few real closed loops. Especially in corner cases that are hard to collect repeatedly and cheaply in the real world, rollout is already being used directly for prediction, planning, control, and training. Along this trajectory, from Jürgen Schmidhuber's 1990 vision in <em>Making the World Differentiable</em><a class="inline-ref" href="#ref-making-the-world-differentiable">[6]</a>, to the 2018 paper <em>World Models</em><a class="inline-ref" href="#ref-world-models">[7]</a>, and now to Waymo using world models in autonomous-driving simulation and training<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-waymo-world-model-post">[9]</a>, this line is already entering concrete system roles in simulation, training, and interactive environment generation.</p>
+                <p>A world model is no longer just used to represent the world. It is also being used to generate possible future states and feed planning or action. Today this line has already split into several recognizable directions. In autonomous driving and physical AI, world models act as simulation and synthetic-data engines for expensive, dangerous, or rare slices of the real world, as in Waymo World Model and NVIDIA Cosmos<a class="inline-ref" href="#ref-waymo-world-model-blog">[8]</a><a class="inline-ref" href="#ref-cosmos-physical-ai">[10]</a>. In spatial intelligence, they target 3D worlds that can be generated, entered, and interacted with persistently, such as World Labs' Marble<a class="inline-ref" href="#ref-worldlabs-marble">[11]</a>. On the more real-time interactive side, generative models are moving from static content generation toward controllable, explorable environments, with examples such as GameNGen's real-time neural simulation of DOOM<a class="inline-ref" href="#ref-gamengen">[12]</a> and Google DeepMind's Genie 2 / Genie 3<a class="inline-ref" href="#ref-genie-2">[13]</a><a class="inline-ref" href="#ref-genie-3">[14]</a>. These directions look different on the surface, but they are still addressing the same underlying problem: how to learn the rules by which environments evolve through time, action, and constraint into the system itself.</p>
                 <figure class="figure-block openclaw-side comparison-card">
                     <div class="wm-timeline">
                         <div class="wm-stage">
-                            <a class="zoomable-image-link" href="assets/js_mtwd.png" aria-label="放大查看 1990 年 Making the World Differentiable 论文图">
+                            <a class="zoomable-image-link" href="assets/js_mtwd.png" aria-label="Zoom 1990 Making the World Differentiable figure">
                                 <img src="assets/js_mtwd.png" alt="Diagram from Jürgen Schmidhuber's 1990 Making the World Differentiable paper" loading="lazy" decoding="async">
                             </a>
                         </div>
                         <div class="wm-stage">
-                            <a class="zoomable-image-link" href="assets/wm1.png" aria-label="放大查看 World Models 论文截图">
+                            <a class="zoomable-image-link" href="assets/wm1.png" aria-label="Zoom World Models paper screenshot">
                                 <img src="assets/wm1.png" alt="World Models paper front page" loading="lazy" decoding="async">
                             </a>
                         </div>
                         <div class="wm-stage">
-                            <a class="zoomable-image-link" href="assets/wm2.png" aria-label="放大查看 Waymo World Model 相关截图">
+                            <a class="zoomable-image-link" href="assets/wm2.png" aria-label="Zoom Waymo World Model screenshot">
                                 <img src="assets/wm2.png" alt="Waymo World Model social post screenshot" loading="lazy" decoding="async">
                             </a>
                         </div>
                     </div>
-                    <figcaption>从 1990 到 2018 再到现在：world model 从早期可微世界建模设想，走向 Waymo World Model 代表的自动驾驶仿真与训练<a href="#ref-making-the-world-differentiable">[6]</a><a href="#ref-world-models">[7]</a><a href="#ref-waymo-world-model-blog">[8]</a><a href="#ref-waymo-world-model-post">[9]</a></figcaption>
+                    <figcaption>From 1990 to 2018 to today: world models evolved from early ideas of differentiable-world modeling to system-level use in simulation and training, exemplified by Waymo World Model.<a href="#ref-making-the-world-differentiable">[6]</a><a href="#ref-world-models">[7]</a><a href="#ref-waymo-world-model-blog">[8]</a><a href="#ref-waymo-world-model-post">[9]</a></figcaption>
                 </figure>
-                <p><strong>第三，传统计算机在 AI 时代的结构性摩擦越来越明显。</strong> 今天越来越多任务不再是确定性求解，而是开放式要求；不再是一次性输入输出，而是长时程互动；不再是明确程序，而是带着模糊目标、需要持续调整的做事过程。也正因为这样，传统软件栈开始显得笨重。传统软件栈固然有稳定优势，但在许多以自然语言、示范、界面操作和弱约束为主的场景中，组织和驱动这些任务的成本已经越来越高。</p>
-                <p>传统计算机本身也在为 AI 重写底座。芯片、编译器、内存系统、软件栈都在变得更 model-friendly。但这些变化多数仍然发生在既有计算范式内部：它们让旧机器更适合 AI，却没有改写“机器是什么”。在这些变化里，像 Taalas 这样的路线把事情又往前推了一步，开始把特定模型做成一种部署单元：模型不再只是跑在机器上的负载，而是在逼近“按模型组织硬件”这条线<a href="#ref-taalas-ubiquitous-ai">[15]</a>。但至少今天，这还只是部署层的变化，还谈不上通用机器形态。</p>
-                <p>把这三件事放在一起看，问题就变得更具体了：如果 agent 越来越会做事，world model 越来越会推演，传统计算机也在为 AI 重写底座，那么会不会出现一种新的 Runtime，把执行、rollout 和能力沉淀收进同一台 learning machine？</p>
-                <p>从人和机器的关系看，这里对应着一次主关系的迁移：在传统计算里，人主要和 computer 交互；到了 agent 时代，人更多是和 agent 交互，再由 agent 去调用 computer 把事情做成。world model 在这里更接近一个并行的预测层：它既可以服务于 human，也可以服务于 agent，但本身不负责把事情做成。再往前推，NC 要改的是机器本身：它试图把今天分散在 computer、agent 和 world model 之间的职责，收拢到同一台 learning machine 内部。那时，人面对的就不再只是“agent 代替自己调用 computer”，而是直接使用这样一台神经计算机。</p>
+                <p><strong>Third, conventional computers are starting to show more obvious structural friction in the age of AI.</strong> More and more tasks today are open-ended, long-horizon, and continuously interactive. That is exactly where the traditional software stack begins to feel heavy. Its stability is still a real advantage, but in settings dominated by natural language, demonstrations, interface operations, and weak constraints, the cost of organizing and driving the task keeps going up.</p>
+                <p>Conventional computers are already rewriting their own substrate for AI. Chips, compilers, memory systems, and software stacks are all becoming more model-friendly. Most of these changes, however, still happen inside the existing computational paradigm: they make the old machine better for AI, without redefining what the machine is. In that trend, projects like Taalas push a little further by turning specific models into deployment units of their own. The model is no longer just a payload running on the machine; hardware itself begins to organize more directly around the model<a href="#ref-taalas-ubiquitous-ai">[15]</a>. Even so, that is still a deployment-level change. It is not yet a new general machine form.</p>
+                <p>Put those three developments together and the question becomes more concrete: if agents are getting better at real work, world models are getting better at internal simulation, and conventional computers are already rebuilding their substrate for AI, could there be a new runtime that brings execution, rollout, and capability retention into the same learning machine?</p>
+                <p>Seen this way, the main human-machine relationship shifts. In the conventional era, people mainly interact with computers. In the agent era, they increasingly interact with agents, which then call the computer on their behalf. World models occupy a parallel position: they can serve humans or agents, but they do not themselves close the loop of getting work done. NC asks whether some of the responsibilities now split across computers, agents, and world models can be drawn back into the same learning machine. At that point, the object in front of the user would no longer be an agent using a computer for them. It would be a Neural Computer.</p>
                 <figure class="figure-block relation-figure comparison-card">
-                    <a class="zoomable-image-link" href="assets/relations.png" aria-label="放大查看人机关系变化图">
+                    <a class="zoomable-image-link" href="assets/relations.png" aria-label="Zoom human-machine relation diagram">
                         <img src="assets/relations.png" alt="How the human-machine relation changes" loading="lazy" decoding="async">
                     </a>
-                    <figcaption>人机关系如何变化：过去更像是 Human → Computer；到了 agent 时代，关系更像 Human → Agent → Computer，而 World Model 更多作为并行的预测层出现；如果 NC 成立，人将更直接面对一台 Neural Computer。</figcaption>
+                    <figcaption>How the human-machine relation changes: in the conventional era, the relation looked more like Human → Computer; in the agent era, it looks more like Human → Agent → Computer, while World Model appears more as a parallel predictive layer; if NC matures, humans would face a Neural Computer more directly.</figcaption>
                 </figure>
-                <p>这也意味着，交互本身会开始带上“编程”的意味。今天，自然语言指令、键鼠轨迹、屏幕变化和任务反馈，大多只是过程日志；在 NC 的设定里，它们会变成塑造未来行为的材料。今天我们主要通过代码安装能力；以后，示范、交互轨迹和约束本身，也可能成为能力进入 Runtime 的入口。</p>
+                <p>This also means that interaction starts to look a little more like programming. Today, natural-language instructions, keyboard and mouse traces, screen transitions, and task feedback are mostly logs of what happened. Under the NC framing, they may become inputs that shape later behavior. Today we install capabilities mainly through code. Later, demonstrations, interaction traces, and constraints may themselves become ways for capabilities to enter runtime.</p>
             </section>
 
             <hr class="divider">
 
             <section id="chapter-2">
-                <h2>2. 什么是 Neural Computer，什么才算它真正成立？</h2>
-                <p>先看这张表：它把传统计算机、Agent、World Model 和 Neural Computer 放到同一把“尺子”上来比较。看完这张表，区别和联系就很清楚了：它们各自围绕什么组织，source of truth 落在哪里，又分别承担什么职责。</p>
+                <h2>2. What is a Neural Computer, and what would count as it actually working?</h2>
+                <p>Start with this table. It places conventional computers, agents, world models, and Neural Computers on the same scale. It makes the differences easier to see: what each one organizes around, where its source of truth lives, and what role it mainly plays.</p>
                 <table class="contract-table system-table">
                     <thead>
                         <tr>
-                            <th>形态</th>
-                            <th>围绕什么组织</th>
-                            <th>source of truth 落在哪里</th>
-                            <th>主要职责</th>
+                            <th>Form</th>
+                            <th>Organized around</th>
+                            <th>Where the source of truth lives</th>
+                            <th>Main role</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>传统计算机</td>
-                            <td>显式程序</td>
-                            <td>显式程序与显式状态</td>
-                            <td>稳定执行显式程序</td>
+                            <td>Conventional computer</td>
+                            <td>Explicit programs</td>
+                            <td>Explicit programs and explicit state</td>
+                            <td>Reliably execute explicit programs</td>
                         </tr>
                         <tr>
                             <td>Agent</td>
-                            <td>任务</td>
-                            <td>外部环境、工具链与工作流</td>
-                            <td>在既有环境中完成任务</td>
+                            <td>Tasks</td>
+                            <td>External environments, toolchains, and workflows</td>
+                            <td>Complete tasks inside an existing environment</td>
                         </tr>
                         <tr>
                             <td>World Model</td>
-                                <td>环境</td>
-                            <td>状态演化模型</td>
-                            <td>预测与推演环境变化</td>
+                                <td>Environments</td>
+                            <td>State-evolution models</td>
+                            <td>Predict and simulate environmental change</td>
                         </tr>
                         <tr class="spotlight-row">
                             <td>Neural Computer</td>
                             <td>Runtime</td>
-                            <td>Runtime 里的能力与状态</td>
-                            <td>让机器持续运行、沉淀能力并治理更新</td>
+                            <td>Capabilities and state inside runtime</td>
+                            <td>Keep the machine running, accumulate capabilities, and govern updates</td>
                         </tr>
                     </tbody>
                 </table>
-	                <p>接下来可以直接设想：如果 NC 已经存在，人会怎么使用它？对传统计算机，你安装的是软件；对 agent，你描述的是任务；对 NC，你做的更接近给机器安装能力，并期待这些能力以后继续留在机器里。</p>
-                <p>也正因为如此，这里说的 <strong>Runtime</strong>，不是某个软件组件，而是系统靠什么持续成为同一台机器的那一层：什么会留下来，什么推动状态继续往前走，什么输入真正改变机器，什么变化已经等于把机器重写了一次。对 NC 来说，关键不在于再叠一层外部工具，而在于能力和状态能不能真正进入同一个 learned runtime。</p>
+                <p>Now imagine what using an NC would actually feel like. With a conventional computer, you install software. With an agent, you describe the task. With an NC, what you do is closer to installing capabilities into the machine itself, and expecting them to remain there afterward.</p>
+                <p>That is why <strong>runtime</strong> here does not mean a particular software component. It means the layer that keeps a system recognizably the same machine over time: what gets to stay, what pushes state forward, what kinds of input truly change the machine, and what kinds of change amount to rewriting it. For NC, the practical question is not whether we can add yet another external layer, but whether capabilities and state can actually enter the same learned runtime.</p>
 
-                <h3 class="minor-subhead">如果它成立，机器会长得像什么？</h3>
-                <p><strong>第一，它未必会继续沿着今天这条 foundation model 路线发展下去。</strong> 今天更自然的想法，是把模型继续往 1B - 10T 级的 dense / MoE foundation model 推大、推强；很多工作也确实沿着这条路在前进。但在我的想法里，NC 真正成熟以后，底座更可能往另一边走：10T - 1000T 级，更稀疏、更可寻址、带一点 circuit 气质。未来的 CNC 也许不是一团越来越大的连续表征，而会更像一套可路由、可组合、局部更容易检查的机器底座。它未必要模仿动物感知或人脑，反而可能更接近一种带有 NAND 气质的神经网络：离散、稀疏、局部可验证。至少目前，这条路还没被系统展开；但 OpenAI 最近在 weight-sparse transformers 上做的一些工作，至少说明了一件事：把神经网络做得更稀疏、更局部、更可路由，未必只是为了好解释，它本身就可能是一条机器式架构路线<a class="inline-ref" href="#ref-openai-sparse-circuits">[16]</a>。</p>
-                <p><strong>第二，它也未必总靠整体改参数来升级自己。</strong> NC 指向的则是另一种进化方式：靠 Runtime 的自编程与持续交互，让机器沿内部能力结构持续自进化。用户输入不再只是触发一次性行为，而会逐渐安装、调用、组合并保留可复用的 neural routines，甚至形成以后还能继续调用的内部 executor（执行单元）。至少在功能分工上，它更接近传统计算机里的“内存”，而不是处理器：升级未必意味着重写整台机器的本体，也可能只是把这些新结构稳定写进一层可寻址、可调用、可保留的内部状态。顺着这条路往前走，升级也不再只是“换一个更大的 model”，而更像是在机器内部持续安装新部件。若干年前的 NPI 和 HyperNetworks，也能看作相似但还不完整的早期思路：前者试图把复杂程序拆成可调用、可组合的子程序<a class="inline-ref" href="#ref-neural-programmer-interpreter">[17]</a>；后者则提示，机器甚至可能继续生成下游 neural modules，去扩展自己的能力边界<a class="inline-ref" href="#ref-hypernetworks">[18]</a>。当然，我认为野心可以更大一点，一个足够强的 Neural Computer，完全可能直接生成新的 (sub-)NNs，再把它们以可插拔的方式挂进自身内部，像今天安装或卸载软件一样自然，只是这一次省掉了手写代码和编译这一层中介。</p>
-                <p><strong>第三，它还可能把 world model 式的 rollout 逐渐收进 Runtime 里。</strong> 到那时，rollout 会慢慢变成机器的日常机制，也会变成这种自编程和自进化的一部分。人类可以给出输入、期待的输出（GT），也可以只提前写好评估指标；甚至在某一轮里什么都不再给，Runtime 也可以在内部持续 self-play、自测、筛选和压缩候选做法，再把有效改进沉淀成下一轮能力更新。理想状态下，人去睡觉时，机器还在内部完成评估、试错和迭代。真正留下来的，不只是更多上下文，而是内部能力结构本身已经发生了变化。当然，这一切的前提不是放任系统偷偷变化，而是 update 路径本身可被治理。</p>
-                <p>这样看，NC 作为一种机器形态的轮廓就比较清楚了。关键在于，能力有没有真正进入 Runtime，并在那里被安装、复用、执行和治理。CNC 说的，就是这件事做成之后的样子（完备态）。按原论文的定义，一个 NC 实例只有在同时满足四个条件时，才可以算作 CNC：它必须是 <em>Turing complete</em>、<em>universally programmable</em>、除非被显式重编程否则保持 <em>behavior-consistent</em>，并体现 NC 相对传统计算机的架构与编程语义。下面这张表，是对原论文这四条要求的一个更直白的总结。</p>
+                <h3 class="minor-subhead">If it works, what might the machine actually look like?</h3>
+                <p><strong>First, it may not keep growing along today's foundation-model path.</strong> The default instinct today is to keep pushing toward stronger dense or MoE foundation models in roughly the 1B-10T range, and a great deal of progress will continue to happen that way. My own guess is that a mature NC points toward a different substrate: something more like a 10T-1000T machine that is sparser, more addressable, and a little more circuit-like. A future CNC may look less like an ever-denser cloud of continuous representations and more like a composable, routable substrate whose parts can be inspected locally. It may borrow less from brains or animal perception than people expect, and more from the logic of a NAND-style machine: discrete, sparse, and locally verifiable. That path is still far from developed, but recent work such as OpenAI's research on weight-sparse transformers suggests that making neural systems more sparse, local, and routable may matter for machine architecture, not just for interpretability<a class="inline-ref" href="#ref-openai-sparse-circuits">[16]</a>.</p>
+                <p><strong>Second, it may not always upgrade itself by globally changing parameters.</strong> On today's path, the natural upgrade cycle is still to train a larger dense or MoE model and swap in a new block of weights. NC points to a different path: through sustained interaction, runtime may gradually acquire new internal structures. User inputs stop looking like one-shot triggers and start acting more like ways of installing, invoking, composing, and preserving reusable neural routines, perhaps even internal executors that can be called again later. Functionally, that is closer to memory than to a processor. Upgrading the machine would no longer always mean rewriting the whole thing; it could mean writing new structures into an internal state that is addressable, callable, and persistent. In that picture, progress no longer looks like swapping in a larger model, but like continuously adding new components into the machine. Older ideas such as NPI and HyperNetworks can be read as suggestive precursors here: the former tried to decompose complex programs into callable, composable subprograms<a class="inline-ref" href="#ref-neural-programmer-interpreter">[17]</a>; the latter hinted that machines might generate downstream neural modules to extend their own capability boundary<a class="inline-ref" href="#ref-hypernetworks">[18]</a>. Taken far enough, a strong Neural Computer could generate new sub-networks directly and attach them internally in a plug-and-play way, much as we install or uninstall software today, but without handwritten code and compilation as intermediaries.</p>
+                <p><strong>Third, it may gradually pull world-model-style rollout into runtime itself.</strong> At that point, rollout becomes part of the machine's normal operating process. People may provide an input and an expected output, or simply specify evaluation criteria ahead of time. In some rounds they may provide nothing at all, and runtime could still continue with internal self-play, self-testing, candidate filtering, and compression, then turn useful improvements into the next round of capability updates. The change is not just that more context is stored; the internal capability structure itself is updated. None of this implies silent, unguided drift; the entire update path has to remain governable.</p>
+                <p>At that point, the idea of NC as a machine form becomes easier to describe. The core test is whether capabilities can really enter runtime, and whether they can be installed, reused, executed, and governed there. CNC is the name for the state in which that project is genuinely completed. In the original paper, an NC instance counts as a CNC only if it satisfies four conditions at once: it must be <em>Turing complete</em>, <em>universally programmable</em>, <em>behavior-consistent</em> unless explicitly reprogrammed, and it must exhibit architecture and programming semantics native to NC rather than inherited from conventional computers. The table below restates those four requirements more directly.</p>
                 <table class="contract-table">
                     <thead>
                         <tr>
-                            <th>CNC 条件</th>
-                            <th>更直白地说</th>
-                            <th>工程上大概要看到什么</th>
+                            <th>CNC condition</th>
+                            <th>Plainly stated</th>
+                            <th>What we would probably need to see in engineering terms</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><em>Turing complete</em></td>
-                            <td>不是只能完成几类固定任务，而是在原则上具备通用计算的表达能力。</td>
-                            <td>但“可表达”不等于“可执行”：真正要看的，是随着有效 memory 和 context 增长，同一个 NC 能否稳定承接更长、更复杂的算法过程，而不是任务一拉长就换一种失效方式。</td>
+                            <td>It should not be limited to a few fixed task types; in principle, it should be able to express general computation.</td>
+                            <td>But expressivity alone is not enough. The real test is whether the same NC can stably carry longer and more complex algorithmic processes as effective memory and context grow, rather than simply failing in a different way when tasks get longer.</td>
                         </tr>
                         <tr>
                             <td><em>Universally programmable</em></td>
-                            <td>输入给它的，不该只触发一次行为，而应该能真正安装成之后还能调用的 routine 或内部 executor。</td>
-                            <td>能力可以被安装、调用、组合、保留，并在进入 Runtime 后跨任务稳定复用。</td>
+                            <td>Inputs should not just trigger one-off behavior; they should be installable as routines or internal executors that can be invoked again later.</td>
+                            <td>Capabilities should be installable, callable, composable, and retainable, and once they enter runtime they should remain reusable across tasks.</td>
                         </tr>
                         <tr>
                             <td><em>Behavior-consistent</em></td>
-                            <td>日常使用不应偷偷改变机器；行为变化只能来自显式更新。</td>
-                            <td>同一版本下的行为应当可复现，执行与更新轨迹都可追踪，出了问题能 replay / rollback，长时程 drift 可以被测量和治理。</td>
+                            <td>Ordinary use should not silently mutate the machine. Behavioral change should only come from explicit updates.</td>
+                            <td>Behavior should be reproducible within the same version; execution and update traces should be trackable; failures should support replay and rollback; long-term drift should be measurable and governable.</td>
                         </tr>
                         <tr>
                             <td><em>Machine-native semantics</em></td>
-                            <td>它不只是用神经网络去模仿旧计算机，而是开始形成自己的机器语义和编程方式。</td>
-                            <td>神经底座能够靠组合、路由、连续状态和内部执行结构，带来传统栈不擅长的能力；同时，instructions、demonstrations、traces 和 constraints 本身也开始成为编程入口，而不再只有手写代码。</td>
+                            <td>It should not merely imitate old computers with neural nets; it should begin to form its own machine semantics and its own way of being programmed.</td>
+                            <td>The neural substrate should gain capabilities through composition, routing, continuous state, and internal execution structures that conventional stacks are poor at; meanwhile, instructions, demonstrations, traces, and constraints themselves begin to act as programming inputs alongside handwritten code.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -3076,12 +3103,12 @@
             <hr class="divider">
 
             <section id="chapter-3">
-                <h2>3. 论文实现的原型：它证明了什么，还缺什么</h2>
-				                <p>按我的判断，Neural Computer 真正成形，大概还要三年。所以，和我真正设想的 Neural Computer 相比，我们论文里的工作还只是很早的一步。放在今天，我最顺手的统一载体，还是这类面向视频生成和 world model 的神经网络；要先把像素、动作和时间 rollout 放进同一个端到端原型里，它们也是最快的一条路。我们现在借它们验证的，只是 NC 的部分关键能力。它们更像过渡性的实现参考，而不是 NC 的最终结构；如果真要走到 CNC，最后仍然需要一次更彻底、自底向上的重建。</p>
+                <h2>3. The paper's prototype: what it shows, and what is still missing</h2>
+		                <p>My estimate is that a real Neural Computer is still about three years away. Relative to the NC I actually have in mind, the work in our paper is still an early step. For now, the most convenient unified container I have is this class of neural architectures built for video generation and world modeling; if the goal is to put pixels, actions, and temporal rollout into the same end-to-end prototype, they are also the fastest path. What we are using them to validate is only a subset of NC's key capabilities. They are better read as transitional prototypes than as NC's final structure; reaching CNC would still require a much deeper rebuild from the bottom up.</p>
                 <div class="demo-gallery" aria-label="NC demo gallery">
-	                    <h3 class="minor-subhead">3.1 CLIGen (General)：以假乱真的“计算机模仿游戏”</h3>
-	                    <p>先看 terminal rendering 能不能站住：配色、光标、滚动、TUI 和整体节奏感。</p>
-	                    <p>先看第一组实验生成出来的结果。如果不认真看，它们已经有点以假乱真。对 CLIGen (General) 来说，这里首先能看到的是，video models 已经能把 terminal rendering 做到足够像真。主流视频模型本来就不是为这种文字密集、强依赖离散布局的计算机场景训练的；但经过进一步训练以后，“计算机模仿游戏”（Imitation Game for Computers）确实已经可以做出来。</p>
+                    <h3 class="minor-subhead">3.1 CLIGen (General): an imitation game for computers</h3>
+                    <p>First ask whether terminal rendering holds up at all: color, cursor behavior, scrolling, TUI layout, and overall pacing.</p>
+                    <p>Look at the first batch of generations. If you do not inspect closely, some of them already pass a quick glance. What CLIGen (General) shows first is simply that video models can already render terminal behavior convincingly enough to look real at first sight. Mainstream video models were never trained for text-dense computer scenes that depend heavily on discrete layout, but after additional training this “imitation game for computers” does begin to work.</p>
                     <section class="demo-group general" aria-label="CLIGen General demos" data-demo-chip="CLIGen / General" data-lightbox-kind="CLI Demo">
                         <div class="demo-grid general">
                             <figure class="demo-shot" style="--shot-ratio: 0.743;">
@@ -3134,11 +3161,11 @@
                             </figure>
                         </div>
                     </section>
-	                    <p>这一组先学到的，是终端最外层的那些东西：配色怎么变，光标怎么闪，窗口比例稳不稳，长日志怎么滚，全屏 TUI、进度条和状态栏怎么出现。最先站住的，也是终端这层表象和节奏。借前文的说法，这里最先被学到的，还是 Runtime 的外观。</p>
-	                    <p>放回 2025 年 9 月看，这个实验结果是让人惊喜的。只用约 1,100 小时富有噪声的终端数据集，就把原本几乎不懂计算机界面、连稍微小一点的文字都很难生成的 Wan2.1<a class="inline-ref" href="#ref-wan-model">[31]</a>，拉到了能稳定生成 terminal 表示的程度，对常见命令、回显和日志形态也已经有了相当可观的浅层对齐。对视频生成来说，这种文字密集、变化快、带闪烁、又几乎没有自然动态的场景，本来就是最难的一类；但这个结果确实超出了当时不少人的预期。这里用的还是 terminal 领域的 general 视频，风格很多，场景也很杂。terminal rendering 先站住了，后面鼓励我们去尝试计算机里那些更硬的东西：记忆、推理、编程和执行。</p>
-	                    <h3 class="minor-subhead">3.2 REPL 和 Math：它不再只“画终端”</h3>
-	                    <p>这里关注的是更硬的 execution 结构：输入、回车、回显、局部编辑和状态延续。</p>
-		                    <p>Terminal rendering 的初步实验之后，更有趣的问题是：终端能不能被当成一个能被动作稳定推动的局部机器来测。敲一个命令，buffer 会不会往前走；按一次回车，回显会不会跟着出来；输错、删改、重打之后，状态还能不能接着延续。REPL 和 Math 在这里其实是同一件事的两个侧面：模型到底有没有开始学到一点终端里的状态转移规律。</p>
+                    <p>What gets learned first here is the outer layer of the terminal: how colors shift, how the cursor blinks, whether the window ratio stays stable, how long logs scroll, and how full-screen TUIs, progress bars, and status bars appear. What stabilizes first is the terminal's surface and rhythm. In the language of the previous section, what is being learned first here is still the appearance of runtime.</p>
+                    <p>Seen from September 2025, this result was surprising. With only about 1,100 hours of noisy terminal data, Wan2.1<a class="inline-ref" href="#ref-wan-model">[31]</a> went from a model that barely understood computer interfaces and struggled with even slightly small text to one that could generate stable terminal scenes, with nontrivial shallow alignment to common commands, echoes, and log formats. For video generation, this is among the hardest classes of scenes: dense text, rapid changes, blinking cursors, and almost no natural motion. The result exceeded what many people expected at the time. The data here still came from general terminal videos, with lots of style variation and very mixed scenes. Once terminal rendering started to hold up, it became natural to push toward harder questions inside the computer: memory, reasoning, programming, and execution.</p>
+                    <h3 class="minor-subhead">3.2 REPL and math: it is no longer just drawing terminals</h3>
+                    <p>Here the target is a harder execution structure: input, enter, echo, local editing, and state continuation.</p>
+                    <p>After the initial terminal-rendering experiments, the more interesting question is whether the terminal can be treated as a small local machine that is stably driven by actions. If you type a command, does the buffer advance? If you press enter, does the echo follow? If you make a mistake, edit, and retype, does the state continue coherently? REPL and math are really two views of the same question here: has the model started to learn some of the terminal's state-transition rules?</p>
                     <section class="demo-group clean" aria-label="CLIGen Clean demos" data-demo-chip="CLIGen / Clean" data-lightbox-kind="CLI Trace">
                         <div class="demo-grid clean">
                             <figure class="demo-shot" style="--shot-ratio: 1.778;">
@@ -3255,12 +3282,12 @@
                             </figure>
                         </div>
                     </section>
-	                    <p>现在，重点转到指令运行的因果结构上。这一组训练数据来自更干净、更可重复的脚本轨迹：我们自己通过脚本和 Docker 环境去生成这批终端视频，让输入、回车、回显、报错和局部编辑都落在一个更稳定的终端环境里。</p>
-	                    <p>从这组结果里已经能看出，模型学到了一些 computer terminal 最基本的运行规律。像 pwd、date、whoami、echo $HOME、env | head -n 5 这类非常简单的指令，输入、回车、回显和结果展示已经可以做得相当接近真实；不同命令该出现什么样的输出形态，也和对应的终端场景对上了。和上一部分实验相比，指令本身已经能推动字符更新、回显生成和局部状态变化，终端也会按照自己的运行方式展开。</p>
-	                    <p>沿着这条线继续往前走，模型在简单数学场景里其实也已经摸到了一些东西，但推理能力本身还没有真正解决。到了两位数加法这种最基础的算术层，当前模型依然很难稳定算对。这里当然有数据量的问题：我们还没给模型足够多、足够硬的训练数据去逼出稳定推理；但也有另一种更根本的可能性：用当前这类 DiT-based 视频模型去承载稳定推理，本身就可能是个伪命题。眼下更稳妥的判断是，terminal execution 这一层已经开始立住，symbolic reasoning 这一层还没有过关。</p>
-	                    <h3 class="minor-subhead">3.3 GUIWorld：界面操控也开始成立</h3>
-	                    <p>最后看动作能不能真实推动界面状态：点击、悬停、输入和窗口反馈能不能闭合。</p>
-	                    <p>在 CLI 阶段，我们已经大致看清楚了：视频模型的渲染能力很强，基础的记忆和执行能力也开始出现，但最底层的 symbolic reasoning 还不够好。到了 GUIWorld，重点又变成了：界面状态会不会被动作推着走。</p>
+                    <p>Here the center of gravity shifts toward the causal structure of command execution. This training set comes from cleaner, more reproducible scripted traces: we generated these terminal videos ourselves through scripts and Docker so that input, enter, echo, errors, and local edits all happen inside a much more stable terminal environment.</p>
+                    <p>The results already show that the model has learned some of the most basic operating regularities of a computer terminal. For very simple commands such as <code>pwd</code>, <code>date</code>, <code>whoami</code>, <code>echo $HOME</code>, and <code>env | head -n 5</code>, the typed input, the enter key, the echoed output, and the final display are already fairly close to reality; different commands also produce output shapes that match the corresponding terminal scenario. Relative to the previous section, the commands themselves are now driving character updates, echo generation, and local state changes, and the terminal unfolds more according to its own operating logic.</p>
+                    <p>Pushed further along this line, the model has begun to pick up something in simple arithmetic scenes as well, but reasoning itself is still far from solved. Even at the level of two-digit addition, current models still struggle to compute stably. Part of that is surely a data issue: we have not yet given the model enough hard training data to force out stable reasoning. But there is also a deeper possibility: asking current DiT-based video models to carry stable reasoning may simply be the wrong bet. The more reliable conclusion for now is that terminal execution has started to hold; symbolic reasoning has not.</p>
+                    <h3 class="minor-subhead">3.3 Then GUIWorld: interface control starts to work too</h3>
+                    <p>The final question is whether actions can genuinely drive interface state: whether clicks, hovers, typing, and window feedback form a closed loop.</p>
+                    <p>By the CLI stage, one thing was already clear: video models are strong at rendering, and some basic memory and execution ability had begun to show up, while the lowest layer of symbolic reasoning remained weak. GUIWorld shifts the emphasis again. Now the question is whether actions can actually push interface state forward.</p>
                     <section class="demo-group gui" aria-label="GUIWorld demos" data-demo-chip="GUIWorld / CUA" data-lightbox-kind="GUI Demo">
                         <table class="gui-comparison-table" aria-label="GUIWorld main comparisons">
                             <thead>
@@ -3428,7 +3455,7 @@
                         </table>
                         <div class="gui-additional-divider" aria-label="CUA additional samples">
                             <h4 class="gui-additional-title">More Comparisons</h4>
-                            <p class="gui-additional-note">上面是 7 组重点对照；下面还有更多的直接视觉对照样本，作为补充 gallery 提供给读者快速浏览。</p>
+                            <p class="gui-additional-note">The seven pairs above are the main comparisons; below are more direct visual side-by-side samples as a supplementary gallery for quick browsing.</p>
                         </div>
                         <div class="demo-grid gui gui-additional-grid">
                             <figure class="demo-shot" style="--shot-ratio: 1.333;">
@@ -3626,66 +3653,66 @@
                         </div>
                     </section>
                 </div>
-                <p>GUIWorld 直接把问题从 CLI 推到了 GUI。走到这里，问题已经不再主要是文本和命令，而是真实的键盘鼠标 action：鼠标要落点，悬停要出反馈，点击之后按钮、下拉框、模态窗和输入框都要真的变状态，键盘输入也要一帧一帧把界面往前带。</p>
-                <p>对应的数据已经是一套相当完整的交互 rig：我们先在 Ubuntu 22.04 的 XFCE4 桌面里固定了 1024×768、15 FPS 的环境，再把整个桌面运行、录制和动作回放流程都搭了起来，这样每一步点击、悬停、输入和界面变化都能被稳定记录下来。数据分成三块：约 1000 小时的 Random Slow、约 400 小时的 Random Fast，以及约 110 小时由 Claude CUA 驱动的真实交互 goal-directed trajectories。前两者试探的是，鼠标加速度、停顿、悬停、窗口切换这些开放世界噪声会怎样影响模型；后者则给出更清晰的 action-response 对，看看模型是否学会：做了这个动作之后，界面能不能相应触发合适的改变。</p>
-	                <p>模型这边没有只试一种 action 注入方式，而是并排做了四个版本。它们的核心区别不在于“有没有加入 action”，而在于 action 到底在多深的层里进入主干、参与状态演化。论文里的 Figure 7 正好把这四种方式画得很清楚：</p>
+                <p>GUIWorld takes the same question from CLI into full GUI. At this point the main issue is no longer text and commands, but real keyboard-and-mouse actions: the cursor has to land correctly, hovering has to trigger feedback, clicks have to change buttons, dropdowns, modals, and text fields in the right way, and keyboard input has to push the interface forward frame by frame.</p>
+                <p>The data setup here is already a fairly complete interaction rig. We fixed the environment to Ubuntu 22.04 with XFCE4, 1024×768 resolution, and 15 FPS capture, then built the full pipeline for desktop execution, recording, and action replay so that every click, hover, input, and interface change could be recorded stably. The dataset has three parts: roughly 1,000 hours of Random Slow, roughly 400 hours of Random Fast, and roughly 110 hours of real goal-directed trajectories driven by Claude CUA. The first two probe how open-world noise such as mouse acceleration, pauses, hovering, and window switching affects the model. The third gives cleaner action-response pairs and asks a simpler question: after this action, does the interface actually make the right next move?</p>
+                <p>On the model side, we did not try just one action-injection scheme. We trained four variants in parallel. The main difference between them is not whether they receive actions at all, but how deep actions enter the trunk and where they begin to participate in state evolution. Figure 7 in the paper lays out the four designs clearly:</p>
                 <figure class="figure-block comparison-card">
-                    <a class="zoomable-image-link" href="assets/action_inject.png" aria-label="放大查看 GUI action injection 四种模式图">
+                    <a class="zoomable-image-link" href="assets/action_inject.png" aria-label="Zoom figure of four GUI action injection modes">
                         <img src="assets/action_inject.png" alt="Figure 7. Four modes for injecting GUI actions into the diffusion transformer" loading="lazy" decoding="async">
                     </a>
-                    <figcaption><strong>Figure 7</strong> 四种把 GUI action 注入 diffusion transformer 的方式。这里对应的就是上面说的模型一到模型四。</figcaption>
+                    <figcaption><strong>Figure 7</strong> Four ways of injecting GUI actions into the diffusion transformer. These correspond to Models 1 through 4 described above.</figcaption>
                 </figure>
                 <table class="evidence-table" aria-label="GUIWorld action injection variants">
                     <thead>
                         <tr>
-                            <th scope="col">模型</th>
-                            <th scope="col">原文名</th>
-                            <th scope="col">注入方式</th>
-                            <th scope="col">对应路线</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Paper name</th>
+                            <th scope="col">Injection mode</th>
+                            <th scope="col">Related line</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>模型一</td>
+                            <td>Model 1</td>
                             <td>External</td>
-                            <td>输入侧 latent 调制</td>
-                            <td>浅层 action-conditioned baseline</td>
+                            <td>Input-side latent modulation</td>
+                            <td>Shallow action-conditioned baseline</td>
                         </tr>
                         <tr>
-                            <td>模型二</td>
+                            <td>Model 2</td>
                             <td>Contextual</td>
-                            <td>action token 并入主序列</td>
+                            <td>Action tokens merged into the main sequence</td>
                             <td>WHAM<a class="inline-ref" href="#ref-wham">[33]</a></td>
                         </tr>
                         <tr>
-                            <td>模型三</td>
+                            <td>Model 3</td>
                             <td>Residual</td>
-                            <td>旁路 residual branch 注入</td>
+                            <td>Injected through a side residual branch</td>
                             <td>ControlNet<a class="inline-ref" href="#ref-controlnet">[34]</a></td>
                         </tr>
                         <tr>
-                            <td>模型四</td>
+                            <td>Model 4</td>
                             <td>Internal</td>
-                            <td>block 内 action cross-attention</td>
+                            <td>Action cross-attention inside each block</td>
                             <td>Matrix-Game 2.0<a class="inline-ref" href="#ref-matrix-game-2">[32]</a></td>
                         </tr>
                     </tbody>
                 </table>
-	                <p>从最终实验结果来看，这里先省略细节：四个模型设计里，模型四的综合结果最好。这组结果表明，对于 GUI 这种细粒度、强时序、强局部交互的环境，把 action 直接打进 block 内部，最容易让模型把“动作之后界面怎样继续走”学进主干里。与此同时，110 小时的 supervised data 明显好于约 1400 小时 random data；显式光标视觉监督也比单纯坐标监督强得多。合在一起看，GUIWorld 最直白的结论是：GUI 这条线最缺的是更硬的动作语义、更明确的状态转移，以及把光标当成视觉对象来监督。</p>
-	                <p>虽然一开始很少有人看好视频模型能处理这种高度离散、文字密集、动作敏感的计算机场景，但只要任务设计和数据组织得当，它在界面渲染、页面切换、短时状态延续、局部交互、执行回显，甚至一些非常初步的工作记忆上，都已经能给出很多有意思的结果。换句话说，video models 也许离终局还很远，但作为早期原型的容器，已经足够把不少原本抽象的 Neural Computer 问题先摆到台面上。</p>
-                <h3 class="minor-subhead">3.4 从 Prototype NC 到 CNC，还差什么</h3>
-	                <p>把第 2 节那张 CNC 条件表重新拿回来，当前原型的大致结论已经比较清楚了：<em>Turing complete</em> 只触到边缘，<em>universally programmable</em> 还只是入口出现，<em>behavior-consistent</em> 只在受控环境里局部成立，<em>machine-native semantics</em> 则方向比结论更清楚。NC 要解决的不是把 agent、world model 和传统 computer 简单叠加，而是把今天分散在这些对象里的部分职责，逐步收回同一个 learned runtime。当前原型真正重要的地方，不是它已经逼近终局，而是它把决定 CNC 能不能成立的几道硬门槛提前暴露出来。</p>
+                <p>Even without going through every metric, the main result is simple: among the four designs, Model 4 works best. In GUI environments with fine-grained timing and local interaction, injecting actions directly inside the block is the most effective way to teach the backbone how the interface should continue after an action. The data story is just as clear: 110 hours of supervised data beat roughly 1,400 hours of random data, and explicit visual supervision of the cursor works far better than pure coordinate supervision. The practical takeaway is straightforward: progress on GUI depends on stronger action semantics, clearer state transitions, and treating the cursor as a visual object to supervise.</p>
+                <p>Very few people initially expected video models to handle computer scenes this discrete, text-heavy, and action-sensitive. But once the task and data are organized well, they already produce interesting results on interface rendering, page transitions, short-term state continuation, local interaction, execution echo, and even some very early signs of working memory. Video models are still nowhere near the endpoint, but as an early prototype container they are already good enough to turn several otherwise abstract NC questions into concrete ones.</p>
+                <h3 class="minor-subhead">3.4 From prototype NC to CNC: what is still missing?</h3>
+                <p>If we bring back the CNC condition table from Section 2, the overall conclusion of the current prototype is fairly clear: <em>Turing complete</em> has only been touched at the edge, <em>universally programmable</em> has barely appeared as an entry point, <em>behavior-consistent</em> holds only locally in controlled settings, and <em>machine-native semantics</em> is still clearer as a direction than as a result. NC is not about stacking agents, world models, and conventional computers on top of one another. It is about pulling some of the responsibilities now scattered across those objects back into the same learned runtime. What matters about the prototype is not that it is close to the endpoint, but that it makes several key constraints visible early.</p>
             </section>
 
             <hr class="divider">
 
             <section id="chapter-4">
-                <h2>4. 如果 Neural Computer 成立，软件、硬件和“程序”都会改变</h2>
-	                <p>如果把关系再说清楚一点，Neural Computer 首先是一种对下一代 computer 的判断。但我有预感，它未来最强的竞争压力，会来自具备强记忆、强工具调用和持续在线能力的 personalized super agent。下面这张表把这三者并排放在一起看。</p>
-                <div class="route-compare-block" aria-label="第4章比较表">
-		                    <p class="route-compare-quickread"><strong>快速看表：</strong>先看“你实际得到的东西”“经验怎么沉淀”“安装的是什么”。</p>
+                <h2>4. If Neural Computer takes hold, software, hardware, and even “programs” will change</h2>
+                <p>Put more plainly, Neural Computer is one view of what the next generation of computers may become. The most direct competition is likely to come from personalized super agents with strong memory, strong tool use, and persistent online presence. The table below places the three side by side.</p>
+                <div class="route-compare-block" aria-label="Chapter 4 comparison table">
+                    <p class="route-compare-quickread"><strong>Quick read:</strong> start with “what you actually get,” “how experience accumulates,” and “what gets installed.”</p>
                     <div class="route-compare-table-shell">
-                        <table class="route-compare-table" aria-label="Conventional Computer、Personalized Super Agent 与 Completely Neural Computers 对照">
+                        <table class="route-compare-table" aria-label="Comparison of conventional computers, personalized super agents, and completely neural computers">
                             <colgroup>
                                 <col style="width: 14.5%;">
                                 <col style="width: 25.5%;">
@@ -3695,83 +3722,83 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th><span class="route-compare-head-cn">传统计算机</span><span class="route-compare-head-en">Conventional Computer</span></th>
-                                    <th><span class="route-compare-head-cn">未来个性化超级代理</span><span class="route-compare-head-en">(Future) Personalized Super Agent</span></th>
-                                    <th><span class="route-compare-head-cn">完备神经计算机</span><span class="route-compare-head-en">(Completely) Neural Computers</span></th>
+                                    <th><span class="route-compare-head-cn">Conventional</span><span class="route-compare-head-en">Computer</span></th>
+                                    <th><span class="route-compare-head-cn">Personalized</span><span class="route-compare-head-en">Super Agent</span></th>
+                                    <th><span class="route-compare-head-cn">Completely</span><span class="route-compare-head-en">Neural Computer</span></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="route-compare-group-row">
-                                    <td colspan="4">基本定位</td>
+                                    <td colspan="4">Basic positioning</td>
                                 </tr>
                                 <tr class="route-compare-key-row">
-                                    <td>你实际得到的东西</td>
-                                    <td>一台精确执行你写好程序的机器</td>
-                                    <td>一个长期在线、记忆极强、善于调用工具替你办事的代理人</td>
-	                                    <td>一台会被你的经验持续塑造、能力逐渐进入内部的机器</td>
+                                    <td>What you actually get</td>
+                                    <td>A machine that precisely executes the programs you write</td>
+                                    <td>A persistent agent with strong memory and strong tool use that handles things on your behalf</td>
+                                    <td>A machine shaped by accumulated experience, with more capabilities staying inside the system</td>
                                 </tr>
                                 <tr>
-                                    <td>围绕什么组织</td>
-                                    <td>显式程序</td>
-                                    <td>任务流<br><em>持续运行，但能力仍由外部栈提供</em></td>
-                                    <td>runtime<br><em>持续运行，能力本身住在机器内部</em></td>
+                                    <td>Organized around</td>
+                                    <td>Explicit programs</td>
+                                    <td>Task flow<br><em>Persistent operation, but capability still comes from the external stack</em></td>
+                                    <td>Runtime<br><em>Persistent operation, with capabilities themselves inside the machine</em></td>
                                 </tr>
                                 <tr class="route-compare-key-row">
-                                    <td>经验怎么沉淀</td>
-                                    <td>你手动翻译成代码、配置和规则</td>
-                                    <td>写进 memory、vector store、workflow、skill.md、MCPs 和 prompts；下次再被检索、注入和编排</td>
-	                                    <td>直接进入 runtime；开始参与后续运行，而不再只是被检索的内容</td>
+                                    <td>How experience accumulates</td>
+                                    <td>You manually translate it into code, configuration, and rules</td>
+                                    <td>It gets written into memory, vector stores, workflows, skill files, MCPs, and prompts, then retrieved, injected, and orchestrated next time</td>
+                                    <td>It enters runtime directly and starts participating in later execution, instead of staying in an external retrieval layer</td>
                                 </tr>
                                 <tr class="route-compare-group-row">
-                                    <td colspan="4">安装与进化</td>
+                                    <td colspan="4">Installation and evolution</td>
                                 </tr>
                                 <tr class="route-compare-key-row">
-                                    <td>安装的是什么</td>
-                                    <td>软件、库、脚本和服务</td>
-                                    <td>tools、workflow、memory 条目、skill 描述</td>
-                                    <td>能力本身，以及可被安装、调用和组合的 sub-NNs</td>
+                                    <td>What gets installed</td>
+                                    <td>Software, libraries, scripts, and services</td>
+                                    <td>Tools, workflows, memory entries, skill descriptions</td>
+                                    <td>Capabilities themselves, along with installable, callable, composable sub-NNs</td>
                                 </tr>
                                 <tr>
-                                    <td>进化方式</td>
-                                    <td>靠抽象、接口和程序复用；机器本身几乎不会自进化</td>
-                                    <td>靠 foundation model 的泛化与持续交互；系统沿外部栈逐步自进化</td>
-                                    <td>靠 runtime 的自编程与持续交互；机器沿内部能力结构持续自进化</td>
+                                    <td>How it evolves</td>
+                                    <td>Through abstraction, interfaces, and program reuse; the machine itself changes little</td>
+                                    <td>Through foundation-model generalization and ongoing interaction; the system improves along the external stack</td>
+                                    <td>Through runtime updates and ongoing interaction; the machine changes along its internal capability structure</td>
                                 </tr>
                                 <tr>
-                                    <td>底座形态</td>
-                                    <td>不适用</td>
-                                    <td>更像今天这条路：1B - 10T 级的 dense / MoE foundation model</td>
-                                    <td>更像下一代底座：10T - 1000T 级、更稀疏、更可寻址、带一点 circuit 气质的机器</td>
+                                    <td>Substrate form</td>
+                                    <td>N/A</td>
+                                    <td>Closer to today's path: dense or MoE foundation models in the 1B-10T range</td>
+                                    <td>Closer to a next-generation substrate: a 10T-1000T machine that is sparser, more addressable, and more circuit-like</td>
                                 </tr>
                                 <tr class="route-compare-group-row">
-                                    <td colspan="4">产业位置</td>
+                                    <td colspan="4">Position in the stack</td>
                                 </tr>
                                 <tr>
-                                    <td>在 AI stack 里的位置</td>
-                                    <td>主要对应 chips / infrastructure 层</td>
-                                    <td>主要跨 models + applications 两层</td>
-                                    <td>最直接改写 models 与 applications 的边界，并进一步倒逼部分 infrastructure 围绕 runtime 重组</td>
+                                    <td>Where it sits in the AI stack</td>
+                                    <td>Mainly the chips / infrastructure layer</td>
+                                    <td>Mainly spans the models and applications layers</td>
+                                    <td>Most directly changes the boundary between models and applications, and may push parts of infrastructure to reorganize around runtime</td>
                                 </tr>
                                 <tr>
-                                    <td>当前成熟度</td>
-                                    <td>完全成熟<br><em>70+ 年工程积累，仍然是绝大多数系统的底座</em></td>
-                                    <td>已可用，并会继续快速变强<br><em>Claude、Cursor、OpenClaw 一类系统已经给出早期形态</em></td>
-	                                    <td>方向可能成立，形式上的原型也已经出现，但仍谈不上可用<br><em>Completely Neural Computers 的四条条件未满足</em></td>
+                                    <td>Current maturity</td>
+                                    <td>Fully mature<br><em>Backed by 70+ years of engineering and still the substrate of most systems</em></td>
+                                    <td>Already usable, and likely to keep improving quickly<br><em>Systems like Claude, Cursor, and OpenClaw already show the early form</em></td>
+                                    <td>The direction is plausible, and formal prototypes have appeared, but nothing close to a usable prototype yet<br><em>The four conditions of Completely Neural Computer are still unmet</em></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="route-compare-note"><strong>读法提示：</strong>三者并不互斥。传统计算机仍然是底座，personalized super agent 很可能更早成熟，Neural Computer 试图把今天分散在外部栈里的部分职责逐步收回同一个 learned runtime。真正的分叉在于：能力是长期住在外部、执行时反复组装，还是一点点进入 runtime，变成机器后面继续运行的方式。</div>
+                    <div class="route-compare-note"><strong>How to read the table:</strong> the three are not mutually exclusive. Conventional computers remain the substrate. Personalized super agents may mature earlier. Neural Computer is the route that tries to pull some of today's externally scattered responsibilities back into the same learned runtime. The key difference is where capabilities stay over time: outside the system and repeatedly assembled at execution time, or gradually entering runtime and becoming part of how the machine operates.</div>
                 </div>
-	                <p>如果 CNC 真的成立，最先改变的会是交付对象和系统的组织方式。今天被装进去的还是软件、工具、workflow 和 memory 条目；到了 NC 这条路上，慢慢被装进去的，更像是能力本身。代码当然还会在，但它不再是唯一入口；说明、示范、操作轨迹和约束，也会开始直接承担“装能力”这件事。“程序”这个词的含义也会跟着变化：它不再只是一段代码，而更像一项能被安装、组合、版本化和持续更新的能力对象。</p>
-	                <p>再往后，变化会一路传到系统栈和机器边界本身。软件怎么搭、硬件怎么配、更新怎么治理、问题怎么追踪，都会越来越围绕同一台持续运行的机器重新组织。手机、浏览器、IDE、终端这些入口还会在，但会越来越像接入同一台机器的不同窗口。到最后，被改写的不只是某个工具栈，而是“计算机”这个词本身的含义。</p>
+                <p>If CNC really works, the first things to change would be what gets delivered and how the stack is organized. Today what gets installed is still software, tools, workflows, and memory entries. On the NC path, what gets installed would look more like capability itself. Code would still matter, but it would stop being the only doorway in. Instructions, demonstrations, interaction traces, and constraints would begin to do part of the installation work themselves. Even the word “program” would start to shift: it would no longer mean only a block of code, but a capability object that can be installed, composed, versioned, and updated over time.</p>
+                <p>From there the change would propagate into the stack and into the boundary of the machine itself. Software layout, hardware interfaces, update governance, and debugging would increasingly reorganize around the same continuously running machine. Phones, browsers, IDEs, and terminals would still remain, but they would feel more like different windows into that same machine. In the end, the change would reach not only the tool stack, but also the meaning of the word “computer.”</p>
             </section>
 
-            <p><strong>声明与致谢：</strong>本博客内容与观点代表大部分 Neural Computer 论文的初衷，以及 Mingchen Zhuge 的个人观点。感谢 Wenyi Wang、Haozhe Liu 与 Dylan R. Ashley 提供的审阅意见。文中部分图示与素材引自原始论文及相关公开材料。</p>
+            <p><strong>Note and acknowledgements:</strong> the content and views in this essay represent Mingchen Zhuge alone. Thanks to Wenyi Wang, Haozhe Liu, Shuming Liu, and Dylan R. Ashley for thoughtful review comments. Some figures and materials are adapted from the original paper and related public sources.</p>
 
             <section class="citation-card" id="citation">
-                <h3 class="citation-title">引用</h3>
-                <p class="bib-note">如果你想引用这篇内容，可以直接使用下面的 arXiv 条目或博客条目。</p>
+                <h3 class="citation-title">References</h3>
+                <p class="bib-note">If you want to cite this piece, you can use either the arXiv entry or the blog entry below.</p>
                 <div class="bib-entry">
                     <p class="bib-label">arXiv BibTeX</p>
                     <pre class="bib-code">@misc{zhuge2026neuralcomputers,
@@ -3788,16 +3815,16 @@
                     <p class="bib-label">Blog BibTeX</p>
                     <pre class="bib-code">@online{zhuge2026neuralcomputerblog,
   author  = {Mingchen Zhuge},
-  title   = {Neural Computer：一种新的机器形态，正在出现},
+  title   = {Neural Computer: A New Machine Form Is Emerging},
   year    = {2026},
-  month   = feb,
+  month   = apr,
   day     = {7},
   url     = {https://metauto.ai/neuralcomputer/},
   note    = {Research essay},
-  urldate = {2026-04-06}
+  urldate = {2026-04-09}
 }</pre>
                 </div>
-                <h4 class="citation-subtitle">参考文献</h4>
+                <h4 class="citation-subtitle">Reference List</h4>
                 <ul class="reference-list">
                     <li id="ref-neural-turing-machines">[1] Alex Graves, Greg Wayne, and Ivo Danihelka. <a href="https://arxiv.org/abs/1410.5401">Neural Turing Machines</a>. arXiv:1410.5401, 2014.</li>
                     <li id="ref-differentiable-neural-computer">[2] Alex Graves et al. <a href="https://www.nature.com/articles/nature20101">Hybrid computing using a neural network with dynamic external memory</a>. <em>Nature</em> 538, 471-476 (2016).</li>
@@ -3835,24 +3862,24 @@
                     <li id="ref-controlnet">[34] Lvmin Zhang, Anyi Rao, and Maneesh Agrawala. <a href="https://arxiv.org/abs/2302.05543">Adding Conditional Control to Text-to-Image Diffusion Models</a>. ICCV 2023.</li></ul>
             </section>
 
-            <dialog class="image-lightbox" id="image-lightbox" aria-label="媒体放大预览">
+            <dialog class="image-lightbox" id="image-lightbox" aria-label="Expanded media preview">
                     <div class="image-lightbox-shell">
                         <div class="lightbox-header">
                             <div class="lightbox-meta">
                                 <span class="lightbox-badge" id="image-lightbox-kind">Media</span>
                                 <div class="lightbox-copy">
-                                    <p class="lightbox-title" id="image-lightbox-title">放大预览</p>
+                                    <p class="lightbox-title" id="image-lightbox-title">Expanded preview</p>
                                     <p class="lightbox-description" id="image-lightbox-description" hidden></p>
                                 </div>
                             </div>
                             <div class="lightbox-actions">
-                                <button class="lightbox-nav" type="button" id="image-lightbox-prev" aria-label="查看上一个视频" title="上一个视频">
+                                <button class="lightbox-nav" type="button" id="image-lightbox-prev" aria-label="View previous video" title="Previous video">
                                     <span aria-hidden="true">←</span>
                                 </button>
-                                <button class="lightbox-nav" type="button" id="image-lightbox-next" aria-label="查看下一个视频" title="下一个视频">
+                                <button class="lightbox-nav" type="button" id="image-lightbox-next" aria-label="View next video" title="Next video">
                                     <span aria-hidden="true">→</span>
                                 </button>
-                                <button class="lightbox-close" type="button" id="image-lightbox-close" aria-label="关闭预览" title="关闭预览">
+                                <button class="lightbox-close" type="button" id="image-lightbox-close" aria-label="Close preview" title="Close preview">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M6.7 5.3a1 1 0 0 1 1.4 0L12 9.17l3.9-3.88a1 1 0 1 1 1.4 1.42L13.4 10.6l3.9 3.89a1 1 0 0 1-1.4 1.42L12 12.01l-3.9 3.9a1 1 0 0 1-1.4-1.42l3.89-3.89-3.9-3.89a1 1 0 0 1 0-1.41z"></path>
                                 </svg>
@@ -3867,8 +3894,8 @@
             </dialog>
 
             <footer class="page-footer">
-                <span>最后更新：2026 年 4 月 7 日</span>
-                <span><a href="../blog/index.html">返回博客目录</a></span>
+                <span>Last updated: April 7, 2026</span>
+                <span><a href="../blog/index.html">Back to blog index</a></span>
             </footer>
         </article>
 
@@ -3924,7 +3951,7 @@
             }
 
             function setLightboxMeta(kind, href, altText, descriptionText) {
-                var fallback = readableName(href) || "放大预览";
+                var fallback = readableName(href) || "Expanded preview";
                 lightboxKind.textContent = kind;
                 lightboxTitle.textContent = altText || fallback;
                 setLightboxDescriptionText(descriptionText || "");
@@ -3965,7 +3992,7 @@
                 lightboxVideo.hidden = true;
                 lightboxVideo.removeAttribute("src");
                 lightboxVideo.load();
-                lightboxTitle.textContent = "放大预览";
+                lightboxTitle.textContent = "Expanded preview";
                 lightboxKind.textContent = "Media";
                 setLightboxDescriptionText("");
                 activeVideoIndex = -1;
@@ -4037,7 +4064,7 @@
                 if (!media.hasAttribute("tabindex")) media.setAttribute("tabindex", "0");
                 if (!media.hasAttribute("role")) media.setAttribute("role", "button");
                 if (!media.hasAttribute("aria-label")) {
-                    media.setAttribute("aria-label", (video.getAttribute("aria-label") || "放大查看视频") + "，点击放大");
+                    media.setAttribute("aria-label", (video.getAttribute("aria-label") || "Expand video preview") + ", click to enlarge");
                 }
                 media.addEventListener("click", function () {
                     openVideoByIndex(entryIndex);
@@ -4182,7 +4209,7 @@
                     var toggle = document.createElement("button");
                     toggle.type = "button";
                     toggle.className = "demo-caption-toggle";
-                    toggle.textContent = (isClean || isGeneral) ? "Read more" : "查看更多";
+                    toggle.textContent = (isClean || isGeneral) ? "Read more" : "View more";
                     toggle.setAttribute("aria-expanded", "false");
                     toggle.addEventListener("click", function () {
                         var expanded = caption.classList.toggle("summary-expanded");
@@ -4190,7 +4217,7 @@
                         if (isClean || isGeneral) {
                             toggle.textContent = expanded ? "Collapse" : "Read more";
                         } else {
-                            toggle.textContent = expanded ? "收起" : "查看更多";
+                            toggle.textContent = expanded ? "Collapse" : "View more";
                         }
                         toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
                     });
@@ -4227,7 +4254,7 @@
                 var guiToggle = document.createElement("button");
                 guiToggle.type = "button";
                 guiToggle.className = "demo-grid-toggle";
-                guiToggle.textContent = "展开更多样本";
+                guiToggle.textContent = "Show more samples";
                 guiToggle.setAttribute("aria-expanded", "false");
 
                 var guiEndToggleWrap = document.createElement("div");
@@ -4236,7 +4263,7 @@
                 var guiEndToggle = document.createElement("button");
                 guiEndToggle.type = "button";
                 guiEndToggle.className = "demo-grid-toggle";
-                guiEndToggle.textContent = "收起后续样本";
+                guiEndToggle.textContent = "Collapse additional samples";
                 guiEndToggle.setAttribute("aria-expanded", "true");
 
                 function setGuiExpanded(expanded) {
@@ -4286,13 +4313,13 @@
                     var generalToggle = document.createElement("button");
                     generalToggle.type = "button";
                     generalToggle.className = "demo-grid-toggle";
-                    generalToggle.textContent = "展开更多样本";
+                    generalToggle.textContent = "Show more samples";
                     generalToggle.setAttribute("aria-expanded", "false");
 
                     generalToggle.addEventListener("click", function () {
                         var expanded = generalGrid.classList.toggle("is-expanded");
                         generalGrid.classList.toggle("is-collapsed", !expanded);
-                        generalToggle.textContent = expanded ? "收起后续样本" : "展开更多样本";
+                        generalToggle.textContent = expanded ? "Collapse additional samples" : "Show more samples";
                         generalToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
                     });
 
@@ -4313,13 +4340,13 @@
                     var cleanToggle = document.createElement("button");
                     cleanToggle.type = "button";
                     cleanToggle.className = "demo-grid-toggle";
-                    cleanToggle.textContent = "展开更多样本";
+                    cleanToggle.textContent = "Show more samples";
                     cleanToggle.setAttribute("aria-expanded", "false");
 
                     cleanToggle.addEventListener("click", function () {
                         var expanded = cleanGrid.classList.toggle("is-expanded");
                         cleanGrid.classList.toggle("is-collapsed", !expanded);
-                        cleanToggle.textContent = expanded ? "收起后续样本" : "展开更多样本";
+                        cleanToggle.textContent = expanded ? "Collapse additional samples" : "Show more samples";
                         cleanToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
                     });
 
