@@ -2920,8 +2920,8 @@
 
 <p>若你也曾想过：“AI 最终会成为一种计算机”，那本文就是写给你的。</p>
 <p>过去几十年，计算机逐渐成为人类完成任务的重要媒介。最近几年，AI 也开始进入这个位置：它不再只回答问题，还开始调用工具、操作界面、参与真实工作流。问题随之变了：我们期待 AI 使用计算机，还是成为一种计算机？这也是本文所说的 Neural Computer（神经计算机，NC）想讨论的问题。</p>
-                <p>这里说的 Neural Computer，不完全指 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件（如最近的 Taalas<a class="inline-ref" href="#ref-taalas-ubiquitous-ai">[15]</a>）。所以以下并不是 Neural Computer 的目标，比如：更强的 agent，计算机环境里的 world model，额外在传统计算机上再加一层智能。它关心的是，原本由程序栈、工具链和控制层承担的那部分系统职责，会不会逐渐进入模型实际依赖的 Runtime。</p>
-                <p>这个念头，我想在最近一年很多人脑海里都浮现过，我先把它叫作“前共识”。</p>
+                <p>这里说的 Neural Computer，不完全指 Alex Graves 那条 NTM / DNC 路线<a class="inline-ref" href="#ref-neural-turing-machines">[1]</a><a class="inline-ref" href="#ref-differentiable-neural-computer">[2]</a>，也不是在谈某种新硬件（如最近的 Taalas<a class="inline-ref" href="#ref-taalas-ubiquitous-ai">[15]</a>）。所以以下并不是 Neural Computer 的目标，比如：更强的 agent，计算机环境里的 world model，额外在传统计算机上再加一层智能。它真正关心的是，原本由程序栈、工具链和控制层承担的那部分系统职责，会不会逐渐进入模型实际依赖的 Runtime。</p>
+                <p>这个念头，最近一年可能在很多人的脑海里都浮现过，我先把它叫作“前共识”。</p>
 
                 <div id="summary" class="summary-block is-collapsed" role="note" aria-label="TLDR">
                     <div class="summary-header">
@@ -2994,13 +2994,13 @@
 
             <section id="chapter-2">
                 <h2>2. 什么是 Neural Computer，什么才算它真正成立？</h2>
-                <p>先看这张表：它把传统计算机、Agent、World Model 和 Neural Computer 放到同一把“尺子”上来比较。看完这张表，区别和联系就很清楚了：它们各自围绕什么组织，source of truth 落在哪里，又分别承担什么职责。</p>
+                <p>先看这张表：它把传统计算机、Agent、World Model 和 Neural Computer 放到同一把“尺子”上来比较。看完这张表，区别和联系就很清楚了：它们各自围绕什么组织，系统真正以什么为准，又分别承担什么职责。</p>
                 <table class="contract-table system-table">
                     <thead>
                         <tr>
                             <th>形态</th>
                             <th>围绕什么组织</th>
-                            <th>source of truth 落在哪里</th>
+                            <th>系统真正以什么为准</th>
                             <th>主要职责</th>
                         </tr>
                     </thead>
@@ -3626,7 +3626,7 @@
                     </section>
                 </div>
                 <p>GUIWorld 直接把问题从 CLI 推到了 GUI。走到这里，问题已经不再主要是文本和命令，而是真实的键盘鼠标 action：鼠标要落点，悬停要出反馈，点击之后按钮、下拉框、模态窗和输入框都要真的变状态，键盘输入也要一帧一帧把界面往前带。</p>
-                <p>对应的数据已经是一套相当完整的交互 rig：我们先在 Ubuntu 22.04 的 XFCE4 桌面里固定了 1024×768、15 FPS 的环境，再把整个桌面运行、录制和动作回放流程都搭了起来，这样每一步点击、悬停、输入和界面变化都能被稳定记录下来。数据分成三块：约 1000 小时的 Random Slow、约 400 小时的 Random Fast，以及约 110 小时由 Claude CUA 驱动的真实交互 goal-directed trajectories。前两者试探的是，鼠标加速度、停顿、悬停、窗口切换这些开放世界噪声会怎样影响模型；后者则给出更清晰的 action-response 对，看看模型是否学会：做了这个动作之后，界面能不能相应触发合适的改变。</p>
+                <p>对应的数据已经是一套相当完整的交互 rig：我们先在 Ubuntu 22.04 的 XFCE4 桌面里固定了 1024×768、15 FPS 的环境（基础设置参考自 NeuralOS<a class="inline-ref" href="#ref-neuralos">[35]</a>），再把整个桌面运行、录制和动作回放流程都搭了起来，这样每一步点击、悬停、输入和界面变化都能被稳定记录下来。数据分成三块：约 1000 小时的 Random Slow、约 400 小时的 Random Fast，以及约 110 小时由 Claude CUA 驱动的真实交互 goal-directed trajectories。前两者试探的是，鼠标加速度、停顿、悬停、窗口切换这些开放世界噪声会怎样影响模型；后者则给出更清晰的 action-response 对，看看模型是否学会：做了这个动作之后，界面能不能相应触发合适的改变。</p>
 	                <p>模型这边没有只试一种 action 注入方式，而是并排做了四个版本。它们的核心区别不在于“有没有加入 action”，而在于 action 到底在多深的层里进入主干、参与状态演化。论文里的 Figure 7 正好把这四种方式画得很清楚：</p>
                 <figure class="figure-block comparison-card">
                     <a class="zoomable-image-link" href="assets/action_inject.png" aria-label="放大查看 GUI action injection 四种模式图">
@@ -3765,7 +3765,7 @@
 	                <p>再往后，变化会一路传到系统栈和机器边界本身。软件怎么搭、硬件怎么配、更新怎么治理、问题怎么追踪，都会越来越围绕同一台持续运行的机器重新组织。手机、浏览器、IDE、终端这些入口还会在，但会越来越像接入同一台机器的不同窗口。到最后，被改写的不只是某个工具栈，而是“计算机”这个词本身的含义。</p>
             </section>
 
-            <p><strong>声明与致谢：</strong>本博客内容与观点代表大部分 Neural Computer 论文的初衷，以及 Mingchen Zhuge 的个人观点。感谢 Wenyi Wang、Haozhe Liu、Shuming Liu、Yuandong Tian 与 Dylan R. Ashley 提供的审阅意见。文中部分图示与素材引自原始论文及相关公开材料。</p>
+            <p><strong>声明与致谢：</strong>本博客内容与观点代表大部分 Neural Computer 论文的初衷，以及 Mingchen Zhuge 的个人观点。感谢 Wenyi Wang、Haozhe Liu、Shuming Liu、Yuandong Tian、Dylan R. Ashley 与 Yutian Deng 提供的审阅意见。文中部分图示与素材引自原始论文及相关公开材料。</p>
 
             <section class="citation-card" id="citation">
                 <h3 class="citation-title">引用</h3>
@@ -3830,7 +3830,8 @@
                     <li id="ref-wan-model">[31] Wan Team. <a href="https://arxiv.org/abs/2503.20314">Wan: Open and Advanced Large-Scale Video Generative Models</a>. arXiv:2503.20314, 2025.</li>
                     <li id="ref-matrix-game-2">[32] Xianglong He et al. <a href="https://arxiv.org/abs/2508.13009">Matrix-Game 2.0: An Open-Source, Real-Time, and Streaming Interactive World Model</a>. arXiv:2508.13009, 2025.</li>
                     <li id="ref-wham">[33] Anssi Kanervisto et al. <a href="https://www.nature.com/articles/s41586-025-08600-3">World and Human Action Models towards gameplay ideation</a>. <em>Nature</em>, 2025.</li>
-                    <li id="ref-controlnet">[34] Lvmin Zhang, Anyi Rao, and Maneesh Agrawala. <a href="https://arxiv.org/abs/2302.05543">Adding Conditional Control to Text-to-Image Diffusion Models</a>. ICCV 2023.</li></ul>
+                    <li id="ref-controlnet">[34] Lvmin Zhang, Anyi Rao, and Maneesh Agrawala. <a href="https://arxiv.org/abs/2302.05543">Adding Conditional Control to Text-to-Image Diffusion Models</a>. ICCV 2023.</li>
+                    <li id="ref-neuralos">[35] Luke Rivard, Sun Sun, Hongyu Guo, Wenhu Chen, and Yuntian Deng. <a href="https://arxiv.org/abs/2507.08800">NeuralOS: Towards Simulating Operating Systems via Neural Generative Models</a>. arXiv:2507.08800, 2025.</li></ul>
             </section>
 
             <dialog class="image-lightbox" id="image-lightbox" aria-label="媒体放大预览">
