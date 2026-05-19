@@ -1,0 +1,6 @@
+@article{zhuge2026neural,
+  title={Neural computers},
+  author={Zhuge, Mingchen and Zhao, Changsheng and Liu, Haozhe and Zhou, Zijian and Liu, Shuming and Wang, Wenyi and Chang, Ernie and Lan, Gael Le and Fei, Junjie and Zhang, Wenxuan and others},
+  journal={arXiv preprint arXiv:2604.06425},
+  year={2026}
+}
