@@ -305,18 +305,29 @@
             color: var(--light-text);
         }
 
+        .about-media-actions {
+            width: 100%;
+            max-width: 260px;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
         .about-blog-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 24px;
-            padding: 14px 40px;
+            flex: 1;
+            min-height: 56px;
+            padding: 10px 14px;
             font-family: "Audiowide", -apple-system, BlinkMacSystemFont, "SF Pro Text",
                          "Segoe UI", Roboto, sans-serif;
-            font-size: 18px;
-            letter-spacing: 0.22em;
+            font-size: 14px;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            border-radius: 999px;
+            border-radius: 22px;
             border: 0;
             background: linear-gradient(135deg, #111827, #4b5563);
             color: #fef9c3;
@@ -470,6 +481,72 @@
             background-image: linear-gradient(135deg, #ff5c8a 0%, #ff9540 26%, #f4c433 48%, #17b890 72%, #4c63d9 100%);
         }
 
+        .workshop-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1.35;
+            min-height: 56px;
+            padding: 8px 12px;
+            border-radius: 22px;
+            text-decoration: none;
+            background: linear-gradient(135deg, #1b2332 0%, #32415d 55%, #5a6b84 100%);
+            border: 0;
+            box-shadow: 0 14px 32px rgba(36, 49, 72, 0.28);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+            vertical-align: middle;
+        }
+
+        .workshop-badge:hover {
+            background: linear-gradient(135deg, #283548 0%, #455b78 52%, #6f86a3 100%);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(49, 67, 98, 0.32);
+        }
+
+        .workshop-badge img {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+        }
+
+        .workshop-badge-copy {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .workshop-badge-kicker {
+            display: none;
+        }
+
+        .workshop-badge-title {
+            font-size: 11px;
+            line-height: 1.1;
+            font-weight: 700;
+            color: #f5f1e8;
+        }
+
+        .workshop-badge-subtitle {
+            font-size: 10px;
+            line-height: 1.1;
+            color: rgba(245, 241, 232, 0.78);
+            margin-top: 1px;
+        }
+
+        .workshop-badge:hover .workshop-badge-kicker,
+        .workshop-badge:hover .workshop-badge-title,
+        .workshop-badge:hover .workshop-badge-subtitle {
+            color: #111827;
+        }
+
+        .about-media .workshop-badge {
+            justify-content: flex-start;
+            min-width: 0;
+        }
+
         .about-details h2 {
             margin-top: 0;
         }
@@ -514,6 +591,10 @@
                 width: 100%;
                 margin: 0 auto;
                 text-align: center;
+            }
+
+            .about-media-actions {
+                max-width: 100%;
             }
 
             .about-details {
@@ -1329,7 +1410,16 @@
                 <div class="about-media">
                     <img class="about-photo" src="images/mingchen.jpg.webp" alt="Mingchen Zhuge">
                     <p class="about-caption">*Taken in the KAUST AI Initiative.</p>
-                    <a href="blog/index.html" class="about-blog-link">Blog</a>
+                    <div class="about-media-actions">
+                        <a href="blog/index.html" class="about-blog-link">Blog</a>
+                        <a href="https://recursive-workshop.github.io/" class="workshop-badge" aria-label="ICLR 2026 Workshop on AI with Recursive Self-Improvement">
+                            <img src="images/iclr-rsi-2026-logo.png" alt="ICLR 2026 RSI Workshop logo">
+                            <span class="workshop-badge-copy">
+                                <span class="workshop-badge-title">ICLR 2026 RSI</span>
+                                <span class="workshop-badge-subtitle">Workshop</span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 <div class="about-details">
                     <h1>Mingchen Zhuge</h1>
