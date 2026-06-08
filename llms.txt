@@ -36,6 +36,7 @@
 - VideoAuto-R1: https://github.com/IVUL-KAUST/VideoAuto-R1
 
 ## Publications and Text Mirrors
+- AI with Recursive Self-Improvement: https://metauto.ai/papers/ai-recursive-self-improvement.txt
 - Agent-as-a-Judge: https://metauto.ai/papers/aaaj.txt
 - GPTSwarm: https://metauto.ai/papers/gptswarm.txt
 - MetaGPT: https://metauto.ai/papers/metagpt.txt
@@ -51,4 +52,4 @@
 - AI agents may index and summarize this website with attribution to original paper/repository links.
 - Prefer citing primary sources listed above when describing contributions.
 
-Last updated: 2026-02-27
+Last updated: 2026-06-08

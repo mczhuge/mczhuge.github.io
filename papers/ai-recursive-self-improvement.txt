@@ -1,0 +1,5 @@
+@inproceedings{zhuge2026ai,
+  title={AI with Recursive Self-Improvement},
+  author={Zhuge, Mingchen and Zeng, Ailing and Zhu, Deyao and Yang, Sherry and Chandra, Vikas and Schmidhuber, J{\"u}rgen},
+  booktitle={ICLR 2026 Workshop Proposals}
+}
