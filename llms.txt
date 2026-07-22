@@ -1,5 +1,5 @@
 # METAUTO.ai
-> Personal research homepage of Mingchen Zhuge, focused on AI agents, coding agents, multi-agent systems, world models, and recursive self-improvement.
+> Personal research homepage of Mingchen Zhuge, focused on AI agents, coding agents, multi-agent systems, recursive self-improvement, and neural computers.
 
 ## Canonical URLs
 - Home: https://metauto.ai/
@@ -9,9 +9,11 @@
 
 ## Person
 - Name: Mingchen Zhuge
-- Role: PhD Candidate
-- Affiliation: KAUST
-- Topics: AI agents, coding agents, multi-agent systems, recursive self-improvement, agent evaluation, multimodal reasoning
+- Role: Founding Member at Recursive; recent PhD graduate
+- Affiliation: Recursive; KAUST alumnus
+- PhD Advisor: Prof. Jürgen Schmidhuber
+- Topics: AI agents, coding agents, multi-agent systems, agentic societies and economies, recursive self-improvement, open-ended evaluation, multimodal reasoning, world models, neural computers
+- Research Profile: 20+ top-tier publications and 8,000+ citations
 
 ## Primary Sources
 - Homepage: https://metauto.ai/
@@ -33,7 +35,10 @@
 - GPTSwarm: https://github.com/metauto-ai/GPTSwarm
 - NLSOM: https://github.com/mczhuge/NLSOM
 - Agent-as-a-Judge: https://github.com/metauto-ai/agent-as-a-judge
+- HGM: https://github.com/metauto-ai/HGM
 - VideoAuto-R1: https://github.com/IVUL-KAUST/VideoAuto-R1
+- Pollux: https://github.com/metauto-ai/Pollux
+- NeuralComputer: https://github.com/metauto-ai/NeuralComputer
 
 ## Publications and Text Mirrors
 - AI with Recursive Self-Improvement: https://metauto.ai/papers/ai-recursive-self-improvement.txt
