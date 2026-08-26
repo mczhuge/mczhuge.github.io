@@ -39,6 +39,7 @@
 - VideoAuto-R1: https://github.com/IVUL-KAUST/VideoAuto-R1
 - Pollux: https://github.com/metauto-ai/Pollux
 - NeuralComputer: https://github.com/metauto-ai/NeuralComputer
+- RSI-Survey: https://github.com/selfimproving-agent/awesome-Self-Improving-Agents
 
 ## Publications and Text Mirrors
 - AI with Recursive Self-Improvement: https://metauto.ai/papers/ai-recursive-self-improvement.txt
