@@ -1,0 +1,56 @@
+/* Decorative RSI field; the original page keeps its typography and layout. */
+body:has(> .rsi-background.is-ready) { isolation: isolate; }
+
+.rsi-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 0% 80%, rgba(172, 172, 170, .12), transparent 46%),
+    radial-gradient(ellipse at 100% 20%, rgba(190, 190, 188, .10), transparent 42%);
+}
+
+.rsi-background canvas { display: block; width: 100%; height: 100%; }
+
+body:has(> .rsi-background.is-ready) :is(#about, #recent-news, #publication, #talk, #award, .agent-meta-section),
+body:has(> .rsi-background.is-ready) #about + div {
+  background-color: transparent !important;
+}
+
+body:has(> .rsi-background.is-ready) #about .about-card {
+  background-color: rgba(255, 253, 247, .48);
+}
+
+.rsi-background-motion {
+  position: fixed;
+  z-index: 10;
+  right: 18px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid rgba(138, 138, 135, .22);
+  border-radius: 15px;
+  background: rgba(255, 253, 247, .9);
+  color: #777773;
+  font: 10px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.rsi-background-motion::before { content: "Ⅱ"; }
+.rsi-background-motion[aria-pressed="true"]::before { content: "▷"; }
+.rsi-background-motion:hover { color: #565652; border-color: #a1a19c; }
+.rsi-background-motion:focus-visible { outline: 2px solid #a1a19c; outline-offset: 3px; }
+.rsi-background-motion[hidden] { display: none; }
+
+@media (max-width: 767px) {
+  .rsi-background-motion { right: 12px; bottom: 12px; }
+}
+
+@media print {
+  .rsi-background, .rsi-background-motion { display: none; }
+}

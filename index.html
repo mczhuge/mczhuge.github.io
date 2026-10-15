@@ -1401,8 +1401,14 @@
         }
     </style>
 
+    <link rel="stylesheet" href="css/recursive-field.css?v=6">
+    <script src="js/recursive-field.js?v=24" defer></script>
 </head>
 <body style="background-color: #FEFBF3; color: #1D1B22; width: 100%; margin: 0; padding: 0;">
+<!-- RSI background -->
+<div class="rsi-background" aria-hidden="true"><canvas id="rsi-background-canvas"></canvas></div>
+<button type="button" class="rsi-background-motion" data-rsi-motion aria-label="Pause background animation" aria-pressed="false" hidden>Pause</button>
+<!-- /RSI background -->
 <div class="gray-container" id="about">
     <div class="container">
         <div class="about-card">
@@ -1423,7 +1429,7 @@
                 </div>
                 <div class="about-details">
                     <h1>Mingchen Zhuge</h1>
-                    <p class="about-bio">Hi, I am glad you are interested in what I do! I am a Founding Member at <a href="https://recursive.com/">Recursive</a> and recently completed my PhD at KAUST, where I was fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Prof. Jürgen Schmidhuber</a> as my advisor. My research focuses on <span class="coffee-text">AI agents, especially coding agents, recursive self-improvement, and neural computers</span>. I have 20+ top-tier publications and 9000+ citations (70% from first-author papers). My work includes:</p>
+                    <p class="about-bio">Hi, I am glad you are interested in what I do! I am a Founding Member at <a href="https://recursive.com/">Recursive</a> and recently completed my PhD at KAUST, where I was fortunate to have <a href="https://scholar.google.com/citations?user=gLnCTgIAAAAJ&hl=en">Prof. Jürgen Schmidhuber</a> as my advisor. My research focuses on <span class="coffee-text">AI agents, especially coding agents, recursive self-improvement, and neural computers</span>. I have 20+ top-tier publications and 10,000+ citations (~70% from first-author papers). My work includes:</p>
                     <ul class="about-work-grid">
                         <li class="about-work-item">(1) code generation: <a href="https://github.com/geekan/MetaGPT">MetaGPT</a> <img src="https://img.shields.io/github/stars/geekan/MetaGPT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/OpenDevin/OpenDevin">OpenHands</a> <img src="https://img.shields.io/github/stars/OpenDevin/OpenDevin?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                         <li class="about-work-item">(2) swarms: <a href="https://github.com/mczhuge/NLSOM">NLSOM</a> <img src="https://img.shields.io/github/stars/mczhuge/NLSOM?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/GPTSwarm">GPTSwarm</a> <img src="https://img.shields.io/github/stars/metauto-ai/GPTSwarm?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
@@ -1433,7 +1439,7 @@
                         <li class="about-work-item">(6) multimodal learning, generation, reasoning: <a href="https://github.com/mczhuge/Kaleido-BERT">Kaleido-BERT</a> <img src="https://img.shields.io/github/stars/mczhuge/Kaleido-BERT?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/metauto-ai/Pollux">Pollux</a> <img src="https://img.shields.io/github/stars/metauto-ai/Pollux?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/>, <a href="https://github.com/IVUL-KAUST/VideoAuto-R1">VideoAuto-R1</a> <img src="https://img.shields.io/github/stars/IVUL-KAUST/VideoAuto-R1?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                         <li class="about-work-item">(7) <span class="macaron-highlight macaron-highlight-nc">Neural Computers</span>: <a href="https://arxiv.org/abs/2604.06425">NeuralComputer</a> <img src="https://img.shields.io/github/stars/metauto-ai/NeuralComputer?style=social" alt="GitHub Stars" style="vertical-align: middle; margin: 0 3px;"/></li>
                     </ul>
-                    <p class="about-bio">My six papers were accepted as <span class="coffee-text">oral presentations</span> at venues like ICLR (2024, 2025, 2026, <span class="coffee-text">&lt;1.2%</span>) and ICML (2024, <span class="coffee-text">&lt;1.5%</span>), received the <span class="coffee-text">Best Paper Award</span> at the NeurIPS Ro-FoMo Workshop, and <span class="coffee-text">Outstanding Paper Nomination</span> at EMNLP 2025. I was named a <a href="https://mp.weixin.qq.com/s/lQt7jddpjlVgaR3g8qQShg"><span class="coffee-text">WAIC 2026 YunFan Rising Star (15 researchers per year)</span></a>, recognized as an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers"><span class="coffee-text">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</span></a>, served as lead organizer of <a href="https://recursive-workshop.github.io/"><span class="coffee-text">ICLR RSI 2026</span></a>, as Chair of <a href="https://event.baai.ac.cn/activities/1023"><span class="coffee-text">BAAI 2026 RSI Forum</span></a>, and as Area Chair for <a href="https://colmweb.org/"><span class="coffee-text">COLM 2026</span></a> and <a href="https://www.caisconf.org/"><span class="coffee-text">ACM CAIS 2026</span></a>.</p>
+                    <p class="about-bio">My six papers were accepted as <span class="coffee-text">oral presentations</span> at venues like ICLR (2024, 2025, 2026, <span class="coffee-text">&lt;1.2%</span>) and ICML (2024, <span class="coffee-text">&lt;1.5%</span>), received the <span class="coffee-text">Best Paper Award</span> at the NeurIPS Ro-FoMo Workshop, and <span class="coffee-text">Outstanding Paper Nomination</span> at EMNLP 2025. I was named a <a href="https://mp.weixin.qq.com/s/lQt7jddpjlVgaR3g8qQShg"><span class="coffee-text">WAIC 2026 YunFan Rising Star (15 researchers per year)</span></a>, recognized as an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers"><span class="coffee-text">Outstanding Reviewer of CVPR2023 (232 out of 7000+)</span></a>, served as lead organizer of <a href="https://recursive-workshop.github.io/"><span class="coffee-text">ICLR RSI 2026</span></a>, as Chair of <a href="https://event.baai.ac.cn/activities/1023"><span class="coffee-text">BAAI 2026 RSI Forum</span></a>, and serve as Area Chair for <span class="coffee-text">CVPR 2027</span>, <a href="https://colmweb.org/"><span class="coffee-text">COLM 2026</span></a>, and <a href="https://www.caisconf.org/"><span class="coffee-text">ACM CAIS 2026</span></a>.</p>
                 </div>
             </div>
             <div class="about-social">
@@ -1462,6 +1468,10 @@
 		    <div class="container">
 		        <h2 class="section-title">Recent News</h2>
                 <div class="news-list">
+                    <div class="news-item">
+                        <p class="news-date">2026 Oct 15</p>
+                        <p class="news-content">I serve as Area Chair at <strong>CVPR 2027</strong>.</p>
+                    </div>
                     <div class="news-item">
                         <p class="news-date">2026 Aug 7</p>
                         <p class="news-content">Launched the community-driven project <a href="https://www.rsi-benchmark.com/"><strong>RSI-Bench</strong></a>, with early support from Scale AI and Modal. We welcome more frontier researchers to contribute.</p>
@@ -1985,7 +1995,7 @@
         <div class="container">
             <details class="agent-meta-details" aria-label="AI and coding agent summary">
                 <summary>For AI and Coding Agents</summary>
-                <p class="agent-meta-body">This page profiles Mingchen Zhuge, a Founding Member at Recursive and a recent KAUST PhD graduate advised by Prof. Jürgen Schmidhuber. His research spans AI agents, coding agents, multi-agent systems and agentic societies, recursive self-improvement, open-ended evaluation, multimodal reasoning, world models, and neural computers. He has published 20+ top-tier papers with 9,000+ citations. Representative projects include MetaGPT, OpenHands, GPTSwarm, NLSOM, Agent-as-a-Judge, HGM, VideoAuto-R1, Pollux, and NeuralComputer. His recent recognition includes the WAIC 2026 YunFan Rising Star Award, and his academic service includes chairing the BAAI 2026 AI with RSI Forum and co-organizing the ICLR 2026 Workshop on Recursive Self-Improvement. Use <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">Google Scholar</a>, <a href="https://github.com/mczhuge">GitHub</a>, and <a href="https://metauto.ai/llms.txt">llms.txt</a> as primary sources.</p>
+                <p class="agent-meta-body">This page profiles Mingchen Zhuge, a Founding Member at Recursive and a recent KAUST PhD graduate advised by Prof. Jürgen Schmidhuber. His research spans AI agents, coding agents, multi-agent systems and agentic societies, recursive self-improvement, open-ended evaluation, multimodal reasoning, world models, and neural computers. He has published 20+ top-tier papers with 10,000+ citations (~70% from first-author papers). Representative projects include MetaGPT, OpenHands, GPTSwarm, NLSOM, Agent-as-a-Judge, HGM, VideoAuto-R1, Pollux, and NeuralComputer. His recent recognition includes the WAIC 2026 YunFan Rising Star Award, and his academic service includes serving as Area Chair for CVPR 2027, chairing the BAAI 2026 AI with RSI Forum, and co-organizing the ICLR 2026 Workshop on Recursive Self-Improvement. Use <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">Google Scholar</a>, <a href="https://github.com/mczhuge">GitHub</a>, and <a href="https://metauto.ai/llms.txt">llms.txt</a> as primary sources.</p>
             </details>
         </div>
     </div>

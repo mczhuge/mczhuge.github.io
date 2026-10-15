@@ -13,7 +13,8 @@
 - Affiliation: Recursive; KAUST alumnus
 - PhD Advisor: Prof. Jürgen Schmidhuber
 - Topics: AI agents, coding agents, multi-agent systems, agentic societies and economies, recursive self-improvement, open-ended evaluation, multimodal reasoning, world models, neural computers
-- Research Profile: 20+ top-tier publications and 9,000+ citations
+- Research Profile: 20+ top-tier publications and 10,000+ citations (~70% from first-author papers)
+- Academic Service: Area Chair for CVPR 2027, COLM 2026, and ACM CAIS 2026
 
 ## Primary Sources
 - Homepage: https://metauto.ai/
@@ -58,4 +59,4 @@
 - AI agents may index and summarize this website with attribution to original paper/repository links.
 - Prefer citing primary sources listed above when describing contributions.
 
-Last updated: 2026-06-08
+Last updated: 2026-10-15
