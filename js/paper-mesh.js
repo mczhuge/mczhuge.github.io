@@ -1,4 +1,4 @@
-import { paperShape } from './paper-shape.js?v=compact-1';
+import { paperShape } from './paper-shape.js?v=paper-20261020';
 
 // An original, dependency-free paper surface. The caller owns animation and the
 // accessible HTML; this canvas is only the transient, printed-paper visual.
@@ -62,6 +62,7 @@ in vec3 vShadow;
 in float vFold;
 uniform sampler2D uPrint;
 uniform sampler2D uShadow;
+uniform sampler2D uPaper;
 uniform vec2 uSize;
 uniform vec3 uLight;
 uniform vec3 uFill;
@@ -69,28 +70,20 @@ uniform float uProgress;
 uniform float uShadowPixel;
 out vec4 color;
 
-float hash(vec2 p) {
-  p = fract(p * vec2(0.1031, 0.11369));
-  p += dot(p, p.yx + 19.19);
-  return fract((p.x + p.y) * p.x);
-}
-// Piecewise planar microfolds, rather than round noise or a shiny normal map.
-float facets(vec2 p) {
-  vec2 cell = floor(p), f = fract(p);
-  float a = hash(cell), b = hash(cell + vec2(1.0, 0.0));
-  float c = hash(cell + vec2(0.0, 1.0)), d = hash(cell + 1.0);
-  return f.x + f.y < 1.0
-    ? a + (b - a) * f.x + (c - a) * f.y
-    : d + (c - d) * (1.0 - f.x) + (b - d) * (1.0 - f.y);
-}
 float visibility(vec3 n) {
   if (any(lessThan(vShadow, vec3(0.0))) || any(greaterThan(vShadow, vec3(1.0)))) return 1.0;
   float bias = 0.0007 + 0.0015 * (1.0 - max(dot(n, uLight), 0.0));
+  vec3 sx = dFdx(vShadow), sy = dFdy(vShadow);
+  float determinant = sx.x * sy.y - sx.y * sy.x;
+  vec2 plane = abs(determinant) > 0.00000001
+    ? vec2(sx.z * sy.y - sy.z * sx.y, sx.x * sy.z - sy.x * sx.z) / determinant : vec2(0.0);
   float lit = 0.0;
   for (int y = -1; y <= 1; y++) {
     for (int x = -1; x <= 1; x++) {
-      float stored = texture(uShadow, vShadow.xy + vec2(float(x), float(y)) * uShadowPixel).r;
-      lit += vShadow.z - bias <= stored ? 1.0 : 0.0;
+      vec2 sampleUV = (floor(vShadow.xy / uShadowPixel) + vec2(float(x), float(y)) + 0.5) * uShadowPixel;
+      float stored = texture(uShadow, sampleUV).r;
+      float receiver = vShadow.z + dot(plane, sampleUV - vShadow.xy);
+      lit += receiver - bias <= stored ? 1.0 : 0.0;
     }
   }
   return lit / 9.0;
@@ -102,32 +95,38 @@ void main() {
   float printTreatment = smoothstep(0.4, 1.0, uProgress);
   float luminance = dot(front, vec3(0.2126, 0.7152, 0.0722));
   front = mix(front, vec3(luminance), printTreatment);
-  front = mix(front, ivory, printTreatment * 0.92);
+  front = mix(front, ivory, printTreatment * 0.985);
   vec3 albedo = gl_FrontFacing ? front : ivory;
   float material = smoothstep(0.0, 0.18, uProgress);
   vec3 dx = dFdx(vPosition), dy = dFdy(vPosition);
   vec3 n = normalize(cross(dx, dy));
   if (n.z < 0.0) n = -n;
 
-  vec2 paper = vec2(vUV.x * 1.27 + vUV.y * 0.31, vUV.y * 0.93 - vUV.x * 0.38);
-  float fine = facets(paper * 47.0) * 0.025 + facets(paper * 103.0 + 7.8) * 0.008;
+  vec3 paper = texture(uPaper, vUV).rgb;
+  vec2 heightGradient = (paper.rg * 255.0 - 128.0) * (320.0 / 127.0);
+  vec2 uvX = dFdx(vUV), uvY = dFdy(vUV);
   vec3 rx = cross(dy, n), ry = cross(n, dx);
   float determinant = dot(dx, rx);
-  vec3 gradient = (dFdx(fine) * rx + dFdy(fine) * ry) / max(abs(determinant), 0.00001) * sign(determinant);
-  n = normalize(n - gradient * material);
+  vec3 gradient = (dot(heightGradient, uvX) * rx + dot(heightGradient, uvY) * ry)
+    / max(abs(determinant), 0.00001) * sign(determinant);
+  float crease = smoothstep(0.65, 0.95, uProgress);
+  gradient *= crease * (gl_FrontFacing ? 1.0 : -1.0);
+  // Bound the local tilt, so folded-over UVs cannot create glossy black pits.
+  gradient *= min(1.0, 0.38 / max(length(gradient), 0.00001));
+  n = normalize(n - gradient);
 
   float shadowWeight = clamp((uProgress - 0.72) / 0.2, 0.0, 1.0);
   float shadow = 1.0 - (1.0 - visibility(n)) * 0.68 * shadowWeight;
   float key = max(dot(n, uLight), 0.0);
   float fill = max(dot(n, uFill), 0.0);
   float ambient = 0.28 + 0.14 * (0.5 + 0.5 * n.y);
-  float light = ambient + 0.66 * key * shadow + 0.12 * fill;
+  float light = (ambient + 0.66 * key * shadow + 0.12 * fill) * 0.90;
   // Local recesses collect a little ambient shadow, independently of the sun.
   light *= 1.0 - max(0.0, -vFold) * 0.16 * material;
-  float fibres = hash(floor(vUV * uSize * 1.35)) - 0.5;
+  float fibres = (paper.b * 255.0 - 128.0) / 255.0;
   vec3 linearPaper = pow(max(albedo, vec3(0.0)), vec3(2.2));
   vec3 shaded = pow(max(linearPaper * light, vec3(0.0)), vec3(1.0 / 2.2));
-  shaded += fibres * 0.009;
+  shaded += fibres * 0.014 * crease;
   // Champagne light catches the folds and grazing edges; the paper stays matte.
   // It disappears before the real profile and its original colors are revealed.
   float gold = smoothstep(0.55, 1.0, uProgress);
@@ -149,6 +148,54 @@ void main() { }
 function normalize(x, y, z) {
   const length = Math.hypot(x, y, z) || 1;
   return [x / length, y / length, z / length];
+}
+
+// Fine compression wrinkles are a material detail, shared by both renderers.
+// Bake them once in the sheet's UV space so they follow the print as it unfolds.
+let cachedPaperMaterial;
+function paperMaterial() {
+  if (cachedPaperMaterial) return cachedPaperMaterial;
+  const size = 512, height = new Float32Array(size * size);
+  let seed = 19837;
+  const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
+  for (let crease = 0; crease < 280; crease++) {
+    const primary = crease < 62;
+    const cx = random(), cy = random(), angle = random() * Math.PI * 2;
+    const dx = Math.cos(angle), dy = Math.sin(angle);
+    const length = primary ? .07 + random() * .12 : .018 + random() * .065;
+    const width = primary ? .0035 + random() * .0025 : .0022 + random() * .0018;
+    const amplitude = (primary ? 1.2 + random() * .8 : .35 + random() * .5) * (random() < .48 ? -1 : 1);
+    const bend = (random() - .5) * width * 3;
+    const extentX = Math.abs(dx) * length * .5 + width * 6;
+    const extentY = Math.abs(dy) * length * .5 + width * 6;
+    const minX = Math.max(0, Math.floor((cx - extentX) * size)), maxX = Math.min(size - 1, Math.ceil((cx + extentX) * size));
+    const minY = Math.max(0, Math.floor((cy - extentY) * size)), maxY = Math.min(size - 1, Math.ceil((cy + extentY) * size));
+    for (let y = minY; y <= maxY; y++) for (let x = minX; x <= maxX; x++) {
+      const ux = (x + .5) / size - cx, uy = (y + .5) / size - cy;
+      const along = (ux * dx + uy * dy) / length + .5;
+      if (along <= 0 || along >= 1) continue;
+      const taper = Math.sin(along * Math.PI);
+      const across = (ux * -dy + uy * dx - bend * Math.sin(along * Math.PI * 2)) / width;
+      if (Math.abs(across) > 5) continue;
+      // A sharp compressed ridge and its softer neighboring valley make a
+      // highlight/shadow pair, rather than speckles or a plastic normal map.
+      const profile = Math.exp(-Math.abs(across) * 1.5) - .38 * Math.exp(-Math.abs(across + 1.7));
+      height[y * size + x] += amplitude * taper * taper * profile;
+    }
+  }
+  const pixels = new Uint8Array(size * size * 4), gradientRange = 320;
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+    const at = y * size + x, out = at * 4;
+    const du = (height[y * size + Math.min(size - 1, x + 1)] - height[y * size + Math.max(0, x - 1)]) * size * .5;
+    const dv = (height[Math.min(size - 1, y + 1) * size + x] - height[Math.max(0, y - 1) * size + x]) * size * .5;
+    pixels[out] = Math.round(128 + Math.max(-127, Math.min(127, du / gradientRange * 127)));
+    pixels[out + 1] = Math.round(128 + Math.max(-127, Math.min(127, dv / gradientRange * 127)));
+    // Grain only varies the diffuse paper by about one level out of 255.
+    pixels[out + 2] = Math.round(128 + (random() - .5) * 84);
+    pixels[out + 3] = 255;
+  }
+  cachedPaperMaterial = { size, pixels, gradientRange };
+  return cachedPaperMaterial;
 }
 
 // Refine the simulated sheet while retaining the sharpest mountain/valley folds.
@@ -197,15 +244,12 @@ function refineSheet(points, faces) {
 }
 
 function geometry(passes = 2) {
-  const { columns, rows, positions } = paperShape;
-  let points = [], faces = [];
-  for (let y = 0; y <= rows; y++) for (let x = 0; x <= columns; x++) {
-    const k = (y * (columns + 1) + x) * 3;
-    points.push([x / columns, y / rows, ...positions.slice(k, k + 3)]);
-  }
-  for (let y = 0; y < rows; y++) for (let x = 0; x < columns; x++) {
-    const a = y * (columns + 1) + x, b = a + 1, c = a + columns + 1, d = c + 1;
-    faces.push(a, c, b, b, c, d);
+  const { uvs, positions, indices } = paperShape;
+  let points = [], faces = [...indices];
+  // Use the same irregular triangles that were compressed in the bake. A
+  // different diagonal would cut across the folds and create false sharp edges.
+  for (let i = 0; i < uvs.length / 2; i++) {
+    points.push([uvs[i * 2], uvs[i * 2 + 1], ...positions.slice(i * 3, i * 3 + 3)]);
   }
   for (let pass = 0; pass < passes; pass++) ({ points, faces } = refineSheet(points, faces));
   const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
@@ -285,14 +329,23 @@ function paperDepthMap(world, indices, light, centerX, centerY, radius, size = 3
 
 function paperVisibility(map, a, b, c, key) {
   const { size, projected, depth } = map;
-  const x = Math.floor((projected[a] + projected[b] + projected[c]) / 3);
-  const y = Math.floor((projected[a + 1] + projected[b + 1] + projected[c + 1]) / 3);
+  const cx = (projected[a] + projected[b] + projected[c]) / 3;
+  const cy = (projected[a + 1] + projected[b + 1] + projected[c + 1]) / 3;
   const z = (projected[a + 2] + projected[b + 2] + projected[c + 2]) / 3;
+  const abx = projected[b] - projected[a], aby = projected[b + 1] - projected[a + 1], abz = projected[b + 2] - projected[a + 2];
+  const acx = projected[c] - projected[a], acy = projected[c + 1] - projected[a + 1], acz = projected[c + 2] - projected[a + 2];
+  const area = abx * acy - aby * acx;
+  const slopeX = Math.abs(area) > .00001 ? (abz * acy - acz * aby) / area : 0;
+  const slopeY = Math.abs(area) > .00001 ? (abx * acz - acx * abz) / area : 0;
+  const x = Math.floor(cx), y = Math.floor(cy);
   const bias = 1.5 + 2.8 * (1 - key);
   let lit = 0;
   for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
     const px = x + dx, py = y + dy;
-    lit += px < 0 || py < 0 || px >= size || py >= size || z + bias >= depth[py * size + px] ? 1 : 0;
+    // Compare each sample with this receiver plane, not the centroid's depth.
+    // This prevents a continuous, sloping paper panel from shadowing itself.
+    const receiver = z + slopeX * (px + .5 - cx) + slopeY * (py + .5 - cy);
+    lit += px < 0 || py < 0 || px >= size || py >= size || receiver + bias >= depth[py * size + px] ? 1 : 0;
   }
   return lit / 9;
 }
@@ -319,6 +372,7 @@ class SoftwarePaperMesh {
         this.shadeTable[shade * 256 + value] = Math.min(255, Math.round(value * Math.pow(lighting, 1 / 2.2)));
       }
     }
+    this.material = paperMaterial();
     this.setTexture(source);
   }
 
@@ -425,9 +479,13 @@ class SoftwarePaperMesh {
     const shadowMap = p > 0.72 ? paperDepthMap(world, indices, light, centerX * gathered, centerY * gathered, radius + (1 - gathered) * this.width * .5, p >= .9999 ? 384 : 192) : null;
     const shadowWeight = Math.max(0, Math.min(1, (p - .72) / .2));
     const material = Math.min(1, p / 0.18);
+    const creaseLevel = Math.max(0, Math.min(1, (p - .65) / .30));
+    const crease = creaseLevel * creaseLevel * (3 - 2 * creaseLevel);
+    const paper = this.material.pixels, paperSize = this.material.size;
+    const gradientUnit = this.material.gradientRange / 127;
     const treatment = Math.max(0, Math.min(1, (p - 0.4) / 0.6));
     const printTreatment = treatment * treatment * (3 - 2 * treatment);
-    const ivoryWeight = printTreatment * 0.92;
+    const ivoryWeight = printTreatment * 0.985;
     const colorWeight = (1 - printTreatment) * (1 - ivoryWeight);
     const grayWeight = printTreatment * (1 - ivoryWeight);
     const depth = this.depth, output = this.pixels, texture = this.texture;
@@ -454,27 +512,53 @@ class SoftwarePaperMesh {
       nx /= norm; ny /= norm; nz /= norm;
       const key = Math.max(0, nx * light[0] + ny * light[1] + nz * light[2]);
       const bounce = Math.max(0, nx * fill[0] + ny * fill[1] + nz * fill[2]);
-      const fold = (vertices[ia * 6 + 5] + vertices[ib * 6 + 5] + vertices[ic * 6 + 5]) / 3;
       const visibility = shadowMap ? 1 - (1 - paperVisibility(shadowMap, a, b, c, key)) * shadowWeight * .68 : 1;
       const ambient = 0.28 + 0.14 * (0.5 + 0.5 * ny);
-      let illumination = (ambient + key * 0.66 * visibility + bounce * 0.12) * (1 - Math.max(0, -fold) * 0.22);
-      illumination = 1 + (illumination - 1) * material;
-      const faceShade = Math.max(0, Math.min(95, (illumination - 0.24) / 0.92 * 95));
+      const illumination = 1 + ((ambient + key * .66 * visibility + bounce * .12) * .90 - 1) * material;
+      const faceShade = Math.max(0, Math.min(95, (illumination - .24) / .92 * 95));
       const shadeAt = index => {
         let x = normals[index], y = normals[index + 1], z = normals[index + 2];
         if (!front) { x = -x; y = -y; z = -z; }
-        // Only blend within a broad paper panel; keep its sharp fold boundary.
-        if (x * nx + y * ny + z * nz < .87) return faceShade;
+        // Fade toward the face normal at a sharp fold. A hard normal cutoff
+        // made otherwise continuous paper faces break into visible triangles.
+        const alignment = x * nx + y * ny + z * nz;
+        const level = Math.max(0, Math.min(1, (alignment - .55) / .40));
+        if (level <= 0) return faceShade;
+        const blend = level * level * (3 - 2 * level) * .45;
         const key = Math.max(0, x * light[0] + y * light[1] + z * light[2]);
         const bounce = Math.max(0, x * fill[0] + y * fill[1] + z * fill[2]);
         const ambient = .28 + .14 * (.5 + .5 * y);
-        const lit = 1 + ((ambient + key * .66 * visibility + bounce * .12) - 1) * material;
-        return Math.max(0, Math.min(95, (lit - .24) / .92 * 95));
+        const lit = 1 + ((ambient + key * .66 * visibility + bounce * .12) * .90 - 1) * material;
+        const vertexShade = Math.max(0, Math.min(95, (lit - .24) / .92 * 95));
+        return faceShade + (vertexShade - faceShade) * blend;
       };
       const shadeA = shadeAt(a), shadeB = shadeAt(b), shadeC = shadeAt(c);
       const au = vertices[ia * 6], av = vertices[ia * 6 + 1];
       const bu = vertices[ib * 6], bv = vertices[ib * 6 + 1];
       const cu = vertices[ic * 6], cv = vertices[ic * 6 + 1];
+      // UV covectors convert the shared crease-height derivatives into a
+      // local light response. This is constant per face, cheap per visible pixel.
+      const uvDet = (bu - au) * (cv - av) - (bv - av) * (cu - au);
+      let creaseU = 0, creaseV = 0;
+      if (crease > 0 && Math.abs(uvDet) > 1e-12) {
+        const pux = (abx * (cv - av) - acx * (bv - av)) / uvDet;
+        const puy = (aby * (cv - av) - acy * (bv - av)) / uvDet;
+        const puz = (abz * (cv - av) - acz * (bv - av)) / uvDet;
+        const pvx = (acx * (bu - au) - abx * (cu - au)) / uvDet;
+        const pvy = (acy * (bu - au) - aby * (cu - au)) / uvDet;
+        const pvz = (acz * (bu - au) - abz * (cu - au)) / uvDet;
+        const ux = pvy * nz - pvz * ny, uy = pvz * nx - pvx * nz, uz = pvx * ny - pvy * nx;
+        const vx = ny * puz - nz * puy, vy = nz * pux - nx * puz, vz = nx * puy - ny * pux;
+        const metric = pux * ux + puy * uy + puz * uz;
+        if (Math.abs(metric) > 1e-8) {
+          const weight = -crease * (front ? 1 : -1) * gradientUnit * 95 / .92 / metric * .90;
+          const keyWeight = key > 0 ? .66 * visibility : 0, fillWeight = bounce > 0 ? .12 : 0;
+          creaseU = (uy * .07 + (ux * light[0] + uy * light[1] + uz * light[2]) * keyWeight
+            + (ux * fill[0] + uy * fill[1] + uz * fill[2]) * fillWeight) * weight;
+          creaseV = (vy * .07 + (vx * light[0] + vy * light[1] + vz * light[2]) * keyWeight
+            + (vx * fill[0] + vy * fill[1] + vz * fill[2]) * fillWeight) * weight;
+        }
+      }
       const inverse = 1 / area;
       const stepBX = (cy - ay) * inverse, stepCX = -(by - ay) * inverse;
       const stepBY = -(cx - ax) * inverse, stepCY = (bx - ax) * inverse;
@@ -488,13 +572,22 @@ class SoftwarePaperMesh {
           const z = wa * az + wb * bz + wc * cz;
           if (z <= depth[address]) continue;
           depth[address] = z;
-          const shade = Math.round(wa * shadeA + wb * shadeB + wc * shadeC) * 256;
+          const u = wa * au + wb * bu + wc * cu, v = wa * av + wb * bv + wc * cv;
+          let shadeLevel = wa * shadeA + wb * shadeB + wc * shadeC;
+          if (crease > 0) {
+            const mx = Math.max(0, Math.min(paperSize - 1, (u * (paperSize - 1) + .5) | 0));
+            const my = Math.max(0, Math.min(paperSize - 1, (v * (paperSize - 1) + .5) | 0));
+            const at = (my * paperSize + mx) * 4;
+            const relief = (paper[at] - 128) * creaseU + (paper[at + 1] - 128) * creaseV;
+            shadeLevel += Math.max(-15, Math.min(15, relief)) + (paper[at + 2] - 128) * .009 * crease;
+          }
+          const shade = Math.max(0, Math.min(95, Math.round(shadeLevel))) * 256;
           if (!front) {
             output[address] = (255 << 24) | (shades[shade + 244] << 16) | (shades[shade + 250] << 8) | shades[shade + 253];
             continue;
           }
-          const tx = Math.max(0, Math.min(tw - 1, Math.round((wa * au + wb * bu + wc * cu) * (tw - 1))));
-          const ty = Math.max(0, Math.min(th - 1, Math.round((wa * av + wb * bv + wc * cv) * (th - 1))));
+          const tx = Math.max(0, Math.min(tw - 1, Math.round(u * (tw - 1))));
+          const ty = Math.max(0, Math.min(th - 1, Math.round(v * (th - 1))));
           const source = (ty * tw + tx) * 4;
           if (printTreatment > 0) {
             const luminance = texture[source] * 0.2126 + texture[source + 1] * 0.7152 + texture[source + 2] * 0.0722;
@@ -615,6 +708,15 @@ export class PaperMesh {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      const material = paperMaterial();
+      this.paper = own('Texture', gl.createTexture());
+      gl.bindTexture(gl.TEXTURE_2D, this.paper);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, material.size, material.size, 0, gl.RGBA, gl.UNSIGNED_BYTE, material.pixels);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.generateMipmap(gl.TEXTURE_2D);
       this.shadowSize = 1024;
       this.shadowTexture = own('Texture', gl.createTexture());
       gl.bindTexture(gl.TEXTURE_2D, this.shadowTexture);
@@ -701,6 +803,7 @@ export class PaperMesh {
       if (u.uDepthPass) gl.uniform1i(u.uDepthPass, depthPass ? 1 : 0);
       if (u.uPrint) gl.uniform1i(u.uPrint, 0);
       if (u.uShadow) gl.uniform1i(u.uShadow, 1);
+      if (u.uPaper) gl.uniform1i(u.uPaper, 2);
       if (u.uShadowPixel) gl.uniform1f(u.uShadowPixel, 1 / this.shadowSize);
     };
 
@@ -722,6 +825,8 @@ export class PaperMesh {
     gl.bindTexture(gl.TEXTURE_2D, this.print);
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_2D, this.shadowTexture);
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, this.paper);
     gl.bindVertexArray(this.vao);
     apply(this.surface, false);
     gl.drawElements(gl.TRIANGLES, this.indexCount, gl.UNSIGNED_SHORT, 0);
