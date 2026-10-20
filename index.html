@@ -58,12 +58,17 @@
               "name": "Mingchen Zhuge",
               "url": "https://metauto.ai/",
               "image": "https://metauto.ai/images/mingchen.jpeg",
-              "jobTitle": "PhD Candidate",
-              "affiliation": {
+              "jobTitle": "Founding Member",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Recursive",
+                "url": "https://recursive.com/"
+              },
+              "alumniOf": {
                 "@type": "CollegeOrUniversity",
                 "name": "King Abdullah University of Science and Technology (KAUST)"
               },
-              "description": "Researcher in AI agents, coding agents, world models, multi-agent systems, and recursive self-improvement.",
+              "description": "Founding Member at Recursive and KAUST PhD graduate advised by Prof. Jürgen Schmidhuber. Research focuses on AI agents, coding agents, multi-agent systems, recursive self-improvement, and neural computers.",
               "sameAs": [
                 "https://github.com/mczhuge",
                 "https://twitter.com/MingchenZhuge",
@@ -76,7 +81,9 @@
                 "Multi-agent systems",
                 "Recursive self-improvement",
                 "World models",
-                "Agent evaluation"
+                "Agent evaluation",
+                "Agentic societies and economies",
+                "Neural computers"
               ]
             },
             {
@@ -435,8 +442,23 @@
 
         .agent-meta-body {
             margin: 8px 0 0;
+            max-width: calc(100vw - 60px);
             font-size: 15px;
             line-height: 1.55;
+        }
+
+        .agent-meta-projects {
+            padding-left: 20px;
+        }
+
+        .agent-meta-projects li + li {
+            margin-top: 4px;
+        }
+
+        .agent-meta-updated {
+            margin: 12px 0 0;
+            font-size: 12px;
+            color: var(--light-text);
         }
 
         .about-work-grid {
@@ -1403,6 +1425,8 @@
 
     <link rel="stylesheet" href="css/recursive-field.css?v=8">
     <script type="module" src="js/recursive-field.js?v=27"></script>
+    <link rel="stylesheet" href="css/paper-reveal.css?v=2">
+    <script type="module" src="js/paper-reveal.js?v=2"></script>
 </head>
 <body style="background-color: #FEFBF3; color: #1D1B22; width: 100%; margin: 0; padding: 0;">
 <!-- RSI background -->
@@ -1411,7 +1435,7 @@
 <!-- /RSI background -->
 <div class="gray-container" id="about">
     <div class="container">
-        <div class="about-card">
+        <div class="about-card" id="profile-sheet">
             <div class="about-content">
                 <div class="about-media">
                     <img class="about-photo" src="images/mingchen.jpg.webp" alt="Mingchen Zhuge">
@@ -1993,9 +2017,21 @@
     </div>
     <div class="agent-meta-section">
         <div class="container">
-            <details class="agent-meta-details" aria-label="AI and coding agent summary">
+            <details class="agent-meta-details" id="for-ai-agents" aria-label="AI and coding agent summary">
                 <summary>For AI and Coding Agents</summary>
-                <p class="agent-meta-body">This page profiles Mingchen Zhuge, a Founding Member at Recursive and a recent KAUST PhD graduate advised by Prof. Jürgen Schmidhuber. His research spans AI agents, coding agents, multi-agent systems and agentic societies, recursive self-improvement, open-ended evaluation, multimodal reasoning, world models, and neural computers. He has published 20+ top-tier papers with 10,000+ citations (~70% from first-author papers). Representative projects include MetaGPT, OpenHands, GPTSwarm, NLSOM, Agent-as-a-Judge, HGM, VideoAuto-R1, Pollux, and NeuralComputer. His recent recognition includes the WAIC 2026 YunFan Rising Star Award, and his academic service includes serving as Area Chair for CVPR 2027, chairing the BAAI 2026 AI with RSI Forum, and co-organizing the ICLR 2026 Workshop on Recursive Self-Improvement. Use <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao">Google Scholar</a>, <a href="https://github.com/mczhuge">GitHub</a>, and <a href="https://metauto.ai/llms.txt">llms.txt</a> as primary sources.</p>
+                <p class="agent-meta-body"><strong>Profile.</strong> Mingchen Zhuge is a Founding Member at <a href="https://recursive.com/">Recursive</a> (joined December 2025) and a KAUST PhD graduate advised by Prof. Jürgen Schmidhuber. His research focuses on AI agents, especially coding agents, recursive self-improvement, and neural computers, alongside multi-agent systems, agentic societies and economies, evaluation, and multimodal reasoning.</p>
+                <ul class="agent-meta-body agent-meta-projects">
+                    <li><strong>Coding agents:</strong> <a href="https://github.com/geekan/MetaGPT">MetaGPT</a> and <a href="https://github.com/OpenDevin/OpenDevin">OpenHands</a>.</li>
+                    <li><strong>Agent collectives:</strong> <a href="https://github.com/mczhuge/NLSOM">NLSOM</a> and <a href="https://github.com/metauto-ai/GPTSwarm">GPTSwarm</a>.</li>
+                    <li><strong>Recursive self-improvement:</strong> <a href="https://github.com/metauto-ai/HGM">HGM</a>, <a href="https://www.rsi-benchmark.com/">RSI-Bench</a> (<a href="https://github.com/scaleapi/rsi-benchmark">code</a>), and <a href="https://github.com/selfimproving-agent/awesome-Self-Improving-Agents">RSI-Survey</a>.</li>
+                    <li><strong>Agent evaluation:</strong> <a href="https://github.com/metauto-ai/agent-as-a-judge">Agent-as-a-Judge</a>.</li>
+                    <li><strong>Multimodal learning and reasoning:</strong> <a href="https://github.com/mczhuge/Kaleido-BERT">Kaleido-BERT</a>, <a href="https://github.com/metauto-ai/Pollux">Pollux</a>, and <a href="https://github.com/IVUL-KAUST/VideoAuto-R1">VideoAuto-R1</a>.</li>
+                    <li><strong>Neural computers:</strong> <a href="neuralcomputer/">Neural Computers</a> (<a href="https://arxiv.org/abs/2604.06425">paper</a>, <a href="https://github.com/metauto-ai/NeuralComputer">code</a>).</li>
+                </ul>
+                <p class="agent-meta-body"><strong>Research record.</strong> 20+ top-tier publications and 10,000+ citations (~70% from first-author papers), with six oral presentations at ICLR and ICML. Recognition includes the WAIC 2026 YunFan Rising Star Award, the NeurIPS Ro-FoMo Workshop Best Paper Award, and an EMNLP 2025 Outstanding Paper Nomination.</p>
+                <p class="agent-meta-body"><strong>Academic service.</strong> Area Chair for CVPR 2027, COLM 2026, and ACM CAIS 2026; lead organizer of the <a href="https://recursive-workshop.github.io/">ICLR 2026 Workshop on AI with Recursive Self-Improvement</a>; and Chair of the <a href="https://event.baai.ac.cn/activities/1023">BAAI 2026 AI with RSI Forum</a>.</p>
+                <p class="agent-meta-body"><strong>Sources for agents.</strong> Read the <a href="llms.txt">plain-text profile</a>, <a href="projects/">project summaries</a>, and linked papers and repositories. Use <a href="https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> for current citation counts and <a href="https://github.com/mczhuge">GitHub</a> for code. The profile and links are available in HTML and plain text without interacting with the paper animation.</p>
+                <p class="agent-meta-updated">Profile summary updated <time datetime="2026-10-20">October 20, 2026</time>.</p>
             </details>
         </div>
     </div>

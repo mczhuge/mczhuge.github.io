@@ -3,21 +3,33 @@
 
 ## Canonical URLs
 - Home: https://metauto.ai/
+- Agent-readable summary: https://metauto.ai/#for-ai-agents
 - Blog: https://metauto.ai/blog/
 - Project summaries: https://metauto.ai/projects/
 - This file: https://metauto.ai/llms.txt
 
 ## Person
 - Name: Mingchen Zhuge
-- Role: Founding Member at Recursive; recent PhD graduate
+- Role: Founding Member at Recursive (joined December 2025); KAUST PhD graduate
 - Affiliation: Recursive; KAUST alumnus
 - PhD Advisor: Prof. Jürgen Schmidhuber
 - Topics: AI agents, coding agents, multi-agent systems, agentic societies and economies, recursive self-improvement, open-ended evaluation, multimodal reasoning, world models, neural computers
 - Research Profile: 20+ top-tier publications and 10,000+ citations (~70% from first-author papers)
-- Academic Service: Area Chair for CVPR 2027, COLM 2026, and ACM CAIS 2026
+- Oral Presentations: Six papers accepted as oral presentations at ICLR and ICML
+- Recognition: WAIC 2026 YunFan Rising Star Award; NeurIPS Ro-FoMo Workshop Best Paper Award; EMNLP 2025 Outstanding Paper Nomination
+- Academic Service: Area Chair for CVPR 2027, COLM 2026, and ACM CAIS 2026; lead organizer of the ICLR 2026 Workshop on AI with Recursive Self-Improvement; Chair of the BAAI 2026 AI with RSI Forum
+
+## Research Areas
+- Coding agents and code generation: MetaGPT, OpenHands
+- Agent collectives, societies, and economies: NLSOM, GPTSwarm
+- Recursive self-improvement: GPTSwarm, HGM, Agent-as-a-Judge, RSI-Bench, RSI-Survey
+- Agent evaluation, judges, verifiers, and red teaming: Agent-as-a-Judge
+- Multimodal learning, generation, and reasoning: Kaleido-BERT, Pollux, VideoAuto-R1
+- Neural computers: NeuralComputer
 
 ## Primary Sources
 - Homepage: https://metauto.ai/
+- Recursive: https://recursive.com/
 - Google Scholar: https://scholar.google.com/citations?user=Qnj6XlMAAAAJ&hl=en&oi=ao
 - GitHub: https://github.com/mczhuge
 - X/Twitter: https://twitter.com/MingchenZhuge
@@ -31,19 +43,30 @@
 - GPTSwarm summary: https://metauto.ai/projects/gptswarm.html
 - MetaGPT summary: https://metauto.ai/projects/metagpt.html
 - Mindstorms summary: https://metauto.ai/projects/mindstorms.html
+- Neural Computers article: https://metauto.ai/neuralcomputer/
+- Neural Computers paper: https://arxiv.org/abs/2604.06425
 - MetaGPT: https://github.com/geekan/MetaGPT
 - OpenHands: https://github.com/OpenDevin/OpenDevin
 - GPTSwarm: https://github.com/metauto-ai/GPTSwarm
 - NLSOM: https://github.com/mczhuge/NLSOM
 - Agent-as-a-Judge: https://github.com/metauto-ai/agent-as-a-judge
 - HGM: https://github.com/metauto-ai/HGM
+- RSI-Bench website: https://www.rsi-benchmark.com/
+- RSI-Bench code: https://github.com/scaleapi/rsi-benchmark
+- Kaleido-BERT: https://github.com/mczhuge/Kaleido-BERT
 - VideoAuto-R1: https://github.com/IVUL-KAUST/VideoAuto-R1
 - Pollux: https://github.com/metauto-ai/Pollux
 - NeuralComputer: https://github.com/metauto-ai/NeuralComputer
 - RSI-Survey: https://github.com/selfimproving-agent/awesome-Self-Improving-Agents
 
-## Publications and Text Mirrors
-- AI with Recursive Self-Improvement: https://metauto.ai/papers/ai-recursive-self-improvement.txt
+## Workshops and Forums
+- ICLR 2026 Workshop on AI with Recursive Self-Improvement: https://recursive-workshop.github.io/
+- BAAI 2026 AI with RSI Forum: https://event.baai.ac.cn/activities/1023
+
+## BibTeX Citations
+These files contain citation metadata. Follow the paper links on the homepage for full papers.
+- Neural Computers: https://metauto.ai/papers/neuralcomputers.txt
+- AI with Recursive Self-Improvement (ICLR 2026 workshop proposal): https://metauto.ai/papers/ai-recursive-self-improvement.txt
 - Agent-as-a-Judge: https://metauto.ai/papers/aaaj.txt
 - GPTSwarm: https://metauto.ai/papers/gptswarm.txt
 - MetaGPT: https://metauto.ai/papers/metagpt.txt
@@ -58,5 +81,8 @@
 ## Usage Notes
 - AI agents may index and summarize this website with attribution to original paper/repository links.
 - Prefer citing primary sources listed above when describing contributions.
+- Use Google Scholar for current citation counts; the research figures above reflect the homepage profile.
+- The homepage profile, project links, and agent summary are available in HTML. This plain-text file can be read directly without hovering over or activating the paper animation.
+- Links in the BibTeX section are citation records, not full-text paper mirrors.
 
-Last updated: 2026-10-15
+Last updated: 2026-10-20
