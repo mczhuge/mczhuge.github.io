@@ -1,0 +1,75 @@
+/* Opt-in sculpture study. The accepted linear timeline keeps its own styling. */
+.paper-stage[data-paper-variant="spiral"] .paper-art { height: 620px; }
+.paper-spiral { perspective: 1450px; transform-origin: 50% 65%; }
+.paper-spiral-camera {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  transform: rotateX(var(--look-x, 0deg)) rotateY(var(--look-y, 0deg));
+  transform-origin: 50% 65%; transition: transform 1.1s cubic-bezier(.2,.7,.2,1);
+}
+.paper-spiral .paper-progress-world {
+  transform-origin: 50% 65%; animation: paper-spiral-drift 22s ease-in-out infinite;
+}
+.paper-spiral .paper-progress-world::before {
+  left: 95px; top: 470px; width: 730px; height: 95px;
+  background: radial-gradient(ellipse, rgb(132 111 76 / 9%), transparent 68%);
+  transform: translateZ(-180px); filter: blur(14px);
+}
+.paper-spiral-ribbon, .paper-spiral-edges, .paper-spiral-trace,
+.paper-spiral-feedback, .paper-spiral-future {
+  position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none;
+}
+.paper-spiral-segment, .paper-spiral-edge, .paper-spiral-trace-segment,
+.paper-spiral-feedback-segment {
+  position: absolute; top: 0; left: 0; display: block; width: var(--length);
+  transform-origin: 0 0;
+  transform: translate3d(var(--x), var(--y), var(--z)) matrix3d(var(--surface-matrix)) translateY(-50%);
+}
+.paper-spiral-segment {
+  height: var(--ribbon-width);
+  background: linear-gradient(180deg,
+    rgb(calc(255 * var(--shade)) calc(254 * var(--shade)) calc(249 * var(--shade))) 0%,
+    rgb(calc(255 * var(--shade)) calc(252 * var(--shade)) calc(244 * var(--shade))) 70%,
+    rgb(calc(244 * var(--shade)) calc(236 * var(--shade)) calc(219 * var(--shade))) 100%);
+  border-top: .65px solid rgb(255 255 255 / 90%);
+  border-bottom: .65px solid rgb(154 131 87 / 40%);
+  backface-visibility: visible;
+}
+.paper-spiral-edge {
+  height: 3px;
+  transform: translate3d(var(--x), var(--y), var(--z)) matrix3d(var(--surface-matrix));
+  background: linear-gradient(180deg, #d4c6ab, #ede4d2 52%, #fffdf6);
+}
+.paper-spiral-trace-segment, .paper-spiral-feedback-segment { height: 1px; background: rgb(198 162 89 / 25%); }
+.paper-spiral-feedback-segment { background: rgb(199 169 110 / 12%); }
+.paper-spiral-trace-segment::after, .paper-spiral-feedback-segment::after {
+  content: ""; position: absolute; inset: -1px 0; border-radius: 40%; opacity: 0;
+  background: #dfbc72; box-shadow: 0 0 6px rgb(231 188 91 / 35%);
+  animation: paper-spiral-signal 12s ease-in-out var(--cycle-delay) infinite;
+}
+.paper-spiral-feedback-segment::after { background: #e2c58b; box-shadow: none; }
+.paper-spiral .paper-progress-step { transform: translateZ(var(--z)); }
+.paper-spiral .paper-progress-figure {
+  animation: none; transform: translateX(-50%) rotateX(-6deg) rotateY(-3deg);
+}
+.paper-spiral .paper-progress-figure-shadow { top: 1px; opacity: .9; }
+.paper-spiral .paper-spiral-step-augmented .paper-progress-figure {
+  bottom: 8px; animation: paper-spiral-lift 8s ease-in-out infinite;
+}
+.paper-spiral .paper-spiral-step-augmented .paper-progress-figure-shadow { width: 32px; opacity: .45; }
+.paper-spiral .paper-progress-landmark-image { animation: none; transform: rotate(var(--landmark-rotate)); }
+.paper-spiral-future-ray {
+  position: absolute; left: var(--x); top: var(--y); width: var(--length, 9px); height: 1px;
+  transform: translateZ(var(--z)) rotate(var(--ray-rotate, 0deg));
+  background: #d7b66f; animation: paper-spiral-future 12s ease-in-out infinite;
+}
+@keyframes paper-spiral-drift {
+  0%, 100% { transform: rotateX(-22deg) rotateY(-9deg) rotateZ(-3deg) translateY(4px); }
+  50% { transform: rotateX(-17deg) rotateY(7deg) rotateZ(-3deg) translateY(-4px); }
+}
+@keyframes paper-spiral-lift {
+  0%, 100% { transform: translate(-50%, 0) rotateX(-6deg) rotateY(-3deg) rotateZ(2deg); }
+  50% { transform: translate(-50%, -7px) rotateX(-6deg) rotateY(2deg) rotateZ(0deg); }
+}
+@keyframes paper-spiral-signal { 0%, 7%, 100% { opacity: 0; } 2.5% { opacity: .85; } }
+@keyframes paper-spiral-future { 0%, 43%, 75%, 100% { opacity: 0; } 52%, 60% { opacity: .7; } }
+@media (prefers-reduced-motion: reduce) { .paper-spiral *, .paper-spiral *::after { animation: none !important; } }

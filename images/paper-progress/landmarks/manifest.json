@@ -1,0 +1,58 @@
+{
+  "source": "User supplied Recursive Workshop evolution illustration",
+  "palette": {
+    "paper": "#fffdf7",
+    "graphite": "#655f54"
+  },
+  "landmarks": [
+    {
+      "id": "train",
+      "src": "images/paper-progress/landmarks/train.png",
+      "width": 269,
+      "height": 146,
+      "sourceCrop": [
+        975,
+        445,
+        1240,
+        595
+      ]
+    },
+    {
+      "id": "computer",
+      "src": "images/paper-progress/landmarks/computer.png",
+      "width": 156,
+      "height": 149,
+      "sourceCrop": [
+        1300,
+        410,
+        1470,
+        565
+      ]
+    },
+    {
+      "id": "rocket",
+      "src": "images/paper-progress/landmarks/rocket.png",
+      "width": 143,
+      "height": 240,
+      "sourceCrop": [
+        1730,
+        175,
+        1872,
+        410
+      ]
+    },
+    {
+      "id": "spacecraft",
+      "src": "images/paper-progress/landmarks/spacecraft.png",
+      "width": 290,
+      "height": 107,
+      "sourceCrop": [
+        1965,
+        215,
+        2255,
+        345
+      ]
+    }
+  ],
+  "reference": "https://recursive-workshop.github.io/"
+}

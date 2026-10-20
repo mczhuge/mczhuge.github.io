@@ -1,0 +1,152 @@
+{
+  "source": "User-provided evolution illustration",
+  "palette": {
+    "paper": "#fffdf7",
+    "ink": "#262625"
+  },
+  "defaultOrder": [
+    "fire-maker",
+    "potter",
+    "industrial-maker",
+    "businessman",
+    "astronaut",
+    "vr-person",
+    "flying-augmented"
+  ],
+  "figures": [
+    {
+      "id": "fire-maker",
+      "label": "Fire maker",
+      "src": "images/paper-progress/fire-maker.png",
+      "width": 294,
+      "height": 317,
+      "aspectRatio": 0.92744,
+      "displayHeightRatio": 0.72,
+      "sourceCrop": [
+        76,
+        820,
+        383,
+        1130
+      ],
+      "anchor": [
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "potter",
+      "label": "Potter",
+      "src": "images/paper-progress/potter.png",
+      "width": 188,
+      "height": 438,
+      "aspectRatio": 0.42922,
+      "displayHeightRatio": 1,
+      "sourceCrop": [
+        568,
+        695,
+        744,
+        1130
+      ],
+      "anchor": [
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "industrial-maker",
+      "label": "Industrial maker",
+      "src": "images/paper-progress/industrial-maker.png",
+      "width": 225,
+      "height": 450,
+      "aspectRatio": 0.5,
+      "displayHeightRatio": 1,
+      "sourceCrop": [
+        985,
+        685,
+        1198,
+        1130
+      ],
+      "anchor": [
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "businessman",
+      "label": "Businessman",
+      "src": "images/paper-progress/businessman.png",
+      "width": 204,
+      "height": 447,
+      "aspectRatio": 0.45638,
+      "displayHeightRatio": 1,
+      "sourceCrop": [
+        1201,
+        690,
+        1397,
+        1130
+      ],
+      "anchor": [
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "astronaut",
+      "label": "Astronaut",
+      "src": "images/paper-progress/astronaut.png",
+      "width": 235,
+      "height": 452,
+      "aspectRatio": 0.51991,
+      "displayHeightRatio": 1.02,
+      "sourceCrop": [
+        1400,
+        685,
+        1625,
+        1130
+      ],
+      "anchor": [
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "vr-person",
+      "label": "VR person",
+      "src": "images/paper-progress/vr-person.png",
+      "width": 209,
+      "height": 448,
+      "aspectRatio": 0.46652,
+      "displayHeightRatio": 1,
+      "sourceCrop": [
+        1599,
+        690,
+        1817,
+        1130
+      ],
+      "anchor": [
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "flying-augmented",
+      "label": "Flying augmented person",
+      "src": "images/paper-progress/flying-augmented.png",
+      "width": 249,
+      "height": 424,
+      "aspectRatio": 0.58726,
+      "displayHeightRatio": 1.01,
+      "sourceCrop": [
+        2046,
+        499,
+        2285,
+        922
+      ],
+      "anchor": [
+        0.5,
+        1
+      ]
+    }
+  ],
+  "reference": "https://recursive-workshop.github.io/"
+}
