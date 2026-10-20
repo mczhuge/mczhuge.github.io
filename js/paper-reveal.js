@@ -1,4 +1,4 @@
-import { PaperMesh } from './paper-mesh.js';
+import { PaperMesh } from './paper-mesh.js?v=6';
 
 // Inspired by the tactile interaction of Matthias Ölschlegel's CrumpledPaperReveal.
 // The mesh is original; the live profile DOM is restored as soon as the sheet settles.

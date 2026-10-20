@@ -1,3 +1,5 @@
+import { paperShape } from './paper-shape.js?v=5';
+
 // An original, dependency-free paper surface. The caller owns animation and the
 // accessible HTML; this canvas is only the transient, printed-paper visual.
 
@@ -100,7 +102,7 @@ void main() {
   float printTreatment = smoothstep(0.4, 1.0, uProgress);
   float luminance = dot(front, vec3(0.2126, 0.7152, 0.0722));
   front = mix(front, vec3(luminance), printTreatment);
-  front = mix(front, ivory, printTreatment * 0.75);
+  front = mix(front, ivory, printTreatment * 0.985);
   vec3 albedo = gl_FrontFacing ? front : ivory;
   float material = smoothstep(0.0, 0.18, uProgress);
   vec3 dx = dFdx(vPosition), dy = dFdy(vPosition);
@@ -108,17 +110,18 @@ void main() {
   if (n.z < 0.0) n = -n;
 
   vec2 paper = vec2(vUV.x * 1.27 + vUV.y * 0.31, vUV.y * 0.93 - vUV.x * 0.38);
-  float fine = facets(paper * 47.0) * 0.28 + facets(paper * 103.0 + 7.8) * 0.09;
+  float fine = facets(paper * 47.0) * 0.025 + facets(paper * 103.0 + 7.8) * 0.008;
   vec3 rx = cross(dy, n), ry = cross(n, dx);
   float determinant = dot(dx, rx);
   vec3 gradient = (dFdx(fine) * rx + dFdy(fine) * ry) / max(abs(determinant), 0.00001) * sign(determinant);
   n = normalize(n - gradient * material);
 
-  float shadow = visibility(n);
+  float shadowWeight = clamp((uProgress - 0.72) / 0.2, 0.0, 1.0);
+  float shadow = 1.0 - (1.0 - visibility(n)) * 0.68 * shadowWeight;
   float key = max(dot(n, uLight), 0.0);
   float fill = max(dot(n, uFill), 0.0);
-  float ambient = 0.43 + 0.15 * (0.5 + 0.5 * n.y);
-  float light = ambient + 0.58 * key * shadow + 0.12 * fill;
+  float ambient = 0.28 + 0.14 * (0.5 + 0.5 * n.y);
+  float light = ambient + 0.66 * key * shadow + 0.12 * fill;
   // Local recesses collect a little ambient shadow, independently of the sun.
   light *= 1.0 - max(0.0, -vFold) * 0.16 * material;
   float fibres = hash(floor(vUV * uSize * 1.35)) - 0.5;
@@ -134,101 +137,79 @@ precision highp float;
 void main() { }
 `;
 
-function randomAt(x, y, seed) {
-  let n = Math.imul(x ^ seed, 374761393) + Math.imul(y + seed, 668265263);
-  n = Math.imul(n ^ (n >>> 13), 1274126177);
-  return ((n ^ (n >>> 16)) >>> 0) / 4294967295 * 2 - 1;
-}
-
-function triangular(x, y, seed) {
-  const ix = Math.floor(x), iy = Math.floor(y), fx = x - ix, fy = y - iy;
-  const a = randomAt(ix, iy, seed), b = randomAt(ix + 1, iy, seed);
-  const c = randomAt(ix, iy + 1, seed), d = randomAt(ix + 1, iy + 1, seed);
-  return fx + fy < 1
-    ? a + (b - a) * fx + (c - a) * fy
-    : d + (c - d) * (1 - fx) + (b - d) * (1 - fy);
-}
-
 function normalize(x, y, z) {
   const length = Math.hypot(x, y, z) || 1;
   return [x / length, y / length, z / length];
 }
 
-function geometry(columns = 192, rows = 144) {
-  const stride = 6;
-  const vertices = new Float32Array((columns + 1) * (rows + 1) * stride);
-  const indices = new Uint16Array(columns * rows * 6);
-  const creaseLines = [];
-  for (let i = 0; i < 46; i++) {
-    const unit = n => (randomAt(i, n, 811) + 1) * 0.5;
-    const angle = unit(1) * Math.PI * 2;
-    creaseLines.push({ x: unit(2), y: unit(3), dx: Math.cos(angle), dy: Math.sin(angle),
-      length: 0.06 + unit(4) * 0.19, width: 0.006 + unit(5) * 0.012,
-      height: (0.02 + unit(6) * 0.04) * (unit(7) < 0.3 ? -1 : 1) });
-  }
-  const minimum = [Infinity, Infinity, Infinity], maximum = [-Infinity, -Infinity, -Infinity];
-  let cursor = 0;
-  for (let y = 0; y <= rows; y++) {
-    for (let x = 0; x <= columns; x++) {
-      const u = x / columns, v = y / rows;
-      const px = (u - 0.5) * 2, py = (0.5 - v) * 2;
-      const radial = Math.hypot(px, py);
-      const broad = triangular(u * 4.9 + v * 2.1, v * 5.3 - u * 1.8, 37);
-      const fold = triangular(u * 11.3 - v * 4.7, v * 12.1 + u * 5.1, 93);
-      const crinkle = triangular(u * 27.9 + v * 10.3, v * 28.7 - u * 8.9, 151);
-      let ridges = 0;
-      for (const line of creaseLines) {
-        const cx = u - line.x, cy = v - line.y;
-        const along = (cx * line.dx + cy * line.dy) / line.length;
-        if (Math.abs(along) > 1.8) continue;
-        const across = (cx * -line.dy + cy * line.dx) / line.width;
-        if (Math.abs(across) > 5) continue;
-        ridges += line.height * Math.exp(-along * along * 2)
-          * (Math.exp(-Math.abs(across) * 1.6) - 0.48 * Math.exp(-Math.abs(across + 1.5)));
-      }
-      // The square sheet wraps past its equator. Unequal local fold angles
-      // overlap at the rim and reveal occasional unprinted reverse faces.
-      const angle = Math.atan2(py, px) + 0.14 * broad + 0.21 * fold + 0.045 * crinkle;
-      const corner = Math.exp(-Math.pow((u - 0.12) / 0.17, 2) - Math.pow(v / 0.16, 2));
-      const side = Math.exp(-Math.pow((u - 0.98) / 0.13, 2) - Math.pow((v - 0.65) / 0.22, 2));
-      const latitude = radial * (2.48 + broad * 0.21 + fold * 0.13) - corner * 0.82 - side * 0.48;
-      const radius = 0.93 + broad * 0.19 + fold * 0.13 + crinkle * 0.038 + ridges + corner * 0.16 + side * 0.10;
-      let bx = Math.sin(latitude) * Math.cos(angle) * radius;
-      let by = Math.sin(latitude) * Math.sin(angle) * radius;
-      let bz = Math.cos(latitude) * radius;
-      // A small fixed lean prevents a manufactured, rotationally symmetric ball.
-      const lean = 0.16;
-      const tiltedY = by * Math.cos(lean) - bz * Math.sin(lean);
-      bz = by * Math.sin(lean) + bz * Math.cos(lean);
-      by = tiltedY * 0.94;
-      bx += by * 0.035;
-      const point = [bx, by, bz];
-      for (let axis = 0; axis < 3; axis++) {
-        minimum[axis] = Math.min(minimum[axis], point[axis]);
-        maximum[axis] = Math.max(maximum[axis], point[axis]);
-      }
-      vertices[cursor++] = u; vertices[cursor++] = v;
-      vertices[cursor++] = bx; vertices[cursor++] = by; vertices[cursor++] = bz;
-      vertices[cursor++] = fold * 0.65 + broad * 0.35 + ridges * 2;
+// Refine the simulated sheet while retaining the sharpest mountain/valley folds.
+// UVs follow the same subdivision, so the opened surface still covers the profile.
+function refineSheet(points, faces) {
+  const edges = new Map(), neighbors = points.map(() => new Set()), sharp = points.map(() => []);
+  const normals = [];
+  for (let f = 0; f < faces.length; f += 3) {
+    const a = points[faces[f]], b = points[faces[f + 1]], c = points[faces[f + 2]];
+    const ab = b.slice(2).map((n, j) => n - a[j + 2]), ac = c.slice(2).map((n, j) => n - a[j + 2]);
+    normals.push(normalize(ab[1] * ac[2] - ab[2] * ac[1], ab[2] * ac[0] - ab[0] * ac[2], ab[0] * ac[1] - ab[1] * ac[0]));
+    for (let i = 0; i < 3; i++) {
+      const a = faces[f + i], b = faces[f + (i + 1) % 3], opposite = faces[f + (i + 2) % 3];
+      const key = a < b ? `${a}:${b}` : `${b}:${a}`;
+      let edge = edges.get(key);
+      if (!edge) { edge = { a, b, opposite: [], faces: [] }; edges.set(key, edge); }
+      edge.opposite.push(opposite); edge.faces.push(f / 3);
+      neighbors[a].add(b); neighbors[b].add(a);
     }
   }
-  const scale = 2 / Math.max(maximum[0] - minimum[0], maximum[1] - minimum[1]);
-  for (let i = 0; i < vertices.length; i += stride) {
-    for (let axis = 0; axis < 3; axis++) vertices[i + 2 + axis] = (vertices[i + 2 + axis] - (minimum[axis] + maximum[axis]) * 0.5) * scale;
+  for (const edge of edges.values()) {
+    const [a, b] = edge.faces.map(f => normals[f]);
+    edge.sharp = !b || a.reduce((sum, n, i) => sum + n * b[i], 0) < 0.45;
+    if (edge.sharp) { sharp[edge.a].push(edge.b); sharp[edge.b].push(edge.a); }
   }
-  cursor = 0;
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < columns; x++) {
-      const a = y * (columns + 1) + x, b = a + 1, c = a + columns + 1, d = c + 1;
-      if ((x + y) % 2) {
-        indices.set([a, c, d, a, d, b], cursor);
-      } else {
-        indices.set([a, c, b, b, c, d], cursor);
-      }
-      cursor += 6;
-    }
+  const next = points.map((point, i) => {
+    if (sharp[i].length > 2 || (point[0] === 0 || point[0] === 1) && (point[1] === 0 || point[1] === 1)) return point.slice();
+    if (sharp[i].length === 2) return point.map((p, j) => p * .75 + (points[sharp[i][0]][j] + points[sharp[i][1]][j]) * .125);
+    const list = [...neighbors[i]], beta = list.length === 3 ? 3 / 16 : 3 / (8 * list.length);
+    return point.map((p, j) => p * (1 - list.length * beta) + list.reduce((s, k) => s + points[k][j] * beta, 0));
+  });
+  for (const edge of edges.values()) {
+    edge.index = next.length;
+    next.push(points[edge.a].map((p, j) => edge.sharp
+      ? (p + points[edge.b][j]) * .5
+      : (p + points[edge.b][j]) * .375 + (points[edge.opposite[0]][j] + points[edge.opposite[1]][j]) * .125));
   }
-  return { vertices, indices };
+  const midpoint = (a, b) => edges.get(a < b ? `${a}:${b}` : `${b}:${a}`).index;
+  const triangles = [];
+  for (let f = 0; f < faces.length; f += 3) {
+    const a = faces[f], b = faces[f + 1], c = faces[f + 2];
+    const ab = midpoint(a, b), bc = midpoint(b, c), ca = midpoint(c, a);
+    triangles.push(a, ab, ca, b, bc, ab, c, ca, bc, ab, bc, ca);
+  }
+  return { points: next, faces: triangles };
+}
+
+function geometry(passes = 2) {
+  const { columns, rows, positions } = paperShape;
+  let points = [], faces = [];
+  for (let y = 0; y <= rows; y++) for (let x = 0; x <= columns; x++) {
+    const k = (y * (columns + 1) + x) * 3;
+    points.push([x / columns, y / rows, ...positions.slice(k, k + 3)]);
+  }
+  for (let y = 0; y < rows; y++) for (let x = 0; x < columns; x++) {
+    const a = y * (columns + 1) + x, b = a + 1, c = a + columns + 1, d = c + 1;
+    faces.push(a, c, b, b, c, d);
+  }
+  for (let pass = 0; pass < passes; pass++) ({ points, faces } = refineSheet(points, faces));
+  const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
+  for (const point of points) for (let axis = 0; axis < 3; axis++) {
+    min[axis] = Math.min(min[axis], point[axis + 2]); max[axis] = Math.max(max[axis], point[axis + 2]);
+  }
+  const scale = 2 / Math.max(max[0] - min[0], max[1] - min[1]);
+  const vertices = new Float32Array(points.length * 6);
+  for (let i = 0; i < points.length; i++) {
+    vertices[i * 6] = points[i][0]; vertices[i * 6 + 1] = points[i][1];
+    for (let axis = 0; axis < 3; axis++) vertices[i * 6 + 2 + axis] = (points[i][axis + 2] - (min[axis] + max[axis]) * .5) * scale;
+  }
+  return { vertices, indices: new Uint16Array(faces) };
 }
 
 function program(gl, vertex, fragment) {
@@ -255,6 +236,58 @@ function program(gl, vertex, fragment) {
   }
 }
 
+// A small directional depth map gives the software path the same overlapping
+// folds as WebGL. No offscreen DOM, external image or continuously running loop.
+function paperDepthMap(world, indices, light, centerX, centerY, radius, size = 384) {
+  const extent = radius * 1.65, scale = size / (extent * 2);
+  const right = normalize(light[2], 0, -light[0]);
+  const up = [light[1] * right[2], light[2] * right[0] - light[0] * right[2], -light[1] * right[0]];
+  const projected = new Float32Array(world.length), depth = new Float32Array(size * size);
+  depth.fill(-1e30);
+  for (let i = 0; i < world.length; i += 3) {
+    const x = world[i] - centerX, y = world[i + 1] - centerY, z = world[i + 2];
+    projected[i] = (x * right[0] + y * right[1] + z * right[2]) * scale + size / 2;
+    projected[i + 1] = (x * up[0] + y * up[1] + z * up[2]) * scale + size / 2;
+    projected[i + 2] = x * light[0] + y * light[1] + z * light[2];
+  }
+  for (let i = 0; i < indices.length; i += 3) {
+    const a = indices[i] * 3, b = indices[i + 1] * 3, c = indices[i + 2] * 3;
+    const ax = projected[a], ay = projected[a + 1], az = projected[a + 2];
+    const bx = projected[b], by = projected[b + 1], bz = projected[b + 2];
+    const cx = projected[c], cy = projected[c + 1], cz = projected[c + 2];
+    const area = (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
+    if (Math.abs(area) < .005) continue;
+    const minX = Math.max(0, Math.floor(Math.min(ax, bx, cx))), maxX = Math.min(size - 1, Math.ceil(Math.max(ax, bx, cx)));
+    const minY = Math.max(0, Math.floor(Math.min(ay, by, cy))), maxY = Math.min(size - 1, Math.ceil(Math.max(ay, by, cy)));
+    const inverse = 1 / area, stepBX = (cy - ay) * inverse, stepCX = -(by - ay) * inverse;
+    for (let y = minY; y <= maxY; y++) {
+      let wb = ((minX + .5 - ax) * (cy - ay) - (y + .5 - ay) * (cx - ax)) * inverse;
+      let wc = ((bx - ax) * (y + .5 - ay) - (by - ay) * (minX + .5 - ax)) * inverse;
+      for (let x = minX; x <= maxX; x++, wb += stepBX, wc += stepCX) {
+        const wa = 1 - wb - wc;
+        if (wa < 0 || wb < 0 || wc < 0) continue;
+        const at = y * size + x, z = wa * az + wb * bz + wc * cz;
+        if (z > depth[at]) depth[at] = z;
+      }
+    }
+  }
+  return { size, projected, depth };
+}
+
+function paperVisibility(map, a, b, c, key) {
+  const { size, projected, depth } = map;
+  const x = Math.floor((projected[a] + projected[b] + projected[c]) / 3);
+  const y = Math.floor((projected[a + 1] + projected[b + 1] + projected[c + 1]) / 3);
+  const z = (projected[a + 2] + projected[b + 2] + projected[c + 2]) / 3;
+  const bias = 1.5 + 2.8 * (1 - key);
+  let lit = 0;
+  for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+    const px = x + dx, py = y + dy;
+    lit += px < 0 || py < 0 || px >= size || py >= size || z + bias >= depth[py * size + px] ? 1 : 0;
+  }
+  return lit / 9;
+}
+
 // Embedded browsers can disable GPU contexts. This renderer uses the very same
 // sheet and a real depth buffer, so folds still overlap correctly in that case.
 class SoftwarePaperMesh {
@@ -262,7 +295,8 @@ class SoftwarePaperMesh {
     this.canvas = canvas;
     this.context = canvas.getContext('2d', { alpha: true });
     if (!this.context) throw new Error('Paper canvas is unavailable');
-    this.mesh = geometry(192, 144);
+    this.mesh = geometry();
+    this.motionMesh = geometry(1);
     const count = this.mesh.vertices.length / 6;
     this.world = new Float32Array(count * 3);
     this.screen = new Float32Array(count * 3);
@@ -312,7 +346,7 @@ class SoftwarePaperMesh {
   render(progress, pointerX = 0, pointerY = 0) {
     if (this.disposed || !this.texture || !this.radius) return;
     const p = Math.max(0, Math.min(1, Number.isFinite(progress) ? progress : 0));
-    const scale = p >= 0.9 || p < 0.0001 ? this.dpr : Math.min(1.2, this.dpr);
+    const scale = p >= 0.9999 || p < 0.0001 ? this.dpr : Math.min(1.3, this.dpr);
     const targetWidth = Math.max(1, Math.round(this.width * scale));
     const targetHeight = Math.max(1, Math.round(this.height * scale));
     if (this.canvas.width !== targetWidth || this.canvas.height !== targetHeight) {
@@ -330,7 +364,7 @@ class SoftwarePaperMesh {
     const centerX = this.centerX - this.width / 2, centerY = this.height / 2 - this.centerY;
     const camera = Math.max(this.width, this.height) * 1.8;
     const sx = width / this.width, sy = height / this.height;
-    const { vertices, indices } = this.mesh;
+    const { vertices, indices } = p >= .9999 ? this.mesh : this.motionMesh;
     const world = this.world, screen = this.screen, radius = this.radius;
     const normals = this.normals;
     let left = width, right = 0, top = height, bottom = 0;
@@ -363,6 +397,10 @@ class SoftwarePaperMesh {
       normals[b] += nx; normals[b + 1] += ny; normals[b + 2] += nz;
       normals[c] += nx; normals[c + 1] += ny; normals[c + 2] += nz;
     }
+    for (let i = 0; i < vertices.length / 2; i += 3) {
+      const length = Math.hypot(normals[i], normals[i + 1], normals[i + 2]) || 1;
+      normals[i] /= length; normals[i + 1] /= length; normals[i + 2] /= length;
+    }
     const roiX = Math.max(0, Math.floor(left) - 2), roiY = Math.max(0, Math.floor(top) - 2);
     const roiWidth = Math.max(1, Math.min(width - roiX, Math.ceil((right - roiX + 3) / 32) * 32));
     const roiHeight = Math.max(1, Math.min(height - roiY, Math.ceil((bottom - roiY + 3) / 32) * 32));
@@ -375,10 +413,12 @@ class SoftwarePaperMesh {
     const px = Math.max(-1, Math.min(1, pointerX)), py = Math.max(-1, Math.min(1, pointerY));
     const light = normalize(-0.55 + px * 0.13, 0.78 - py * 0.10, 1.10);
     const fill = normalize(0.7, -0.25, 0.8);
+    const shadowMap = p > 0.72 ? paperDepthMap(world, indices, light, centerX * gathered, centerY * gathered, radius + (1 - gathered) * this.width * .5, p >= .9999 ? 384 : 192) : null;
+    const shadowWeight = Math.max(0, Math.min(1, (p - .72) / .2));
     const material = Math.min(1, p / 0.18);
     const treatment = Math.max(0, Math.min(1, (p - 0.4) / 0.6));
     const printTreatment = treatment * treatment * (3 - 2 * treatment);
-    const ivoryWeight = printTreatment * 0.75;
+    const ivoryWeight = printTreatment * 0.985;
     const colorWeight = (1 - printTreatment) * (1 - ivoryWeight);
     const grayWeight = printTreatment * (1 - ivoryWeight);
     const depth = this.depth, output = this.pixels, texture = this.texture;
@@ -403,27 +443,26 @@ class SoftwarePaperMesh {
       const norm = Math.hypot(nx, ny, nz) * (front ? 1 : -1);
       if (Math.abs(norm) < 1e-9) continue;
       nx /= norm; ny /= norm; nz /= norm;
-      let smoothX = normals[a] + normals[b] + normals[c];
-      let smoothY = normals[a + 1] + normals[b + 1] + normals[c + 1];
-      let smoothZ = normals[a + 2] + normals[b + 2] + normals[c + 2];
-      const smoothNorm = Math.hypot(smoothX, smoothY, smoothZ) * (front ? 1 : -1);
-      if (Math.abs(smoothNorm) > 1e-9) {
-        smoothX /= smoothNorm; smoothY /= smoothNorm; smoothZ /= smoothNorm;
-        // Smooth only the fine tessellation. A real sharp fold keeps its planes.
-        if (smoothX * nx + smoothY * ny + smoothZ * nz > 0.93) {
-          nx = nx * 0.3 + smoothX * 0.7;
-          ny = ny * 0.3 + smoothY * 0.7;
-          nz = nz * 0.3 + smoothZ * 0.7;
-        }
-      }
       const key = Math.max(0, nx * light[0] + ny * light[1] + nz * light[2]);
       const bounce = Math.max(0, nx * fill[0] + ny * fill[1] + nz * fill[2]);
       const fold = (vertices[ia * 6 + 5] + vertices[ib * 6 + 5] + vertices[ic * 6 + 5]) / 3;
-      const ambient = 0.43 + 0.15 * (0.5 + 0.5 * ny);
-      let illumination = (ambient + key * 0.58 + bounce * 0.12) * (1 - Math.max(0, -fold) * 0.22);
+      const visibility = shadowMap ? 1 - (1 - paperVisibility(shadowMap, a, b, c, key)) * shadowWeight * .68 : 1;
+      const ambient = 0.28 + 0.14 * (0.5 + 0.5 * ny);
+      let illumination = (ambient + key * 0.66 * visibility + bounce * 0.12) * (1 - Math.max(0, -fold) * 0.22);
       illumination = 1 + (illumination - 1) * material;
-      const shade = Math.max(0, Math.min(95, Math.round((illumination - 0.24) / 0.92 * 95))) * 256;
-      const backColor = (255 << 24) | (shades[shade + 244] << 16) | (shades[shade + 250] << 8) | shades[shade + 253];
+      const faceShade = Math.max(0, Math.min(95, (illumination - 0.24) / 0.92 * 95));
+      const shadeAt = index => {
+        let x = normals[index], y = normals[index + 1], z = normals[index + 2];
+        if (!front) { x = -x; y = -y; z = -z; }
+        // Only blend within a broad paper panel; keep its sharp fold boundary.
+        if (x * nx + y * ny + z * nz < .87) return faceShade;
+        const key = Math.max(0, x * light[0] + y * light[1] + z * light[2]);
+        const bounce = Math.max(0, x * fill[0] + y * fill[1] + z * fill[2]);
+        const ambient = .28 + .14 * (.5 + .5 * y);
+        const lit = 1 + ((ambient + key * .66 * visibility + bounce * .12) - 1) * material;
+        return Math.max(0, Math.min(95, (lit - .24) / .92 * 95));
+      };
+      const shadeA = shadeAt(a), shadeB = shadeAt(b), shadeC = shadeAt(c);
       const au = vertices[ia * 6], av = vertices[ia * 6 + 1];
       const bu = vertices[ib * 6], bv = vertices[ib * 6 + 1];
       const cu = vertices[ic * 6], cv = vertices[ic * 6 + 1];
@@ -440,7 +479,11 @@ class SoftwarePaperMesh {
           const z = wa * az + wb * bz + wc * cz;
           if (z <= depth[address]) continue;
           depth[address] = z;
-          if (!front) { output[address] = backColor; continue; }
+          const shade = Math.round(wa * shadeA + wb * shadeB + wc * shadeC) * 256;
+          if (!front) {
+            output[address] = (255 << 24) | (shades[shade + 244] << 16) | (shades[shade + 250] << 8) | shades[shade + 253];
+            continue;
+          }
           const tx = Math.max(0, Math.min(tw - 1, Math.round((wa * au + wb * bu + wc * cu) * (tw - 1))));
           const ty = Math.max(0, Math.min(th - 1, Math.round((wa * av + wb * bv + wc * cv) * (th - 1))));
           const source = (ty * tw + tx) * 4;
@@ -494,7 +537,7 @@ class SoftwarePaperMesh {
   dispose() {
     if (this.disposed) return;
     this.disposed = true;
-    this.mesh = this.world = this.screen = this.normals = this.image = this.pixels = this.depth = this.texture = this.source = null;
+    this.mesh = this.motionMesh = this.world = this.screen = this.normals = this.image = this.pixels = this.depth = this.texture = this.source = null;
   }
 }
 
