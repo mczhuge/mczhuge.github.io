@@ -128,6 +128,15 @@ void main() {
   vec3 linearPaper = pow(max(albedo, vec3(0.0)), vec3(2.2));
   vec3 shaded = pow(max(linearPaper * light, vec3(0.0)), vec3(1.0 / 2.2));
   shaded += fibres * 0.009;
+  // Champagne light catches the folds and grazing edges; the paper stays matte.
+  // It disappears before the real profile and its original colors are revealed.
+  float gold = smoothstep(0.55, 1.0, uProgress);
+  float shadeLuminance = dot(shaded, vec3(0.2126, 0.7152, 0.0722));
+  float recess = 1.0 - smoothstep(0.58, 0.91, shadeLuminance);
+  float rim = pow(1.0 - abs(n.z), 3.0);
+  float warmth = gold * (0.025 + recess * 0.16 + rim * 0.10);
+  shaded = mix(shaded, vec3(1.0, 0.8314, 0.5294), warmth);
+  shaded += gold * (0.25 + recess * 0.75) * vec3(0.012, 0.005, 0.0);
   // The surface is matte: broad illumination, crisp folds, no plastic glints.
   color = vec4(mix(front, min(shaded, vec3(1.0)), material), 1.0);
 }`;
@@ -505,23 +514,43 @@ class SoftwarePaperMesh {
     }
     if (p > 0.55) {
       // A small screen-space cavity term: concave folds shade themselves while
-      // broad convex paper faces and the silhouette keep their clean ivory.
+      // broad convex paper faces keep their ivory. Fold and edge illumination
+      // shares the WebGL champagne treatment and fades completely by p=.55.
       const reach = Math.max(2, Math.round(scale * 5));
       const vertical = reach * roiWidth;
       const strength = Math.min(1, (p - 0.55) / 0.3);
-      for (let y = reach; y < roiHeight - reach; y++) {
-        for (let x = reach, at = y * roiWidth + reach; x < roiWidth - reach; x++, at++) {
+      const glowProgress = Math.min(1, (p - 0.55) / 0.45);
+      const gold = glowProgress * glowProgress * (3 - 2 * glowProgress);
+      for (let y = 0; y < roiHeight; y++) {
+        for (let x = 0, at = y * roiWidth; x < roiWidth; x++, at++) {
           if (!output[at]) continue;
-          const leftDepth = depth[at - reach], rightDepth = depth[at + reach];
-          const upDepth = depth[at - vertical], downDepth = depth[at + vertical];
-          if (leftDepth < -1e20 || rightDepth < -1e20 || upDepth < -1e20 || downDepth < -1e20) continue;
-          const valley = (leftDepth + rightDepth + upDepth + downDepth) * 0.25 - depth[at] - 0.4;
-          if (valley <= 0) continue;
-          const light = 1 - Math.min(0.20, valley * 0.018) * strength;
           const pixel = output[at];
-          const red = ((pixel & 255) * light + 0.5) | 0;
-          const green = (((pixel >>> 8) & 255) * light + 0.5) | 0;
-          const blue = (((pixel >>> 16) & 255) * light + 0.5) | 0;
+          let red = pixel & 255, green = (pixel >>> 8) & 255, blue = (pixel >>> 16) & 255;
+          let rim = 0;
+          if (x >= reach && x < roiWidth - reach && y >= reach && y < roiHeight - reach) {
+            const leftDepth = depth[at - reach], rightDepth = depth[at + reach];
+            const upDepth = depth[at - vertical], downDepth = depth[at + vertical];
+            if (leftDepth > -1e20 && rightDepth > -1e20 && upDepth > -1e20 && downDepth > -1e20) {
+              const valley = (leftDepth + rightDepth + upDepth + downDepth) * 0.25 - depth[at] - 0.4;
+              if (valley > 0) {
+                const light = 1 - Math.min(0.20, valley * 0.018) * strength;
+                red = (red * light + 0.5) | 0;
+                green = (green * light + 0.5) | 0;
+                blue = (blue * light + 0.5) | 0;
+              }
+              const slope = (Math.abs(leftDepth - rightDepth) + Math.abs(upDepth - downDepth)) * scale / (reach * 2);
+              const grazing = slope / (slope + 4);
+              rim = grazing * grazing * grazing;
+            } else rim = 1;
+          } else rim = 1;
+          const luminance = (red * 0.2126 + green * 0.7152 + blue * 0.0722) / 255;
+          const level = Math.max(0, Math.min(1, (luminance - 0.58) / 0.33));
+          const recess = 1 - level * level * (3 - 2 * level);
+          const warmth = gold * (0.025 + recess * 0.16 + rim * 0.10);
+          const emission = gold * (0.25 + recess * 0.75);
+          red = Math.min(255, (red + (255 - red) * warmth + emission * 3.06 + 0.5) | 0);
+          green = Math.min(255, (green + (212 - green) * warmth + emission * 1.275 + 0.5) | 0);
+          blue = Math.min(255, (blue + (135 - blue) * warmth + 0.5) | 0);
           output[at] = (255 << 24) | (blue << 16) | (green << 8) | red;
         }
       }

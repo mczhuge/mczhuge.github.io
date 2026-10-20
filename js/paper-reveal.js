@@ -1,4 +1,4 @@
-import { PaperMesh } from './paper-mesh.js?v=6';
+import { PaperMesh } from './paper-mesh.js?v=gold-1';
 
 // Inspired by the tactile interaction of Matthias Ölschlegel's CrumpledPaperReveal.
 // The mesh is original; the live profile DOM is restored as soon as the sheet settles.
@@ -18,6 +18,21 @@ async function initializePaper() {
   const shadow = document.createElement('div');
   shadow.className = 'paper-shadow';
   shadow.setAttribute('aria-hidden', 'true');
+  const aura = document.createElement('div');
+  aura.className = 'paper-aura';
+  aura.setAttribute('aria-hidden', 'true');
+  // A handful of slow motes animate in CSS; the resting mesh stays asleep.
+  const motes = [
+    [23, 34, 3], [32, 18, 4], [49, 12, 2], [68, 22, 3], [80, 37, 4],
+    [85, 58, 2], [74, 76, 3], [57, 86, 2], [39, 82, 3], [20, 66, 4],
+    [15, 48, 2], [64, 11, 2], [35, 61, 2], [64, 49, 3],
+  ];
+  motes.forEach(([x, y, size], i) => {
+    const mote = document.createElement('i');
+    mote.className = i % 4 === 1 ? 'paper-mote paper-mote--star' : 'paper-mote';
+    mote.style.cssText = `--x:${x}%;--y:${y}%;--size:${size}px;--delay:${(-i * 1.13).toFixed(2)}s;--duration:${(5.8 + i % 5 * .7).toFixed(1)}s;--drift:${i % 2 ? 13 : -11}px`;
+    aura.append(mote);
+  });
   const open = document.createElement('button');
   open.type = 'button';
   open.className = 'paper-open';
@@ -30,7 +45,7 @@ async function initializePaper() {
   close.setAttribute('aria-label', 'Crumple profile into a paper ball');
   close.setAttribute('aria-controls', card.id);
   close.innerHTML = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="m5 2 8 1 4 5-2 8-8 2-5-6 3-10Z M5 2l4 7 4-6M2 12l7-3 6 7M7 18l2-9 8-1"/></svg>';
-  for (const element of [canvas, shadow, open, close]) { element.hidden = true; stage.append(element); }
+  for (const element of [aura, canvas, shadow, open, close]) { element.hidden = true; stage.append(element); }
   let mesh, frame = 0, progress = 1, animation = null, disposed = false;
   let pointerX = 0, pointerY = 0, textureWidth = 0, textureHeight = 0;
   let capturing = false, captureAgain = false, resizeTimer = 0, focusOnFinish = false;
@@ -86,6 +101,8 @@ async function initializePaper() {
     close.disabled = false;
     shadow.hidden = opened;
     shadow.style.opacity = '1';
+    aura.hidden = opened;
+    aura.style.opacity = opened ? '0' : '1';
     if (focusOnFinish) {
       if (opened) card.tabIndex = -1;
       (opened ? card : open).focus({ preventScroll: true });
@@ -102,6 +119,7 @@ async function initializePaper() {
       const eased = t * t * t * (t * (t * 6 - 15) + 10);
       progress = animation.from + (animation.to - animation.from) * eased;
       shadow.style.opacity = String(progress * progress);
+      aura.style.opacity = String(progress * progress * progress);
       mesh.render(progress, pointerX, pointerY);
       if (t === 1) settled(animation.to === 0);
       else frame = requestAnimationFrame(draw);
@@ -123,6 +141,7 @@ async function initializePaper() {
     open.hidden = true;
     close.hidden = true;
     shadow.hidden = false;
+    aura.hidden = false;
     animation = { from: progress, to, start: performance.now(), duration: Math.max(650, (to === 0 ? 1600 : 1500) * Math.abs(progress - to)) };
     pointerX = pointerY = 0;
     requestDraw();
@@ -145,7 +164,7 @@ async function initializePaper() {
           clone.parentElement.removeAttribute('data-paper-state');
           clone.inert = false;
           // The texture needs only the profile; skip unrelated canvases and animations.
-          documentClone.querySelectorAll('canvas, .paper-open, .paper-close, .paper-shadow').forEach(el => el.remove());
+          documentClone.querySelectorAll('canvas, .paper-open, .paper-close, .paper-shadow, .paper-aura').forEach(el => el.remove());
         }
       });
       if (disposed) return;
