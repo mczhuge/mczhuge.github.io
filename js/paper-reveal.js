@@ -1,4 +1,4 @@
-import { PaperMesh } from './paper-mesh.js?v=gold-1';
+import { PaperMesh } from './paper-mesh.js?v=compact-1';
 
 // Inspired by the tactile interaction of Matthias Ölschlegel's CrumpledPaperReveal.
 // The mesh is original; the live profile DOM is restored as soon as the sheet settles.
@@ -23,13 +23,12 @@ async function initializePaper() {
   aura.setAttribute('aria-hidden', 'true');
   // A handful of slow motes animate in CSS; the resting mesh stays asleep.
   const motes = [
-    [23, 34, 3], [32, 18, 4], [49, 12, 2], [68, 22, 3], [80, 37, 4],
-    [85, 58, 2], [74, 76, 3], [57, 86, 2], [39, 82, 3], [20, 66, 4],
-    [15, 48, 2], [64, 11, 2], [35, 61, 2], [64, 49, 3],
+    [22, 36, 2], [33, 19, 2], [65, 20, 2], [82, 43, 2],
+    [75, 72, 2], [53, 84, 2], [27, 75, 2], [17, 59, 2],
   ];
   motes.forEach(([x, y, size], i) => {
     const mote = document.createElement('i');
-    mote.className = i % 4 === 1 ? 'paper-mote paper-mote--star' : 'paper-mote';
+    mote.className = 'paper-mote';
     mote.style.cssText = `--x:${x}%;--y:${y}%;--size:${size}px;--delay:${(-i * 1.13).toFixed(2)}s;--duration:${(5.8 + i % 5 * .7).toFixed(1)}s;--drift:${i % 2 ? 13 : -11}px`;
     aura.append(mote);
   });

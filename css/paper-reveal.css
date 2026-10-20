@@ -14,26 +14,15 @@ body:has(> .rsi-background.is-ready) #about .paper-stage[data-paper-state] .abou
 .paper-stage[data-paper-state="open"] .paper-canvas { visibility: hidden; }
 .paper-aura {
   position: absolute; left: var(--paper-x, 50%); top: var(--paper-y, 360px);
-  width: calc(var(--paper-radius, 190px) * 3.55); aspect-ratio: 1;
+  width: calc(var(--paper-radius, 190px) * 2.85); aspect-ratio: 1;
   transform: translate(-50%, -50%); z-index: 1; pointer-events: none;
 }
-.paper-aura::before, .paper-aura::after {
-  content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
-}
 .paper-aura::before {
-  background: radial-gradient(ellipse at 50% 52%,
-    rgba(255, 246, 192, .92) 15%, rgba(255, 224, 128, .68) 30%,
-    rgba(241, 191, 75, .33) 43%, rgba(235, 183, 68, .12) 56%, transparent 72%);
-  filter: blur(12px); animation: paper-gold-breathe 5.6s ease-in-out infinite;
-}
-.paper-aura::after {
-  inset: -8%; opacity: .55;
-  background: repeating-conic-gradient(from 17deg,
-    transparent 0deg 18deg, rgba(232, 175, 45, .18) 21deg,
-    rgba(255, 223, 132, .36) 23deg, transparent 27deg 40deg);
-  -webkit-mask-image: radial-gradient(circle, transparent 31%, #000 44%, transparent 67%);
-  mask-image: radial-gradient(circle, transparent 31%, #000 44%, transparent 67%);
-  filter: blur(6px); animation: paper-gold-rays 48s linear infinite;
+  content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side at 50% 52%,
+    rgba(255, 243, 201, .20) 46%, rgba(248, 210, 116, .36) 65%,
+    rgba(230, 178, 63, .11) 78%, transparent 97%);
+  filter: blur(7px); animation: paper-gold-breathe 6.8s ease-in-out infinite;
 }
 .paper-mote {
   position: absolute; left: var(--x); top: var(--y); z-index: 1;
@@ -41,21 +30,10 @@ body:has(> .rsi-background.is-ready) #about .paper-stage[data-paper-state] .abou
   background: #fff5c7; box-shadow: 0 0 3px 1px rgba(209, 151, 33, .65), 0 0 13px 3px rgba(242, 190, 65, .3);
   animation: paper-gold-mote var(--duration) ease-in-out var(--delay) infinite;
 }
-.paper-mote--star {
-  width: calc(var(--size) * 2.8); height: calc(var(--size) * 2.8); background: transparent;
-  box-shadow: none; filter: drop-shadow(0 0 5px rgba(222, 164, 43, .65));
-}
-.paper-mote--star::before, .paper-mote--star::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(transparent, #e8b64f 38%, #fff9dc 50%, #e8b64f 62%, transparent);
-  clip-path: polygon(50% 0, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0 50%, 41% 41%);
-}
-.paper-mote--star::after { transform: scale(.6) rotate(45deg); opacity: .5; }
 @keyframes paper-gold-breathe {
-  0%, 100% { opacity: .72; transform: scale(.97); }
-  50% { opacity: 1; transform: scale(1.045); }
+  0%, 100% { opacity: .62; transform: scale(.98); }
+  50% { opacity: .9; transform: scale(1.025); }
 }
-@keyframes paper-gold-rays { to { transform: rotate(360deg); } }
 @keyframes paper-gold-mote {
   0% { opacity: 0; transform: translate(0, 16px) scale(.5); }
   25% { opacity: .85; }

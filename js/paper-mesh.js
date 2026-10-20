@@ -1,4 +1,4 @@
-import { paperShape } from './paper-shape.js?v=5';
+import { paperShape } from './paper-shape.js?v=compact-1';
 
 // An original, dependency-free paper surface. The caller owns animation and the
 // accessible HTML; this canvas is only the transient, printed-paper visual.
@@ -102,7 +102,7 @@ void main() {
   float printTreatment = smoothstep(0.4, 1.0, uProgress);
   float luminance = dot(front, vec3(0.2126, 0.7152, 0.0722));
   front = mix(front, vec3(luminance), printTreatment);
-  front = mix(front, ivory, printTreatment * 0.985);
+  front = mix(front, ivory, printTreatment * 0.92);
   vec3 albedo = gl_FrontFacing ? front : ivory;
   float material = smoothstep(0.0, 0.18, uProgress);
   vec3 dx = dFdx(vPosition), dy = dFdy(vPosition);
@@ -171,7 +171,7 @@ function refineSheet(points, faces) {
   }
   for (const edge of edges.values()) {
     const [a, b] = edge.faces.map(f => normals[f]);
-    edge.sharp = !b || a.reduce((sum, n, i) => sum + n * b[i], 0) < 0.45;
+    edge.sharp = !b || a.reduce((sum, n, i) => sum + n * b[i], 0) < 0.78;
     if (edge.sharp) { sharp[edge.a].push(edge.b); sharp[edge.b].push(edge.a); }
   }
   const next = points.map((point, i) => {
@@ -427,7 +427,7 @@ class SoftwarePaperMesh {
     const material = Math.min(1, p / 0.18);
     const treatment = Math.max(0, Math.min(1, (p - 0.4) / 0.6));
     const printTreatment = treatment * treatment * (3 - 2 * treatment);
-    const ivoryWeight = printTreatment * 0.985;
+    const ivoryWeight = printTreatment * 0.92;
     const colorWeight = (1 - printTreatment) * (1 - ivoryWeight);
     const grayWeight = printTreatment * (1 - ivoryWeight);
     const depth = this.depth, output = this.pixels, texture = this.texture;
