@@ -1,4 +1,4 @@
-import { paperShape } from './paper-shape.js?v=paper-20261020';
+import { paperShape } from './paper-shape.js?v=paper-planet-1';
 
 // An original, dependency-free paper surface. The caller owns animation and the
 // accessible HTML; this canvas is only the transient, printed-paper visual.
@@ -67,6 +67,7 @@ uniform vec2 uSize;
 uniform vec3 uLight;
 uniform vec3 uFill;
 uniform float uProgress;
+uniform float uRadius;
 uniform float uShadowPixel;
 out vec4 color;
 
@@ -109,8 +110,8 @@ void main() {
   float determinant = dot(dx, rx);
   vec3 gradient = (dot(heightGradient, uvX) * rx + dot(heightGradient, uvY) * ry)
     / max(abs(determinant), 0.00001) * sign(determinant);
-  float crease = smoothstep(0.65, 0.95, uProgress);
-  gradient *= crease * (gl_FrontFacing ? 1.0 : -1.0);
+  float crease = smoothstep(0.65, 0.95, uProgress) * smoothstep(0.0, 0.22, sin(vUV.y * 3.14159265));
+  gradient *= crease * (uRadius / 190.0) * (gl_FrontFacing ? 1.0 : -1.0);
   // Bound the local tilt, so folded-over UVs cannot create glossy black pits.
   gradient *= min(1.0, 0.38 / max(length(gradient), 0.00001));
   n = normalize(n - gradient);
@@ -150,21 +151,24 @@ function normalize(x, y, z) {
   return [x / length, y / length, z / length];
 }
 
-// Fine compression wrinkles are a material detail, shared by both renderers.
-// Bake them once in the sheet's UV space so they follow the print as it unfolds.
+// Paper-cut terrain and fine creases share a height material in both renderers.
+// Smooth per-pixel contours avoid jagged edges from the globe's triangle grid.
 let cachedPaperMaterial;
 function paperMaterial() {
   if (cachedPaperMaterial) return cachedPaperMaterial;
-  const size = 512, height = new Float32Array(size * size);
+  const size = 1024, height = new Float32Array(size * size);
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+    height[y * size + x] = paperShape.height((x + .5) / size, (y + .5) / size) * 190;
+  }
   let seed = 19837;
   const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
-  for (let crease = 0; crease < 280; crease++) {
-    const primary = crease < 62;
+  for (let crease = 0; crease < 120; crease++) {
+    const primary = crease < 30;
     const cx = random(), cy = random(), angle = random() * Math.PI * 2;
     const dx = Math.cos(angle), dy = Math.sin(angle);
     const length = primary ? .07 + random() * .12 : .018 + random() * .065;
     const width = primary ? .0035 + random() * .0025 : .0022 + random() * .0018;
-    const amplitude = (primary ? 1.2 + random() * .8 : .35 + random() * .5) * (random() < .48 ? -1 : 1);
+    const amplitude = (primary ? .20 + random() * .20 : .045 + random() * .08) * (random() < .48 ? -1 : 1);
     const bend = (random() - .5) * width * 3;
     const extentX = Math.abs(dx) * length * .5 + width * 6;
     const extentY = Math.abs(dy) * length * .5 + width * 6;
@@ -198,71 +202,25 @@ function paperMaterial() {
   return cachedPaperMaterial;
 }
 
-// Refine the simulated sheet while retaining the sharpest mountain/valley folds.
-// UVs follow the same subdivision, so the opened surface still covers the profile.
-function refineSheet(points, faces) {
-  const edges = new Map(), neighbors = points.map(() => new Set()), sharp = points.map(() => []);
-  const normals = [];
-  for (let f = 0; f < faces.length; f += 3) {
-    const a = points[faces[f]], b = points[faces[f + 1]], c = points[faces[f + 2]];
-    const ab = b.slice(2).map((n, j) => n - a[j + 2]), ac = c.slice(2).map((n, j) => n - a[j + 2]);
-    normals.push(normalize(ab[1] * ac[2] - ab[2] * ac[1], ab[2] * ac[0] - ab[0] * ac[2], ab[0] * ac[1] - ab[1] * ac[0]));
-    for (let i = 0; i < 3; i++) {
-      const a = faces[f + i], b = faces[f + (i + 1) % 3], opposite = faces[f + (i + 2) % 3];
-      const key = a < b ? `${a}:${b}` : `${b}:${a}`;
-      let edge = edges.get(key);
-      if (!edge) { edge = { a, b, opposite: [], faces: [] }; edges.set(key, edge); }
-      edge.opposite.push(opposite); edge.faces.push(f / 3);
-      neighbors[a].add(b); neighbors[b].add(a);
-    }
-  }
-  for (const edge of edges.values()) {
-    const [a, b] = edge.faces.map(f => normals[f]);
-    edge.sharp = !b || a.reduce((sum, n, i) => sum + n * b[i], 0) < 0.78;
-    if (edge.sharp) { sharp[edge.a].push(edge.b); sharp[edge.b].push(edge.a); }
-  }
-  const next = points.map((point, i) => {
-    if (sharp[i].length > 2 || (point[0] === 0 || point[0] === 1) && (point[1] === 0 || point[1] === 1)) return point.slice();
-    if (sharp[i].length === 2) return point.map((p, j) => p * .75 + (points[sharp[i][0]][j] + points[sharp[i][1]][j]) * .125);
-    const list = [...neighbors[i]], beta = list.length === 3 ? 3 / 16 : 3 / (8 * list.length);
-    return point.map((p, j) => p * (1 - list.length * beta) + list.reduce((s, k) => s + points[k][j] * beta, 0));
-  });
-  for (const edge of edges.values()) {
-    edge.index = next.length;
-    next.push(points[edge.a].map((p, j) => edge.sharp
-      ? (p + points[edge.b][j]) * .5
-      : (p + points[edge.b][j]) * .375 + (points[edge.opposite[0]][j] + points[edge.opposite[1]][j]) * .125));
-  }
-  const midpoint = (a, b) => edges.get(a < b ? `${a}:${b}` : `${b}:${a}`).index;
-  const triangles = [];
-  for (let f = 0; f < faces.length; f += 3) {
-    const a = faces[f], b = faces[f + 1], c = faces[f + 2];
-    const ab = midpoint(a, b), bc = midpoint(b, c), ca = midpoint(c, a);
-    triangles.push(a, ab, ca, b, bc, ab, c, ca, bc, ab, bc, ca);
-  }
-  return { points: next, faces: triangles };
-}
-
+// Evaluate the same paper surface at two resolutions. Refining the UV grid
+// before mapping it to the sphere preserves the seam, poles and paper-cut edges.
 function geometry(passes = 2) {
-  const { uvs, positions, indices } = paperShape;
-  let points = [], faces = [...indices];
-  // Use the same irregular triangles that were compressed in the bake. A
-  // different diagonal would cut across the folds and create false sharp edges.
-  for (let i = 0; i < uvs.length / 2; i++) {
-    points.push([uvs[i * 2], uvs[i * 2 + 1], ...positions.slice(i * 3, i * 3 + 3)]);
+  const divisor = passes >= 2 ? 1 : 2;
+  const columns = paperShape.columns / divisor, rows = paperShape.rows / divisor;
+  const vertices = new Float32Array((columns + 1) * (rows + 1) * 6);
+  const indices = new Uint16Array(columns * rows * 6);
+  for (let y = 0; y <= rows; y++) for (let x = 0; x <= columns; x++) {
+    const u = x / columns, v = y / rows, at = (y * (columns + 1) + x) * 6;
+    const point = paperShape.point(u, v);
+    vertices[at] = u; vertices[at + 1] = v;
+    vertices[at + 2] = point[0]; vertices[at + 3] = point[1]; vertices[at + 4] = point[2];
   }
-  for (let pass = 0; pass < passes; pass++) ({ points, faces } = refineSheet(points, faces));
-  const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
-  for (const point of points) for (let axis = 0; axis < 3; axis++) {
-    min[axis] = Math.min(min[axis], point[axis + 2]); max[axis] = Math.max(max[axis], point[axis + 2]);
+  let at = 0;
+  for (let y = 0; y < rows; y++) for (let x = 0; x < columns; x++) {
+    const a = y * (columns + 1) + x, b = a + 1, c = a + columns + 1, d = c + 1;
+    indices.set([a, c, b, b, c, d], at); at += 6;
   }
-  const scale = 2 / Math.max(max[0] - min[0], max[1] - min[1]);
-  const vertices = new Float32Array(points.length * 6);
-  for (let i = 0; i < points.length; i++) {
-    vertices[i * 6] = points[i][0]; vertices[i * 6 + 1] = points[i][1];
-    for (let axis = 0; axis < 3; axis++) vertices[i * 6 + 2 + axis] = (points[i][axis + 2] - (min[axis] + max[axis]) * .5) * scale;
-  }
-  return { vertices, indices: new Uint16Array(faces) };
+  return { vertices, indices };
 }
 
 function program(gl, vertex, fragment) {
@@ -524,7 +482,7 @@ class SoftwarePaperMesh {
         const alignment = x * nx + y * ny + z * nz;
         const level = Math.max(0, Math.min(1, (alignment - .55) / .40));
         if (level <= 0) return faceShade;
-        const blend = level * level * (3 - 2 * level) * .45;
+        const blend = level * level * (3 - 2 * level);
         const key = Math.max(0, x * light[0] + y * light[1] + z * light[2]);
         const bounce = Math.max(0, x * fill[0] + y * fill[1] + z * fill[2]);
         const ambient = .28 + .14 * (.5 + .5 * y);
@@ -551,7 +509,7 @@ class SoftwarePaperMesh {
         const vx = ny * puz - nz * puy, vy = nz * pux - nx * puz, vz = nx * puy - ny * pux;
         const metric = pux * ux + puy * uy + puz * uz;
         if (Math.abs(metric) > 1e-8) {
-          const weight = -crease * (front ? 1 : -1) * gradientUnit * 95 / .92 / metric * .90;
+          const weight = -crease * (radius / 190) * (front ? 1 : -1) * gradientUnit * 95 / .92 / metric * .90;
           const keyWeight = key > 0 ? .66 * visibility : 0, fillWeight = bounce > 0 ? .12 : 0;
           creaseU = (uy * .07 + (ux * light[0] + uy * light[1] + uz * light[2]) * keyWeight
             + (ux * fill[0] + uy * fill[1] + uz * fill[2]) * fillWeight) * weight;
@@ -575,10 +533,20 @@ class SoftwarePaperMesh {
           const u = wa * au + wb * bu + wc * cu, v = wa * av + wb * bv + wc * cv;
           let shadeLevel = wa * shadeA + wb * shadeB + wc * shadeC;
           if (crease > 0) {
-            const mx = Math.max(0, Math.min(paperSize - 1, (u * (paperSize - 1) + .5) | 0));
-            const my = Math.max(0, Math.min(paperSize - 1, (v * (paperSize - 1) + .5) | 0));
-            const at = (my * paperSize + mx) * 4;
-            const relief = (paper[at] - 128) * creaseU + (paper[at + 1] - 128) * creaseV;
+            const mx = Math.max(0, Math.min(paperSize - 1, u * paperSize - .5));
+            const my = Math.max(0, Math.min(paperSize - 1, v * paperSize - .5));
+            const ix = Math.floor(mx), iy = Math.floor(my), fx = mx - ix, fy = my - iy;
+            const at = (iy * paperSize + ix) * 4;
+            const right = ix < paperSize - 1 ? 4 : 0, down = iy < paperSize - 1 ? paperSize * 4 : 0;
+            const leftWeight = 1 - fx, topWeight = 1 - fy;
+            const du = (paper[at] * leftWeight + paper[at + right] * fx) * topWeight
+              + (paper[at + down] * leftWeight + paper[at + down + right] * fx) * fy - 128;
+            const dv = (paper[at + 1] * leftWeight + paper[at + right + 1] * fx) * topWeight
+              + (paper[at + down + 1] * leftWeight + paper[at + down + right + 1] * fx) * fy - 128;
+            const poleDistance = Math.min(v, 1 - v);
+            const poleLevel = Math.min(1, poleDistance / .075);
+            const poleFade = poleLevel * poleLevel * (3 - 2 * poleLevel);
+            const relief = (du * creaseU + dv * creaseV) * poleFade;
             shadeLevel += Math.max(-15, Math.min(15, relief)) + (paper[at + 2] - 128) * .009 * crease;
           }
           const shade = Math.max(0, Math.min(95, Math.round(shadeLevel))) * 256;

@@ -1,10 +1,37 @@
-import { PaperMesh } from './paper-mesh.js?v=paper-20261020';
+import { PaperMesh } from './paper-mesh.js?v=paper-planet-1';
 
 // Inspired by the tactile interaction of Matthias Ölschlegel's CrumpledPaperReveal.
 // The mesh is original; the live profile DOM is restored as soon as the sheet settles.
 const card = document.getElementById('profile-sheet');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const hoverPointer = matchMedia('(hover: hover) and (pointer: fine)');
+
+// The ring's far and near halves sit on opposite sides of the paper canvas.
+// Its ivory facets and thin cut edge are drawn once; only opacity is animated.
+function createPaperRing(side) {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('class', `paper-ring paper-ring--${side}`);
+  svg.setAttribute('viewBox', '-380 -180 760 360');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  svg.setAttribute('hidden', '');
+  const near = side === 'front', start = near ? 0 : Math.PI;
+  const point = (angle, x, y) => `${(Math.cos(angle) * x).toFixed(2)} ${(Math.sin(angle) * y).toFixed(2)}`;
+  const section = (from, to) => `M ${point(from, 315, 88)} A 315 88 0 0 1 ${point(to, 315, 88)} L ${point(to, 240, 64)} A 240 64 0 0 0 ${point(from, 240, 64)} Z`;
+  const surface = section(start, start + Math.PI);
+  const gradient = `paper-ring-${side}-ivory`;
+  const facets = [0, .17, .35, .49, .65, .81, 1];
+  const panels = facets.slice(0, -1).map((part, i) => {
+    const fill = i % 3 === 0 ? '#ffffff' : i % 3 === 1 ? '#d9cfbc' : '#f7f2e5';
+    return `<path d="${section(start + part * Math.PI, start + facets[i + 1] * Math.PI)}" fill="${fill}" opacity="${i % 3 === 1 ? '.18' : '.26'}"/>`;
+  }).join('');
+  const folds = [.17, .49, .81].map(part => {
+    const angle = start + part * Math.PI;
+    return `<path d="M ${point(angle, 242, 65)} L ${point(angle + .012, 313, 87)}" stroke="#b7aa91" stroke-width=".65" opacity=".38"/><path d="M ${point(angle + .008, 242, 65)} L ${point(angle + .018, 313, 87)}" stroke="#fffefa" stroke-width="1.3" opacity=".72"/>`;
+  }).join('');
+  svg.innerHTML = `<defs><linearGradient id="${gradient}" x1="0" y1="-88" x2="0" y2="88" gradientUnits="userSpaceOnUse"><stop stop-color="${near ? '#fffdf6' : '#e8e1d3'}"/><stop offset=".55" stop-color="#f8f4e9"/><stop offset="1" stop-color="${near ? '#e9e0cc' : '#f6f0e1'}"/></linearGradient></defs><g transform="rotate(-20)"><path d="${surface}" transform="translate(0 ${near ? '2.1' : '1.3'})" fill="#bcae93" opacity=".72"/><path d="${surface}" fill="url(#${gradient})"/>${panels}${folds}<path d="M ${point(start, 315, 88)} A 315 88 0 0 1 ${point(start + Math.PI, 315, 88)}" fill="none" stroke="#c2a66d" stroke-width=".7" opacity=".66"/><path d="M ${point(start, 240, 64)} A 240 64 0 0 1 ${point(start + Math.PI, 240, 64)}" fill="none" stroke="#b4a88e" stroke-width=".6" opacity=".45"/></g>`;
+  return svg;
+}
 
 async function initializePaper() {
   if (!card || reducedMotion.matches) return;
@@ -21,6 +48,7 @@ async function initializePaper() {
   const aura = document.createElement('div');
   aura.className = 'paper-aura';
   aura.setAttribute('aria-hidden', 'true');
+  const rings = [createPaperRing('rear'), createPaperRing('front')];
   // A handful of slow motes animate in CSS; the resting mesh stays asleep.
   const motes = [
     [22, 36, 2], [33, 19, 2], [65, 20, 2], [82, 43, 2],
@@ -41,10 +69,13 @@ async function initializePaper() {
   const close = document.createElement('button');
   close.type = 'button';
   close.className = 'paper-close';
-  close.setAttribute('aria-label', 'Crumple profile into a paper ball');
+  close.setAttribute('aria-label', 'Fold profile into a paper planet');
   close.setAttribute('aria-controls', card.id);
   close.innerHTML = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="m5 2 8 1 4 5-2 8-8 2-5-6 3-10Z M5 2l4 7 4-6M2 12l7-3 6 7M7 18l2-9 8-1"/></svg>';
-  for (const element of [aura, canvas, shadow, open, close]) { element.hidden = true; stage.append(element); }
+  for (const element of [aura, rings[0], canvas, rings[1], shadow, open, close]) {
+    element.toggleAttribute('hidden', true);
+    stage.append(element);
+  }
   let mesh, frame = 0, progress = 1, animation = null, disposed = false;
   let pointerX = 0, pointerY = 0, textureWidth = 0, textureHeight = 0;
   let capturing = false, captureAgain = false, resizeTimer = 0, focusOnFinish = false;
@@ -73,9 +104,9 @@ async function initializePaper() {
 
   function dimensions() {
     const rect = card.getBoundingClientRect();
-    // Keep the ball in the visible part of the site's existing fixed-width layout.
+    // Reserve room for the ring inside the site's existing fixed-width layout.
     const visibleWidth = Math.min(rect.width, innerWidth - Math.max(0, rect.left));
-    ballRadius = Math.min(190, visibleWidth * .42, rect.height * .29);
+    ballRadius = Math.min(190, visibleWidth * .27, rect.height * .29);
     ballX = Math.max(ballRadius + 8, Math.min(rect.width / 2, (innerWidth - rect.left) / 2));
     ballY = Math.min(rect.height / 2, 360);
     stage.style.setProperty('--paper-x', `${ballX}px`);
@@ -84,6 +115,16 @@ async function initializePaper() {
     stage.style.setProperty('--paper-control-x', `${Math.max(100, Math.min(rect.width - 18, innerWidth - rect.left - 28))}px`);
     mesh.resize(rect.width, rect.height, Math.min(2, Math.max(1.5, devicePixelRatio || 1)), ballX, ballRadius);
     return rect;
+  }
+
+  function updateRings() {
+    // The orbit clears away early, before the profile starts becoming readable.
+    const t = Math.max(0, Math.min(1, (progress - .82) / .18));
+    const opacity = t * t * (3 - 2 * t);
+    for (const ring of rings) {
+      ring.toggleAttribute('hidden', opacity === 0);
+      ring.style.opacity = String(opacity);
+    }
   }
 
   function settled(opened) {
@@ -102,6 +143,7 @@ async function initializePaper() {
     shadow.style.opacity = '1';
     aura.hidden = opened;
     aura.style.opacity = opened ? '0' : '1';
+    updateRings();
     if (focusOnFinish) {
       if (opened) card.tabIndex = -1;
       (opened ? card : open).focus({ preventScroll: true });
@@ -119,6 +161,7 @@ async function initializePaper() {
       progress = animation.from + (animation.to - animation.from) * eased;
       shadow.style.opacity = String(progress * progress);
       aura.style.opacity = String(progress * progress * progress);
+      updateRings();
       mesh.render(progress, pointerX, pointerY);
       if (t === 1) settled(animation.to === 0);
       else frame = requestAnimationFrame(draw);
@@ -141,6 +184,7 @@ async function initializePaper() {
     close.hidden = true;
     shadow.hidden = false;
     aura.hidden = false;
+    updateRings();
     animation = { from: progress, to, start: performance.now(), duration: Math.max(650, (to === 0 ? 1600 : 1500) * Math.abs(progress - to)) };
     pointerX = pointerY = 0;
     requestDraw();
@@ -163,7 +207,7 @@ async function initializePaper() {
           clone.parentElement.removeAttribute('data-paper-state');
           clone.inert = false;
           // The texture needs only the profile; skip unrelated canvases and animations.
-          documentClone.querySelectorAll('canvas, .paper-open, .paper-close, .paper-shadow, .paper-aura').forEach(el => el.remove());
+          documentClone.querySelectorAll('canvas, .paper-open, .paper-close, .paper-shadow, .paper-aura, .paper-ring').forEach(el => el.remove());
         }
       });
       if (disposed) return;
@@ -208,10 +252,14 @@ async function initializePaper() {
     if (!hoverPointer.matches || event.pointerType === 'touch' || disposed) return;
     const rect = stage.getBoundingClientRect();
     const x = event.clientX - rect.left, y = event.clientY - rect.top;
-    const nearBall = Math.hypot(x - ballX, y - ballY) < ballRadius + 75;
-    if (!nearBall) hoverSuppressed = false;
+    const dx = x - ballX, dy = y - ballY, tilt = 20 * Math.PI / 180;
+    const ringX = dx * Math.cos(tilt) - dy * Math.sin(tilt);
+    const ringY = dx * Math.sin(tilt) + dy * Math.cos(tilt);
+    const nearPlanet = Math.hypot(dx, dy) < ballRadius + 75
+      || Math.hypot(ringX / (ballRadius * 1.66 + 40), ringY / (ballRadius * .46 + 40)) < 1;
+    if (!nearPlanet) hoverSuppressed = false;
     if (event.buttons) return;
-    if (nearBall && !hoverSuppressed && (animation?.to ?? progress) === 1) {
+    if (nearPlanet && !hoverSuppressed && (animation?.to ?? progress) === 1) {
       keyboardMode = false;
       move(0, event, 'proximity');
     }
